@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Working out the perimeter of a given polygon.</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p>Work out the perimeter of the following figure.</p>
+<p>perimeter=[[input:ans1]]cm [[validation:ans1]][[feedback:prt1]]</p>
+[[jsxgraph]]
+ var board = JXG.JSXGraph.initBoard('jxgbox', {boundingbox: [-5, 20, 20, -5],
+                keepAspectRatio:true, showCopyright:false, showNavigation:false ,axis:false});
+        const A = board.create('point', [0,0], { name: 'A', visible: false});
+        const B = board.create('point', [0,10], { name: 'B', visible: false });
+        const C = board.create('point', [7,10], { name: 'C', visible: false});
+        const D = board.create('point', [7,15], { name: 'D', visible: false });
+        const E = board.create('point', [18,15], { name: 'E', visible: false });
+        const F = board.create('point', [18,0], { name: 'F', visible: false});
+
+        board.create('polygon', [A, B, C, D,E,F], {borders: {
+                                               strokeWidth: 1,
+                                               strokeColor: 'black',},
+                                              fillColor: 'none',});
+
+        board.create('text', [-3.5,5, '{#side1#} cm'], { fontSize: 10 });
+        board.create('text', [3.5, 10.5, '{#side2#} cm'], { fontSize: 10});
+        board.create('text', [4,12.5, '{#side3#} cm'], { fontSize: 10 });
+        board.create('text', [12,15.5, '{#side4#} cm'], { fontSize: 0 });
+        board.create('text', [18.5,7.5, '{#side5#} cm'], { fontSize: 0 });
+        board.create('text', [9, -1, '{#side6#} cm'], { fontSize: 10});
+[[/jsxgraph]]]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<h3>Worked solution</h3>
+<p>The perimeter of a polygon is found by adding the lengths of all its sides together. In this specific case, we have a polygon with six sides, so the perimeter is calculated by adding the lengths of side 1, side 2, side 3, side 4, side 5, and side 6.</p>
+<p>perimeter=\({@side1+side2+side3+side4+side5+side6@}\)</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2023060500</text>
+    </stackversion>
+    <questionvariables>
+      <text>side5:rand(15)+7;
+side1:rand_with_prohib(3,9,[side5]);
+side3:side5-side1;
+side6:rand(18)+9;
+side2:rand_with_prohib(3,7,[side6]);
+side4:side6-side2;
+ta:side1+side2+side3+side4+side5+side6;</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="moodle_auto_format">
+      <text>\(@ta@\)</text>
+    </questionnote>
+    <questiondescription format="html">
+      <text><![CDATA[<p id="author">Eric Morara</p>
+<p id="concept">https://ecampus.idems.international/question/bank/history/history.php?entryid=126328&returnurl=%2Fquestion%2Fedit.php%3Fcourseid%3D430%26cat%3D18806%252C121817&courseid=430</p>
+<p id="reviewer"></p>
+<p id="reviewer"></p>
+<p id="description">The learner is expected to find the perimeter of a polygon by adding the lengths of all its sides. </p>]]></text>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>ta</tans>
+      <boxsize>5</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>checks for correct perimeter</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>ta</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <deployedseed>1771699065</deployedseed>
+  </question>
+</quiz>

@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Calculating base area of a cylindrical container.</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p>A cylindrical container has a base radius of \({@radius_deci@}\)m.Find its base area .</p>
+<p><b>Note: </b>Give your answer to \(2\) decimal places.</p>
+<p>Area = [[input:ans1]] [[validation:ans1]]\(m^2\)[[feedback:prt1]] </p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<h3>Worked solution</h3>
+<p>The base of a cylinder is circular. Therefore, to find the base area of a cylindrical container, we can use the formula for the area of a circle.</p>
+<p>Area of a circle \(=\pi r^{2}\) where ;
+<p>A is the base area</p>
+<p>r is the base radius</p>
+<p>\(π\) is a constant usually given by \(\frac{22}{7}\).</p>
+
+<p>Given:</p>
+<p>radius  \({@radius_deci@}m\)</p>
+<p>Base area  is,</p>
+<p>Area  =\(\frac{22}{7}\)&times\({@radius_deci@}\)&times \({@radius_deci@} m^2\)</p>
+<p> \(\qquad={@area@} m^2\)</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2023060500</text>
+    </stackversion>
+    <questionvariables>
+      <text>radius:rand_with_step(10,100,2);
+radius_deci:float(radius/10);
+let_pi:(22/7);
+radius_squared:radius_deci^2;
+area:decimalplaces(let_pi*radius_squared,2);
+/*mistakes*/
+ta_wrong_answer:decimalplaces(let_pi*radius_deci,2);
+</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="moodle_auto_format">
+      <text>\({@area@}\)</text>
+    </questionnote>
+    <questiondescription format="html">
+      <text><![CDATA[<p id="author">Eric Morara </p>
+<p id="concept">https://ecampus.idems.international/question/bank/history/history.php?entryid=126175&returnurl=%2Fquestion%2Fedit.php%3Fcourseid%3D430%26cat%3D18807%252C121817&courseid=430</p>
+<p id="reviewer"></p>
+<p id="reviewer"></p>
+
+<p id="description">The question is explaining how a student can get the base area of a cylinder given the radius</p>]]></text>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>area</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>checks for correct base area</description>
+        <answertest>NumDecPlaces</answertest>
+        <sans>ans1</sans>
+        <tans>area</tans>
+        <testoptions>2</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <description> Forgetting to square the radius when calculating the area of a circle.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>ta_wrong_answer</tans>
+        <testoptions/>
+        <quiet>1</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-2-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>You seem to have forgotten to square the radius when applying the formula 
+\(A=\pi r^{2}\). Always check that you square the radius value before multiplying by \(\pi\)</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-2-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <deployedseed>99</deployedseed>
+    <deployedseed>1933567136</deployedseed>
+    <deployedseed>347772481</deployedseed>
+    <deployedseed>305141499</deployedseed>
+    <deployedseed>1018062610</deployedseed>
+    <deployedseed>840980371</deployedseed>
+    <deployedseed>555826592</deployedseed>
+    <deployedseed>1578010269</deployedseed>
+    <deployedseed>2035613595</deployedseed>
+    <deployedseed>205273027</deployedseed>
+    <deployedseed>442553926</deployedseed>
+    <deployedseed>1950446005</deployedseed>
+    <deployedseed>297145262</deployedseed>
+    <deployedseed>1712659364</deployedseed>
+    <deployedseed>1332449410</deployedseed>
+    <deployedseed>97096831</deployedseed>
+    <deployedseed>397394878</deployedseed>
+  </question>
+</quiz>

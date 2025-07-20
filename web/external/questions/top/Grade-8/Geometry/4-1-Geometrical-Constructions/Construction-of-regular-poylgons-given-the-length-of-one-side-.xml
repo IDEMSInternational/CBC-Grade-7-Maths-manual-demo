@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Construction of regular poylgons given the length of one side.</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p>Construct a polygon with \({@sides@}\) sides where the length of each side is \({@length@}\,cm.\)</p>
+
+<p>What is the name of the polygon you have constructed?( Write your answer inside double quotes with the first letter as capital e.g if your polygon is a triangle input  "Triangle")</p>
+<p>Polygon name: [[input:ans1]] [[validation:ans1]][[feedback:prt1]]</p>
+<p>What is the measure of one of the interior angles of the polygon? (Write your answer correct to 1 d.p)</p>
+<p>Interior angle = [[input:ans2]] \(^\circ\)[[validation:ans2]][[feedback:prt2]]</p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<h3>Worked Solution</h3>
+[[jsxgraph]]
+
+            var board = JXG.JSXGraph.initBoard('jxgbox',{
+                boundingbox:[-5,10,10,-1], 
+                axis: false,
+                showCopyright:false,keepAspectRatio:true
+    
+            });
+
+            // Define the center and one vertex
+            var center = board.create('point', [0, 0], {name: 'A'});
+            var vertex = board.create('point', {#coordinate_pointB#}, {name: 'B'});
+
+            // Create a regular polygon (e.g., pentagon with 5 vertices)
+            var pentagon = board.create('regularpolygon', [center, vertex, {#sides#}], {
+                borders: {
+                    strokeColor: 'blue',
+                    strokeWidth: 2
+                },
+                vertices: {
+                    face: 'circle',
+                    fillColor: 'red',
+                    size: 2
+                }
+            });
+[[/jsxgraph]]
+<p>To compute one of the interior angle of the polygon:</p>
+<p>interior angle = \(\frac{360.0^\circ}{\text{number of sides}}\)</p>
+<p>\(\qquad\quad = \frac{360.0}{@sides@}\)</p>
+<p>\(\qquad\quad = {@ta_2@}^\circ.\)</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2025012100</text>
+    </stackversion>
+    <questionvariables>
+      <text><![CDATA[sides:rand(10)+3;/*number of sides for the polygon*/
+length:rand_with_step(2.5,7,.1);/*length of the one side*/
+interior_angle:360.0/sides;
+
+
+/*coordinates of the point B */
+dtr(d) := d*%pi/180; /* Convert degrees to radians */
+angle_to_point(r, d) := [float(r*cos(dtr(d))), float(r*sin(dtr(d)))];
+coordinate_pointB: angle_to_point(length, 0);
+
+/* Name the polygon based on the number of sides */
+polygon_name: if sides = 3 then "Triangle"
+              elseif sides = 4 then "Quadrilateral"
+              elseif sides = 5 then "Pentagon"
+              elseif sides = 6 then "Hexagon"
+              elseif sides = 7 then "Heptagon"
+              elseif sides = 8 then "Octagon"
+              elseif sides = 9 then "Nonagon"
+              elseif sides = 10 then "Decagon"
+              elseif sides = 11 then "Hendecagon"
+              else "Dodecagon";
+
+ta_1:polygon_name;
+ta_2:decimalplaces(interior_angle,1);
+
+]]></text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="html">
+      <text><![CDATA[<p>{@ta_1@}</p>
+<p>{@ta_2@}</p>
+<p>{@sides@}</p>
+<p>{@length@}</p>
+<p>{@coordinate_pointB@}</p>]]></text>
+    </questionnote>
+    <questiondescription format="html">
+      <text/>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>ta_1</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans2</name>
+      <type>algebraic</type>
+      <tans>ta_2</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct name of the polygon</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>ta_1</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt2</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct value of the one of the interior angles</description>
+        <answertest>NumDecPlaces</answertest>
+        <sans>ans2</sans>
+        <tans>ta_2</tans>
+        <testoptions>1</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt2-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt2-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <deployedseed>1004836481</deployedseed>
+    <deployedseed>740910088</deployedseed>
+    <deployedseed>106495581</deployedseed>
+    <deployedseed>1186306857</deployedseed>
+    <deployedseed>684721836</deployedseed>
+    <deployedseed>438195749</deployedseed>
+    <deployedseed>103031029</deployedseed>
+    <deployedseed>160211633</deployedseed>
+    <deployedseed>758091801</deployedseed>
+    <deployedseed>1755460180</deployedseed>
+    <deployedseed>213031002</deployedseed>
+    <deployedseed>1213400601</deployedseed>
+    <deployedseed>517318655</deployedseed>
+    <deployedseed>179594853</deployedseed>
+    <deployedseed>1788632878</deployedseed>
+    <deployedseed>1154308553</deployedseed>
+    <deployedseed>1031396156</deployedseed>
+    <deployedseed>1448260894</deployedseed>
+    <deployedseed>29622140</deployedseed>
+    <deployedseed>2070261338</deployedseed>
+  </question>
+</quiz>

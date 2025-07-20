@@ -1,0 +1,528 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Copy of Converting units of length from centimetres to millimetres.</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p>Convert each of the following measurements to millimetres:</p>
+<p>\((a) {@cm1@}cm\)</p>
+<p>\(Length=\)[[input:ans1]] [[validation:ans1]]\(mm\)[[feedback:prt1]]</p>
+<p>\((b) {@cm2@}cm\)</p>
+<p>\(Length=\)[[input:ans2]] [[validation:ans2]]\(mm\)[[feedback:prt2]]</p>
+<p>\((c) {@cm3@}cm\)</p>
+<p>\(Length=\)[[input:ans3]] [[validation:ans3]]\(mm\)[[feedback:prt3]]</p>
+<p></p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<h3>Worked solution.<h3>
+<p>There are \( 10 \) millimetres(mm) in \( 1 \) centimetre(cm). Therefore to convert centimetres to millimetres, we multiply the millimetre units by \( 10.\) </p>
+<p>\(\qquad\qquad1cm = 10mm \)</p>
+<p>(a)\({@cm1@}cm = ({@cm1@}&times10) mm \)</p>
+<p>\( \qquad\qquad= {@mm1@}mm \)</p>
+<p>\( (b) {@cm2@}cm =  ({@cm2@}&times10) mm \)</p>
+<p>\(\qquad\qquad = {@mm2@}mm \)</p>
+<p>\( (c) {@cm3@}cm =  ({@cm3@}&times10) mm \)</p>
+<p>\(\qquad\qquad= {@mm3@}mm \)</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2023060500</text>
+    </stackversion>
+    <questionvariables>
+      <text>cm1:rand(48)+1;/*First length in centimetres*/
+cm2:rand(49)+50;/*Second length in centimetres*/
+cm3:rand(500)+100;/*Third length in centimetres*/
+mm1:(cm1*10);/*First length in millimetres*/
+mm2:(cm2*10);/*Second length in millimetres*/
+mm3:(cm3*10);/*Third length in millimetres*/
+
+/*Mistake_1*/
+mm1_div:cm1/10;/*First divided length in millimetres*/
+mm2_div:cm2/10;/*Second divided length in millimetres*/
+mm3_div:cm3/10;/*Third divided length in millimetres*/
+
+/*Mistake_2*/
+mm1_add:cm1+10;/*First added length in millimetres*/
+mm2_add:cm2+10;/*Second added length in millimetres*/
+mm3_add:cm3+10;/*Third added length in millimetres*/
+
+/*Mistake_3*/
+mm1_sub:cm1-10;/*First added length in millimetres*/
+mm2_sub:cm2-10;/*Second added length in millimetres*/
+mm3_sub:cm3-10;/*Third added length in millimetres*/
+</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="moodle_auto_format">
+      <text>\({@mm1@}\)
+\({@mm2@}\)
+\({@mm3@}\)</text>
+    </questionnote>
+    <questiondescription format="html">
+      <text><![CDATA[<p id="author"> Michael Onyimbo</p>
+<p id="concept">https://docs.google.com/document/d/1auNoRlvyWCcCzIxM_deAfztrV69kSll9L1goAgJEsB4/edit?tab=t.0</p>
+<p id="reviewer"></p>
+<p id="reviewer"></p>
+
+<p id="description">The question involves conversion of units of length from centimetres(cm) to millimetres(mm). 1 cm is equal to 10mm, therefore, to convert cm to mm, we multiply the cm units by 10.</p>]]></text>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>mm1</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans2</name>
+      <type>algebraic</type>
+      <tans>mm2</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans3</name>
+      <type>algebraic</type>
+      <tans>mm3</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct unit conversion</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>mm1</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <description>Checks for the wrong unit conversion</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>mm1_div</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-2-T</trueanswernote>
+        <truefeedback format="html">
+          <text>You have divided the values instead of multiplying. Kindly multiply properly for you to get the right answer.</text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>2</falsenextnode>
+        <falseanswernote>prt1-2-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>2</name>
+        <description>Checks for the wrong unit conversion</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>mm1_add</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-3-T</trueanswernote>
+        <truefeedback format="html">
+          <text>You have added the values instead of multiplying. Kindly divide properly for you to get the right answer</text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>3</falsenextnode>
+        <falseanswernote>prt1-3-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>3</name>
+        <description>Checks for the wrong unit conversion</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>mm1_sub</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-4-T</trueanswernote>
+        <truefeedback format="html">
+          <text>You have subtracted the values instead of multiplying. Kindly divide properly for you to get the right answer</text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-4-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt2</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct unit conversion</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans2</sans>
+        <tans>mm2</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt2-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt2-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <description>Checks for the wrong unit conversion</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans2</sans>
+        <tans>mm2_div</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt2-2-T</trueanswernote>
+        <truefeedback format="html">
+          <text>You have divided the values instead of multiplying. Kindly multiply properly for you to get the right answer.</text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>2</falsenextnode>
+        <falseanswernote>prt2-2-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>2</name>
+        <description>Checks for the wrong unit conversion</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans2</sans>
+        <tans>mm2_add</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt2-3-T</trueanswernote>
+        <truefeedback format="html">
+          <text>You have added the values instead of multiplying. Kindly multiply properly for you to get the right answer</text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>3</falsenextnode>
+        <falseanswernote>prt2-3-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>3</name>
+        <description>Checks for the wrong unit conversion</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans2</sans>
+        <tans>mm2_sub</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt2-4-T</trueanswernote>
+        <truefeedback format="html">
+          <text>You have subtracted the values instead of multiplying. Kindly multiply properly for you to get the right answer</text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt2-4-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt3</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct unit conversion</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans3</sans>
+        <tans>mm3</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt3-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt3-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <description>Checks for the wrong unit conversion</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans3</sans>
+        <tans>mm3_div</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt3-2-T</trueanswernote>
+        <truefeedback format="html">
+          <text>You have divided the values instead of multiplying. Kindly multiply properly for you to get the right answer</text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>2</falsenextnode>
+        <falseanswernote>prt3-2-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>2</name>
+        <description>Checks for the wrong unit conversion</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans3</sans>
+        <tans>mm3_add</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt3-3-T</trueanswernote>
+        <truefeedback format="html">
+          <text>You have added the values instead of multiplying. Kindly multiply properly for you to get the right answer</text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>3</falsenextnode>
+        <falseanswernote>prt3-3-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>3</name>
+        <description>Checks for the wrong unit conversion</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans3</sans>
+        <tans>mm3_sub</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt3-4-T</trueanswernote>
+        <truefeedback format="html">
+          <text>You have subtracted the values instead of multiplying. Kindly multiply properly for you to get the right answer</text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt3-4-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <deployedseed>2102974139</deployedseed>
+    <deployedseed>1338653843</deployedseed>
+    <deployedseed>1858323599</deployedseed>
+    <deployedseed>1683811397</deployedseed>
+    <deployedseed>879817258</deployedseed>
+    <deployedseed>676589828</deployedseed>
+    <deployedseed>2103257991</deployedseed>
+    <deployedseed>981782385</deployedseed>
+    <deployedseed>1322534986</deployedseed>
+    <deployedseed>1469617662</deployedseed>
+    <deployedseed>1993337648</deployedseed>
+    <deployedseed>849856624</deployedseed>
+    <deployedseed>449503206</deployedseed>
+    <deployedseed>1200680266</deployedseed>
+    <deployedseed>772523582</deployedseed>
+    <deployedseed>900233466</deployedseed>
+    <deployedseed>888598754</deployedseed>
+    <deployedseed>1792316270</deployedseed>
+    <deployedseed>1924169567</deployedseed>
+    <deployedseed>1377608943</deployedseed>
+    <deployedseed>1275353505</deployedseed>
+    <deployedseed>669208728</deployedseed>
+    <deployedseed>16325468</deployedseed>
+    <deployedseed>153389465</deployedseed>
+    <deployedseed>1442582401</deployedseed>
+    <deployedseed>849363206</deployedseed>
+    <deployedseed>1754779215</deployedseed>
+    <deployedseed>1203499543</deployedseed>
+    <deployedseed>873484556</deployedseed>
+    <deployedseed>1557413409</deployedseed>
+    <deployedseed>1034888506</deployedseed>
+    <deployedseed>1114012670</deployedseed>
+    <deployedseed>1143126946</deployedseed>
+    <deployedseed>1730276398</deployedseed>
+    <deployedseed>473182069</deployedseed>
+    <deployedseed>460967973</deployedseed>
+    <deployedseed>1598478537</deployedseed>
+    <deployedseed>1083379662</deployedseed>
+    <deployedseed>516520165</deployedseed>
+    <deployedseed>1283794017</deployedseed>
+    <deployedseed>1708209720</deployedseed>
+    <deployedseed>1438385897</deployedseed>
+    <deployedseed>1496993363</deployedseed>
+    <deployedseed>1773321682</deployedseed>
+    <deployedseed>582936489</deployedseed>
+    <deployedseed>528342375</deployedseed>
+    <deployedseed>361626831</deployedseed>
+    <deployedseed>1502574310</deployedseed>
+    <deployedseed>874880068</deployedseed>
+    <deployedseed>957464869</deployedseed>
+  </question>
+</quiz>

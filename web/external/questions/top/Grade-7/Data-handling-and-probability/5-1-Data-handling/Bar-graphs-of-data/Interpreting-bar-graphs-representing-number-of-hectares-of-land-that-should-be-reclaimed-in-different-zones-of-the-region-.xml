@@ -1,0 +1,620 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Interpreting bar graphs representing number of hectares of land that should be reclaimed in different zones of the region.</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p> To increase food production in a semi-arid region, <br> an agricultural officer recorded the number of hectares of land <br> that should be reclaimed in different zones of the region. </p>
+<p>She represented the data in the bar graph shown below. </p>
+
+[[jsxgraph width="800px" height="450px"]]
+
+// Sample values in hectares for different zones
+var dataValues = [{#ZoneA#}, {#ZoneB#}, {#ZoneC#}, {#ZoneD#}, {#ZoneE#}];
+
+var categories = ["Zone A", "Zone B", "Zone C", "Zone D", "Zone E"];
+var colors = ["brown", "green", "blue", "orange", "purple"]; // Different colors for bars
+
+// Ensure the board container exists
+var board = JXG.JSXGraph.initBoard("jxgbox", {
+    boundingBox: [-1, 2400, 6, -500], 
+    axis: false,  
+    showCopyright: false,
+    showNavigation: false,
+    grid: false
+});
+
+// Custom X and Y axes
+var xAxis = board.create("line", [[0, 0], [6, 0]], { strokeWidth: 2, fixed: true });
+var yAxis = board.create("line", [[0, 0], [0, 2400]], { strokeWidth: 2, fixed: true });
+
+// Create Y-axis tick marks every 500 hectares
+for (let y = 0; y <= 2400; y += 500) {
+    board.create("text", [-0.3, y, y.toString() + " ha"], { anchorX: "right", fontSize: 12, fixed: true });
+    board.create("line", [[-0.1, y], [0.1, y]], { strokeWidth: 1, fixed: true });
+}
+
+// Bar chart settings
+var barWidth = 0.8;
+
+for (let i = 0; i < dataValues.length; i++) {
+    let x = i + 1;
+    
+    // Create bars as fixed polygons
+    let bar = board.create("polygon", [
+        [x - barWidth / 2, 0],     
+        [x + barWidth / 2, 0],     
+        [x + barWidth / 2, dataValues[i]], 
+        [x - barWidth / 2, dataValues[i]]
+    ], {
+        fillColor: colors[i], // Assign unique color
+        fillOpacity: 0.8,  
+        highlight: false,
+        fixed: true,  
+        withLabel: false,
+        vertices: { visible: false, fixed: true },
+        borders: { fixed: true }
+    });
+
+    // Add category labels below each bar
+    board.create("text", [x, -300, categories[i]], {
+        anchorX: "middle",
+        fontSize: 14,
+        fixed: true
+    });
+
+    // Display values at the top of each bar
+    board.create("text", [x, dataValues[i] + 100, dataValues[i] + " ha"], {
+        anchorX: "middle",
+        fontSize: 14,
+        fixed: true,
+        strokeColor: "black"
+    });
+}
+
+board.update();
+
+
+[[/jsxgraph]]
+
+<p>Use the graph above to answer questions below</p>
+<ol>
+<li><p>Which Zone had the largest size of land reclaimed? [[input:ans1]]Ha [[validation:ans1]][[feedback:prt1]]</p></li>
+<li><p> What size of land was reclaimed in Zone C?[[input:ans2]]Ha [[validation:ans2]][[feedback:prt2]] </p></li>
+<li><p> What Size of Land was reclaimed in the region? [[input:ans3]]Ha[[validation:ans3]][[feedback:prt3]]</p></li>
+<li><p>How many more hectares did Zone C have  than Zone? [[input:ans4]]Ha [[validation:ans4]][[feedback:prt4]] </p></li>
+</ol>
+
+
+
+<p></p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<h3> Worked solution</h3>
+<ol>
+<li><p>Which Zone had the largest size of land reclaimed  is  {@tans1@} Ha </p></li>
+<li><p> What size of land was reclaimed in Zone C was  
+ {@tans2@} Ha</p></li>
+<li><p> What Size of Land was reclaimed in the region {@tans3@} Ha <br> add all the hectares <br> {@ZoneA@}+ {@ZoneB@} + {@ZoneC@} + {@ZoneD@} + {@ZoneE@}  <br> which is equal to {@tans3@}</p></li>
+</ol>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2025012100</text>
+    </stackversion>
+    <questionvariables>
+      <text>ZoneA:rand(200) + 1600; 
+ZoneB:rand(500) + 1500; 
+ZoneC:rand(400) + 1600; 
+ZoneD:rand(200) + ZoneA; 
+ZoneE:rand(400) + 1600;
+Zone:[ZoneA,ZoneB,ZoneC,ZoneD,ZoneE];
+Sorted_Zone:sort(Zone);
+Max_Zone:Sorted_Zone[length(Sorted_Zone)];
+
+tans1:Max_Zone;
+tans2:ZoneC;
+tans3:ZoneA + ZoneB + ZoneC + ZoneD + ZoneE;
+tans4:ZoneD - ZoneA;
+
+</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="html">
+      <text>\({@ZoneA@}\)
+\({@ZoneB@}\)
+\({@ZoneC@}\)
+\({@ZoneD@}\)
+\({@ZoneE@}\)
+\({@tans1@}\)
+\({@tans2@}\)
+\({@tans3@}\)
+\({@Zone@}\)
+\({@tans4@}\)
+\({@Sorted_Zone@}\)
+\({@Max_Zone@}\)</text>
+    </questionnote>
+    <questiondescription format="html">
+      <text><![CDATA[<p id="author">Joseph Baya</p>
+<p id="review"></p>
+<p id="description"> This question assesses the ability to interpret a bar graph showing the hectares of land reclaimed in different zones of a semi-arid region. It involves identifying the largest reclaimed area, retrieving specific values, calculating the total, and comparing land sizes between zones.</p>]]></text>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>tans1</tans>
+      <boxsize>4</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans2</name>
+      <type>algebraic</type>
+      <tans>tans2</tans>
+      <boxsize>4</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans3</name>
+      <type>algebraic</type>
+      <tans>tans3</tans>
+      <boxsize>4</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans4</name>
+      <type>algebraic</type>
+      <tans>tans4</tans>
+      <boxsize>4</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>checks for correct answer</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>tans1</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt2</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct anser</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans2</sans>
+        <tans>tans2</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt2-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt2-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt3</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct answer</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans3</sans>
+        <tans>tans3</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt3-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt3-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt4</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct answer</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans4</sans>
+        <tans>tans4</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt4-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt4-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <deployedseed>1045851660</deployedseed>
+    <deployedseed>1571157924</deployedseed>
+    <deployedseed>639972570</deployedseed>
+    <deployedseed>454390546</deployedseed>
+    <deployedseed>1616559948</deployedseed>
+    <deployedseed>48371475</deployedseed>
+    <deployedseed>251889064</deployedseed>
+    <deployedseed>2096485342</deployedseed>
+    <deployedseed>105792853</deployedseed>
+    <deployedseed>878917771</deployedseed>
+    <deployedseed>932288492</deployedseed>
+    <deployedseed>271401604</deployedseed>
+    <deployedseed>271271039</deployedseed>
+    <deployedseed>2117185147</deployedseed>
+    <deployedseed>1118630968</deployedseed>
+    <deployedseed>1446179795</deployedseed>
+    <deployedseed>1425726346</deployedseed>
+    <deployedseed>245354348</deployedseed>
+    <deployedseed>1408449761</deployedseed>
+    <deployedseed>1783379134</deployedseed>
+    <deployedseed>987753278</deployedseed>
+    <deployedseed>590939319</deployedseed>
+    <deployedseed>295150817</deployedseed>
+    <deployedseed>1764451072</deployedseed>
+    <deployedseed>820628264</deployedseed>
+    <deployedseed>1859637158</deployedseed>
+    <deployedseed>1464006228</deployedseed>
+    <deployedseed>1776788928</deployedseed>
+    <deployedseed>1991135900</deployedseed>
+    <deployedseed>493090050</deployedseed>
+    <deployedseed>790849417</deployedseed>
+    <deployedseed>681202237</deployedseed>
+    <deployedseed>1861968061</deployedseed>
+    <deployedseed>1648534329</deployedseed>
+    <deployedseed>1194968935</deployedseed>
+    <deployedseed>686938044</deployedseed>
+    <deployedseed>375607270</deployedseed>
+    <deployedseed>1779347461</deployedseed>
+    <deployedseed>418291009</deployedseed>
+    <deployedseed>781424042</deployedseed>
+    <deployedseed>305729977</deployedseed>
+    <deployedseed>1134510506</deployedseed>
+    <deployedseed>1283978628</deployedseed>
+    <deployedseed>1454936132</deployedseed>
+    <deployedseed>935981929</deployedseed>
+    <deployedseed>758460311</deployedseed>
+    <deployedseed>597014228</deployedseed>
+    <deployedseed>486320693</deployedseed>
+    <deployedseed>1136410982</deployedseed>
+    <deployedseed>1714958766</deployedseed>
+    <deployedseed>451252599</deployedseed>
+    <deployedseed>1357731757</deployedseed>
+    <deployedseed>1577813839</deployedseed>
+    <deployedseed>1551459086</deployedseed>
+    <deployedseed>840127925</deployedseed>
+    <deployedseed>451198679</deployedseed>
+    <deployedseed>1825746009</deployedseed>
+    <deployedseed>811178249</deployedseed>
+    <deployedseed>1635333108</deployedseed>
+    <deployedseed>1526738465</deployedseed>
+    <deployedseed>1784184249</deployedseed>
+    <deployedseed>1069708967</deployedseed>
+    <deployedseed>210444077</deployedseed>
+    <deployedseed>786840869</deployedseed>
+    <deployedseed>674090201</deployedseed>
+    <deployedseed>91454128</deployedseed>
+    <deployedseed>1226572575</deployedseed>
+    <deployedseed>1809282392</deployedseed>
+    <deployedseed>750645320</deployedseed>
+    <deployedseed>1697146913</deployedseed>
+    <deployedseed>192713247</deployedseed>
+    <deployedseed>1672243925</deployedseed>
+    <deployedseed>172679955</deployedseed>
+    <deployedseed>1906652307</deployedseed>
+    <deployedseed>1127641398</deployedseed>
+    <deployedseed>834953186</deployedseed>
+    <deployedseed>429953152</deployedseed>
+    <deployedseed>2125898363</deployedseed>
+    <deployedseed>1264866404</deployedseed>
+    <deployedseed>1554694468</deployedseed>
+    <deployedseed>1626312127</deployedseed>
+    <deployedseed>1297407148</deployedseed>
+    <deployedseed>319381908</deployedseed>
+    <deployedseed>1983993457</deployedseed>
+    <deployedseed>1373640330</deployedseed>
+    <deployedseed>791422090</deployedseed>
+    <deployedseed>764224058</deployedseed>
+    <deployedseed>717859093</deployedseed>
+    <deployedseed>339897908</deployedseed>
+    <deployedseed>217981427</deployedseed>
+    <deployedseed>78003170</deployedseed>
+    <deployedseed>2004265401</deployedseed>
+    <deployedseed>1507694401</deployedseed>
+    <deployedseed>908880309</deployedseed>
+    <deployedseed>97229375</deployedseed>
+    <deployedseed>1295845441</deployedseed>
+    <deployedseed>534605326</deployedseed>
+    <deployedseed>1603200286</deployedseed>
+    <deployedseed>2067526519</deployedseed>
+    <deployedseed>701345088</deployedseed>
+    <deployedseed>1017058584</deployedseed>
+    <deployedseed>940539062</deployedseed>
+    <deployedseed>1011725584</deployedseed>
+    <deployedseed>788058553</deployedseed>
+    <deployedseed>231510784</deployedseed>
+    <deployedseed>534828041</deployedseed>
+    <deployedseed>1858303280</deployedseed>
+    <deployedseed>1976332405</deployedseed>
+    <deployedseed>1660305935</deployedseed>
+    <deployedseed>267729936</deployedseed>
+    <deployedseed>1942484249</deployedseed>
+    <deployedseed>928208256</deployedseed>
+    <deployedseed>288884121</deployedseed>
+    <deployedseed>1932426705</deployedseed>
+    <deployedseed>1201950029</deployedseed>
+    <deployedseed>1558154925</deployedseed>
+    <deployedseed>1028562543</deployedseed>
+    <deployedseed>872621673</deployedseed>
+    <deployedseed>1622499109</deployedseed>
+    <deployedseed>493724744</deployedseed>
+    <deployedseed>740262597</deployedseed>
+    <deployedseed>2060942074</deployedseed>
+    <deployedseed>1064129395</deployedseed>
+    <deployedseed>1750106901</deployedseed>
+    <deployedseed>549409744</deployedseed>
+    <deployedseed>1941926477</deployedseed>
+    <deployedseed>1035547436</deployedseed>
+    <deployedseed>2011311144</deployedseed>
+    <deployedseed>1978252660</deployedseed>
+    <deployedseed>2051948902</deployedseed>
+    <deployedseed>1848109268</deployedseed>
+    <deployedseed>1958180647</deployedseed>
+    <deployedseed>530595552</deployedseed>
+    <deployedseed>299329941</deployedseed>
+    <deployedseed>1678073644</deployedseed>
+    <deployedseed>641701784</deployedseed>
+    <deployedseed>629960403</deployedseed>
+    <deployedseed>132015808</deployedseed>
+    <deployedseed>135683939</deployedseed>
+    <deployedseed>835468067</deployedseed>
+    <deployedseed>1921887236</deployedseed>
+    <deployedseed>1423879981</deployedseed>
+    <deployedseed>771375671</deployedseed>
+    <deployedseed>1525986875</deployedseed>
+    <deployedseed>1242014463</deployedseed>
+    <deployedseed>585742570</deployedseed>
+    <deployedseed>505963081</deployedseed>
+    <deployedseed>1437512065</deployedseed>
+    <deployedseed>1522398419</deployedseed>
+    <deployedseed>760764676</deployedseed>
+    <deployedseed>604712576</deployedseed>
+    <deployedseed>885478979</deployedseed>
+    <deployedseed>2066233287</deployedseed>
+    <deployedseed>1686738303</deployedseed>
+    <deployedseed>2066377578</deployedseed>
+    <deployedseed>1521489204</deployedseed>
+    <deployedseed>409187468</deployedseed>
+    <deployedseed>625158465</deployedseed>
+    <deployedseed>1999777142</deployedseed>
+    <deployedseed>1600652977</deployedseed>
+    <deployedseed>710511737</deployedseed>
+    <deployedseed>1886915936</deployedseed>
+    <deployedseed>946476529</deployedseed>
+    <deployedseed>324868590</deployedseed>
+    <deployedseed>994390105</deployedseed>
+    <deployedseed>1188908953</deployedseed>
+    <deployedseed>1351894112</deployedseed>
+    <deployedseed>1565448726</deployedseed>
+    <deployedseed>680113830</deployedseed>
+    <deployedseed>634326448</deployedseed>
+    <deployedseed>236437630</deployedseed>
+    <deployedseed>648791757</deployedseed>
+    <deployedseed>696091212</deployedseed>
+    <deployedseed>244313314</deployedseed>
+    <deployedseed>1985647334</deployedseed>
+    <deployedseed>576172236</deployedseed>
+    <deployedseed>544200305</deployedseed>
+    <deployedseed>153963816</deployedseed>
+    <deployedseed>227064455</deployedseed>
+    <deployedseed>284748291</deployedseed>
+    <deployedseed>54199619</deployedseed>
+    <deployedseed>959733727</deployedseed>
+    <deployedseed>1173468526</deployedseed>
+    <deployedseed>1642012839</deployedseed>
+    <deployedseed>773649253</deployedseed>
+    <deployedseed>921763948</deployedseed>
+    <deployedseed>658431451</deployedseed>
+    <deployedseed>609240848</deployedseed>
+    <deployedseed>811762070</deployedseed>
+    <deployedseed>949241257</deployedseed>
+    <deployedseed>1760969431</deployedseed>
+    <deployedseed>551085902</deployedseed>
+    <deployedseed>1461520367</deployedseed>
+    <deployedseed>1508442775</deployedseed>
+    <deployedseed>461689948</deployedseed>
+    <deployedseed>1476223084</deployedseed>
+    <deployedseed>39932938</deployedseed>
+    <deployedseed>839495360</deployedseed>
+    <qtest>
+      <testcase>1</testcase>
+      <description>Test case assuming the teacher's input gets full marks.</description>
+      <testinput>
+        <name>ans1</name>
+        <value>tans1</value>
+      </testinput>
+      <testinput>
+        <name>ans2</name>
+        <value>tans2</value>
+      </testinput>
+      <testinput>
+        <name>ans3</name>
+        <value>tans3</value>
+      </testinput>
+      <testinput>
+        <name>ans4</name>
+        <value>tans4</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt1-1-T</expectedanswernote>
+      </expected>
+      <expected>
+        <name>prt2</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt2-1-T</expectedanswernote>
+      </expected>
+      <expected>
+        <name>prt3</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt3-1-T</expectedanswernote>
+      </expected>
+      <expected>
+        <name>prt4</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt4-1-T</expectedanswernote>
+      </expected>
+    </qtest>
+  </question>
+</quiz>

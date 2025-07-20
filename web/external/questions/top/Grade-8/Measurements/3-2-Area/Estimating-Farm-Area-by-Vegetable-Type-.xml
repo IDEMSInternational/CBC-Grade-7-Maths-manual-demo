@@ -1,0 +1,588 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Estimating Farm Area by Vegetable Type.</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>A horticultural farmer has a farm in the shape shown. Sections \(\text{A}\), \(\text{B}\) and \(\text{B}\) are covered by cabbages, tomatoes and onions respectively. If a side of a small square represents \({@side_length@}\, \text{m}\), estimate the area covered by each vegetable.</p>
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Farm Layout with Vegetable Sections</title>
+  <script src="https://cdn.jsdelivr.net/npm/jsxgraph/distrib/jsxgraphcore.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jsxgraph/distrib/jsxgraph.css" />
+  <style>
+    #jxgbox {
+      width: 500px;
+      height: 500px;
+      margin: 20px auto;
+      border: 1px solid gray;
+    }
+  </style>
+</head>
+<body>
+
+
+
+<div id="jxgbox" class="jxgbox"></div>
+
+<script>
+  var board = JXG.JSXGraph.initBoard('jxgbox', {
+    boundingbox: [0, 12, 13, 0],
+    axis: false,
+    showNavigation: false,showCopyright: false,
+    
+  });
+
+  // Grid
+  for (var i = 0; i <= 13; i++) {
+    board.create('line', [[i, 0], [i, 12]], {
+      straightFirst: false,
+      straightLast: false,
+      strokeColor: 'blue'
+    });
+  }
+  for (var j = 0; j <= 12; j++) {
+    board.create('line', [[0, j], [13, j]], {
+      straightFirst: false,
+      straightLast: false,
+      strokeColor: 'blue'
+    });
+  }
+
+  
+  // Farm boundary (irregular)
+  var farmBoundary = board.create('polygon', [
+    board.create('point', [1, 5], { visible: false }),
+    board.create('point', [3, 9], { visible: false }),
+    board.create('point', [6, 11], { visible: false }),
+    board.create('point', [10, 10], { visible: false }),
+    board.create('point', [12, 7], { visible: false }),
+    board.create('point', [11.5, 3], { visible: false }),
+    board.create('point', [8, 1], { visible: false }),
+    board.create('point', [3, 2], { visible: false })
+  ], {
+    fillColor: 'yellow',
+    fillOpacity: 0.2,
+    borders: { strokeColor: 'black' }
+  });
+  var farmBoundary = board.create('polygon', [
+    board.create('point', [1, 5], { visible: false }),
+    board.create('point', [7.5,5.5], { visible: false }),
+    
+    
+  ], {
+    fillColor: 'blue',
+    fillOpacity: 0.2,
+    borders: { strokeColor: 'black' }
+  });
+  var farmBoundary = board.create('polygon', [
+    board.create('point', [7.5, 5.5], { visible: false }),
+    board.create('point', [6,11], { visible: false }),
+    
+    
+  ], {
+    fillColor: 'blue',
+    fillOpacity: 0.2,
+    borders: { strokeColor: 'black' }
+  });
+  var farmBoundary = board.create('polygon', [
+    board.create('point', [7.5, 5.5], { visible: false }),
+    board.create('point', [10,2.1], { visible: false }),
+    
+    
+  ], {
+    fillColor: 'blue',
+    fillOpacity: 0.2,
+    borders: { strokeColor: 'black' }
+  });
+
+
+
+  
+  var labelA = board.create('text', [4.4, 7.5, 'A'], { fontSize: 18 });
+
+  
+  var labelB = board.create('text', [10.4, 6.5, 'B'], { fontSize: 18 });
+
+  
+  var labelC = board.create('text', [5.5, 3.5, 'C'], { fontSize: 18 });
+
+</script>
+
+</body>
+</html>
+
+
+
+
+<p>\(\text{Area A}=\) [[input:ans1]] \(\text{m}^2\)[[validation:ans1]][[feedback:prt1]] </p>
+<p>\(\text{Area B}=\) [[input:ans2]] \(\text{m}^2\)[[validation:ans2]][[feedback:prt2]]</p>
+<p>\(\text{Area C}=\) [[input:ans3]] \(\text{m}^2\) [[validation:ans3]] [[feedback:prt3]]</p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<p>
+Each small square has an area of: \( {@side_length@} \times {@side_length@} = {@area_per_square@}\, \text{ m}^2 \)
+</p>
+
+\(\textbf{Area A (Cabbages):}\)
+
+<p>
+Number of full squares: {@count_A@}
+</p>
+<p>
+Number of half/partial squares (estimated as {@count_a@} halves): \( {@count_a@} \times \frac{1}{2} = {@count_A1@} \)
+</p>
+<p>
+Total squares: \( {@count_A@} + {@count_A1@} =  {@A1@}\)
+</p>
+<p>
+\(
+\text{Area A} = {@A1@} \times {@area_per_square@}={\color{blue} {@area_A@}} \,\text{ m}^2
+\)
+</p>
+
+\(\textbf{Area B (Tomatoes):}\)
+
+<p>
+Number of full squares: {@count_B@}
+</p>
+<p>
+Partial squares (estimated as {@count_b@} halves): \( {@count_b@}\times \frac{1}{2} = {@count_B2@} \)
+</p>
+<p>
+Total squares: \(  {@count_B@}+ {@count_B2@}= {@B2@} \)
+</p>
+<p>
+\(
+\text{Area B} = {@B2@} \times {@area_per_square@} =  {\color{blue}{@area_B@}}\,\text{ m}^2
+\)
+</p>
+
+\(\textbf{Area C (Onions):}\)
+
+<p>
+Number of full squares: {@count_C@}
+</p>
+<p>
+Partial squares (estimated as {@count_c@} halves): \( {@count_c@} \times \frac{1}{2} = {@count_C3@} \)
+</p>
+<p>
+Total squares: \( {@count_C@} + {@count_C3@} = {@C3@} \)
+</p>
+<p>
+\(
+\text{Area C} = {@C3@} \times{@area_per_square@} = {\color{blue}{@area_C@}}\, \text{ m}^2
+\)
+</p>
+
+\(\textbf{Final Answers:}\)
+
+<p>
+Area A = \({@area_A@}\, \text{ m}^2\) <br>
+Area B = \({@area_B@} \,\text{ m}^2\) <br>
+Area C = \({@area_C@} \, \text{ m}^2\)
+</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2025012100</text>
+    </stackversion>
+    <questionvariables>
+      <text>/* Define dimensions */
+side_length: rand_with_step(2,30,2); /* Side of a small square in meters */
+area_per_square: side_length*side_length;
+
+/* Counters for how many fall inside A, B, C */
+/*Full squares*/
+count_A: 12;
+count_B: 16;
+count_C: 18;
+/*incomplete squares*/
+count_a: 20;
+count_b: 25;
+count_c: 24;
+/*incomplete full squares*/
+count_A1: count_a/2;
+count_B2:  count_b/2;
+count_C3:  count_c/2;
+A1:count_A+count_A1;
+B2:count_B+count_B2;
+C3:count_C+count_C3;
+
+/* Estimate area */
+area_A: A1 * area_per_square;
+area_B: B2 * area_per_square;
+area_C: C3 * area_per_square;
+
+/*Mistake 1 Failling to miltiply the partial squares by  1/2 and using it the way it is.*/
+a1:count_A+count_a;
+b2:count_B+count_b;
+c3:count_C+count_c;
+
+/* Estimate area */
+Area_A: a1 * area_per_square;
+Area_B: b2 * area_per_square;
+Area_C: c3 * area_per_square;</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="html">
+      <text><![CDATA[<p>\(\text{Side of a small square represents } \, {@side_length@}\,\text{m}\)</p>
+<p>\(\text{Estimated area for A}={@area_A@}\,\text{m}^2\)</p>
+<p>\(\text{Estimated area for B}={@area_B@}\,\text{m}^2\)</p>
+<p>\(\text{Estimated area for C}={@area_C@}\,\text{m}^2\)</p>]]></text>
+    </questionnote>
+    <questiondescription format="html">
+      <text><![CDATA[<p id="author">Henry Onyango</p>
+<p id="reviewer"></p>
+<p id="reviewer"></p>
+
+<p id="description">The question involved estimating the area of irregular shapes using a square grid. Each small square represented \({@side_length@} \, \text{m}\)  by  \({@side_length@} \, \text{m}\) . The student was required to count full and partial squares in each section  \text{\text{(A, B, C)}\), multiply the total by \({@area_per_square@} \,\text{m}^2\), and give the area for each region accurately.</p]]></text>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>area_A</tans>
+      <boxsize>7</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans2</name>
+      <type>algebraic</type>
+      <tans>area_B</tans>
+      <boxsize>7</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans3</name>
+      <type>algebraic</type>
+      <tans>area_C</tans>
+      <boxsize>7</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct estimate for area A.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>area_A</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <description>Checks for the incorrect answer for Area A</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>Area_A</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0.5</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-2-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>Great effort! You did well in identifying and counting the squares. </p>
+<p>Remember to estimate partial squares carefully. Instead of counting them as full, multiply each by \(\frac{1}{2}\). This gives a more accurate total. Next time, group partial squares and convert them to full square equivalents before calculating the area. 
+This helps you get a more accurate area.</p>
+<p>Keep it up.</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-2-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt2</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct estimate for area B.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans2</sans>
+        <tans>area_B</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt2-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt2-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <description>Checks for the incorrect area for B.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans2</sans>
+        <tans>Area_B</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0.5</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt2-2-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>Great effort! You did well in identifying and counting the squares. </p>
+<p>Remember to estimate partial squares carefully. Instead of counting them as full, multiply each by \(\frac{1}{2}\). This gives a more accurate total. Next time, group partial squares and convert them to full square equivalents before calculating the area. 
+This helps you get a more accurate area.</p>
+<p>Keep it up.</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt2-2-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt3</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct estimate for area C.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans3</sans>
+        <tans>area_C</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt3-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt3-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <description>Checks for the incorect answer for Area B</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans3</sans>
+        <tans>Area_C</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0.5</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt3-2-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>Great effort! You did well in identifying and counting the squares. </p>
+<p>Remember to estimate partial squares carefully. Instead of counting them as full, multiply each by \(\frac{1}{2}\). This gives a more accurate total. Next time, group partial squares and convert them to full square equivalents before calculating the area. 
+This helps you get a more accurate area.</p>
+<p>Keep it up.</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt3-2-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <deployedseed>962813031</deployedseed>
+    <deployedseed>856073887</deployedseed>
+    <deployedseed>809585187</deployedseed>
+    <deployedseed>1514943085</deployedseed>
+    <deployedseed>30533080</deployedseed>
+    <deployedseed>280577262</deployedseed>
+    <deployedseed>1616147206</deployedseed>
+    <deployedseed>2033846491</deployedseed>
+    <deployedseed>942895670</deployedseed>
+    <qtest>
+      <testcase>1</testcase>
+      <description>Test case assuming the teacher's input gets full marks.</description>
+      <testinput>
+        <name>ans1</name>
+        <value>area_A</value>
+      </testinput>
+      <testinput>
+        <name>ans2</name>
+        <value>area_B</value>
+      </testinput>
+      <testinput>
+        <name>ans3</name>
+        <value>area_C</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt1-1-T</expectedanswernote>
+      </expected>
+      <expected>
+        <name>prt2</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt2-1-T</expectedanswernote>
+      </expected>
+      <expected>
+        <name>prt3</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt3-1-T</expectedanswernote>
+      </expected>
+    </qtest>
+    <qtest>
+      <testcase>2</testcase>
+      <description>Checks for the incorrect answer for Area of both A,B and C</description>
+      <testinput>
+        <name>ans1</name>
+        <value>Area_A</value>
+      </testinput>
+      <testinput>
+        <name>ans2</name>
+        <value>Area_B</value>
+      </testinput>
+      <testinput>
+        <name>ans3</name>
+        <value>Area_C</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>0.5000000</expectedscore>
+        <expectedpenalty/>
+        <expectedanswernote>prt1-2-T</expectedanswernote>
+      </expected>
+      <expected>
+        <name>prt2</name>
+        <expectedscore>0.5000000</expectedscore>
+        <expectedpenalty/>
+        <expectedanswernote>prt2-2-T</expectedanswernote>
+      </expected>
+      <expected>
+        <name>prt3</name>
+        <expectedscore>0.5000000</expectedscore>
+        <expectedpenalty/>
+        <expectedanswernote>prt3-2-T</expectedanswernote>
+      </expected>
+    </qtest>
+  </question>
+</quiz>

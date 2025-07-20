@@ -1,0 +1,471 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Line graph showing Mahat's Journey from Nairobi to Kisii</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p> Mahat drove for 300km from Nairobi to Kisii. <br> He started his journey at 6.00 a.m and arrived in Kisii at 10:00 am. His journey is represented by following travel graph </p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Lugai's Journey</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    .question {
+      text-align: left; /* Align question text to the left */
+      margin-bottom: 20px; /* Space below question */
+    }
+    canvas {
+      width: 600px !important; /* Set graph width to 600px */
+      height: 300px !important; /* Set graph height to 300px */
+      margin: 20px auto;
+    }
+  </style>
+</head>
+<body>
+  <!-- Question Text Aligned to the Left -->
+  <div class="question">
+    <p>What is the distance covered by Lugai at different times of his journey?</p>
+  </div>
+
+  <!-- Canvas for Graph -->
+  <canvas id="journeyChart"></canvas>
+
+  <script>
+    // wxMaxima generated distances ensuring final distance is 450 km
+    var distances = [('{#d1#}'), ('{#d2#}'), ('{#d3#}'), ('{#d4#}'), ('{#d5#}'), ('{#d6#}')]; 
+
+    // Time labels (6 AM, 7 AM, 8 AM, 9 AM, 9:30 AM, 10 AM)
+    var timeLabels = [
+      "6 AM",
+      "7 AM",
+      "8 AM",
+      "9 AM (Resting)",
+      "9:30 AM", // Time after 30-minute rest
+      "10 AM",
+    ];
+
+    // Get the canvas context
+    var ctx = document.getElementById('journeyChart').getContext('2d');
+
+    // Create the chart with the 9:00 AM rest captured and continue after 30 minutes
+    var journeyChart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: timeLabels,
+        datasets: [
+          {
+            label: "Distance (in Km)",
+            data: distances,
+            borderColor: "blue",
+            backgroundColor: "blue",
+            borderWidth: 2,
+            tension: 0.1,
+            pointRadius: 5,
+            pointHoverRadius: 7,
+          },
+        ],
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            display: false, // Remove legend
+          },
+          tooltip: {
+            callbacks: {
+              label: function (context) {
+                return "Time: " + context.label + ", Distance: " + context.raw + " Km";
+              },
+            },
+          },
+        },
+        scales: {
+          x: {
+            title: {
+              display: true,
+              text: "Time",
+            },
+          },
+          y: {
+            title: {
+              display: true,
+              text: "Distance in Km",
+            },
+            ticks: {
+              stepSize: 50,
+              callback: function(value, index, values) {
+                // Customize Y-axis labels for specific values
+                if (value === 0) {
+                  return "Nairobi";
+                }
+                if (value === 450) {
+                  return "Kisii";
+                }
+                return value;
+              },
+            },
+          },
+        },
+      },
+    });
+  </script>
+</body>
+</html>
+
+
+
+<ol>
+<li><p><ol>
+<li><p>What is the vertical scale? [[input:ans1]]Kms [[validation:ans1]][[feedback:prt1]]</p></li>
+<li><p>What is the horizontal scale? [[input:ans2]]Hour [[validation:ans2]][[feedback:prt2]]</p></li>
+</ol></p></li>
+<li><p>What distance did he cover before he rested? [[input:ans3]] Kms[[validation:ans3]][[feedback:prt3]]</p></li>
+<li><p>For how long did he rest? [[input:ans4]]minutes [[validation:ans4]][[feedback:prt4]]</p></li>
+<li><p>How long did he take cover the whole journey? [[input:ans5]]Hours [[validation:ans5]][[feedback:prt5]]</p></li>
+
+</ol>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<ol>
+<li><p><ol>
+<li><p>The vertical scale is 1 cm represents \({@vertical_scale@}\) </p></li>
+<li><The horizontal scale is 1cm represents \({@horizontal_scale@}\) </p></li>
+</ol></p></li>
+<li><p>The distance covered before he rested is \({@d4@}\) Kilometres </p></li>
+<li><p>He rested for \({@d7@}\) Hours </p></li>
+<li><p>He took \({@d8@}\) hours to cover the whole journey </p></li>
+
+</ol>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2025012100</text>
+    </stackversion>
+    <questionvariables>
+      <text>random_hour1 : rand(2) + 6; /* Generates a number between 6 and 10 */
+random_hour2 :rand(2) + 8; /* Generates a number between 6 and 10 */
+random_hour3 :rand(2) + 10; /* Generates a number between 6 and 10 */
+random_hour4 :rand(2) + 12; /* Generates a number between 6 and 10 */
+random_hour5 :rand(2) + 14; /* Generates a number between 6 and 10 */
+random_hour6: (rand(2) + 10)/2;
+time_to_cover:random_hour1 + random_hour2 + random_hour3 + random_hour4 + random_hour5 
+vertical_scale:50
+horizontal_scale:1
+d8:4; /*hours to cover whole journey*/
+d7:30;/*time for rest*/
+d1: 0;   /* Random between 50 and 60 */
+d2: 120 + rand(10);   /* Random between 100 and 110 */
+d3: 200 + rand(10);   /* Random between 150 and 160 */
+d4: 300 + rand(10);   /* Random between 200 and 210 */
+d5: d4;   /* Random between 250 and 260 */
+d6: 450;   /* Random between 300 and 310 */
+distance_cover:d1+d2+d3+d4+d5+d6
+
+</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="html">
+      <text>1</text>
+    </questionnote>
+    <questiondescription format="html">
+      <text><![CDATA[<p id="author">Joseph Baya</p>
+<p id="reviewer"></p>
+<p id="description">This question evaluates the interpretation of a travel graph representing Mahat’s journey from Nairobi to Kisii. It involves identifying the graph's scales, determining distances traveled before resting, the duration of rest, and the total time taken for the journey.</p>]]></text>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>vertical_scale</tans>
+      <boxsize>4</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>0</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans2</name>
+      <type>algebraic</type>
+      <tans>horizontal_scale</tans>
+      <boxsize>4</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>0</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans3</name>
+      <type>algebraic</type>
+      <tans>d4</tans>
+      <boxsize>4</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>0</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans4</name>
+      <type>algebraic</type>
+      <tans>d7</tans>
+      <boxsize>4</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>0</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans5</name>
+      <type>algebraic</type>
+      <tans>d8</tans>
+      <boxsize>4</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>0</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description/>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>vertical_scale</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt2</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description/>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans2</sans>
+        <tans>horizontal_scale</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt2-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt2-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt3</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description/>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans3</sans>
+        <tans>d4</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt3-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt3-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt4</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description/>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans4</sans>
+        <tans>d7</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt4-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt4-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt5</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description/>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans5</sans>
+        <tans>d8</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt5-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt5-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <deployedseed>369723132</deployedseed>
+  </question>
+</quiz>

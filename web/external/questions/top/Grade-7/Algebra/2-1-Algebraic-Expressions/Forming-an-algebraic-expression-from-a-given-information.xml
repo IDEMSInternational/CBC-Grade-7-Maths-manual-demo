@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Forming an algebraic expression from a given information</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p>Konyango bought \({@var_letter_sheep@}\) sheep at \({@val_cost_sheep@}\) shillings each. He also bought goats which were \({@var_letter_goats@}\) less than the number of sheep at \({@val_cost_goats@}\) shillings each.form an algebraic expression for the total amount of money Konyango spent on the animals.</p>
+<p>[[input:ans1]] [[validation:ans1]][[feedback:prt1]]</p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<h3>Worked Solution</h3>
+<p>The amount spent on \({@var_letter_sheep@}\) sheep \(={@total_cost_of_sheep@}\)</p>
+<p>The amount spent on goats \(={@total_cost_of_goats@}\)</p>
+
+<p>Total amount\(={@total_cost_of_animals@}\)</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2023060500</text>
+    </stackversion>
+    <questionvariables>
+      <text>var_letter_sheep:rand([a,b,c,d,f,g,x,z,w]);/*randomazing letters for sheep*/
+var_letter_goats:rand([h,j,k,m,n,r,p,q,y]);/*randomazing letters for goats*/
+val_cost_sheep:rand_with_step(2000,2999,100);/*randomazing with step from 2000 to 2999*/
+val_cost_goats:rand_with_prohib(2500,3500,[val_cost_sheep]);/*randomazing with prohib from 2500 to 3500*/
+total_cost_of_sheep:val_cost_sheep*var_letter_sheep;/*total cost of sheep*/
+total_cost_of_goats:val_cost_goats*(var_letter_sheep-var_letter_goats);/*total cost of goats*/
+simp_total_cost_of_goats:(val_cost_goats*var_letter_sheep)-(val_cost_goats*var_letter_goats);/*simplified expression for the total cost of goats*/
+val_rep_sheep:val_cost_goats*var_letter_sheep;/*value representing sheep*/
+val_rep_goats:val_cost_goats*var_letter_goats;/*value representing goats*/
+total_cost_of_animals:total_cost_of_sheep+val_rep_sheep-val_rep_goats;/*total cost of the animals*/
+/*mistake 1*/
+cost_of_animals:total_cost_of_sheep+val_rep_sheep+val_rep_goats;
+
+</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="moodle_auto_format">
+      <text>\({@total_cost_of_sheep@}\
+\({@total_cost_of_goats@}\
+({@total_cost_of_animals@}\
+</text>
+    </questionnote>
+    <questiondescription format="html">
+      <text><![CDATA[<p id="author">Eric Morara </p>
+<p id="concept">https://ecampus.idems.international/question/bank/history/history.php?entryid=126167&returnurl=%2Fquestion%2Fedit.php%3Fcourseid%3D430%26cat%3D18802%252C121817&courseid=430</p>
+<p id="reviewer"></p>
+<p id="reviewer"></p>
+
+<p id="description">formation of algebraic expression.</p>]]></text>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>total_cost_of_animals</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>checks for  correct algebraic expression</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>total_cost_of_animals</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <description>adding instead of subtracting</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>cost_of_animals</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-2-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>Adding instead of subtracting.It seems you added the expression of finding the total cost of goats instead of subtracting</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-2-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <deployedseed>1110502603</deployedseed>
+    <deployedseed>306304949</deployedseed>
+    <deployedseed>134143552</deployedseed>
+    <deployedseed>986153304</deployedseed>
+    <deployedseed>243316818</deployedseed>
+    <deployedseed>1897952684</deployedseed>
+    <deployedseed>857530542</deployedseed>
+    <deployedseed>2130539737</deployedseed>
+    <deployedseed>885394059</deployedseed>
+    <deployedseed>491307745</deployedseed>
+    <deployedseed>1150481301</deployedseed>
+    <deployedseed>940830417</deployedseed>
+    <deployedseed>2002496909</deployedseed>
+    <deployedseed>383274219</deployedseed>
+    <deployedseed>1853515422</deployedseed>
+    <deployedseed>1374920623</deployedseed>
+    <deployedseed>1688794029</deployedseed>
+    <deployedseed>1219469700</deployedseed>
+    <deployedseed>1618880558</deployedseed>
+    <deployedseed>162634515</deployedseed>
+    <deployedseed>1092352474</deployedseed>
+    <deployedseed>421901017</deployedseed>
+    <deployedseed>1154679143</deployedseed>
+    <deployedseed>1923840759</deployedseed>
+    <deployedseed>2120541831</deployedseed>
+    <deployedseed>1365755973</deployedseed>
+    <deployedseed>788373888</deployedseed>
+    <deployedseed>82738251</deployedseed>
+    <deployedseed>582351049</deployedseed>
+    <deployedseed>1479109991</deployedseed>
+    <deployedseed>657108347</deployedseed>
+    <deployedseed>1462889438</deployedseed>
+    <deployedseed>1054465899</deployedseed>
+    <deployedseed>398017401</deployedseed>
+    <deployedseed>384815724</deployedseed>
+    <deployedseed>875666790</deployedseed>
+    <deployedseed>1158957438</deployedseed>
+    <deployedseed>696080603</deployedseed>
+    <deployedseed>1080777854</deployedseed>
+    <deployedseed>630614692</deployedseed>
+    <deployedseed>773147637</deployedseed>
+    <deployedseed>827856533</deployedseed>
+    <deployedseed>1673098494</deployedseed>
+    <deployedseed>1456075648</deployedseed>
+    <deployedseed>2057541015</deployedseed>
+    <deployedseed>1119718214</deployedseed>
+    <deployedseed>1634121210</deployedseed>
+    <deployedseed>1921433160</deployedseed>
+    <deployedseed>2027893090</deployedseed>
+    <deployedseed>1031549095</deployedseed>
+    <deployedseed>214708497</deployedseed>
+    <deployedseed>1198023320</deployedseed>
+    <deployedseed>907414006</deployedseed>
+    <deployedseed>1215994506</deployedseed>
+    <deployedseed>208341828</deployedseed>
+    <deployedseed>1804702777</deployedseed>
+    <deployedseed>1736552894</deployedseed>
+    <deployedseed>1974321667</deployedseed>
+    <deployedseed>481451459</deployedseed>
+    <deployedseed>186939580</deployedseed>
+    <deployedseed>318991211</deployedseed>
+    <deployedseed>1069287859</deployedseed>
+    <deployedseed>1575919011</deployedseed>
+    <deployedseed>1473934407</deployedseed>
+    <deployedseed>1664777700</deployedseed>
+    <deployedseed>994399834</deployedseed>
+    <deployedseed>321026314</deployedseed>
+    <deployedseed>107758417</deployedseed>
+    <deployedseed>867660771</deployedseed>
+    <deployedseed>492376460</deployedseed>
+    <deployedseed>722761509</deployedseed>
+    <deployedseed>94986094</deployedseed>
+    <deployedseed>1151827646</deployedseed>
+    <deployedseed>345700712</deployedseed>
+    <deployedseed>764346228</deployedseed>
+    <deployedseed>535419700</deployedseed>
+    <deployedseed>1144686863</deployedseed>
+    <deployedseed>259731558</deployedseed>
+    <deployedseed>1077485543</deployedseed>
+    <deployedseed>943392443</deployedseed>
+    <deployedseed>1411319185</deployedseed>
+    <deployedseed>1577169617</deployedseed>
+    <deployedseed>1617713426</deployedseed>
+    <deployedseed>1179439046</deployedseed>
+    <deployedseed>1163678008</deployedseed>
+    <deployedseed>972410923</deployedseed>
+    <deployedseed>1448817768</deployedseed>
+    <deployedseed>964471648</deployedseed>
+    <deployedseed>2108921240</deployedseed>
+    <deployedseed>1073243509</deployedseed>
+    <deployedseed>889673585</deployedseed>
+    <deployedseed>1367858787</deployedseed>
+    <deployedseed>1312122724</deployedseed>
+    <deployedseed>1703535850</deployedseed>
+    <deployedseed>716194577</deployedseed>
+    <deployedseed>1841904667</deployedseed>
+    <deployedseed>296146928</deployedseed>
+    <deployedseed>1591754622</deployedseed>
+    <deployedseed>734775096</deployedseed>
+    <deployedseed>1798014358</deployedseed>
+    <qtest>
+      <testcase>1</testcase>
+      <description>Test case assuming the teacher's input gets full marks.</description>
+      <testinput>
+        <name>ans1</name>
+        <value>total_cost_of_animals</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt1-1-T</expectedanswernote>
+      </expected>
+    </qtest>
+  </question>
+</quiz>

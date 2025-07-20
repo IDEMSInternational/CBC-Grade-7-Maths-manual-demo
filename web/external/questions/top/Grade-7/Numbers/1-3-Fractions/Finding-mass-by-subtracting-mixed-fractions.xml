@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Finding mass  by subtracting mixed fractions</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Mwashirima had \({@total_flour@}\)kg of flour.</p>
+<p>To prepare lunch for her family, she used \({@a_1@}\)kg. </p>
+<p>Later in the evening, she used \({@a_2@}\)kg to prepare supper.</p>
+<p>What mass of flour was Mwashirima left with?</p>
+<p>Mass of flour left =[[input:ans1]][[validation:ans1]]kg[[feedback:prt1]]]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<h3>Worked solution</h3>
+<p>Convert mixed numbers to improper fractions.</p>
+<p>\({@total_flour@}\)kg-\({@a_1@}\)kg-\({@a_2@}\)kg = \({@total_flour@}\)kg-\({@a_1@}\)kg-\({@a_2@}\)kg</p>.
+<p>Find the LCM of \({@den_flour@}\) \({@den_flour_used_1@}\) and 1 which is \({@lcm@}\). 
+<p>Rewriting these improper fractions to their equivalent fractions whose denominator is \({@lcm@}\)</p>
+<p>we get:
+\(\displaystyle\frac{({@total_flour_1@})}{@lcm@}\)kg -\(\displaystyle\frac{({@a_11@})}{@lcm@}\)kg-\(\displaystyle\frac{({@a_22@})}{@lcm@}kg\)</p>
+<p>\(\displaystyle\frac{({@total_flour_1@}) - ({@a_11@})-({@a_22@})}{@lcm@}kg\)</p>
+<p>= \({@flour_left@}\) Convert\({@flour_left@}\) to a mixed number.</p>
+<p> = \({@flour_left@}\)</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2023060500</text>
+    </stackversion>
+    <questionvariables>
+      <text>num_flour:rand_with_step(23,34,3);/*numerator total flour*/
+den_flour:rand_with_step(3,7,2);/*denominator total flour*/
+num_flour_used_1:rand_with_step(3,5,2);/*numerator of lour used to prepare lunch for the family*/
+den_flour_used_1:rand_with_step(2,2,1);/*denominator of lour used to prepare lunch for the family*/
+flour_used_2:rand(2)+1;/*flour used to prepare supper for the family*/
+total_flour:num_flour/den_flour;/*initial mass of flour*/
+a_1:num_flour_used_1/den_flour_used_1;/*flour used to prepare lunch for the family*/
+a_2:flour_used_2;/*flour used to prepare supper for the family*/
+tot_flour_used:a_1+a_2;/* total flour used to prepare lunch  and supper*/
+lcm:lcm(den_flour, den_flour_used_1,1);/*lcm of the denominators*/
+total_flour_1:lcm*total_flour;/*lcm times total initial mass of flour */
+a_11:lcm*a_1;/*lcm times flour used for preparing lunch*/
+a_22:lcm*a_2;/*lcm times flour used for preparing supper*/
+flour_left:total_flour-tot_flour_used;/*mass of flour left after use*/</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text><![CDATA[<br><br><br>]]></text>
+    </specificfeedback>
+    <questionnote format="moodle_auto_format">
+      <text><![CDATA[<p>\({@tot_flour_used@}\)</p>
+<p> \({@lcm@}\)</p>
+<p>\({@flour_left@}\)</p>]]></text>
+    </questionnote>
+    <questiondescription format="html">
+      <text><![CDATA[<p id="author"> Harriet Mogaka</p>
+<p id="concept">https://docs.google.com/document/d/1yD7fa02ajFc9fBZiWp7DsyyXfEBvdhf4q5V_ETEu2uU/edit?tab=t.0</p>
+<p id="reviewer"></p>
+<p id="reviewer"></p>
+
+<p id="description">A person had a certain quantity of flour and used some of it for different purposes. To get the mass of flour that remained after use, the learner must use the concept of subtracting mixed fraction and conversion of improper fractions to mixed fractions to find a solution for that particular question.</p>]]></text>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>flour_left</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords>kg</allowwords>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text>flour_left_mistake1:total_flour+tot_flour_used;/*mass of flour left after use*/
+flour_left_mistake2:a_1+a_2;/* total flour used to prepare lunch  and supper*/</text>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description/>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>flour_left</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <description>Adding instead of subtracting.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>flour_left_mistake1</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-2-T</trueanswernote>
+        <truefeedback format="html">
+          <text>You seem to have done correct computations but you should subtract. Note that the question asks for what mass was left.</text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>2</falsenextnode>
+        <falseanswernote>prt1-2-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>2</name>
+        <description>Answering mass of flour used instead of flour left. </description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>flour_left_mistake2</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0.5</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-3-T</trueanswernote>
+        <truefeedback format="html">
+          <text>You have added mass of flour used and not mass of flour left.Note that the question asks for what mass was left and not mass used</text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-3-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <deployedseed>500932614</deployedseed>
+    <deployedseed>691821085</deployedseed>
+    <deployedseed>1361790902</deployedseed>
+    <deployedseed>1842682497</deployedseed>
+    <deployedseed>1442717669</deployedseed>
+    <deployedseed>226931836</deployedseed>
+    <deployedseed>1709863934</deployedseed>
+    <deployedseed>775950531</deployedseed>
+    <deployedseed>1949646204</deployedseed>
+    <deployedseed>1735494838</deployedseed>
+    <deployedseed>294576950</deployedseed>
+    <deployedseed>1372907737</deployedseed>
+    <deployedseed>1024937628</deployedseed>
+    <deployedseed>1858983804</deployedseed>
+    <deployedseed>1152250803</deployedseed>
+    <deployedseed>408771428</deployedseed>
+    <deployedseed>1561934687</deployedseed>
+    <deployedseed>2050306423</deployedseed>
+    <deployedseed>35100354</deployedseed>
+    <deployedseed>2074086085</deployedseed>
+    <deployedseed>616893069</deployedseed>
+    <deployedseed>2136251565</deployedseed>
+    <deployedseed>1195451184</deployedseed>
+    <deployedseed>707987260</deployedseed>
+    <qtest>
+      <testcase>1</testcase>
+      <description>Test case assuming the teacher's input gets full marks.</description>
+      <testinput>
+        <name>ans1</name>
+        <value>flour_left</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt1-1-T</expectedanswernote>
+      </expected>
+    </qtest>
+  </question>
+</quiz>

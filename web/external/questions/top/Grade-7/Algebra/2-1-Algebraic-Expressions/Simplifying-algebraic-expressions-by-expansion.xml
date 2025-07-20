@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Simplifying algebraic expressions by expansion</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p>Simplify the following  algebraic expressions.</p>
+<p>\({@full_express@}\)</p>
+<p>[[input:ans1]] [[validation:ans1]][[feedback:prt1]]</p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<p>To simplify the expression \({@full_express@}\)</p>
+<p>First, we remove the brackets by multiplying the coefficient outside the bracket by the terms inside the brackets, so that we have:</p>
+<p>\( = {@var_simp_1_1@}\)+\({@var_simp_1_2	@}\)+\({@var_simp_2_1@}\)\({@var_simp_2_2@}\)</p>
+<p>Then we put  the like terms.</p>
+<p>\( = {@var_simp_1_1	@}\)+\({@var_simp_2_1@}\)+\({@var_simp_1_2	@}\)\({@var_simp_2_2@}\)</p>
+<p>Then we add the like terms together so that we have:</p>
+<p>\( = {@full_simp@}\)</p>
+<p>Which is a simplified expression of \({@full_express@}\)</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2023060500</text>
+    </stackversion>
+    <questionvariables>
+      <text>/*PG96 EXE4:Active Mathematics*/
+alphab_letter_1:rand([w,r,t,x,z]);   /*Random letters*/
+alphab_letter_2:rand([y,h,s,v,u]);   /*Random letters*/
+var_number_one:rand(4)+2;   /*random number for the base*/
+var_number_two:rand_with_step(2,8,1);
+var_number_three:rand_with_prohib(1,10,[var_number_two]);
+var_number_four:rand_with_prohib(1,7,[var_number_one]);
+var_number_five:rand_with_prohib(1,6,[var_number_one]);
+var_number_six:rand_with_prohib(1,9,[var_number_one]);
+express_one:var_number_one*(var_number_two*alphab_letter_1+var_number_three*alphab_letter_2);
+express_two:var_number_four*(var_number_five*alphab_letter_1-var_number_six*alphab_letter_2);
+full_express:express_one+express_two;
+
+var_simp_1_1:var_number_one*(var_number_two*alphab_letter_1);
+var_simp_1_2:var_number_one*(var_number_three*alphab_letter_2);
+var_simp_2_1:var_number_four*(var_number_five*alphab_letter_1);
+var_simp_2_2:var_number_four*(-var_number_six*alphab_letter_2);
+
+simp_1_1:(var_number_one*var_number_two)*alphab_letter_1+(var_number_one*var_number_three)*alphab_letter_2;
+simp_2_1:(var_number_four*var_number_five)*alphab_letter_1+(var_number_four*-var_number_six)*alphab_letter_2;
+
+full_simp:(simp_1_1)+(simp_2_1);</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="moodle_auto_format">
+      <text><![CDATA[<p>\({@full_express@}\)</p>]]></text>
+    </questionnote>
+    <questiondescription format="html">
+      <text><![CDATA[<p id="author">Rodgers Maragia</p>
+<p id="concept">https://docs.google.com/document/d/1WX5CysttMdv13uHQH1h4K96YGWSiL9wxNQ14qcnMrJA/edit?usp=sharing</p>
+<p id="reviewer"></p>
+<p id="reviewer"></p>
+<p id="description">In this question the student is required to simplify a given expression by first multiplying the values outside the bracket by the terms in the bracket, then putting like terms together and then adding them together to have final simplified expression</p>]]></text>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>full_express</tans>
+      <boxsize>10</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct value of the expression.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>full_express</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <deployedseed>674078520</deployedseed>
+    <deployedseed>2034218806</deployedseed>
+    <deployedseed>655492189</deployedseed>
+    <deployedseed>1544920853</deployedseed>
+    <deployedseed>2074069571</deployedseed>
+    <deployedseed>1273648585</deployedseed>
+    <deployedseed>703528390</deployedseed>
+    <deployedseed>322674193</deployedseed>
+    <deployedseed>299293847</deployedseed>
+    <deployedseed>1948584021</deployedseed>
+    <deployedseed>2061021213</deployedseed>
+    <deployedseed>1463854183</deployedseed>
+    <deployedseed>1883636455</deployedseed>
+    <deployedseed>594646027</deployedseed>
+    <deployedseed>1929960166</deployedseed>
+    <deployedseed>2077932933</deployedseed>
+    <deployedseed>1596885266</deployedseed>
+    <deployedseed>1083448210</deployedseed>
+    <deployedseed>703324342</deployedseed>
+    <deployedseed>641252915</deployedseed>
+    <deployedseed>1300622682</deployedseed>
+    <deployedseed>1760839871</deployedseed>
+    <deployedseed>1340300725</deployedseed>
+    <deployedseed>925027851</deployedseed>
+    <deployedseed>132408480</deployedseed>
+    <deployedseed>1391039546</deployedseed>
+    <deployedseed>276316051</deployedseed>
+    <deployedseed>1065592990</deployedseed>
+    <deployedseed>1955111059</deployedseed>
+    <deployedseed>55376912</deployedseed>
+    <deployedseed>232291272</deployedseed>
+    <deployedseed>190510270</deployedseed>
+    <deployedseed>1606395187</deployedseed>
+    <deployedseed>204892656</deployedseed>
+    <deployedseed>1201403714</deployedseed>
+    <deployedseed>879077866</deployedseed>
+    <deployedseed>1615308768</deployedseed>
+    <deployedseed>632450548</deployedseed>
+    <deployedseed>1197634438</deployedseed>
+    <deployedseed>2034276075</deployedseed>
+    <deployedseed>2026085472</deployedseed>
+    <deployedseed>1735299292</deployedseed>
+    <deployedseed>327684849</deployedseed>
+    <deployedseed>823878950</deployedseed>
+    <deployedseed>162597993</deployedseed>
+    <deployedseed>309148362</deployedseed>
+    <deployedseed>1216328233</deployedseed>
+    <deployedseed>34893926</deployedseed>
+    <deployedseed>500415155</deployedseed>
+    <deployedseed>991672127</deployedseed>
+    <deployedseed>1723179264</deployedseed>
+    <deployedseed>1596564007</deployedseed>
+    <deployedseed>1795884110</deployedseed>
+    <deployedseed>1840913923</deployedseed>
+    <deployedseed>585979032</deployedseed>
+    <deployedseed>1528710715</deployedseed>
+    <deployedseed>1987587189</deployedseed>
+    <deployedseed>690796372</deployedseed>
+    <deployedseed>247424285</deployedseed>
+    <deployedseed>2063915661</deployedseed>
+    <deployedseed>536354468</deployedseed>
+    <deployedseed>958667934</deployedseed>
+    <deployedseed>927952005</deployedseed>
+    <deployedseed>417679120</deployedseed>
+    <deployedseed>98206905</deployedseed>
+    <deployedseed>728032201</deployedseed>
+    <deployedseed>814317842</deployedseed>
+    <deployedseed>1885338224</deployedseed>
+    <deployedseed>2118295361</deployedseed>
+    <deployedseed>606157684</deployedseed>
+    <deployedseed>781073942</deployedseed>
+    <deployedseed>790438522</deployedseed>
+    <deployedseed>726795618</deployedseed>
+    <deployedseed>661937268</deployedseed>
+    <deployedseed>1422655419</deployedseed>
+    <deployedseed>727762739</deployedseed>
+    <deployedseed>2136533377</deployedseed>
+    <deployedseed>2087917189</deployedseed>
+    <deployedseed>928990145</deployedseed>
+    <deployedseed>1889292532</deployedseed>
+    <deployedseed>114851449</deployedseed>
+    <deployedseed>1740197683</deployedseed>
+    <deployedseed>377413162</deployedseed>
+    <deployedseed>49366736</deployedseed>
+    <deployedseed>933280837</deployedseed>
+    <deployedseed>916506562</deployedseed>
+    <deployedseed>1504866436</deployedseed>
+    <deployedseed>2142790829</deployedseed>
+    <deployedseed>1244788179</deployedseed>
+    <deployedseed>1948617997</deployedseed>
+    <deployedseed>12463445</deployedseed>
+    <deployedseed>1994590643</deployedseed>
+    <deployedseed>22560068</deployedseed>
+    <deployedseed>713547583</deployedseed>
+    <deployedseed>1148312049</deployedseed>
+    <deployedseed>853938195</deployedseed>
+    <deployedseed>1268755491</deployedseed>
+    <deployedseed>833694670</deployedseed>
+    <deployedseed>1640916379</deployedseed>
+    <deployedseed>1731352562</deployedseed>
+    <qtest>
+      <testcase>1</testcase>
+      <description>Test case assuming the teacher's input gets full marks.</description>
+      <testinput>
+        <name>ans1</name>
+        <value>full_express</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt1-1-T</expectedanswernote>
+      </expected>
+    </qtest>
+  </question>
+</quiz>

@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Making a given variable the subject of the formula in a given equation</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p>Make \({@var_2@}\) the subject of the formula in \({@eqn_1@}\)</p>
+<p>[[input:ans1]] [[validation:ans1]][[feedback:prt1]]</p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<h3>Worked Solution</h3>
+<p>To make \({@var_2@}\) the subject of the formula in the equation \({@eqn_1@}\), follow the steps below.</p>
+<p>Step 1: Multiply each side of the equation by the denominator on the right hand side of the equation to get;</p>
+<p>\({@eqn_2@}\)</p>
+Step 2: Expand the left hand side of the equation i.e multiply each element inside that bracket by \({@coef_var_1@}{@var_1@}\) to get;
+<p>\({@eqn_3@}\)</p>
+<p>Step 3: Rearrange the equation to get all terms with \({@var_2@}\) onto the left hand side of the equation.
+</p>
+<p>\({@eqn_4@}\)</p>
+<p>Step 4: Factorize the left hand side of the equation with \({@var_2@}\) as the common factor.</p>
+<p>\({@var_2@}({@eqn4_1@})={@eqn4_1_1@}\)</p>
+<p>Step 5: Divide both sides of the equation with \({@eqn4_1@}\) to make \({@var_2@}\)  the subject.</p>
+
+
+
+<p>\({@ta@}\)</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2023060500</text>
+    </stackversion>
+    <questionvariables>
+      <text>var_1:rand([q,w,r,t,y,j,c,h]);/*generates a random letter for the first variable*/
+var_2:rand([z,x,p,v,b,n,m,l]);/*generates a random letter for the second variable*/
+num_1:rand(9)+1;/*generates a random digit for the numerator*/
+num_2:rand_with_prohib(1,9,[num_1]);/*generates a random digit for the denominator*/
+coef_var_2_numerator:rand_with_prohib(1,9,[num_1,num_2]);/*coefficient of the second variable on the numerator*/
+coef_var_2_denominator:rand_with_prohib(1,9,[num_1,num_2,coef_var_1_numerator]);/*coefficient of the second variable on the denominator*/
+coef_var_1:rand_with_prohib(1,9,[num_1,num_2,coef_var_2_numerator,coef_var_2_denominator]);/*coefficient of the first variable*/
+eqn_1:(coef_var_1*var_1) = (coef_var_2_numerator*var_2+num_1)/(coef_var_2_denominator*var_2 -num_2);/*original equation*/
+eqn_2:(coef_var_1*var_1)*(coef_var_2_denominator*var_2 -num_2)=((coef_var_2_numerator*var_2+num_1)/(coef_var_2_denominator*var_2 -num_2))*(coef_var_2_denominator*var_2 -num_2);/*step 1 workings*/
+eqn_3:(coef_var_1*var_1*coef_var_2_denominator*var_2)-(coef_var_1*var_1*num_2)=(coef_var_2_numerator*var_2+num_1);/*step 1 workings continuation*/
+eqn4_1:(coef_var_1*var_1*coef_var_2_denominator)-coef_var_2_numerator;/*answer after factoring the left side*/
+eqn4_2:(coef_var_1*var_1*num_2);/*product*/
+eqn_4:(coef_var_1*var_1*coef_var_2_denominator*var_2)-(coef_var_2_numerator*var_2)=(coef_var_1*var_1*num_2)+num_1;/*step 2 solution*/
+eqn4_1_1:(coef_var_1*var_1*num_2)+num_1;/*rhs of eqn_4*/
+ta:var_2=((coef_var_1*var_1*num_2)+num_1)/((coef_var_1*var_1*coef_var_2_denominator)-(coef_var_2_numerator));/*correct answer*/
+
+</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="moodle_auto_format">
+      <text><![CDATA[<p>\({@var_1@}\)</p>
+<p>\({@var_2@}\)</p>
+<p>\({@num_1@}\)</p>
+<p>\({@coef_var_2_numerator@}\)</p>
+<p>\({@coef_var_2_denominator@}\)</p>
+<p>\({@coef_var_1@}\)</p>
+<p>\({@num_2@}\)</p>
+<p>\({@num_2@}\)</p>
+<p>\{@ta@}\)</p>
+<p>\({@eqn_1@}\)</p>]]></text>
+    </questionnote>
+    <questiondescription format="html">
+      <text><![CDATA[<p id="author"> Isdora Ochieng</p>
+<p id="concept">https://docs.google.com/document/d/1eP0GTBC6OU9aO-Ji6Wqzg25_-rGssdam4mFEcipf1jU/edit?tab=t.0#heading=h.6lvo5jsbk3rv</p>
+<p id="reviewer"></p>
+<p id="reviewer"></p>
+
+<p id="description">The question requires the learner to rearranging the equation or formula so that we have a single  variable equal to the rest of it.</p>]]></text>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>ta</tans>
+      <boxsize>9</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct expression of a variable as the subject of the formula for a given equation</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>ta</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <deployedseed>1807346910</deployedseed>
+    <deployedseed>967570933</deployedseed>
+    <deployedseed>77742383</deployedseed>
+    <deployedseed>358692820</deployedseed>
+    <deployedseed>1570087210</deployedseed>
+    <deployedseed>1967641714</deployedseed>
+    <deployedseed>1412320570</deployedseed>
+    <deployedseed>1830339942</deployedseed>
+    <deployedseed>1930655978</deployedseed>
+    <deployedseed>2113225799</deployedseed>
+  </question>
+</quiz>

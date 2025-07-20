@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Simplifying expressions using the given variables</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p>Let \( a =  {@a_let@}\), \( b =  {@b_let@}\)</p>
+<p>Write the following expressions in terms of \(a\) and \(b\) only</p>
+<p>a.  \({@expression_1@}= \) [[input:ans1]] [[validation:ans1]][[feedback:prt1]]</p>
+<p>b.  \({@expression_2@} = \)  [[input:ans2]] [[validation:ans2]][[feedback:prt2]]</p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<h3>Worked Solution</h3>
+<p>Part a. \({@expression_1@}\)</p>
+<p>Given: \(a = {@a_let@}\)</p>
+<p>To find \({@expression_1@}\)</p>
+<p>Rewrite \({@expression_1@}\) using the property of exponents, \(b^{@var_letter_1*var_letter_2@} = (b^{@var_letter_1@})^{@var_letter_2@} \), where \({@var_letter_1@}\) and \({@var_letter_2@} \) are powers of the exponent.</p>
+
+<p>\({@expression_1@} = ({@var_number@}^{@var_letter_1@})^{@power_1@}\)</p>
+
+<p>Substitute \({@a_let@}\) into the expression:</p>
+
+<p>\({@expression_1@} = ({@var_number@}^{@var_letter_1@})^{@power_1@}\) = \((a)^{@power_1@}\)</p>
+
+<p>\( \qquad \qquad = {@ta_1@}\)</p>
+
+<p>Part b. \({@expression_2@}\)</p>
+<p>Given: \( a = {@a_let@}\) and \( b = {@b_let@}\)</p>
+<p>To find \({@expression_2@}\)</p>
+<p>Break down \({@expression_2@}\) using the property of exponents \(b^{@var_letter_1+var_letter_2@} = b^{@var_letter_1@} \times b^{@var_letter_2@}\), where \({@var_letter_1@}\) and \({@var_letter_2@} \) are powers of the exponent.</p>
+<p>\({@expression_2@} = {@var_number@}^{@power_2*var_letter_2@} \times  {@var_number@}^{@power_3*var_letter_1@}  \)</p>
+<p>Express \({@var_number@}^{@power_2*var_letter_2@}\) and \({@var_number@}^{@power_3*var_letter_1@}\) in terms of \(a\) and \(b\)</p>
+<p>\({@var_number@}^{@power_2*var_letter_2@} = ({@var_number@}^{@var_letter_2@})^{@power_2@} = b^{@power_2@} , \text{  since } b = {@b_let@} \)</p>
+<p>\({@var_number@}^{@power_3*var_letter_1@} = ({@var_number@}^{@var_letter_1@})^{@power_3@} = a^{@power_3@}, \text{  since } a = {@a_let@}\)</p>
+<p>Combine the expressions:</p>
+<p>\({@expression_2@} = {@var_number@}^{@power_2*var_letter_2@} \times {@var_number@}^{@power_3*var_letter_1@}  =   a^{@power_3@} \times b^{@power_2@} = {@ta_2@}\)</p>
+<p>\(\qquad \qquad \qquad \qquad \qquad \qquad= {@ta_2@}\)</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2023060500</text>
+    </stackversion>
+    <questionvariables>
+      <text>var_letter_1:rand([w,r,t,x,z]);   /*Random letters*/
+var_letter_2:rand([y,h,s,v,u]);   /*Random letters*/
+var_number:rand(4)+5;   /*random number for the base*/
+power_1:rand(4)+1;    /*random power for first expression*/
+power_2:rand(4)+1;   /*random power for second expression that contains var_letter_2*/
+power_3:rand_with_prohib(1,5,[power_2]);   /*random power for second expression that contains var_letter_1*/
+a_let:var_number^var_letter_1;   /*represents the first base case  */
+b_let:var_number^var_letter_2;   /*represents the second base case */
+expression_1:var_number^(power_1*var_letter_1);   /*Gives the first expression*/
+expression_2:var_number^(power_2*var_letter_2 + power_3*var_letter_1);   /*Gives the second expression*/
+ta_1:a^power_1;   /*Teacher's answer for the first expression */
+ta_2:b^power_2*a^power_3;   /* Teacher's answer for the second expression*/
+</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="moodle_auto_format">
+      <text><![CDATA[<p>\({@a_let@}\)</p>
+<p>\({@b_let@}\)</p>
+<p>\({@expression_1@}\)</p>
+<p>\({@expression_2@}\)</p>
+<p>\({@ta_1@}\)</p>
+<p>\({@ta_2@}\)</p>]]></text>
+    </questionnote>
+    <questiondescription format="html">
+      <text><![CDATA[<p id="author">Daniel Murunga</p>
+<p id="concept">https://docs.google.com/document/d/1fLLbpCLi_2BrVGQjDdc3r5aU_XpKavQJgF5liQ0yQM4/edit?usp=sharing</p>
+<p id="reviewer"></p>
+<p id="reviewer"></p>
+<p id="description">Part (a) The question requires simplifying the expression using the given  variable \(a\). The student has to correctly apply the power rule of exponents to split out the base and one of the exponents and substitute back the given variable to obtain the simplified expression.
+Part (b) The student has to apply the product rule of the exponents and separate the base in two terms, then for each term again apply the power rule of exponents and substitute the given variables \(a\) and \(b\) to obtain a simplified expression. Combine back the two  simplified terms to get a correct simplified expression</p>]]></text>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>ta_1</tans>
+      <boxsize>8</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans2</name>
+      <type>algebraic</type>
+      <tans>ta_2</tans>
+      <boxsize>8</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct representation of the expression in terms of a.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>ta_1</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt2</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct representation of the expression in terms of a and b.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans2</sans>
+        <tans>ta_2</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt2-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt2-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+  </question>
+</quiz>

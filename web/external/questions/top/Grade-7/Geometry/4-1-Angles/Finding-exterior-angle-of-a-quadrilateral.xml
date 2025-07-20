@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Finding exterior angle of a  quadrilateral</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p>The exterior angles of a quadrilateral are {@angle_1@}, {@angle_2@}, {@angle_3@} and {@angle_4@} in degrees. Calculate the value of {@val_letter@}</p>
+<p><b>Note: </b>Give your answer to \(2\) decimal places i.e if the answer 15, which can be typed as 15.00, would be correct..</p>
+<p>{@val_letter@}[[input:ans1]]\(^\circ\) [[validation:ans1]][[feedback:prt1]]</p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<h3>Worked solution</h3>
+<p>Sum of exterior angles of a polygon is \(360^\circ\), Therefore taking the sum of given angles we get:</p>
+<p>\(\qquad\qquad\){@angle_1@}+{@angle_2@}+{@angle_3@} + {@angle_4@} =\(360^\circ\)</p>
+<p>\(\qquad\qquad\){@sum_of_exterior_angle@}=\(360^\circ\)</p>
+<p>\(\qquad\qquad\){@exp_1@}=\(360^\circ\)-\({@angle@}^\circ\)</p>
+<p>\(\qquad\qquad\){@val_letter@}=\(\frac{{@exp_2@}} { {@exp_3@}}\)</p>
+<p>\(\qquad\qquad\){@val_letter@}=\({@ta@}^\circ\)</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2025012100</text>
+    </stackversion>
+    <questionvariables>
+      <text>val_letter:rand([a,b,c,d,f,g,h,k,m,n,p,q,r,s,t,w,x,y,z]);/*generates random letters */
+coef_1:rand(4)+2;/*generates random numbers for coefficient of the angle*/
+coef_2:rand_with_prohib(2,6,[coef_1]);/*generates random numbers for coefficient of the angle*/
+angle:rand_with_step(20,70,2);/*generates random numbers of the angle*/
+angle_1:val_letter;/*the value of the first angle*/
+angle_2:coef_1*val_letter;/*the value of the second angle*/
+angle_3:coef_2*val_letter;/*the value of the third angle*/
+angle_4:val_letter+angle;/*the value of the fourth angle*/
+sum_of_exterior_angle:angle_1+angle_2+angle_3+angle_4;/*summazation of the given exterior angles*/
+exterior_angle:360;/*total exterior angles*/
+exp_1:angle_1+angle_2+angle_3+angle_1;/*the expression for all unknown angles*/
+exp_2:exterior_angle-angle;/*expression for all known angles*/
+exp_3:coef_1+coef_2+2;/*coefficients of the angles*/
+ta:decimalplaces(exp_2/exp_3,2);/*teacher's answer given to two decimal places*/
+
+/*possible mistakes*/
+ta_1:exterior_angle/4;/*exterior angle of a regular polygon*/
+ta_2:decimalplaces(180/exp_3,2);/*taking the sum of exterior angles to be equal to 180 degrees*/</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="html">
+      <text><![CDATA[<p>Exterior angle  {@ta@}</p>]]></text>
+    </questionnote>
+    <questiondescription format="html">
+      <text><![CDATA[<p id="author">Eric Morara </p>
+<p id="concept"></p>
+<p id="reviewer"></p>
+<p id="reviewer"></p>
+
+<p id="description">The question requires the student to find the exterior angle of a irregular polygon.</p>]]></text>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>ta</tans>
+      <boxsize>8</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>check for correct angle</description>
+        <answertest>NumDecPlaces</answertest>
+        <sans>ans1</sans>
+        <tans>ta</tans>
+        <testoptions>2</testoptions>
+        <quiet>1</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <description>Assuming All Polygons Are Regular</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>ta_1</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-2-T</trueanswernote>
+        <truefeedback format="html">
+          <text>It appears you may have mistakenly applied the formula for calculating exterior angles in regular polygons (where all angles are equal) to a situation involving irregular polygons (where angles differ).  Remember, the exterior angles of any polygon always sum to \(360^\circ\).</text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-2-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <deployedseed>1436521457</deployedseed>
+    <deployedseed>1241727503</deployedseed>
+    <deployedseed>385336680</deployedseed>
+    <deployedseed>326002035</deployedseed>
+    <deployedseed>1989931637</deployedseed>
+    <deployedseed>596459541</deployedseed>
+    <deployedseed>1677464781</deployedseed>
+    <deployedseed>400261076</deployedseed>
+    <deployedseed>666226955</deployedseed>
+    <deployedseed>2135132996</deployedseed>
+    <deployedseed>1445147090</deployedseed>
+    <deployedseed>2025393267</deployedseed>
+    <deployedseed>1874271641</deployedseed>
+    <deployedseed>598139866</deployedseed>
+    <deployedseed>1850423253</deployedseed>
+    <deployedseed>1347968142</deployedseed>
+    <deployedseed>1944174326</deployedseed>
+    <deployedseed>1890206665</deployedseed>
+    <deployedseed>2091865803</deployedseed>
+    <deployedseed>710273182</deployedseed>
+    <qtest>
+      <testcase>1</testcase>
+      <description>Test case assuming the teacher's input gets full marks.</description>
+      <testinput>
+        <name>ans1</name>
+        <value>ta</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt1-1-T</expectedanswernote>
+      </expected>
+    </qtest>
+    <qtest>
+      <testcase>2</testcase>
+      <description>It appears you may have mistakenly applied the formula for calculating exterior angles in regular polygons (where all angles are equal) to a situation involving irregular polygons (where angles differ).  Remember, the exterior angles of any polygon always</description>
+      <testinput>
+        <name>ans1</name>
+        <value>ta_1</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>0.0000000</expectedscore>
+        <expectedpenalty/>
+        <expectedanswernote>prt1-2-T</expectedanswernote>
+      </expected>
+    </qtest>
+  </question>
+</quiz>

@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Finding the speed taken by a cyclist in meters per second.</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p>A cyclist covered a distance of \(1\,800\,m\) in \(3\) minutes. What  was his speed in \(m/s\) </p>
+
+
+
+
+<p>Speed \(=\)[[input:ans1]]\(m/s\) [[validation:ans1]][[feedback:prt1]]</p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<h3>Worked solution.</h3>
+<p>To find the speed of the cyclist, we use the formula:</p>
+<p>\(\textbf{Speed}=\frac{\textbf{Distance}}{\textbf{Time}}\)</p>
+<p>From the above question the given values are;</p>
+<p>Distance covered  \(= {@distance_covered@}\) meters</p>
+<p>Time taken  \(= {@time_minutes@}\) minutes</p>
+<p>Since speed is measured in meters per second\(\textbf{ (m/s)}\), we need to convert minutes into seconds.</p>
+<p>We know that:</p>
+<p>\(1\) minute \(= 60\) seconds</p>
+<p>so,</p>
+<p>{@time_minutes@} minutes \({={@time_minutes@}} \times 60\)</p>
+<p>\( \qquad \qquad={@time_seconds@}\) seconds</p>
+<p>Now, we substitute the values into the speed formula:</p>
+<p>\(\textbf{Speed}= \frac{{@distance_covered@}}{{@time_seconds@}}\)</p>
+<p>Perform the Division to get;</p>
+<p>\(\textbf{Speed}= {@speed@} \,m/s\)</p>
+
+<p>The cyclist's speed is \( {@speed@} \) meters per second \( (m/s)\).</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2025012100</text>
+    </stackversion>
+    <questionvariables>
+      <text>/* Generate a random speed (whole number between 2 and 20) */
+speed : rand_with_step(20,60,2);
+
+/* Generate a random time in minutes (between 1 and 5 minutes) */
+time_minutes : rand(20) + 1;
+
+/* Convert time to seconds (1 minute = 60 seconds) */
+time_seconds : time_minutes * 60;
+
+/* Calculate distance using Distance = Speed × Time */
+distance_covered: speed * time_seconds;
+
+</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="html">
+      <text><![CDATA[<p>The time  \(=\) {@time_seconds @} seconds </p>
+
+<p>The distance covered  \(=\) {@distance_covered @} \(m\) </p>
+
+<p>The speed \(=\) {@speed @} \(m/s\) </p>]]></text>
+    </questionnote>
+    <questiondescription format="html">
+      <text><![CDATA[<p id="author">Henry Onyango</p>
+<p id="reviewer"></p>
+<p id="reviewer"></p>
+
+<p id="description">The question requires the learner to determine the speed of a cyclist. To do this, the learner must first convert the given time from minutes to seconds. Once the time is correctly converted, they will apply the speed formula: \(\text{Speed}=\frac{\text{Distance}}{\text{Time (in seconds)}}\).​</p>]]></text>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>speed </tans>
+      <boxsize>4</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correc speed in m/s.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>speed </tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <deployedseed>1761185733</deployedseed>
+    <deployedseed>765473535</deployedseed>
+    <deployedseed>2069415855</deployedseed>
+    <deployedseed>1422262044</deployedseed>
+    <deployedseed>826231290</deployedseed>
+    <deployedseed>2097613162</deployedseed>
+    <deployedseed>1974507689</deployedseed>
+    <deployedseed>1193377815</deployedseed>
+    <deployedseed>609269642</deployedseed>
+    <deployedseed>592863683</deployedseed>
+    <deployedseed>1177138229</deployedseed>
+    <deployedseed>730422168</deployedseed>
+    <deployedseed>266018392</deployedseed>
+    <deployedseed>350133762</deployedseed>
+    <deployedseed>1464555255</deployedseed>
+    <deployedseed>1936120346</deployedseed>
+    <qtest>
+      <testcase>1</testcase>
+      <description>Test case assuming the teacher's input gets full marks.</description>
+      <testinput>
+        <name>ans1</name>
+        <value>speed </value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt1-1-T</expectedanswernote>
+      </expected>
+    </qtest>
+  </question>
+</quiz>

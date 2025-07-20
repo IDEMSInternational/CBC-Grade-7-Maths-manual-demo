@@ -1,0 +1,1078 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Finding total value of digits in a number.</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p>Find the total value of each digit in the number \({@new_number_2@} \).</p>
+<p><table border="1">
+<caption></caption>
+<thead>
+<tr>
+<th scope="col">Digits</th>
+<th scope="col">Total value</th>
+
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>\({@first_value@}\)</td>
+<td>[[input:ans1]] [[validation:ans1]][[feedback:prt1]]</td>
+</tr>
+<tr>
+<td>\({@second_value@}\)</td>
+<td>[[input:ans2]] [[validation:ans2]][[feedback:prt2]]</td>
+</tr>
+<tr>
+<td>\({@third_value@}\)</td>
+<td>[[input:ans3]] [[validation:ans3]][[feedback:prt3]]</td>
+</tr>
+<tr>
+<td>\({@forth_value@}\)</td>
+<td>[[input:ans4]] [[validation:ans4]][[feedback:prt4]]</td>
+</tr>
+<tr>
+<td>\({@fifth_value@}\)</td>
+<td>[[input:ans5]] [[validation:ans5]][[feedback:prt5]]</td>
+</tr>
+<tr>
+<td>\({@sixth_value@}\)</td>
+<td>[[input:ans6]] [[validation:ans6]][[feedback:prt6]]</td>
+</tr>
+<tr>
+<td>\({@seventh_value@}\)</td>
+<td>[[input:ans7]] [[validation:ans7]][[feedback:prt7]]</td>
+</tr>
+<tr>
+<td>\({@eighth_value@}\)</td>
+<td>[[input:ans8]] [[validation:ans8]][[feedback:prt8]]</td>
+</tr>
+</tbody>
+</table>
+</p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<h3> Worked solution</h3>
+<p> To find the total value of a digit in a number:</p>
+<p> First, we identify the place value of the digit.</p>
+<p> Then, we multiply the digit by its corresponding place value i.e. </p>
+<p> Total value = digit \( \times \) place value.</p>
+<p> In this case, we will write the number on a place value chart to identify the place value and total value of each digit.</p>
+<p><table border="1">
+<caption></caption>
+<thead>
+<tr>
+<th scope="col">Place value</th>
+<th scope="col">Digit</th>
+<th scope="col" halign="center">Total value</th>
+
+
+</tr>
+</thead>
+<tbody>
+<tr>
+<td halign="center"> Tens of millions</td>
+<td valign="middle"><p align="center">\({@first_value@}\)</p></td>
+<td width="300" > <p align="center">\({@first_value@} \times 10, 000,000 ={@ total_val1@} \)</p></td>
+</tr>
+<tr>
+<td halign="center"> Millions</td>
+<td valign="middle"><p align="center">\({@second_value@}\)</p></td>
+<td width="300" > <p align="center">\({@second_value@} \times 1, 000,000 ={@ millions @} \)</p></td>
+
+</tr>
+<tr>
+<td halign="center"> Hundreds of thousands</td>
+<td valign="middle"><p align="center">\({@third_value@}\)</p></td>
+<td width="300" > <p align="center">\({@third_value@} \times 100,000 ={@ hundred_thousands @} \)</p></td>
+</tr>
+<tr>
+<td halign="center"> Tens of thousands</td>
+<td valign="middle"><p align="center">\({@forth_value@}\)</p></td>
+<td width="300" > <p align="center">\({@forth_value@} \times 10,000 ={@ tens_thousands @} \)</p></td>
+</tr>
+<tr>
+<td halign="center"> Thousands </td>
+<td valign="middle"><p align="center">\({@fifth_value@}\)</p></td>
+<td width="300" > <p align="center">\({@fifth_value@} \times 1,000 ={@ thousands @} \)</p> </td>
+</tr>
+<tr>
+<td halign="center"> Hundreds </td>
+<td valign="middle"><p align="center">\({@sixth_value@}\)</p></td>
+<td width="300" > <p align="center">\({@sixth_value@} \times 100 ={@ hundreds @} \)</p> </td>
+</tr>
+<tr>
+<td halign="center"> Tens </td>
+<td valign="middle"><p align="center">\({@seventh_value@}\)</p></td>
+<td width="300" > <p align="center">\({@seventh_value@} \times 10 ={@ tens @} \)</p></td>
+</tr>
+<tr>
+<td halign="center"> Ones </td>
+<td valign="middle"><p align="center">\({@eighth_value@}\)</p></td>
+<td width="300" > <p align="center">\({@eighth_value@} \times 1 ={@ ones @} \)</p> </td>
+</tr>
+</tbody>
+</table>
+</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2025012100</text>
+    </stackversion>
+    <questionvariables>
+      <text>first_value:rand(8)+1;  /*first digit in the number from left*/
+second_value:rand_with_prohib(1,9,[first_value]); /*second digit in the number from left*/
+third_value:rand_with_prohib(1,9,[first_value,second_value]); /*third digit in the number from left*/
+forth_value:rand_with_prohib(1,9,[first_value,second_value,third_value]); /*fourth digit in the number from left*/
+fifth_value:rand_with_prohib(1,9,[first_value,second_value,third_value,forth_value]); /*fifth digit in the number from left*/
+sixth_value:rand_with_prohib(1,9,[first_value,second_value,third_value,forth_value,fifth_value]); /*sixth digit in the number from left*/
+seventh_value:rand_with_prohib(1,9,[first_value,second_value,third_value,forth_value,fifth_value,sixth_value]); /*seventh digit in the number from left*/
+eighth_value:rand_with_prohib(1,9,[first_value,second_value,third_value,forth_value,fifth_value,sixth_value,seventh_value]); /*eighth digit in the number from left*/
+new_number_2:(first_value*10000000)+(second_value*1000000)+(third_value*100000)+(forth_value*10000)+(fifth_value*1000)+(sixth_value*100)+(seventh_value*10)+(eighth_value*1); /*the number itself*/
+total_val1: (first_value*10000000);
+millions: (second_value*1000000);
+hundred_thousands: (third_value*100000);
+tens_thousands:(forth_value*10000);
+thousands:(fifth_value*1000);
+hundreds:(sixth_value*100);
+tens: (seventh_value*10);
+ones: (eighth_value*1);
+
+/*mistake1*/
+
+total_value_1:10000000;
+total_value_2:1000000;
+total_value_3:100000;
+total_value_4:10000;
+total_value_5:1000;
+total_value_6:100;
+total_value_7:10;
+total_value_8:1;
+
+
+
+
+
+</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="html">
+      <text><![CDATA[<p>Number -\({@new_number_2@}\)</p>
+<p>total value of first digit-\({@total_val1@}\)</p>
+<p>total value of second digit- \({@ millions @}\)</p>
+<p>total value of third digit - \({@ hundred_thousands @}\)</p>
+<p>total value of fourth digit - \({@ tens_thousands @}\)</p>
+<p>total value of fifth digit - \({@ thousands @}\)</p>
+<p>total value of sixth digit - \({@ hundreds@}\)</p>
+<p>total value of seventh digit - \({@ tens @}\)</p>
+<p>total value of eight digit - \({@ ones @}\)</p>]]></text>
+    </questionnote>
+    <questiondescription format="html">
+      <text/>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>total_val1</tans>
+      <boxsize>6</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans2</name>
+      <type>algebraic</type>
+      <tans>millions</tans>
+      <boxsize>6</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans3</name>
+      <type>algebraic</type>
+      <tans>hundred_thousands </tans>
+      <boxsize>6</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans4</name>
+      <type>algebraic</type>
+      <tans>tens_thousands</tans>
+      <boxsize>6</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans5</name>
+      <type>algebraic</type>
+      <tans>thousands</tans>
+      <boxsize>6</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans6</name>
+      <type>algebraic</type>
+      <tans>hundreds </tans>
+      <boxsize>6</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans7</name>
+      <type>algebraic</type>
+      <tans>tens</tans>
+      <boxsize>6</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans8</name>
+      <type>algebraic</type>
+      <tans> ones </tans>
+      <boxsize>6</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct total value of the digit in the tens of million place value</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>total_val1</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty>0.2</falsepenalty>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <description>Checks for the wrong total value of digit in the tens of millions place value.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>total_value_1</tans>
+        <testoptions/>
+        <quiet>1</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0.2</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-2-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>You have failed to multiply the corresponding place value by \({@first_value@}\). To get the total value of a digit in a number, multiply the digit by its corresponding place value. Kindly check the step by step solution given below for accuracy.</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-2-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt2</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text>
+</text>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct total value of the digit in the millions place value.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans2</sans>
+        <tans>millions</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt2-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt2-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <description>Checks for the wrong total value of digit in the millions place value.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans2</sans>
+        <tans>total_value_2</tans>
+        <testoptions/>
+        <quiet>1</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0.2</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt2-2-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>You have failed to multiply the corresponding place value by \({@second_value@}\). To get the total value of a digit in a number, multiply the digit by its corresponding place value. Kindly check the step by step solution given below for accuracy.</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt2-2-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt3</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text>
+</text>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct total value of the digit in the hundreds of thousand place value.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans3</sans>
+        <tans>hundred_thousands </tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt3-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt3-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <description>Checks for the wrong total value of the digit in the hundreds of thousand place value.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans3</sans>
+        <tans>total_value_3</tans>
+        <testoptions/>
+        <quiet>1</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0.2</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt3-2-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>You have failed to multiply the corresponding place value by \({@third_value@}\). To get the total value of a digit in a number, multiply the digit by its corresponding place value. Kindly check the step by step solution given below for accuracy.</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt3-2-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt4</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text>
+</text>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct total value of the digit in the tens of thousand place value.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans4</sans>
+        <tans>tens_thousands</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt4-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt4-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <description>Checks for the wrong total value of the digit in the tens of thousand place value.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans4</sans>
+        <tans>total_value_4</tans>
+        <testoptions/>
+        <quiet>1</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0.2</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt4-2-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>You have failed to multiply the corresponding place value by \({@forth_value@}\). To get the total value of a digit in a number, multiply the digit by its corresponding place value. Kindly check the step by step solution given below for accuracy.</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt4-2-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt5</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct total value of the digit in the thousands place value</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans5</sans>
+        <tans>thousands</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt5-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt5-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <description>Checks for the wrong total value of the digit in the thousands place value</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans5</sans>
+        <tans>total_value_5</tans>
+        <testoptions/>
+        <quiet>1</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0.2</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt5-2-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>You have failed to multiply the corresponding place value by \({@fifth_value@}\). To get the total value of a digit in a number, multiply the digit by its corresponding place value. Kindly check the step by step solution given below for accuracy.</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt5-2-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt6</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text>
+</text>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct total value of digit in the hundreds place value</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans6</sans>
+        <tans>hundreds </tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt6-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt6-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <description>Checks for the wrong total value of digit in the hundreds place value</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans6</sans>
+        <tans>total_value_6</tans>
+        <testoptions/>
+        <quiet>1</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0.2</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt6-2-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>You have failed to multiply the corresponding place value by \({@sixth_value@}\). To get the total value of a digit in a number, multiply the digit by its corresponding place value. Kindly check the step by step solution given below for accuracy.</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt6-2-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt7</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text>
+</text>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct total value of the digit in the tens place value.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans7</sans>
+        <tans>tens</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt7-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt7-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <description>Checks for the wrong total value of the digit in the tens place value.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans7</sans>
+        <tans>total_value_7</tans>
+        <testoptions/>
+        <quiet>1</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0.2</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt7-2-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>You have failed to multiply the corresponding place value by \({@seventh_value@}\). To get the total value of a digit in a number, multiply the digit by its corresponding place value. Kindly check the step by step solution given below for accuracy.</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt7-2-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt8</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct total value of the digit in the ones place value.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans8</sans>
+        <tans>ones</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt8-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt8-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <description>Checks for the wrong total value of the digit in the ones place value.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans8</sans>
+        <tans>total_value_8</tans>
+        <testoptions/>
+        <quiet>1</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0.2</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt8-2-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>You have failed to multiply the corresponding place value by \({@eighth_value@}\). To get the total value of a digit in a number, multiply the digit by its corresponding place value. Kindly check the step by step solution given below for accuracy.</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt8-2-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <deployedseed>1596059136</deployedseed>
+    <deployedseed>1251923037</deployedseed>
+    <deployedseed>564808186</deployedseed>
+    <deployedseed>1535143037</deployedseed>
+    <deployedseed>293686435</deployedseed>
+    <deployedseed>1013685127</deployedseed>
+    <deployedseed>1098788562</deployedseed>
+    <deployedseed>155119854</deployedseed>
+    <deployedseed>1292258583</deployedseed>
+    <deployedseed>217726733</deployedseed>
+    <deployedseed>1603357892</deployedseed>
+    <deployedseed>695139080</deployedseed>
+    <deployedseed>1827669117</deployedseed>
+    <deployedseed>1619450658</deployedseed>
+    <deployedseed>1813238915</deployedseed>
+    <deployedseed>1339347668</deployedseed>
+    <deployedseed>1828798777</deployedseed>
+    <deployedseed>1421345531</deployedseed>
+    <deployedseed>832449356</deployedseed>
+    <deployedseed>1041088730</deployedseed>
+    <deployedseed>952402854</deployedseed>
+    <deployedseed>749779087</deployedseed>
+    <deployedseed>932566847</deployedseed>
+    <deployedseed>1075345238</deployedseed>
+    <deployedseed>181100228</deployedseed>
+    <deployedseed>1836482325</deployedseed>
+    <deployedseed>125641885</deployedseed>
+    <deployedseed>1279785358</deployedseed>
+    <deployedseed>110928377</deployedseed>
+    <deployedseed>313853886</deployedseed>
+    <deployedseed>19841830</deployedseed>
+    <deployedseed>333102705</deployedseed>
+    <deployedseed>1973624518</deployedseed>
+    <deployedseed>762789145</deployedseed>
+    <deployedseed>713870681</deployedseed>
+    <deployedseed>1568159764</deployedseed>
+    <deployedseed>435589321</deployedseed>
+    <deployedseed>64177424</deployedseed>
+    <deployedseed>785076879</deployedseed>
+    <deployedseed>1396163064</deployedseed>
+    <deployedseed>148067610</deployedseed>
+    <deployedseed>2118884789</deployedseed>
+    <deployedseed>1335571483</deployedseed>
+    <deployedseed>1472189168</deployedseed>
+    <deployedseed>2100516475</deployedseed>
+    <deployedseed>248137289</deployedseed>
+    <deployedseed>558466057</deployedseed>
+    <deployedseed>693507236</deployedseed>
+    <deployedseed>236957074</deployedseed>
+    <deployedseed>1209780180</deployedseed>
+    <deployedseed>1012250135</deployedseed>
+    <deployedseed>503249667</deployedseed>
+    <deployedseed>1114044261</deployedseed>
+    <deployedseed>1080387716</deployedseed>
+    <deployedseed>821674539</deployedseed>
+    <deployedseed>1085410979</deployedseed>
+    <deployedseed>140626916</deployedseed>
+    <deployedseed>1335893726</deployedseed>
+    <deployedseed>728087947</deployedseed>
+    <deployedseed>842970238</deployedseed>
+    <deployedseed>1225477126</deployedseed>
+    <deployedseed>609062189</deployedseed>
+    <deployedseed>777385736</deployedseed>
+    <deployedseed>575569427</deployedseed>
+    <deployedseed>511299302</deployedseed>
+    <deployedseed>604369187</deployedseed>
+    <deployedseed>1096408057</deployedseed>
+    <deployedseed>288193930</deployedseed>
+    <deployedseed>1200790096</deployedseed>
+    <deployedseed>459384474</deployedseed>
+    <deployedseed>358852463</deployedseed>
+    <deployedseed>2030117471</deployedseed>
+    <deployedseed>219249242</deployedseed>
+    <deployedseed>772851000</deployedseed>
+    <deployedseed>1908733994</deployedseed>
+    <deployedseed>967913492</deployedseed>
+    <deployedseed>1663571474</deployedseed>
+    <deployedseed>1155171114</deployedseed>
+    <deployedseed>1973930374</deployedseed>
+    <deployedseed>1005457007</deployedseed>
+    <deployedseed>1020102979</deployedseed>
+    <deployedseed>1635151903</deployedseed>
+    <deployedseed>823626592</deployedseed>
+    <deployedseed>2119492674</deployedseed>
+    <deployedseed>248238799</deployedseed>
+    <deployedseed>1976640459</deployedseed>
+    <deployedseed>362435803</deployedseed>
+    <deployedseed>405088731</deployedseed>
+    <qtest>
+      <testcase>1</testcase>
+      <description>Test case assuming the teacher's input gets full marks.</description>
+      <testinput>
+        <name>ans1</name>
+        <value>total_val1</value>
+      </testinput>
+      <testinput>
+        <name>ans2</name>
+        <value>millions</value>
+      </testinput>
+      <testinput>
+        <name>ans3</name>
+        <value>hundred_thousands </value>
+      </testinput>
+      <testinput>
+        <name>ans4</name>
+        <value>tens_thousands</value>
+      </testinput>
+      <testinput>
+        <name>ans5</name>
+        <value>thousands</value>
+      </testinput>
+      <testinput>
+        <name>ans6</name>
+        <value>hundreds </value>
+      </testinput>
+      <testinput>
+        <name>ans7</name>
+        <value>tens</value>
+      </testinput>
+      <testinput>
+        <name>ans8</name>
+        <value> ones </value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt1-1-T</expectedanswernote>
+      </expected>
+      <expected>
+        <name>prt2</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt2-1-T</expectedanswernote>
+      </expected>
+      <expected>
+        <name>prt3</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt3-1-T</expectedanswernote>
+      </expected>
+      <expected>
+        <name>prt4</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt4-1-T</expectedanswernote>
+      </expected>
+      <expected>
+        <name>prt5</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt5-1-T</expectedanswernote>
+      </expected>
+      <expected>
+        <name>prt6</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt6-1-T</expectedanswernote>
+      </expected>
+      <expected>
+        <name>prt7</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt7-1-T</expectedanswernote>
+      </expected>
+      <expected>
+        <name>prt8</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt8-1-T</expectedanswernote>
+      </expected>
+    </qtest>
+    <qtest>
+      <testcase>2</testcase>
+      <description>Checks for the wrong total value of each digit in a given number</description>
+      <testinput>
+        <name>ans1</name>
+        <value>total_value_1</value>
+      </testinput>
+      <testinput>
+        <name>ans2</name>
+        <value>total_value_2</value>
+      </testinput>
+      <testinput>
+        <name>ans3</name>
+        <value>total_value_3</value>
+      </testinput>
+      <testinput>
+        <name>ans4</name>
+        <value>total_value_4</value>
+      </testinput>
+      <testinput>
+        <name>ans5</name>
+        <value>total_value_5</value>
+      </testinput>
+      <testinput>
+        <name>ans6</name>
+        <value>total_value_6</value>
+      </testinput>
+      <testinput>
+        <name>ans7</name>
+        <value>total_value_7</value>
+      </testinput>
+      <testinput>
+        <name>ans8</name>
+        <value>total_value_8</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>0.2000000</expectedscore>
+        <expectedpenalty/>
+        <expectedanswernote>prt1-2-T</expectedanswernote>
+      </expected>
+      <expected>
+        <name>prt2</name>
+        <expectedscore>0.2000000</expectedscore>
+        <expectedpenalty/>
+        <expectedanswernote>prt2-2-T</expectedanswernote>
+      </expected>
+      <expected>
+        <name>prt3</name>
+        <expectedscore>0.2000000</expectedscore>
+        <expectedpenalty/>
+        <expectedanswernote>prt3-2-T</expectedanswernote>
+      </expected>
+      <expected>
+        <name>prt4</name>
+        <expectedscore>0.2000000</expectedscore>
+        <expectedpenalty/>
+        <expectedanswernote>prt4-2-T</expectedanswernote>
+      </expected>
+      <expected>
+        <name>prt5</name>
+        <expectedscore>0.0000000</expectedscore>
+        <expectedpenalty/>
+        <expectedanswernote>prt5-2-T</expectedanswernote>
+      </expected>
+      <expected>
+        <name>prt6</name>
+        <expectedscore>0.2000000</expectedscore>
+        <expectedpenalty/>
+        <expectedanswernote>prt6-2-T</expectedanswernote>
+      </expected>
+      <expected>
+        <name>prt7</name>
+        <expectedscore>0.2000000</expectedscore>
+        <expectedpenalty/>
+        <expectedanswernote>prt7-2-T</expectedanswernote>
+      </expected>
+      <expected>
+        <name>prt8</name>
+        <expectedscore>0.2000000</expectedscore>
+        <expectedpenalty/>
+        <expectedanswernote>prt8-2-T</expectedanswernote>
+      </expected>
+    </qtest>
+  </question>
+</quiz>

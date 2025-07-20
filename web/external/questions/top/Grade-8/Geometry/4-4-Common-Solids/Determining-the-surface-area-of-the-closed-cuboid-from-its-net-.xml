@@ -1,0 +1,504 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Determining the surface area of the closed cuboid from its net.</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Calculate the surface area of the box given below from its net,</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Wireframe Cuboid Colored</title>
+</head>
+<body>
+  <svg width="375" height="375" viewBox="0 0 250 250">
+    <!-- Colored faces -->
+
+    <!-- Front face (ABCD) - blue -->
+    <polygon points="60,60 150,60 150,120 60,120" fill="blue" fill-opacity="0.5" stroke="black" />
+
+    <!-- Back face (EFGH) - blue -->
+    <polygon points="105,15 195,15 195,75 105,75" fill="blue" fill-opacity="0.5" stroke="black" />
+
+    <!-- Top face (ABFE) - orange -->
+    <polygon points="60,60 150,60 195,15 105,15" fill="orange" fill-opacity="0.5" stroke="black" />
+
+    <!-- Bottom face (DCGH) - orange -->
+    <polygon points="60,120 150,120 195,75 105,75" fill="orange" fill-opacity="0.5" stroke="black" />
+
+    <!-- Right face (BCGF) - cyan -->
+    <polygon points="150,60 150,120 195,75 195,15" fill="cyan" fill-opacity="0.5" stroke="black" />
+
+    <!-- Left face (ADHE) - cyan -->
+    <polygon points="60,60 60,120 105,75 105,15" fill="cyan" fill-opacity="0.5" stroke="black" />
+
+    <!-- Invisible vertex labels -->
+    <text x="60" y="60" font-family="Arial" font-size="12" fill="none">A</text>
+    <text x="150" y="60" font-family="Arial" font-size="12" fill="none">B</text>
+    <text x="150" y="120" font-family="Arial" font-size="12" fill="none">C</text>
+    <text x="60" y="120" font-family="Arial" font-size="12" fill="none">D</text>
+    <text x="105" y="15" font-family="Arial" font-size="12" fill="none">E</text>
+    <text x="195" y="15" font-family="Arial" font-size="12" fill="none">F</text>
+    <text x="195" y="75" font-family="Arial" font-size="12" fill="none">G</text>
+    <text x="105" y="75" font-family="Arial" font-size="12" fill="none">H</text>
+
+    <!-- Midpoint circles and visible labels -->
+
+    <!-- Midpoint of DC -->
+    <circle cx="105" cy="120" r="3" fill="black" />
+    <text x="110" y="130" font-family="Arial" font-size="12" fill="black">{#length#}cm</text>
+
+    <!-- Midpoint of CG -->
+    <circle cx="172.5" cy="97.5" r="3" fill="black" />
+    <text x="177" y="107" font-family="Arial" font-size="12" fill="black">{#width#}cm</text>
+
+    <!-- Midpoint of GF -->
+    <circle cx="195" cy="45" r="3" fill="black" />
+    <text x="200" y="55" font-family="Arial" font-size="12" fill="black">{#height#}cm</text>
+  </svg>
+</body>
+</html>
+<p>Surface area of the cuboid=[[input:ans1]] cm\(^2\)[[validation:ans1]][[feedback:prt1]]</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<h3>Worked solution</h3>
+<p>(a).The figure below shows the net of the box</p>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cube Net with Selected Dimensions</title>
+  <style>
+    .net {
+      display: grid;
+      grid-template-columns: repeat(5, 120px);  /* Increased from 80px to 120px */
+      grid-template-rows: repeat(5, 120px);     /* Increased from 80px to 120px */
+      gap: 2px;
+      justify-content: center;
+      align-items: center;
+      margin-top: 40px;
+    }
+
+    .cell {
+      position: relative;
+      width: 120px;   /* Increased from 80px to 120px */
+      height: 120px;  /* Increased from 80px to 120px */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      border: 1px solid #333;
+      box-sizing: border-box;
+    }
+
+    .A { 
+      background-color: orange; 
+      grid-column: 3; 
+      grid-row: 1; 
+    }
+    .B { 
+      background-color: blue; 
+      grid-column: 3; 
+      grid-row: 2; 
+    }
+    .C { 
+      background-color: orange; 
+      grid-column: 3; 
+      grid-row: 3; 
+    }
+    .D { 
+      background-color: blue; 
+      grid-column: 3; 
+      grid-row: 4; 
+    }
+    .E { 
+      background-color: cyan; 
+      grid-column: 2;  /* Adjusted to the left to align with the length of C */
+      grid-row: 3; 
+      width: 120px;  /* Increased from 80px to 120px */
+      height: 120px;  /* Increased from 80px to 120px */
+    }
+    .F { 
+      background-color: cyan; 
+      grid-column: 4; 
+      grid-row: 3; 
+    }
+
+    .dimension {
+      position: absolute;
+      font-size: 10px;
+      background: white;
+      padding: 1px 4px;
+      border: 1px solid #999;
+      border-radius: 4px;
+    }
+
+    .top { top: -24px; left: 50%; transform: translateX(-50%); }
+    .bottom { bottom: -24px; left: 50%; transform: translateX(-50%); }
+    .left { left: -40px; top: 50%; transform: translateY(-50%); }
+    .right { right: -40px; top: 50%; transform: translateY(-50%); }
+  </style>
+</head>
+<body>
+
+  <div class="net">
+    <div class="cell A">
+      A
+      <span class="dimension top">{#length#} cm</span>
+      <span class="dimension left">{#width#} cm</span>
+      <span class="dimension right">{#width#} cm</span>
+    </div>
+    <div class="cell B">
+      B
+      <span class="dimension bottom">{#length#} cm</span>
+      <span class="dimension left">{#height#} cm</span>
+      <span class="dimension right">{#height#} cm</span>
+    </div>
+    <div class="cell C">
+      C
+    </div>
+    <div class="cell D">
+      D
+      <span class="dimension bottom">{#length#} cm</span>
+      <span class="dimension right">{#height#} cm</span>
+    </div>
+    <div class="cell E">
+      E
+      <span class="dimension bottom">{#height#} cm</span>
+      <span class="dimension left">{#width#} cm</span>
+    </div>
+    <div class="cell F">
+      F
+      <span class="dimension bottom">{#height#} cm</span>
+      <span class="dimension right">{#width#} cm</span>
+    </div>
+  </div>
+
+</body>
+</html>
+
+<p>(b).Surface area of the box</p>
+<p>\(\begin{align}\text{Area of a rectangle}&=length \times width\\\end{align}\)</p>
+<p>\(\begin{align}\text{Area of rectangle A}&={@length@} cm\times{@width@} cm\\&={@area_of_rectangleA@} cm^2\end{align}\)</p>
+<p>\(\begin{align}\text{Area of rectangle B}&={@length@} cm\times{@height@} cm\\&={@area_of_rectangleB@} cm^2\end{align}\)</p>
+<p>\(\begin{align}\text{Area of rectangle C}&={@length@} cm\times{@width@} cm\\&={@area_of_rectangleC@} cm^2\end{align}\)</p>
+<p>\(\begin{align}\text{Area of rectangle D}&={@length@} cm\times{@height@} cm\\&={@area_of_rectangleD@} cm^2\end{align}\)</p>
+<p>\(\begin{align}\text{Area of rectangle E}&={@width@} cm\times{@height@} cm\\&={@area_of_rectangleE@} cm^2\end{align}\)</p>
+<p>\(\begin{align}\text{Area of rectangle F}&={@width@} cm\times{@height@} cm\\&={@area_of_rectangleF@} cm^2\end{align}\)</p>
+<p>\(\begin{align}\text{Surface area}&={@area_of_rectangleA@} cm^2+{@area_of_rectangleB@} cm^2+{@area_of_rectangleC@} cm^2+{@area_of_rectangleD@} cm^2+{@area_of_rectangleE@} cm^2+{@area_of_rectangleF@} cm^2\\&={@ta@} cm^2\end{align}\)</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2025012100</text>
+    </stackversion>
+    <questionvariables>
+      <text>/*surface area of a cuboid*/
+length:rand_with_step(50,99,1);/*length of the cuboid*/
+width:rand_with_step(10,49,1);/*width of the cuboid*/
+height:rand_with_prohib(9,60,[length,width]);/*height of the cuboid*/
+
+area_of_rectangleA:length*width;/*area of rectangleA from the net*/
+area_of_rectangleC:length*width;/*area of rectangleB from the net*/
+area_of_rectangleB:length*height;/*area of rectangleC from the net*/
+area_of_rectangleD:length*height;/*area of rectangleD from the net*/
+area_of_rectangleE:height*width;/*area of rectangleE from the net*/
+area_of_rectangleF:height*width;/*area of rectangleF from the net*/
+surface_area:area_of_rectangleA+area_of_rectangleB+area_of_rectangleC+area_of_rectangleD+area_of_rectangleE+area_of_rectangleF;/*total surface area of the cuboid from its net*/
+ta:surface_area;/*teacher's answer*/
+
+/*mistakes*/
+ta_1:area_of_rectangleA*6;/*assuming all the six faces are the same*/
+ta_2:area_of_rectangleB*6;/*assuming all the six faces are the same*/
+ta_3:area_of_rectangleE*6;/*assuming all the six faces are the same*/</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="html">
+      <text><![CDATA[<p>The net of a rectangle has 6 faces. 2 opposite faces are equal</p>
+<p>Surface area ={@ta@}</p>]]></text>
+    </questionnote>
+    <questiondescription format="html">
+      <text><![CDATA[<p id="author">Eric Morara </p>
+<p id="concept">https://ecampus.idems.international/question/bank/history/history.php?entryid=129307&returnurl=%2Fquestion%2Fedit.php%3Fcourseid%3D430%26cat%3D19907%252C121817&courseid=430&filter=%7B%22category%22%3A%7B%22jointype%22%3A1%2C%22values%22%3A%5B%2219907%22%5D%2C%22filteroptions%22%3A%7B%22includesubcategories%22%3Afalse%7D%7D%2C%22hidden%22%3A%7B%22jointype%22%3A1%2C%22values%22%3A%5B0%5D%7D%7D</p>
+<p id="reviewer"></p>
+<p id="reviewer"></p>
+
+<p id="description">The question requires a student to determine the surface area of the given cuboid from its net. He is required first to open the cuboid to form a net and then work out the surface area.</p>]]></text>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>ta</tans>
+      <boxsize>10</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>check for correct surface area</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>ta</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <description>Assuming All Faces Are Equal</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>ta_1</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-2-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>It looks like you might have assumed that all the faces of the cuboid are the same. Remember, a cuboid has six faces, but the faces are typically rectangles, not squares. Each pair of opposite faces has the same dimensions, but the dimensions for different pairs can be different from each other. Make sure to identify the length, width, and height properly and use the correct side lengths for each face.</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>0</falsenextnode>
+        <falseanswernote>prt1-2-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>2</name>
+        <description>Assuming All Faces Are Equal</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>ta_2</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-3-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>It looks like you might have assumed that all the faces of the cuboid are the same. Remember, a cuboid has six faces, but the faces are typically rectangles, not squares. Each pair of opposite faces has the same dimensions, but the dimensions for different pairs can be different from each other. Make sure to identify the length, width, and height properly and use the correct side lengths for each face.</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt1-3-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>3</name>
+        <description>Assuming All Faces Are Equal</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>ta_3</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-4-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>It looks like you might have assumed that all the faces of the cuboid are the same. Remember, a cuboid has six faces, but the faces are typically rectangles, not squares. Each pair of opposite faces has the same dimensions, but the dimensions for different pairs can be different from each other. Make sure to identify the length, width, and height properly and use the correct side lengths for each face.</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>2</falsenextnode>
+        <falseanswernote>prt1-4-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <deployedseed>1062631462</deployedseed>
+    <deployedseed>2010205959</deployedseed>
+    <deployedseed>1608392455</deployedseed>
+    <deployedseed>1468635976</deployedseed>
+    <deployedseed>1952263700</deployedseed>
+    <deployedseed>1324922865</deployedseed>
+    <deployedseed>1223005949</deployedseed>
+    <deployedseed>139772572</deployedseed>
+    <deployedseed>1548959192</deployedseed>
+    <deployedseed>436499890</deployedseed>
+    <deployedseed>2112354359</deployedseed>
+    <deployedseed>41242115</deployedseed>
+    <deployedseed>1669697290</deployedseed>
+    <deployedseed>950319511</deployedseed>
+    <deployedseed>71942627</deployedseed>
+    <deployedseed>2107591720</deployedseed>
+    <deployedseed>1901253914</deployedseed>
+    <deployedseed>208348972</deployedseed>
+    <deployedseed>678776284</deployedseed>
+    <deployedseed>1542547585</deployedseed>
+    <deployedseed>896519598</deployedseed>
+    <deployedseed>1083288714</deployedseed>
+    <deployedseed>730185285</deployedseed>
+    <deployedseed>1044990958</deployedseed>
+    <deployedseed>1114799414</deployedseed>
+    <deployedseed>479241447</deployedseed>
+    <deployedseed>367618333</deployedseed>
+    <deployedseed>194950173</deployedseed>
+    <deployedseed>1546885640</deployedseed>
+    <deployedseed>1747644929</deployedseed>
+    <deployedseed>545130091</deployedseed>
+    <deployedseed>355731481</deployedseed>
+    <deployedseed>960897976</deployedseed>
+    <deployedseed>361890321</deployedseed>
+    <deployedseed>1829019403</deployedseed>
+    <deployedseed>390493851</deployedseed>
+    <deployedseed>970099838</deployedseed>
+    <deployedseed>195832921</deployedseed>
+    <deployedseed>273640400</deployedseed>
+    <deployedseed>1369747291</deployedseed>
+    <deployedseed>1534770013</deployedseed>
+    <deployedseed>1518126687</deployedseed>
+    <deployedseed>388712652</deployedseed>
+    <deployedseed>281336652</deployedseed>
+    <deployedseed>1673701455</deployedseed>
+    <deployedseed>1206333839</deployedseed>
+    <deployedseed>317741870</deployedseed>
+    <deployedseed>1558976530</deployedseed>
+    <deployedseed>504799557</deployedseed>
+    <deployedseed>1732598490</deployedseed>
+    <qtest>
+      <testcase>1</testcase>
+      <description>correct surface area</description>
+      <testinput>
+        <name>ans1</name>
+        <value>ta</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt1-1-T</expectedanswernote>
+      </expected>
+    </qtest>
+    <qtest>
+      <testcase>2</testcase>
+      <description>Assuming All Faces Are Equal</description>
+      <testinput>
+        <name>ans1</name>
+        <value>ta_1</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>0.0000000</expectedscore>
+        <expectedpenalty>0.1000000</expectedpenalty>
+        <expectedanswernote>prt1-2-T</expectedanswernote>
+      </expected>
+    </qtest>
+    <qtest>
+      <testcase>3</testcase>
+      <description>Assuming All Faces Are Equal</description>
+      <testinput>
+        <name>ans1</name>
+        <value>ta_1</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>0.0000000</expectedscore>
+        <expectedpenalty/>
+        <expectedanswernote>prt1-2-T</expectedanswernote>
+      </expected>
+    </qtest>
+    <qtest>
+      <testcase>4</testcase>
+      <description>Assuming All Faces Are Equal</description>
+      <testinput>
+        <name>ans1</name>
+        <value>ta_2</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>0.0000000</expectedscore>
+        <expectedpenalty/>
+        <expectedanswernote>prt1-3-T</expectedanswernote>
+      </expected>
+    </qtest>
+    <qtest>
+      <testcase>5</testcase>
+      <description>Assuming All Faces Are Equal</description>
+      <testinput>
+        <name>ans1</name>
+        <value>ta_3</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>0.0000000</expectedscore>
+        <expectedpenalty/>
+        <expectedanswernote>prt1-4-T</expectedanswernote>
+      </expected>
+    </qtest>
+  </question>
+</quiz>

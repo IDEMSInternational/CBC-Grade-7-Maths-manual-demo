@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Calculating the probability of getting a marble as a percentage.</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p>A bag contains \({@red@}\) red marbles, \({@green@}\) green marbles, and \({@blue@}\) blue marbles.</p>
+<p>If a marble is picked from the bag at random, find the probability of picking:</p>
+<p>Express each probability as a percentage.</p>
+<ol type="a">
+  <li>
+    <p>A blue marble</p>
+    <p>P(Blue) \( = \) [[input:ans1]] [[validation:ans1]] [[feedback:prt1]]%</p>
+  </li>
+  <li>
+    <p>A marble which is not blue</p>
+    <p>P(Not blue) \( =  \) [[input:ans2]] [[validation:ans2]] [[feedback:prt2]]%</p>
+  </li>
+</ol>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<h3>Worked solution</h3>
+<p>a. The probability of drawing a blue marble is calculated by dividing the number of blue marbles by the total number of marbles:</p>
+<p>P(Blue) = Number of blue marbles ÷ Total number of marbles</p>
+<ul>
+      <li>Total number of marbles = \({@total_number_of_marbles@}\)</li>
+      <li>Number of blue marbles = \({@blue@}\)</li>
+</ul>
+<p>P(Blue) = \({@blue@}\) ÷ \({@total_number_of_marbles@}\) = <strong>\({@P_blue@}\)</strong></p>
+<P>P(Blue) = <strong>\({@P_blue@}\) * 100%</strong> = <strong>\({@P_blue_percent@}\)%</strong></p>
+<p>Therefore, the probability of drawing a blue marble is  <strong>\({@P_blue_percent@}\)%</strong></p>
+
+<p>b. The probability of drawing a marble that is not blue:</p>
+<p>P(not blue) = Number of marbles that are not blue ÷ Total number of marbles</p>
+<p>The number of marbles that are not blue is the sum of the red and green marbles.</p>
+<ul>
+      <li>Number of marbles that are not blue = \({@red@}\) + \({@green@}\) = \({@tot_red_green@}\)</li>
+      <li>Total number of marbles = \({@total_number_of_marbles@}\)</li>
+</ul>
+<p>P(not blue) = \({@tot_red_green@}\) ÷ \({@total_number_of_marbles@}\) = <strong>\({@P_blue@}\)</strong></p>
+<p><strong>\({@P_blue@}\) * 100%</strong> = <strong>\({@P_blue_percent@}\)%</strong></p>
+<p>Therefore, the probability of drawing a marble that is not blue is  <strong>\({@P_blue_percent@}\)%</strong></p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2025012100</text>
+    </stackversion>
+    <questionvariables>
+      <text>red : rand(10) + 1;/*number of red marbles*/
+green : rand(10) + 1;/*number of green marbles*/
+blue : rand(10) + 1;/*number of blue marbles*/
+tot_red_green: red + green;/*sum of red and blue marbles*/
+total_number_of_marbles : red + green + blue;/*total number of marbles */
+P_blue : blue / total_number_of_marbles;/* Probability of picking a blue marble */
+P_blue_percent : decimalplaces(P_blue * 100 ,2);/* Probability of picking a blue marble as a percentage*/
+P_not_blue : tot_red_green / total_number_of_marbles;/* Probability of picking a non-blue marble */
+P_not_blue_percent : decimalplaces(P_not_blue * 100 ,2);/* Probability of picking a non-blue marble as a percentage */</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="html">
+      <text><![CDATA[<P>\({@total_number_of_marbles@}\)</p>
+<P>\({@P_blue_percent@}\)</p>
+<P>\({@P_not_blue_percent@}\)</p>]]></text>
+    </questionnote>
+    <questiondescription format="html">
+      <text><![CDATA[<p id="author">Purity Ekadeli</p>
+<p id="reviewer"></p>
+<p id="reviewer"></p>
+<p id="description">The question requires the learner to calculate and express as percentages the probabilities of drawing a blue marble and a marble that is not blue from a set of red, green, and blue marbles.</p>]]></text>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>P_blue_percent</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans2</name>
+      <type>algebraic</type>
+      <tans>P_not_blue_percent</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text>/*mistake1*/
+P_blue_mistake1:blue * total_number_of_marbles;/* Probability of picking a blue marble */
+P_blue_percent_mistake1 : decimalplaces(P_blue_mistake1 * 100 ,2);/* Probability of picking a blue marble as a percentage*/</text>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct answer</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>P_blue_percent</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <description>checks for the wrong answer</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>P_blue_percent_mistake1</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-2-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>You mistakenly multiplied the number of blue marbles by the total number of marbles instead of dividing them.</p>
+<p>Remember, the probability of picking a blue marble is found by dividing the number of blue marbles by the total number of marbles.</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-2-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt2</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text>/*mistake2*/
+P_not_blue_mistake2 : tot_red_green * total_number_of_marbles;/* Probability of picking a non-blue marble */
+P_not_blue_percent_mistake2 : decimalplaces(P_not_blue_mistake2 * 100 ,2);/* Probability of picking a non-blue marble as a percentage */</text>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>checks for the correct answer</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans2</sans>
+        <tans>P_not_blue_percent</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt2-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt2-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <description>checks for the wrong answer</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans2</sans>
+        <tans>P_not_blue_percent_mistake2</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt2-2-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>You incorrectly multiplied the number of marbles that are not blue by the total number of marbles instead of dividing them.</p>
+<p>To find the probability of picking a marble that is not blue, you should divide the number of non-blue marbles by the total number of marbles.</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt2-2-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+  </question>
+</quiz>

@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Finding the sum of given numbers .</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p>Work out:</p>
+<p>\({@first_number@} + {@second_number@}\)</p>
+<p>[[input:ans1]] [[validation:ans1]] [[feedback:prt1]]</p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<h3>Worked solution</h3>
+<p>To add \( {@first_number@}\) and \({@second_number@}\)  we:</p>
+<p>Line up the numbers according to its place value.</p>
+<p> Add the numbers starting from ones place value as below.</p>
+<p>
+\(\begin{array}{r}
+{@first_number@} \\
++ {@second_number@} \\
+\hline
+{@result@} \\
+\hline
+\end{array}
+\)</p>
+<p> If the sum of the digits results in a two-digit number (e.g., \(5+5=10)\), then we carry one to the next digit on the left.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2025012100</text>
+    </stackversion>
+    <questionvariables>
+      <text>first_number:rand(5974561)+100;
+second_number:rand(2473287)+100;
+result:first_number+second_number;</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="html">
+      <text><![CDATA[<p>first number-\({@first_number@}\)</p>
+<p>second number-\({@second_number@}\)</p>
+<p>answer-\({@result@}\)</p>]]></text>
+    </questionnote>
+    <questiondescription format="html">
+      <text><![CDATA[<p id="author">Sheila Cherotich</p>
+<p id="concept"></p>
+<p id="reviewer"></p>
+<p id="reviewer"></p>
+<p id="description">This question requires the student to add the two given numbers and give the result.</p>]]></text>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>result</tans>
+      <boxsize>6</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct addition of 2 numbers.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>result</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <deployedseed>896337561</deployedseed>
+    <deployedseed>703294169</deployedseed>
+    <deployedseed>1852875914</deployedseed>
+    <deployedseed>2035845990</deployedseed>
+    <deployedseed>1264279311</deployedseed>
+    <deployedseed>1112531802</deployedseed>
+    <deployedseed>1350211109</deployedseed>
+    <deployedseed>262770102</deployedseed>
+    <deployedseed>2082981551</deployedseed>
+    <deployedseed>1617006311</deployedseed>
+    <deployedseed>1000896923</deployedseed>
+    <deployedseed>702811153</deployedseed>
+    <deployedseed>1120048164</deployedseed>
+    <deployedseed>1407076152</deployedseed>
+    <deployedseed>596961925</deployedseed>
+    <deployedseed>1773693018</deployedseed>
+    <deployedseed>2009049113</deployedseed>
+    <deployedseed>318768771</deployedseed>
+    <deployedseed>543484352</deployedseed>
+    <deployedseed>1751124847</deployedseed>
+    <deployedseed>880379308</deployedseed>
+    <deployedseed>430965491</deployedseed>
+    <deployedseed>1954832001</deployedseed>
+    <deployedseed>361492300</deployedseed>
+    <deployedseed>1442433102</deployedseed>
+    <deployedseed>1347392185</deployedseed>
+    <deployedseed>898432136</deployedseed>
+    <deployedseed>1578606348</deployedseed>
+    <deployedseed>1606439418</deployedseed>
+    <deployedseed>1773810902</deployedseed>
+    <deployedseed>1196836881</deployedseed>
+    <deployedseed>1614761820</deployedseed>
+    <deployedseed>297944544</deployedseed>
+    <deployedseed>984363295</deployedseed>
+    <deployedseed>786718394</deployedseed>
+    <deployedseed>1176112974</deployedseed>
+    <deployedseed>573644534</deployedseed>
+    <deployedseed>363720050</deployedseed>
+    <deployedseed>897999173</deployedseed>
+    <deployedseed>22285607</deployedseed>
+    <deployedseed>1941492989</deployedseed>
+    <deployedseed>147948082</deployedseed>
+    <deployedseed>698213744</deployedseed>
+    <deployedseed>190655488</deployedseed>
+    <deployedseed>2094817587</deployedseed>
+    <deployedseed>1942310839</deployedseed>
+    <deployedseed>843619405</deployedseed>
+    <deployedseed>1056977400</deployedseed>
+    <deployedseed>1174084560</deployedseed>
+    <deployedseed>924783678</deployedseed>
+    <deployedseed>1612443707</deployedseed>
+    <deployedseed>1389398270</deployedseed>
+    <deployedseed>593949474</deployedseed>
+    <deployedseed>1870710027</deployedseed>
+    <deployedseed>1048389941</deployedseed>
+    <deployedseed>350161191</deployedseed>
+    <deployedseed>1937051905</deployedseed>
+    <deployedseed>1568492889</deployedseed>
+    <deployedseed>1344993344</deployedseed>
+    <deployedseed>1242927098</deployedseed>
+    <deployedseed>86626094</deployedseed>
+    <deployedseed>1385384252</deployedseed>
+    <deployedseed>953412324</deployedseed>
+    <deployedseed>475118221</deployedseed>
+    <deployedseed>1536841778</deployedseed>
+    <deployedseed>880218722</deployedseed>
+    <deployedseed>1331126611</deployedseed>
+    <deployedseed>1958026023</deployedseed>
+    <deployedseed>2069158530</deployedseed>
+    <deployedseed>161116191</deployedseed>
+    <deployedseed>252723441</deployedseed>
+    <deployedseed>1265831760</deployedseed>
+    <deployedseed>1871146029</deployedseed>
+    <deployedseed>668100480</deployedseed>
+    <deployedseed>449073922</deployedseed>
+    <deployedseed>1101080117</deployedseed>
+    <deployedseed>358166948</deployedseed>
+    <deployedseed>1399943249</deployedseed>
+    <deployedseed>1885549493</deployedseed>
+    <deployedseed>602686432</deployedseed>
+    <deployedseed>1922598209</deployedseed>
+    <deployedseed>750764180</deployedseed>
+    <deployedseed>321645433</deployedseed>
+    <deployedseed>949657348</deployedseed>
+    <deployedseed>1218838720</deployedseed>
+    <deployedseed>1742688616</deployedseed>
+    <deployedseed>1936653914</deployedseed>
+    <deployedseed>1008727352</deployedseed>
+    <deployedseed>487668499</deployedseed>
+    <deployedseed>60547439</deployedseed>
+    <deployedseed>288845725</deployedseed>
+    <deployedseed>1963940429</deployedseed>
+    <deployedseed>449061037</deployedseed>
+    <deployedseed>1693730584</deployedseed>
+    <deployedseed>1812569030</deployedseed>
+    <deployedseed>624223215</deployedseed>
+    <deployedseed>422004299</deployedseed>
+    <deployedseed>1949016068</deployedseed>
+    <deployedseed>556948697</deployedseed>
+    <deployedseed>1992598604</deployedseed>
+    <qtest>
+      <testcase>1</testcase>
+      <description>Test case assuming the teacher's input gets full marks.</description>
+      <testinput>
+        <name>ans1</name>
+        <value>result</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt1-1-T</expectedanswernote>
+      </expected>
+    </qtest>
+  </question>
+</quiz>

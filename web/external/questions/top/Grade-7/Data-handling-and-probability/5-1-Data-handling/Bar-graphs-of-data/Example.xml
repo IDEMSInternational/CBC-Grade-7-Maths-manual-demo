@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Example</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p><br>(a) Here is a frequency table for the ages of students in a school.</p>
+<p><br></p>
+
+<center>
+
+/* Generate the table */
+html := "<center>
+<table style='width:500px; border:1px solid black; text-align:left'>
+  <tr style='height:70px; border-bottom:1px solid black'>
+    <th style='padding:10px' width='40%'>Student Age</th>
+    <th style='padding:10px' width='30%'>Frequency</th>
+  </tr>";
+
+for i:1 thru length(data) do (
+    html : html . "<tr style='height:70px; border-bottom:1px solid black'>"
+    . "<td style='padding:10px'>" . first(data[i]) . "</td>"
+    . "<td style='padding:10px'>" . second(data[i]) . "</td>"
+    . "</tr>"
+);
+
+html : html . "</table></center>";
+display(html);
+</center>
+
+/* Histogram for Part B */
+[[jsxgraph width="750px" height="450px"]]
+    JXG.Options.text.useMathJax=true;
+    var board = JXG.JSXGraph.initBoard(divid, {
+      boundingBox:[9, max(ageFrequencies) + 5, 21, -5],
+      showCopyright:false,
+      showNavigation:false,
+      keepAspectRatio:false,
+      grid:true
+    });
+
+    var xAxis = board.create("axis", [[10,0], [20,0]], {
+      highlight:false,
+      name:"\( \text{Age} \)",
+      withLabel:true,
+      label:{
+        fixed:true,
+        highlight:false,
+        fontSize:15,
+        position:"rt",
+        offset:[0,-40],
+        anchorX:"right",
+        useMathJax:true,
+        parse:false
+      },
+      ticks:{
+        label:{
+          highlight:false,
+          anchorX:"middle",
+          offset:[0,-15]
+        }
+      }
+    });
+
+    var yAxis = board.create("axis", [[10,0], [10, max(ageFrequencies) + 5]], {
+      highlight:false,
+      name:"\( \text{Frequency} \)",
+      withLabel:true,
+      label:{
+        fixed:true,
+        highlight:false,
+        fontSize:15,
+        position:"rt",
+        offset:[-20,-20],
+        anchorX:"right",
+        useMathJax:true,
+        parse:false
+      },
+      ticks:{
+        label:{
+          highlight:false,
+          anchorX:"right",
+          offset:[-10,0]
+        }
+      }
+    });
+
+    // Create bars for histogram
+    for (var i = 0; i < studentAges.length; i++) {
+      board.create("polygon", [
+        [studentAges[i] - 0.4, 0],
+        [studentAges[i] + 0.4, 0],
+        [studentAges[i] + 0.4, ageFrequencies[i]],
+        [studentAges[i] - 0.4, ageFrequencies[i]]
+      ], {
+        fixed:true,
+        highlight:false,
+        fillColor:"blue",
+        fillOpacity:0.5,
+        borders:{
+          highlight:false
+        }
+      });
+    }
+[[/jsxgraph]]
+
+<p hidden>[[input:ans7]] [[input:ans8]] [[input:ans9]] [[input:ans10]] [[input:ans11]] [[input:ans12]]</p>
+<p hidden>[[validation:ans7]] [[validation:ans8]] [[validation:ans9]] [[validation:ans10]] [[validation:ans11]] [[validation:ans12]]</p>
+<p align="right"><br> </p>
+<p>[[feedback:prt2]]</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p></p><p>[[input:ans1]] [[validation:ans1]][[feedback:prt1]]</p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text/>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2025012100</text>
+    </stackversion>
+    <questionvariables>
+      <text>/* Define student ages and frequencies with explicit lists */
+studentAges: [10, 12, 14, 16, 18, 20];
+ageFrequencies: [rand(5) + 10, rand(5) + 12, rand(5) + 15, rand(5) + 18, rand(5) + 20, rand(5) + 8];
+
+/* Constructing the data table */
+data: makelist([studentAges[i], ageFrequencies[i]], i, 1, length(studentAges));
+
+/* Maxima-friendly lists for STACK */
+ages_maxima: makelist(studentAges[i], i, 1, length(studentAges));
+frequencies_maxima: makelist(ageFrequencies[i], i, 1, length(ageFrequencies));
+</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="html">
+      <text>1</text>
+    </questionnote>
+    <questiondescription format="html">
+      <text/>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>1</tans>
+      <boxsize>4</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans10</name>
+      <type>algebraic</type>
+      <tans>1</tans>
+      <boxsize>4</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans11</name>
+      <type>algebraic</type>
+      <tans>1</tans>
+      <boxsize>4</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans12</name>
+      <type>algebraic</type>
+      <tans>1</tans>
+      <boxsize>4</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans7</name>
+      <type>algebraic</type>
+      <tans>1</tans>
+      <boxsize>4</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans8</name>
+      <type>algebraic</type>
+      <tans>1</tans>
+      <boxsize>4</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans9</name>
+      <type>algebraic</type>
+      <tans>1</tans>
+      <boxsize>4</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for correct answer</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>1</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt2</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for correct answers</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>1</sans>
+        <tans>1</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt2-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt2-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+  </question>
+</quiz>

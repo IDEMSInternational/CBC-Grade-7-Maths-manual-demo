@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Constructing angles using a protractor and the draggable angle line OC.</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p>Use the protractor and the draggable angle line OC to construct an angle of {#angle#}  degrees. Ensure the  angle is measured accurately </p>
+<p hidden>[[input:ans1]] [[validation:ans1]] </p>
+<p>[[feedback:prt1]]</p>
+
+[[jsxgraph width="750px" height="500px" input-ref-ans1="ans1Ref"]]
+var board = JXG.JSXGraph.initBoard("jxgbox", {
+    boundingBox: [-4, 3, 4, -2], 
+    axis: false,  
+    showCopyright: false,
+    showNavigation: false,
+    grid: false
+});
+
+// Define base line points
+var baseLineLength = 6; 
+
+var A = board.create("point", [-baseLineLength / 2, 0], { name: "", size: 2, fixed: true });
+var B = board.create("point", [baseLineLength / 2, 0], { name: "", size: 2, fixed: true });
+
+// Draw base line
+var baseLine = board.create("segment", [A, B], { strokeWidth: 2, strokeColor: "black", fixed: true });
+
+// Define the angle vertex (center of the base line)
+var O = board.create("point", [0, 0], { name: "O", size: 2, fixed: true });
+
+// **Increase angle line length (slightly outside the protractor)**
+var angleLineLength = 2.2;  
+
+// Define circle to constrain movement
+var circle = board.create("circle", [O, angleLineLength], { strokeWidth: 1, strokeColor: "#888", dash: 2, fixed: true });
+
+// Define a constrained draggable point for the angle line
+var initialAngle = ('{#const#}') * (Math.PI / 180); // Default to 60 degrees
+var C = board.create("glider", [
+    Math.cos(initialAngle) * angleLineLength, 
+    Math.sin(initialAngle) * angleLineLength, 
+    circle
+], {
+    name: "C", 
+    size: 2, 
+    strokeColor: "green", 
+    fillColor: "green"
+});
+
+// **Extend the angle line slightly beyond the protractor**
+var angleLine = board.create("segment", [O, C], { strokeWidth: 1.5, strokeColor: "green" });
+
+// **Protractor size (unchanged)**
+var protractorWidth = 4.2;   
+var protractorHeight = 2.1;
+
+// **Draggable point to move protractor (invisible)**
+var movePoint = board.create("point", [0, 1], { 
+    name: "", 
+    size: 0, 
+    fillColor: "transparent", 
+    strokeColor: "transparent", 
+    fixed: false 
+});
+
+// **Add protractor image**
+var protractorImage = board.create("image", [
+    "https://i.imgur.com/PylIXU6.jpeg", 
+    [movePoint.X() - protractorWidth / 2, movePoint.Y() - protractorHeight / 1.95], 
+    [protractorWidth, protractorHeight]  
+], {
+    fixed: false
+});
+
+// **Function to calculate angle dynamically**
+function getAngle() {
+    var angle = Math.atan2(C.Y() - O.Y(), C.X() - O.X()) * (180 / Math.PI);
+    angle = (angle + 360) % 360; // Normalize between 0° - 360°
+    return Math.round(angle);
+}
+
+// **Update angle value in STACK input box when C moves**
+C.on("drag", function() {
+    var currentAngle = getAngle();
+    stack_jxg.set_value(ans1Ref, currentAngle);  // Update STACK answer box
+});
+
+// **Ensure protractor updates when moved**
+board.on('update', function() {
+    protractorImage.setPosition(JXG.COORDS_BY_USER, [
+        movePoint.X() - protractorWidth / 2, 
+        movePoint.Y() - protractorHeight / 1.95
+    ]);
+});
+
+// **Bind C to STACK input (for validation)**
+stack_jxg.bind_point(ans1Ref, C);
+board.update();
+
+[[/jsxgraph]]]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[[[jsxgraph width="750px" height="500px" input-ref-ans1="ans1Ref"]]
+var board = JXG.JSXGraph.initBoard("jxgbox", {
+    boundingBox: [-4, 3, 4, -2], 
+    axis: false,  
+    showCopyright: false,
+    showNavigation: false,
+    grid: false
+});
+
+// Define base line points
+var baseLineLength = 6; 
+
+var A = board.create("point", [-baseLineLength / 2, 0], { name: "", size: 2, fixed: true });
+var B = board.create("point", [baseLineLength / 2, 0], { name: "", size: 2, fixed: true });
+
+// Draw base line
+var baseLine = board.create("segment", [A, B], { strokeWidth: 2, strokeColor: "black", fixed: true });
+
+// Define the angle vertex (center of the base line)
+var O = board.create("point", [0, 0], { name: "O", size: 2, fixed: true });
+
+// **Increase angle line length (slightly outside the protractor)**
+var angleLineLength = 2.2;  
+
+// Define circle to constrain movement
+var circle = board.create("circle", [O, angleLineLength], { strokeWidth: 1, strokeColor: "#888", dash: 2, fixed: true });
+
+// Define a constrained draggable point for the angle line
+var initialAngle = ('{#angle#}') * (Math.PI / 180); // Default to 60 degrees
+var C = board.create("glider", [
+    Math.cos(initialAngle) * angleLineLength, 
+    Math.sin(initialAngle) * angleLineLength, 
+    circle
+], {
+    name: "C", 
+    size: 2, 
+    strokeColor: "green", 
+    fillColor: "green"
+});
+
+// **Extend the angle line slightly beyond the protractor**
+var angleLine = board.create("segment", [O, C], { strokeWidth: 1.5, strokeColor: "green" });
+
+// **Protractor size (unchanged)**
+var protractorWidth = 4.2;   
+var protractorHeight = 2.1;
+
+// **Draggable point to move protractor (invisible)**
+var movePoint = board.create("point", [0, 1], { 
+    name: "", 
+    size: 0, 
+    fillColor: "transparent", 
+    strokeColor: "transparent", 
+    fixed: false 
+});
+
+// **Add protractor image**
+var protractorImage = board.create("image", [
+    "https://i.imgur.com/PylIXU6.jpeg", 
+    [movePoint.X() - protractorWidth / 2, movePoint.Y() - protractorHeight / 1.95], 
+    [protractorWidth, protractorHeight]  
+], {
+    fixed: false
+});
+
+// **Function to calculate angle dynamically**
+function getAngle() {
+    var angle = Math.atan2(C.Y() - O.Y(), C.X() - O.X()) * (180 / Math.PI);
+    angle = (angle + 360) % 360; // Normalize between 0° - 360°
+    return Math.round(angle);
+}
+
+// **Update angle value in STACK input box when C moves**
+C.on("drag", function() {
+    var currentAngle = getAngle();
+    stack_jxg.set_value(ans1Ref, currentAngle);  // Update STACK answer box
+});
+
+// **Ensure protractor updates when moved**
+board.on('update', function() {
+    protractorImage.setPosition(JXG.COORDS_BY_USER, [
+        movePoint.X() - protractorWidth / 2, 
+        movePoint.Y() - protractorHeight / 1.95
+    ]);
+});
+
+// **Bind C to STACK input (for validation)**
+stack_jxg.bind_point(ans1Ref, C);
+board.update();
+
+[[/jsxgraph]]]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2025012100</text>
+    </stackversion>
+    <questionvariables>
+      <text>/* Generate a random angle between 15 and 180 degrees */
+angle : rand(166) + 15;
+const: rand(10)+4;
+
+/* Convert degrees to radians */
+dtr(d) := d * %pi / 180;
+
+/* Convert an angle to (x, y) coordinates with radius r */
+angle_to_point(r, d) := [float(r * cos(dtr(d))), float(r * sin(dtr(d)))];  
+
+/* Define radius */
+r : 2.2;
+
+/* Calculate coordinates */
+coords : angle_to_point(r, angle);
+x_coord : (first(coords));
+y_coord : (second(coords));
+
+/* Create a list containing only the generated angle's coordinates */
+random_angle_coords_list : [coords];
+ta:[x_coord,y_coord];</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="html">
+      <text><![CDATA[<p>Constructed angle is {@angle@}</p>]]></text>
+    </questionnote>
+    <questiondescription format="html">
+      <text><![CDATA[<p id="author">Eric Morara </p>
+<p id="concept"></p>
+<p id="reviewer"></p>
+<p id="reviewer"></p>
+
+<p id="description">The question requires the learner to construct a given angle using a protractor and draggable angle line.</p>]]></text>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>ta</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>check for corrrect constructed angle</description>
+        <answertest>NumAbsolute</answertest>
+        <sans>ans1</sans>
+        <tans>ta</tans>
+        <testoptions>0.05</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <deployedseed>2086854510</deployedseed>
+    <deployedseed>1057086505</deployedseed>
+    <deployedseed>1467112286</deployedseed>
+    <deployedseed>126972475</deployedseed>
+    <deployedseed>803637120</deployedseed>
+    <deployedseed>1023893936</deployedseed>
+    <deployedseed>71585387</deployedseed>
+    <deployedseed>1655806501</deployedseed>
+    <deployedseed>680403758</deployedseed>
+    <deployedseed>2076481251</deployedseed>
+    <deployedseed>1272202396</deployedseed>
+    <deployedseed>1124529439</deployedseed>
+    <deployedseed>1862234100</deployedseed>
+    <deployedseed>1871106615</deployedseed>
+    <deployedseed>1676336208</deployedseed>
+    <deployedseed>978373647</deployedseed>
+    <deployedseed>2089649956</deployedseed>
+    <deployedseed>441711910</deployedseed>
+    <deployedseed>2137424999</deployedseed>
+    <deployedseed>400781308</deployedseed>
+    <deployedseed>1484642728</deployedseed>
+    <deployedseed>82453854</deployedseed>
+    <deployedseed>1442843821</deployedseed>
+    <deployedseed>81594394</deployedseed>
+    <deployedseed>1766981742</deployedseed>
+    <deployedseed>1699335620</deployedseed>
+    <deployedseed>1255065712</deployedseed>
+    <deployedseed>732560794</deployedseed>
+    <deployedseed>594745696</deployedseed>
+    <deployedseed>444754890</deployedseed>
+    <deployedseed>1133649432</deployedseed>
+    <deployedseed>1169578819</deployedseed>
+    <deployedseed>1441416457</deployedseed>
+    <deployedseed>1716063369</deployedseed>
+    <deployedseed>322482961</deployedseed>
+    <deployedseed>717685656</deployedseed>
+    <deployedseed>634342016</deployedseed>
+    <deployedseed>819576561</deployedseed>
+    <deployedseed>1699159033</deployedseed>
+    <deployedseed>1277795009</deployedseed>
+    <deployedseed>423142639</deployedseed>
+    <deployedseed>623215673</deployedseed>
+    <deployedseed>1252443922</deployedseed>
+    <deployedseed>547819969</deployedseed>
+    <deployedseed>1170863216</deployedseed>
+    <deployedseed>865812690</deployedseed>
+    <deployedseed>1663118958</deployedseed>
+    <deployedseed>1091029814</deployedseed>
+    <deployedseed>123033536</deployedseed>
+    <deployedseed>1664218247</deployedseed>
+    <qtest>
+      <testcase>1</testcase>
+      <description>Test case assuming the teacher's input gets full marks.</description>
+      <testinput>
+        <name>ans1</name>
+        <value>ta</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt1-1-T</expectedanswernote>
+      </expected>
+    </qtest>
+  </question>
+</quiz>

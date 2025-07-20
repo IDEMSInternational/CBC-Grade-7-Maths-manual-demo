@@ -1,0 +1,685 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Finding squares of the given numbers using a calculator.</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p> Work out the square of each of the following numbers using a calculator:</p>
+<p>(a) \({@number1@}= \) [[input:ans1]] [[validation:ans1]] [[feedback:prt1]]</p>
+<p>(b) \({@number2@}= \) [[input:ans2]] [[validation:ans2]] [[feedback:prt2]]</p>
+<p>(c) \({@number3@}= \) [[input:ans3]] [[validation:ans3]] [[feedback:prt3]]</p>
+<p>(d)  \({@decimal_number4@}= \) [[input:ans4]] [[validation:ans4]] [[feedback:prt4]]</p>
+<p>(e) \({@decimal_number5@}= \) [[input:ans5]] [[validation:ans5]] [[feedback:prt5]]</p>
+<p> (f) \({@decimal_number6@}= \) [[input:ans6]] [[validation:ans6]] [[feedback:prt6]]</p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<h3>Worked solution</h3>
+<p>The button labelled \(x^2\) on the calculator means square.</p>
+<p>Therefore, to find the square of a number, press that number followed by \(x^2\) on the calculator.</p>
+<p>Part (a)</p>
+<p>In this case, we need to find \({@number1@}^2\) using a calculator.</p>
+<p> On your calculator, press the key \({@first_digit_number1@}\), \({@second_digit_number1@}\)</p>
+<p>Then press the key \(x^2\). </p>
+<p> Next, press the equal sign and read the square of \({@number1@}\) on the screen of the calculator.   </p>
+<p> Thus, the square of \({@number1@}\) is \({@squared_number1@}\)</p> </p>
+
+<p> Part (b)</p>
+<p>To find the square of \({@number2@}\) using a calculator:</p>
+<p> \(\bullet\) Press the key \({@fd_number2@}\), \({@sd_number2@}\), \({@td_number2@}\)</p>
+ <p> \(\bullet\) Then press the key \(x^2\). </p>
+<p> \(\bullet\) Press the equal sign and read the square of \({@number2@}\) on the screen of the calculator.   </p>
+<p>The square of \({@number2@}\) is \({@squared_number2@}\)</p> </p>
+
+<p>Part (c)</p>
+<p>To find the square of \({@number3@}\) using a calculator:</p>
+<p> \(\bullet\) Press the key \({@fd_number3@}\), \({@sd_number3@}\), \({@td_number3@}\), \({@fourth_number3@}\)</p>
+<p>\(\bullet\) Press the key \(x^2\). </p>
+<p> \(\bullet\) Press the equal sign and read the square of \({@number3@}\) on the screen of the calculator.   </p>
+<p>Hence, the square of \({@number3@}\) is \({@squared_number3@}\)</p> </p>
+
+<p> Part (d)</p>
+<p>To calculate the square of  \({@decimal_number4@}\) using a calculator, we press the keys \({@fd_number4@}\) , \(.\), \({@ sd_number4@}\) </p>
+<p> Then press the button \(x^2\) .</p>
+<p> Next, press the equal sign and read the result on the screen of the calculator</p>
+<p>Thus \({@decimal_number4@}^2 = {@squared_decimal_number4@}\)</p>
+
+<p>Part (e) </p>
+<p> The square of \({@decimal_number5@}\) is given by pressing the keys \(0\), \(.\), \({@fd_number5@}\), \({@sd_number5@}\), \({@td_number5@}\) on the calculator.</p>
+<p> The next step is to press the button \(x^2\) and then press the key \(=\).</p>
+<p>Finally, read the square of \({@decimal_number5@}\) on the screen of the calculator. </p>
+<p> The result is \({@squared_decimal_number5@}\)</p>
+
+<p> Part (f)</p>
+<p> Given the number \({@decimal_number6@}\), follow this steps to find its square using a calculator.</p>
+<p> Step 1: On your calculator:</p>
+<p>\(\bullet\) Press the keys \(0\), \(.\), \({@fd_number6@}\), \({@sd_number6@}\), \({@td_number6@}\), \({@fourth_number6@}\) </p>
+<p> \(\bullet\) Press the key \(x^2\) </p>
+<p> \(\bullet\) Press the key \(=\)</p>
+<p> Step 2: Read the results on the screen of the calculator.</p>
+<p> Therefore, square of \({@decimal_number6@}\) is \({@squared_decimal_number6@}\)</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2025012100</text>
+    </stackversion>
+    <questionvariables>
+      <text>number1:rand_with_step(10,60,4); /* random number */
+
+first_digit_number1:floor(number1/10);
+second_digit_number1:mod(number1,10);
+squared_number1:number1^2;
+
+
+fd_number2:rand(9)+1;
+sd_number2:rand_with_prohib(1,9,[fd_number2]);
+td_number2:rand_with_prohib(1,9,[fd_number2,sd_number2]);
+number2:fd_number2*100+sd_number2*10+td_number2;
+squared_number2:number2^2;
+
+fd_number3:rand(9)+2;
+sd_number3:rand_with_prohib(1,6,[fd_number3]);
+td_number3:rand_with_prohib(1,4,[fd_number3,sd_number3]);
+fourth_number3:rand_with_prohib(1,5,[fd_number3,sd_number3,td_number3]);
+number3:fd_number3*1000+sd_number3*100+td_number3*10+fourth_number3;
+squared_number3:number3^2;
+
+fd_number4:rand(9)+1;
+sd_number4:rand_with_prohib(1,9,[fd_number4]);
+number4:fd_number4*10+sd_number4;
+divisor_number4:10;
+decimal_number4:float(number4/divisor_number4);
+squared_decimal_number4:decimalplaces(decimal_number4^2,4);
+
+fd_number5:rand(8)+1;
+sd_number5:rand_with_prohib(1,6,[fd_number5]);
+td_number5:rand_with_prohib(1,7,[fd_number5,sd_number5]);
+number5:fd_number5*100+sd_number5*10+td_number5;
+divisor_number5:1000;
+decimal_number5:float(number5/divisor_number5);
+squared_decimal_number5:decimalplaces(decimal_number5^2,4);
+
+fd_number6:rand(3)+2;
+sd_number6:rand_with_prohib(1,4,[fd_number6]);
+td_number6:rand_with_prohib(1,3,[fd_number6,sd_number6]);
+fourth_number6:rand_with_prohib(1,6,[fd_number6,sd_number6,td_number6]);
+number6:fd_number6*1000+sd_number6*100+td_number6*10+fourth_number6;
+divisor_number6:10000;
+decimal_number6:float(number6/divisor_number6);
+squared_decimal_number6:decimalplaces(decimal_number6^2,4);
+
+
+/*mistake 1*/
+
+/* NUMBER 1: Square root of a 2-digit number */
+number1: rand_with_step(10, 60, 4);  
+square_root_number1: sqrt(number1);
+sqrt_decimal_1: float(square_root_number1);
+sqrt_final_1: decimalplaces(sqrt_decimal_1, 4);
+
+first_digit_number1: floor(number1 / 10);
+second_digit_number1: mod(number1, 10);
+
+/* NUMBER 2: Square root of a 3-digit number */
+fd_number2: rand(9) + 1;
+sd_number2: rand_with_prohib(1, 9, [fd_number2]);
+td_number2: rand_with_prohib(1, 9, [fd_number2, sd_number2]);
+
+number2: fd_number2 * 100 + sd_number2 * 10 + td_number2;
+square_root_number2: sqrt(number2);
+sqrt_decimal_2: float(square_root_number2);
+sqrt_final_2: decimalplaces(sqrt_decimal_2, 4);
+
+/* NUMBER 3: Square root of a 4-digit number */
+fd_number3: rand(9) + 2;
+sd_number3: rand_with_prohib(1, 6, [fd_number3]);
+td_number3: rand_with_prohib(1, 4, [fd_number3, sd_number3]);
+fourth_number3: rand_with_prohib(1, 5, [fd_number3, sd_number3, td_number3]);
+
+number3: fd_number3 * 1000 + sd_number3 * 100 + td_number3 * 10 + fourth_number3;
+square_root_number3: sqrt(number3);
+sqrt_decimal_3: float(square_root_number3);
+sqrt_final_3: decimalplaces(sqrt_decimal_3, 4);
+
+/* NUMBER 4: Square root of a  2-digit  decimal number */
+fd_number4: rand(9) + 1;
+sd_number4: rand_with_prohib(1, 9, [fd_number4]);
+number4: fd_number4 * 10 + sd_number4;
+decimal_number4: float(number4 / 10);  
+square_root_decimal4: sqrt(decimal_number4);
+sqrt_final_4: decimalplaces(square_root_decimal4, 4);
+
+/* NUMBER 5: Square root of a 3-digit decimal  */
+fd_number5: rand(8) + 1;
+sd_number5: rand_with_prohib(1, 6, [fd_number5]);
+td_number5: rand_with_prohib(1, 7, [fd_number5, sd_number5]);
+
+number5: fd_number5 * 100 + sd_number5 * 10 + td_number5;
+decimal_number5: float(number5 / 1000);  
+square_root_decimal5: sqrt(decimal_number5);
+sqrt_final_5: decimalplaces(square_root_decimal5, 4);
+
+/* NUMBER 6: Square root of very small decimal (4-digit / 10000) */
+fd_number6: rand(3) + 2;
+sd_number6: rand_with_prohib(1, 4, [fd_number6]);
+td_number6: rand_with_prohib(1, 3, [fd_number6, sd_number6]);
+fourth_number6: rand_with_prohib(1, 6, [fd_number6, sd_number6, td_number6]);
+
+number6: fd_number6 * 1000 + sd_number6 * 100 + td_number6 * 10 + fourth_number6;
+decimal_number6: float(number6 / 10000);  
+square_root_decimal6: sqrt(decimal_number6);
+sqrt_final_6: decimalplaces(square_root_decimal6, 4);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="html">
+      <text>1</text>
+    </questionnote>
+    <questiondescription format="html">
+      <text/>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>squared_number1</tans>
+      <boxsize>6</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans2</name>
+      <type>algebraic</type>
+      <tans>squared_number2</tans>
+      <boxsize>6</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans3</name>
+      <type>algebraic</type>
+      <tans>squared_number3</tans>
+      <boxsize>6</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans4</name>
+      <type>algebraic</type>
+      <tans>squared_decimal_number4</tans>
+      <boxsize>6</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans5</name>
+      <type>algebraic</type>
+      <tans>squared_decimal_number5</tans>
+      <boxsize>6</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans6</name>
+      <type>algebraic</type>
+      <tans>squared_decimal_number6</tans>
+      <boxsize>6</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Check for the correct calculation of the square of the given number.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>squared_number1</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <description>Checks for the square root of the number</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>sqrt_final_1</tans>
+        <testoptions/>
+        <quiet>1</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-2-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p> You seem to have calculated the square root of the number instead of squaring it. To find the square of a number using a calculator, use the \(x^2\) key. Follow the step by step solution below.</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-2-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt2</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Check for the correct calculation of the square of the given number.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans2</sans>
+        <tans>squared_number2</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt2-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt2-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <description>Checks for the square root of the number</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans2</sans>
+        <tans>sqrt_final_2</tans>
+        <testoptions/>
+        <quiet>1</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt2-2-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p> You seem to have calculated the square root of the number instead of squaring it. To find the square of a number using a calculator, use the \(x^2\) key. Follow the step by step solution below.</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt2-2-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt3</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct calculation of the square of the given number.s for the correct calculation of square of the given number</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans3</sans>
+        <tans>squared_number3</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt3-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt3-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <description>Checks for the square root of the number</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans3</sans>
+        <tans>sqrt_final_3</tans>
+        <testoptions/>
+        <quiet>1</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt3-2-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p> You seem to have calculated the square root of the number instead of squaring it. To find the square of a number using a calculator, use the \(x^2\) key. Follow the step by step solution below.</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt3-2-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt4</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct calculation of the square of the given number.s for the correct calculation of square of the given number</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans4</sans>
+        <tans>squared_decimal_number4</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt4-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt4-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <description>Checks for the square root of the number</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans4</sans>
+        <tans>sqrt_final_4</tans>
+        <testoptions/>
+        <quiet>1</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt4-2-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p> You seem to have calculated the square root of the number instead of squaring it. To find the square of a number using a calculator, use the \(x^2\) key. Follow the step by step solution below.</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt4-2-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt5</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct calculation of the square of the given number.s for the correct calculation of square of the given number</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans5</sans>
+        <tans>squared_decimal_number5</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt5-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt5-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <description>Checks for the square root of the number</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans5</sans>
+        <tans>sqrt_final_5</tans>
+        <testoptions/>
+        <quiet>1</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt5-2-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p> You seem to have calculated the square root of the number instead of squaring it. To find the square of a number using a calculator, use the \(x^2\) key. Follow the step by step solution below.</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt5-2-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt6</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct calculation of the square of the given number.s for the correct calculation of square of the given number</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans6</sans>
+        <tans>squared_decimal_number6</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt6-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt6-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <description>Checks for the square root of the number</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans6</sans>
+        <tans>sqrt_final_6</tans>
+        <testoptions/>
+        <quiet>1</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt6-2-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p> You seem to have calculated the square root of the number instead of squaring it. To find the square of a number using a calculator, use the \(x^2\) key. Follow the step by step solution below.</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt6-2-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+  </question>
+</quiz>

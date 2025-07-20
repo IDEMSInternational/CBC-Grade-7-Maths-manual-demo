@@ -1,0 +1,855 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>An Interactive Bar graph showing monthly expenses of a household in a certain month.</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>The table shows monthly expenses of a household in a certain month.</p>
+
+<table border="1">
+    <thead>
+        <tr>
+            <th scope="col">Items</th>
+            <th scope="col">Expenditure (Ksh.)</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>House Rent</td>
+            <td>\({@house_rent1@}\)</td>
+        </tr>
+        <tr>
+            <td>Food</td>
+            <td>\({@Food1@}\)</td>
+        </tr>
+        <tr>
+            <td>Education</td>
+            <td>\({@Education1@}\)</td>
+        </tr>
+        <tr>
+            <td>Electricity</td>
+            <td>\({@Electricity1@}\)</td>
+        </tr>
+        <tr>
+            <td>Transport</td>
+            <td>\({@Transport1@}\)</td>
+        </tr>
+    </tbody>
+</table>
+
+<p>Represent the data on a bar graph given that 1cm represents Ksh. 500. Drag the bars to position.</p>
+<br>
+
+<left>
+
+<!-- JSXGraph Code -->
+[[jsxgraph width="750px" height="450px" input-ref-ans1="sR1" input-ref-ans2="sR2" input-ref-ans3="sR3" input-ref-ans4="sR4" input-ref-ans5="sR5"]]
+
+// Ensure values are properly converted to numbers
+var dataValues = [
+    Number('{#house_rent#}'), 
+    Number('{#Food#}'), 
+    Number('{#Education#}'), 
+    Number('{#Electricity#}'), 
+    Number('{#Transport#}')
+];
+
+var categories = ["House Rent", "Food", "Education", "Electricity", "Transport"];
+var colors = ["#FF5733", "#33FF57", "#3357FF", "#F39C12", "#8E44AD"];
+
+// Initialize board
+var board = JXG.JSXGraph.initBoard(divid, {
+    boundingBox: [-1, 4200, 6, -500], 
+    axis: false,  
+    showCopyright: false,
+    showNavigation: false,
+    grid: true
+});
+
+// Custom X and Y axes
+var xAxis = board.create("line", [[0, 0], [6, 0]], { strokeWidth: 2, fixed: true });
+var yAxis = board.create("line", [[0, 0], [0, 4000]], { strokeWidth: 2, fixed: true });
+
+// Create Y-axis tick marks every 500 units
+for (let y = 0; y <= 4000; y += 500) {
+    board.create("text", [-0.3, y, y.toString()], { anchorX: "right", fontSize: 12, fixed: true });
+    board.create("line", [[-0.1, y], [0.1, y]], { strokeWidth: 0.5, fixed: true });
+}
+
+// Bar chart settings
+var barWidth = 0.8;
+var bars = [];
+var dragPoints = [];
+var valueLabels = [];
+
+for (let i = 0; i < dataValues.length; i++) {
+    let x = i + 1;
+
+    // Create a draggable point at the middle-top of the bar
+    let dragPoint = board.create("point", [x, dataValues[i]], {
+        name: "", 
+        size: 3,
+        strokeColor: "black",
+        fixed: false,  
+        snapToGrid: true
+    });
+
+    dragPoints.push(dragPoint);
+
+    // Create bars as polygons that adjust based on dragPoint position
+    let bar = board.create("polygon", [
+        [x - barWidth / 2, 0],     
+        [x + barWidth / 2, 0],     
+        [() => x + barWidth / 2, () => dragPoint.Y()], 
+        [() => x - barWidth / 2, () => dragPoint.Y()]
+    ], {
+        fillColor: colors[i],
+        fillOpacity: 1,  
+        highlight: false,
+        fixed: true,  
+        withLabel: false,
+        vertices: { visible: false, fixed: true },
+        borders: { fixed: true }
+    });
+    
+    bars.push(bar);
+
+    // Add category labels below each bar
+    board.create("text", [x, -300, categories[i]], {
+        anchorX: "middle",
+        fontSize: 14,
+        fixed: true
+    });
+
+    // Create value labels above each bar
+    let valueLabel = board.create("text", [
+        () => x, 
+        () => dragPoint.Y() + 100, 
+        () => Math.round(dragPoint.Y())
+    ], {
+        anchorX: "middle",
+        fontSize: 14,
+        fixed: false
+    });
+    
+    valueLabels.push(valueLabel);
+}
+
+// Bind draggable points to their corresponding inputs
+stack_jxg.bind_point('ans1', dragPoints[0], function(point) {
+    return Math.round(point.Y());
+});
+stack_jxg.bind_point('ans2', dragPoints[1], function(point) {
+    return Math.round(point.Y());
+});
+stack_jxg.bind_point('ans3', dragPoints[2], function(point) {
+    return Math.round(point.Y());
+});
+stack_jxg.bind_point('ans4', dragPoints[3], function(point) {
+    return Math.round(point.Y());
+});
+stack_jxg.bind_point('ans5', dragPoints[4], function(point) {
+    return Math.round(point.Y());
+});
+
+board.unsuspendUpdate();
+
+[[/jsxgraph]]
+
+</left>
+
+<p hidden>[[input:ans1]][[input:ans2]][[input:ans3]][[input:ans4]][[input:ans5]]</p>
+<p hidden>[[validation:ans1]][[validation:ans2]][[validation:ans3]][[validation:ans4]][[validation:ans5]]</p>
+<p align="right"><br> </p>
+<p>[[feedback:prt2]]</p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<h3>Worked Solution</h3>
+
+<p><br></p>
+
+
+
+<p><br></p>
+<p><br>(b) Here is the complete graph shown below showing monthly expenses of a household in a certain month. </p>
+
+<p><br></p>
+<center>
+[[jsxgraph width="750px" height="450px"]]
+
+// Define static test values (replace with STACK variables)
+var dataValues = [{#house_rent1#}, {#Food1#}, {#Education1#}, {#Electricity1#}, {#Transport1#}]; // Example values for debugging
+
+var categories = ["House Rent", "Food", "Education", "Electricity", "Transport"];
+var colors = ["#FF5733", "#33FF57", "#3380FF", "#FFD700", "#8A2BE2"]; 
+
+// Initialize the board
+var board = JXG.JSXGraph.initBoard("jxgbox", {
+    boundingBox: [-1, 6000, 6, -1000], 
+    axis: false,  
+    showCopyright: false,
+    showNavigation: false,
+    grid: false
+});
+
+// Custom X and Y axes
+var xAxis = board.create("line", [[0, 0], [6, 0]], { strokeWidth: 2, fixed: true });
+var yAxis = board.create("line", [[0, 0], [0, 5000]], { strokeWidth: 2, fixed: true });
+
+// Create Y-axis tick marks every 1000
+for (let y = 0; y <= 5000; y += 1000) {
+    board.create("text", [-0.3, y, y.toString()], { anchorX: "right", fontSize: 12, fixed: true });
+    board.create("line", [[-0.1, y], [0.1, y]], { strokeWidth: 1, fixed: true });
+}
+
+// Bar chart settings
+var barWidth = 0.8;
+
+for (let i = 0; i < dataValues.length; i++) {
+    let x = i + 1;
+    let y = dataValues[i];
+
+    // Create bars
+    board.create("polygon", [
+        [x - barWidth / 2, 0],     
+        [x + barWidth / 2, 0],     
+        [x + barWidth / 2, y], 
+        [x - barWidth / 2, y]
+    ], {
+        fillColor: colors[i], 
+        fillOpacity: 0.8,  
+        highlight: false,
+        fixed: true,  
+        withLabel: false,
+        vertices: { visible: false, fixed: true },
+        borders: { fixed: true }
+    });
+
+    // Add category labels
+    board.create("text", [x, -500, categories[i]], {
+        anchorX: "middle",
+        fontSize: 14,
+        fixed: true
+    });
+
+    // Display values above each bar
+    board.create("text", [x, y + 200, y.toString()], {
+        anchorX: "middle",
+        fontSize: 14,
+        strokeColor: "black",
+        fixed: true
+    });
+}
+
+board.update();
+
+[[/jsxgraph]]
+
+
+</center>]]></text>
+    </generalfeedback>
+    <defaultgrade>15</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2025012100</text>
+    </stackversion>
+    <questionvariables>
+      <text>/* Define random values */
+house_rent1: rand(500) + 3000;
+Food1: rand(1000) + 3000;
+Education1: rand(500) + 2000;
+Electricity1: rand(100) + 1500;
+Transport1: rand(500) + 2000;
+
+
+
+/* Assign the values to answer variables */
+tans1: house_rent1;
+tans2: Food1;
+tans3: Education1;
+tans4: Electricity1;
+tans5: Transport1;
+
+
+
+
+
+
+
+
+
+
+
+
+
+house_rent:rand(2000)+600;
+  Food:rand(2000)+600;
+  Education:rand(2000)+700;
+  Electricity:rand(2000)+1500;
+  Transport:rand(2000)+550;
+
+/* Solutions */
+
+
+
+tans7: 1;
+tans8: 1;
+tans9: 1;
+tans10: 1;
+tans11: 1;
+
+tans13: 1;</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="moodle_auto_format">
+      <text><![CDATA[<p>\({@data@}\)</p>
+ <p>\({@Transport1@}\) </p>
+ <p> \({@Electricity1@}\)</p>
+  <p>\({@Education1@}\) </p>
+ <p>\({@house_rent1@}\)</p>
+ <p>\({@Food1@}\)</p>]]></text>
+    </questionnote>
+    <questiondescription format="moodle_auto_format">
+      <text><![CDATA[<p id="author">Joseph Baya</p>
+<p id="review"></p>
+<p id="description">The question requires students to represent household expenses using a bar graph, where 1 cm corresponds to Ksh. 500. They must drag the bars to the correct heights based on given expenditure values, reinforcing their understanding of data representation and scaling.</p>]]></text>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>dot</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>numerical</type>
+      <tans>tans1</tans>
+      <boxsize>5</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans2</name>
+      <type>numerical</type>
+      <tans>tans2</tans>
+      <boxsize>5</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans3</name>
+      <type>numerical</type>
+      <tans>Electricity1</tans>
+      <boxsize>5</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans4</name>
+      <type>numerical</type>
+      <tans>Education1</tans>
+      <boxsize>5</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans5</name>
+      <type>numerical</type>
+      <tans>Transport1</tans>
+      <boxsize>5</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt2</name>
+      <value>6.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text>/* Node 1: Correct answer */
+node1_test: if ans1=tans1 and ans2=tans2 and ans3=tans3 and ans4=tans4 and ans5=tans5 then 1 else 0;
+
+/* Node 2: Worked solution */
+
+/* Node 3: ans1 correct */
+/* Node 4: ans1 consistent with (a) */
+node4_error: [float(house_ren1), ans1];
+
+/* Node 5: ans2 correct */
+/* Node 6: ans2 consistent with (a) */
+node6_error: [float(Food1), ans2];
+
+/* Node 7: ans3 correct */
+/* Node 8: ans3 consistent with (a) */
+node8_error: [float(Education1), ans3];
+
+/* Node 9: ans4 correct */
+/* Node 10: ans4 consistent with (a) */
+node10_error: [float(Electricity1), ans4];
+
+/* Node 11: ans5 correct */
+/* Node 12: ans5 consistent with (a) */
+node12_error: [float(Transport1), ans5];</text>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for correct answer</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>1</sans>
+        <tans>node1_test</tans>
+        <testoptions/>
+        <quiet>1</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>1</truenextnode>
+        <trueanswernote>prt2-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>2</falsenextnode>
+        <falseanswernote>prt2-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <description>Checks for correct answer</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>1</sans>
+        <tans>1</tans>
+        <testoptions/>
+        <quiet>1</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt2-2-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt2-2-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>10</name>
+        <description>Checks for correct dragged  histogram bar 1</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans5</sans>
+        <tans>tans5</tans>
+        <testoptions/>
+        <quiet>1</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0.167</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt2-11-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>Your histogram bar for the Transport  is correct.</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>11</falsenextnode>
+        <falseanswernote>prt2-11-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>11</name>
+        <description>Checks for correct dragged  histogram bar 2</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans5</sans>
+        <tans>tans5</tans>
+        <testoptions/>
+        <quiet>1</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0.167</truescore>
+        <truepenalty/>
+        <truenextnode>1</truenextnode>
+        <trueanswernote>prt2-12-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>Your histogram bar for the Transport1  is <b>incorrect</b></p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt2-12-F</falseanswernote>
+        <falsefeedback format="html">
+          <text><![CDATA[<p>Your histogram bar for  Transport  is <b>incorrect</b>.</p>]]></text>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>2</name>
+        <description>Checks for correct dragged  histogram bar 5</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>tans1</tans>
+        <testoptions/>
+        <quiet>1</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0.167</truescore>
+        <truepenalty/>
+        <truenextnode>4</truenextnode>
+        <trueanswernote>prt2-3-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p><br>Your histogram bar for the house rent  is correct.</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>3</falsenextnode>
+        <falseanswernote>prt2-3-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>3</name>
+        <description>Checks for correct dragged  histogram bar 6</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>node4_error</tans>
+        <testoptions/>
+        <quiet>1</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0.167</truescore>
+        <truepenalty/>
+        <truenextnode>4</truenextnode>
+        <trueanswernote>prt2-4-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p><br>Your histogram bar for house_rent  is <b>correct</b></p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>4</falsenextnode>
+        <falseanswernote>prt2-4-F</falseanswernote>
+        <falsefeedback format="html">
+          <text><![CDATA[<p><br>Your histogram bar for  house rent  is <b>incorrect</b>.</p>]]></text>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>4</name>
+        <description>Checks for correct dragged  histogram bar 3</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans2</sans>
+        <tans>tans2</tans>
+        <testoptions/>
+        <quiet>1</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0.167</truescore>
+        <truepenalty/>
+        <truenextnode>6</truenextnode>
+        <trueanswernote>prt2-5-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>Your histogram bar  Food  is correct.</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>5</falsenextnode>
+        <falseanswernote>prt2-5-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>5</name>
+        <description>Checks for correct dragged  histogram bar 2</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans2</sans>
+        <tans>node6_error</tans>
+        <testoptions/>
+        <quiet>1</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0.167</truescore>
+        <truepenalty/>
+        <truenextnode>6</truenextnode>
+        <trueanswernote>prt2-6-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>Your histogram bar for Food range is <b>correct</b></p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>6</falsenextnode>
+        <falseanswernote>prt2-6-F</falseanswernote>
+        <falsefeedback format="html">
+          <text><![CDATA[<p>Your histogram bar for  Food  is <b>incorrect</b></p>]]></text>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>6</name>
+        <description>Checks for correct dragged  histogram bar 1</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans3</sans>
+        <tans>tans3</tans>
+        <testoptions/>
+        <quiet>1</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0.167</truescore>
+        <truepenalty/>
+        <truenextnode>8</truenextnode>
+        <trueanswernote>prt2-7-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>Your histogram bar for the Education range is correct.</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>7</falsenextnode>
+        <falseanswernote>prt2-7-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>7</name>
+        <description>Checks for correct dragged  histogram bar 4</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans3</sans>
+        <tans>node8_error</tans>
+        <testoptions/>
+        <quiet>1</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0.167</truescore>
+        <truepenalty/>
+        <truenextnode>8</truenextnode>
+        <trueanswernote>prt2-8-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>Your histogram bar for the Education is <b>incorrect</b></p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>8</falsenextnode>
+        <falseanswernote>prt2-8-F</falseanswernote>
+        <falsefeedback format="html">
+          <text><![CDATA[<p>Your histogram bar for  Education is <b>incorrect</b>.</p>]]></text>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>8</name>
+        <description>Checks for correct dragged  histogram bar 5</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans4</sans>
+        <tans>tans4</tans>
+        <testoptions/>
+        <quiet>1</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0.167</truescore>
+        <truepenalty/>
+        <truenextnode>10</truenextnode>
+        <trueanswernote>prt2-9-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>Your histogram bar for the Electricity is correct.</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>9</falsenextnode>
+        <falseanswernote>prt2-9-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>9</name>
+        <description>Checks for correct dragged  histogram bar 6</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans4</sans>
+        <tans>node10_error</tans>
+        <testoptions/>
+        <quiet>1</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0.167</truescore>
+        <truepenalty/>
+        <truenextnode>10</truenextnode>
+        <trueanswernote>prt2-10-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>Your histogram bar for the Electricity  is <b>incorrect</b></p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>10</falsenextnode>
+        <falseanswernote>prt2-10-F</falseanswernote>
+        <falsefeedback format="html">
+          <text><![CDATA[<p>Your histogram bar for Electricity  is <b>incorrect</b>.</p>]]></text>
+        </falsefeedback>
+      </node>
+    </prt>
+    <deployedseed>68493</deployedseed>
+    <deployedseed>564601512</deployedseed>
+    <deployedseed>1568346964</deployedseed>
+    <deployedseed>1332604686</deployedseed>
+    <deployedseed>818400324</deployedseed>
+    <deployedseed>1646466817</deployedseed>
+    <deployedseed>410864816</deployedseed>
+    <deployedseed>470627697</deployedseed>
+    <deployedseed>1626156462</deployedseed>
+    <deployedseed>1435552801</deployedseed>
+    <deployedseed>1562963000</deployedseed>
+    <deployedseed>542968020</deployedseed>
+    <deployedseed>979855631</deployedseed>
+    <deployedseed>1685975696</deployedseed>
+    <deployedseed>1221908091</deployedseed>
+    <deployedseed>181920437</deployedseed>
+    <deployedseed>915987477</deployedseed>
+    <deployedseed>971955865</deployedseed>
+    <deployedseed>1662753888</deployedseed>
+    <deployedseed>2099429003</deployedseed>
+    <deployedseed>1811489932</deployedseed>
+    <deployedseed>519047429</deployedseed>
+    <deployedseed>1527124257</deployedseed>
+    <deployedseed>78380188</deployedseed>
+    <deployedseed>1687207903</deployedseed>
+    <deployedseed>1769612913</deployedseed>
+    <deployedseed>1667302454</deployedseed>
+    <deployedseed>1359667857</deployedseed>
+    <deployedseed>1267110978</deployedseed>
+    <deployedseed>286412896</deployedseed>
+    <deployedseed>162599168</deployedseed>
+    <deployedseed>1938170020</deployedseed>
+    <deployedseed>1281490526</deployedseed>
+    <deployedseed>1454108059</deployedseed>
+    <deployedseed>1466365485</deployedseed>
+    <deployedseed>1527373785</deployedseed>
+    <deployedseed>1804134857</deployedseed>
+    <deployedseed>49466454</deployedseed>
+    <deployedseed>1069532953</deployedseed>
+    <deployedseed>583492495</deployedseed>
+    <deployedseed>662892985</deployedseed>
+    <deployedseed>574168607</deployedseed>
+    <deployedseed>1148775761</deployedseed>
+    <deployedseed>2085356976</deployedseed>
+    <deployedseed>1624186558</deployedseed>
+    <deployedseed>300480599</deployedseed>
+    <deployedseed>1090754517</deployedseed>
+    <deployedseed>1245303539</deployedseed>
+    <deployedseed>1176228820</deployedseed>
+    <deployedseed>1615268850</deployedseed>
+    <deployedseed>136132084</deployedseed>
+    <deployedseed>897175852</deployedseed>
+    <deployedseed>2136339773</deployedseed>
+    <deployedseed>1110512081</deployedseed>
+    <deployedseed>1456263125</deployedseed>
+    <deployedseed>772194053</deployedseed>
+    <deployedseed>1338146547</deployedseed>
+    <deployedseed>933817546</deployedseed>
+    <deployedseed>828741140</deployedseed>
+    <qtest>
+      <testcase>1</testcase>
+      <description/>
+      <testinput>
+        <name>ans1</name>
+        <value>tans1</value>
+      </testinput>
+      <testinput>
+        <name>ans2</name>
+        <value>tans2</value>
+      </testinput>
+      <testinput>
+        <name>ans3</name>
+        <value>tans3</value>
+      </testinput>
+      <testinput>
+        <name>ans4</name>
+        <value>tans4</value>
+      </testinput>
+      <testinput>
+        <name>ans5</name>
+        <value>tans5</value>
+      </testinput>
+      <expected>
+        <name>prt2</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt2-2-T</expectedanswernote>
+      </expected>
+    </qtest>
+  </question>
+</quiz>

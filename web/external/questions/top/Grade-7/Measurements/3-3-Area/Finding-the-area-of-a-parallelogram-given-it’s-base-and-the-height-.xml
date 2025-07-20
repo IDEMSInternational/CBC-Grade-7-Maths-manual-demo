@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Finding the area of a parallelogram given it’s base and the height.</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p>Find the area of a parallelogram with the following measurements: </p>
+<p>(a) Base\({@bas_a@} cm\) , height \({@heig_a@} cm\) </p><p>Area=[[input:ans1]] [[validation:ans1]]\(cm^2\) [[feedback:prt1]]</p>
+<p>(b) Base \({@bas_b@} cm\) , height \({@heig_b@} cm\) </p><p>Area=[[input:ans2]] [[validation:ans2]]\(cm^2\) [[feedback:prt2]]</p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<h3>Worked solution</h3>
+<p>To find the area of a parallelogram, we use the formula;</p>
+<p>Area = \(Base &times Height\)</p>
+<p>Given:</p>
+<p>(a) Base  \({@bas_a@}cm\), height  \({@heig_a@}cm\)</p>
+<p>The are of the parallelogram is,</p>
+<p>Area  \(=({@bas_a@}\)&times \({@heig_a@}) cm^2\)</p>
+<p> \(\qquad={@area_a@} cm^2\)</p>
+<p>Also given:</p>
+<p>(b) Base \({@bas_b@}cm\), height \({@heig_b@}cm\)</p>
+<p>The are of the parallelogram is,</p>
+<p>Area  \(={@bas_b@}cm\)&times \({@heig_b@}cm\)</p>
+<p> \(\qquad={@area_b@} cm^2\)</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2023060500</text>
+    </stackversion>
+    <questionvariables>
+      <text>bas_a:rand(45)+3;/*Base of the parallelogram(a)*/
+heig_a:rand(48)+3;/*Height of the parallelogram(a)*/
+area_a:bas_a*heig_a;/*Area of the parallelogram(a)*/
+bas_b:rand(50)+3;/*Base of the parallelogram(b)*/
+heig_b:rand(45)+3;/*Height of the parallelogram(b)*/
+area_b:bas_b*heig_b;/*Area of the parallelogram(b)*/
+
+/*Mistake1*/
+
+area_mist_a:0.5*(bas_a*heig_a);/*Area of the parallelogram(a)*/
+area_mist_b:0.5*(bas_b*heig_b);/*Area of the parallelogram(b)*/</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="moodle_auto_format">
+      <text><![CDATA[<p>\({@area_a@}\)</p>
+<p>\({@area_b@}\)</p>
+<p>\({@area_mist_a@}\)</p>
+<p>\({@area_mist_b@}\)</p>]]></text>
+    </questionnote>
+    <questiondescription format="html">
+      <text><![CDATA[<p id="author">Michael Onyimbo</p>
+<p id="concept">https://docs.google.com/document/d/1fJ9IjyW3Iu8rkZ5ABRr7ng9zU1F9mg7JbIhoK8Qk9_8/edit?tab=t.0</p>
+<p id="reviewer"></p>
+<p id="reviewer"></p>
+<p id="description">The question deals with finding the area of a parallelogram given it's base length and height. To find the area, we just multiply the base length with the height. The units of the base and the height should the same to avoid getting  wrong  area</p>]]></text>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>area_a</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans2</name>
+      <type>algebraic</type>
+      <tans>area_b</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for correct area of parallelogram(a).</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>area_a</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <description>Checks for wrong area of parallelogram(a).</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>area_mist_a</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-2-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>You calculated the area but using the wrong formula. Use the correct formula to get the right answer. Use the formula; </p>
+<p>Area = \(Base &times Height\)</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-2-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt2</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for correct area of parallelogram(b).</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans2</sans>
+        <tans>area_b</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt2-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt2-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <description>Checks for wrong area of parallelogram(b)</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans2</sans>
+        <tans>area_mist_b</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt2-2-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>You calculated the area but using a wrong formula. Use the correct formula you to get the right answer. Use the formula; </p>
+<p>Area = \(Base &times Height\)</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt2-2-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <deployedseed>193106736</deployedseed>
+    <deployedseed>99790712</deployedseed>
+    <deployedseed>1789584754</deployedseed>
+    <deployedseed>623215280</deployedseed>
+    <deployedseed>207731160</deployedseed>
+    <deployedseed>57183677</deployedseed>
+    <deployedseed>1478639651</deployedseed>
+    <deployedseed>1217307041</deployedseed>
+    <deployedseed>1338149969</deployedseed>
+    <deployedseed>1235233846</deployedseed>
+    <qtest>
+      <testcase>1</testcase>
+      <description>Test case assuming the teacher's input gets full marks.</description>
+      <testinput>
+        <name>ans1</name>
+        <value>area_a</value>
+      </testinput>
+      <testinput>
+        <name>ans2</name>
+        <value>area_b</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt1-1-T</expectedanswernote>
+      </expected>
+      <expected>
+        <name>prt2</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt2-1-T</expectedanswernote>
+      </expected>
+    </qtest>
+  </question>
+</quiz>

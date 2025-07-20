@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Finding circumference of a given figure</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p>What is the circumference of the circle drawn below? Use \(\pi=\frac{22}{7}\) leaving your answer correct to \(1 \) decimal place.</p>
+
+[[jsxgraph]]
+var board = JXG.JSXGraph.initBoard('jxgbox', {boundingbox:[-5,5,5,-5],axis: false, showCopyright: false,keepAspectRatio:true});
+
+        var center = board.create('point',[0,0],{name:'O', size:3,fixed:true,color:'black'}
+
+        );
+
+        var point1 = board.create('point',[-2,0],{name:'A', size:3, fixed:true, color:'pink', visible:false}
+        );
+
+        var point2 = board.create('point',[0,2],{name:'B', size:3, fixed:true, color:'pink', visible:false}
+        );
+
+        var point3 = board.create('point',[2,0],{name:'C', size:3, fixed:true, color:'pink', visible:false}
+        );
+
+        var point4 = board.create('point',[0,-2],{name:'D', size:3, fixed:true, color:'pink', visible:false}
+        );
+
+        var circle = board.create('circle',[center,point1],{strokeColor:'pink', strokeWidth:2}
+
+        );
+
+        var radius = board.create('line',[center,point1],
+            {straightFirst:false,
+            straightLast:false,
+            strokeColor:'blue',
+            strokeWidth:2,
+            name:'Radius'
+            }
+        );
+
+        board.create('text', [-1,-0.5, '{#radius#} m'],
+            {fontSize:12, color:'black', anchorX:'center',anchorY:'bottom'}
+        );
+
+[[/jsxgraph]]
+<p>Circumference = [[input:ans1]] [[validation:ans1]][[feedback:prt1]] m </p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<h3>Worked solution</h3>
+<p> To calculate the circumference of the circle;</p>
+<p>Circumference=2\(\pi \)r</p>
+
+<p>From the diagram:
+
+    Radius r= \({@radius@}\) </p>
+
+<p> = 2 \( \times \pi \times {@radius@} \)</p>
+
+<p> = \({@ta@}\)</p>
+
+<p>Circumference = \({@ta@}\) m </p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2025012100</text>
+    </stackversion>
+    <questionvariables>
+      <text>radius:rand_with_step(0.35,50,0.07);/*generates random values divisible by 7 for the radius of the circle*/
+circumference:(22/7)*radius*2;/*calculates the circumference of the circle*/
+ta:decimalplaces(circumference,1);
+/*mistake1*/
+ta_7:(22/7)*radius;/* incorrect answer when student multiplies pi by square of the radius*/
+ta_1:decimalplaces(ta_7,1);
+
+/*mistake 2*/
+ta_2:(22/7)*radius;/*Using diameter instead of radius (or vice versa) incorrectly*/
+/*mistake 3*/
+ta_3:22/7*radius; /*Using diameter instead of radius*/
+/*mistake 4*/
+/*not multiplying by2*/
+ta_4:22/7*radius;</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="html">
+      <text><![CDATA[<p>Radius ={@radius@}</p>]]></text>
+    </questionnote>
+    <questiondescription format="html">
+      <text/>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>ta</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>circumference of a circle</description>
+        <answertest>NumDecPlaces</answertest>
+        <sans>ans1</sans>
+        <tans>ta</tans>
+        <testoptions>1</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <description/>
+        <answertest>NumDecPlaces</answertest>
+        <sans>ans1</sans>
+        <tans>ta_1</tans>
+        <testoptions>1</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-2-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>That's a good try, and I see you’re using the formula involving π and the radius, which is a great start! However, the formula you’ve used, π × r², is actually for calculating the area of a circle. Since we’re looking for the circumference, we need to use the formula 2 \( \times \pi \times \) r instead. Confirm from the worked solution the correct formula to use.</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>2</falsenextnode>
+        <falseanswernote>prt1-2-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>2</name>
+        <description>Using diameter instead of radius (or vice versa) incorrectly</description>
+        <answertest>NumDecPlaces</answertest>
+        <sans>ans1</sans>
+        <tans>ta_2</tans>
+        <testoptions>2</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-3-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>You seem to have computed the sum correctly but you've used the radius as the diameter. Kindly look at the worked solution to confirm the correct formula to use when computing the circumference of a circle. </p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>3</falsenextnode>
+        <falseanswernote>prt1-3-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>3</name>
+        <description>Using \( \pi\) r instead of 2\( \pi\) r</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>ta_4</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-4-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>It seems you forgot to compute  using 2 \( \pi\) and the radius! Just a small correction—don’t forget to multiply by 2 since the full formula for circumference is 2\( \pi\) r.</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>4</falsenextnode>
+        <falseanswernote>prt1-4-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>4</name>
+        <description>Using diameter as radius</description>
+        <answertest>NumDecPlaces</answertest>
+        <sans>ans1</sans>
+        <tans>ta_3</tans>
+        <testoptions>2</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-5-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>You seem to have computed the circumference using the diameter instead of the radius kindly check on the worked solution and see how the formula works</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-5-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <deployedseed>472826460</deployedseed>
+    <deployedseed>1240778171</deployedseed>
+    <deployedseed>1392086365</deployedseed>
+    <deployedseed>789505005</deployedseed>
+    <deployedseed>1237016565</deployedseed>
+    <deployedseed>620438239</deployedseed>
+    <deployedseed>542276711</deployedseed>
+    <deployedseed>1708259816</deployedseed>
+    <deployedseed>724627995</deployedseed>
+    <deployedseed>483238519</deployedseed>
+    <deployedseed>1949290434</deployedseed>
+    <deployedseed>559909435</deployedseed>
+    <deployedseed>1168596263</deployedseed>
+    <deployedseed>1207510956</deployedseed>
+    <deployedseed>1991567373</deployedseed>
+    <deployedseed>378724765</deployedseed>
+    <deployedseed>343112049</deployedseed>
+    <deployedseed>110448141</deployedseed>
+    <deployedseed>78722063</deployedseed>
+    <deployedseed>1986707590</deployedseed>
+    <qtest>
+      <testcase>1</testcase>
+      <description>check for correct answer</description>
+      <testinput>
+        <name>ans1</name>
+        <value>ta</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt1-1-T</expectedanswernote>
+      </expected>
+    </qtest>
+    <qtest>
+      <testcase>2</testcase>
+      <description>applying wrong formulae</description>
+      <testinput>
+        <name>ans1</name>
+        <value>ta_1</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>0.0000000</expectedscore>
+        <expectedpenalty>0.1000000</expectedpenalty>
+        <expectedanswernote>prt1-2-T</expectedanswernote>
+      </expected>
+    </qtest>
+    <qtest>
+      <testcase>3</testcase>
+      <description>Using diameter instead of radius (or vice versa) incorrectly</description>
+      <testinput>
+        <name>ans1</name>
+        <value>ta_2</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>0.0000000</expectedscore>
+        <expectedpenalty>0.1000000</expectedpenalty>
+        <expectedanswernote>prt1-2-T</expectedanswernote>
+      </expected>
+    </qtest>
+    <qtest>
+      <testcase>4</testcase>
+      <description>Using \( \pi\) r instead of 2\( \pi\) r</description>
+      <testinput>
+        <name>ans1</name>
+        <value>ta_4</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>0.0000000</expectedscore>
+        <expectedpenalty>0.1000000</expectedpenalty>
+        <expectedanswernote>prt1-2-T</expectedanswernote>
+      </expected>
+    </qtest>
+    <qtest>
+      <testcase>5</testcase>
+      <description>Using diameter as radius</description>
+      <testinput>
+        <name>ans1</name>
+        <value>ta_3</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>0.0000000</expectedscore>
+        <expectedpenalty>0.1000000</expectedpenalty>
+        <expectedanswernote>prt1-2-T</expectedanswernote>
+      </expected>
+    </qtest>
+  </question>
+</quiz>

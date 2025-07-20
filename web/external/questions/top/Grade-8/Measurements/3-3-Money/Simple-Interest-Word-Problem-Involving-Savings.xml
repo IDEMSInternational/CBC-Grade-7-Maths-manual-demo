@@ -1,0 +1,473 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Simple Interest Word Problem Involving Savings</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p>
+ Sophia is a maize farmer. She harvested several bags of maize and sold some of them for \(\text{sh.}\) {@amount@} She deposited the money in her account in a certain bank for {@months@} months. The bank paid simple interest at a rate of {@rate@} \(\% \)per annum.</p>
+<ol type="a">
+  <li>
+    <p>How much interest did the money earn in the nine months?</p>
+    <p>Interest earned \( = \text{sh.} \) [[input:ans1]]  [[feedback:prt1]]</p>
+  </li>
+  <li>
+    <p>What was the amount in her account at the end of the nine months?</p>
+    <p>Amount \( = \text{sh.} \) [[input:ans2]] [[feedback:prt2]]</p>
+  </li>
+</ol>
+
+<p hidden>[[validation:ans1]][[validation:ans2]] </p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<p><ol type="a"><li><p>How much interest did the money earn in the nine months?</p>
+<p>We use the simple interest formula:</p>
+<p>\(I=\frac{PRT}{100}\)</p>
+<p>Where:</p>
+<p><ul><li>\(P=\text{sh.}\,{@amount@} \, \text{Principal amount}\)</li>
+<li>\(R={@rate@}\% \,\text{per annum (Rate)}\)</li>
+<li>\(\begin{align} T &=\frac{@months@}{12} \\
+&={@time_years@} \,\text{years (Time in years)}  \end{align} \)</li></ul></p><p>
+\(\begin{align}     I &=\frac{{@amount@} \times {@rate@} \times {@time_years@}}{100}     \\
+&= \text{sh.}\, {@interest@}        \end{align}\)</p><p>Therefore,</p>
+<p>Interest earned \(=\) {@interest@}</p></li>
+<li><p>What was the amount in her account at the end of the nine months?</p><p>
+Total amount \(= P+I\)</p><p>\(\begin{align}  \text{Amount} &={@amount@}+{@interest@}  \\
+&= \text{sh.}\, {@total@}       \end{align}\)</p><p>Amount at the end \(= \text{sh.}\) {@total@}</p></li></ol></p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2025012100</text>
+    </stackversion>
+    <questionvariables>
+      <text>/* Randomized values */
+amount: (rand(91) + 10)*10000; /* 100000 to 1000000 with three zeros */
+rate: rand_with_step(2,100,5);            /* 3% to 100% */
+months: 3 * (rand(4) + 1); /* 3, 6, 9, or 12 months for cleaner fractions */
+
+time_years: months / 12;
+
+/* Simple Interest formula */
+interest: (amount * rate * time_years) / 100;
+
+/* Calculate total amount in account */
+total: amount + interest;
+
+
+/*Mistake 1   Not Converting Months to Years Properly*/
+interest_1:(amount *rate *months) / 100;
+
+total_1:amount+interest_1;
+
+/*Mistake 2   Forgetting to Add Interest to Get Final Amount*/
+
+total_2:amount;
+
+/*Mistake 3  Forgetting to divide the  the formula by 100 only just using the rate eg 60% alone*/
+interest_3:(amount *rate *time_years) ;
+
+total_3:amount+interest_3;
+
+
+
+
+</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="html">
+      <text><![CDATA[<p>The principal \(=\) {@amount@}</p>
+<p>Interest earned \(=\) {@interest@}</p>
+<p>Amount  \(=\) {@total@}</p>]]></text>
+    </questionnote>
+    <questiondescription format="html">
+      <text><![CDATA[<p id="author">Henry Onyango</p>
+<p id="reviewer"></p>
+<p id="reviewer"></p>
+
+<p id="description">This is a question on money under simple interest. The student is required to find the interest earned on the amount invested, and then determine the total amount in the account at the end of the period.</p]]></text>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>interest</tans>
+      <boxsize>9</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans2</name>
+      <type>algebraic</type>
+      <tans>total</tans>
+      <boxsize>9</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the corect intrest earned</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>interest</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <description>Checks for the incorect Converting Months to Years Properly</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>interest_1</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0.2</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-2-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>You've made a good effort applying the simple interest formula. However, I noticed that you used the number of months directly in your calculation. Since the interest rate is per annum (per year), it's important to convert months to a fraction of a year. For example, \(6\) months should be written as \(\frac{1}{2}\) years.</p>
+<p>\(\textbf{What you should do}.\)</p>
+<p>Next time, divide the number of months by 12 to convert to years before using it in the formula. This small step makes a big difference in getting the correct answer.</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>2</falsenextnode>
+        <falseanswernote>prt1-2-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>2</name>
+        <description> Forgetting to divide the  the formular by 100 only just using the rate eg 60% alone</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>interest_3</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0.1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-3-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>You're on the right track using the formula for simple interest, and I can see that you correctly substituted the rate value. However, it looks like you may have forgotten to divide the percentage rate by \(100\). For instance, using 60 instead of \(0.6\) can make the final interest much higher than it should be.</p>
+<p>\(\textbf{Always remember that percentage means ‘per hundred’. So, when you see something like \(6\%\), you should use it as \(\frac{6}{100} = 0.06\) in calculations — or keep the full formula:</p>
+<p>\(I=\frac{PRT}{100}\)</p>
+<p>You’re very close — just take a second to check how the rate is being applied. You’ve got the right idea!</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-3-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt2</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct amount of money in total.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans2</sans>
+        <tans>total</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt2-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt2-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <description>Checks for the incorect Converting Months to Years Properly</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans2</sans>
+        <tans>total_1</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt2-2-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>When the month are not converted to years it automatically lead to a wrong amount. Kindly
+divide the number of months by \(12\) to convert to years before using it in the formula. This small step makes a big difference in getting the correct answer. </p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>2</falsenextnode>
+        <falseanswernote>prt2-2-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>2</name>
+        <description>Forgetting to Add Interest to Get Final Amount</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans2</sans>
+        <tans>total_2</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0.1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt2-3-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>You've correctly found the interest earned — great job on that! But it looks like you may have stopped there without calculating the total amount in the account. The final part of the question asks for the full amount, which includes both the principal and the interest.</p>
+<p>\(\textbf{What to Do:}\)</p>
+<p>Remember to always check if the question has two parts. For final amount, just add the interest to the amount originally deposited:</p>
+<p>
+Final Amount = Principal + Interest. You're really close — just one more step next time!</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>3</falsenextnode>
+        <falseanswernote>prt2-3-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>3</name>
+        <description> Forgetting to divide the  the formular by 100 only just using the rate eg 60% alone</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans2</sans>
+        <tans>total_3</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt2-4-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>You might have forgotten to divide the simple interest by \(100\) which has led to the wrong computation of the final amount.</p>
+<p>Always remember that percentage means ‘per hundred’. </p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt2-4-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <deployedseed>1067296920</deployedseed>
+    <deployedseed>1443048148</deployedseed>
+    <deployedseed>286679521</deployedseed>
+    <deployedseed>201856469</deployedseed>
+    <deployedseed>859396785</deployedseed>
+    <deployedseed>53009889</deployedseed>
+    <deployedseed>1994609823</deployedseed>
+    <deployedseed>1465835911</deployedseed>
+    <deployedseed>297478691</deployedseed>
+    <deployedseed>625931172</deployedseed>
+    <deployedseed>2141041544</deployedseed>
+    <deployedseed>1086761942</deployedseed>
+    <deployedseed>1665853522</deployedseed>
+    <deployedseed>458828084</deployedseed>
+    <deployedseed>660054489</deployedseed>
+    <deployedseed>1374689608</deployedseed>
+    <deployedseed>930234956</deployedseed>
+    <deployedseed>159085437</deployedseed>
+    <deployedseed>137822707</deployedseed>
+    <deployedseed>243079880</deployedseed>
+    <qtest>
+      <testcase>1</testcase>
+      <description>Test case assuming the teacher's input gets full marks.</description>
+      <testinput>
+        <name>ans1</name>
+        <value>interest</value>
+      </testinput>
+      <testinput>
+        <name>ans2</name>
+        <value>total</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt1-1-T</expectedanswernote>
+      </expected>
+      <expected>
+        <name>prt2</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt2-1-T</expectedanswernote>
+      </expected>
+    </qtest>
+    <qtest>
+      <testcase>2</testcase>
+      <description>Checks for the incorect Converting Months to Years Properly</description>
+      <testinput>
+        <name>ans1</name>
+        <value>interest_1</value>
+      </testinput>
+      <testinput>
+        <name>ans2</name>
+        <value>total_1</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>0.2000000</expectedscore>
+        <expectedpenalty/>
+        <expectedanswernote>prt1-2-T</expectedanswernote>
+      </expected>
+      <expected>
+        <name>prt2</name>
+        <expectedscore>0.0000000</expectedscore>
+        <expectedpenalty/>
+        <expectedanswernote>prt2-2-T</expectedanswernote>
+      </expected>
+    </qtest>
+    <qtest>
+      <testcase>3</testcase>
+      <description>Forgetting to Add Interest to Get Final Amount</description>
+      <testinput>
+        <name>ans1</name>
+        <value>interest</value>
+      </testinput>
+      <testinput>
+        <name>ans2</name>
+        <value>total_2</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt1-1-T</expectedanswernote>
+      </expected>
+      <expected>
+        <name>prt2</name>
+        <expectedscore>0.1000000</expectedscore>
+        <expectedpenalty/>
+        <expectedanswernote>prt2-3-T</expectedanswernote>
+      </expected>
+    </qtest>
+    <qtest>
+      <testcase>4</testcase>
+      <description> Forgetting to divide the  the formular by 100 only just using the rate eg 60% alone</description>
+      <testinput>
+        <name>ans1</name>
+        <value>interest_3</value>
+      </testinput>
+      <testinput>
+        <name>ans2</name>
+        <value>total_3</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>0.1000000</expectedscore>
+        <expectedpenalty/>
+        <expectedanswernote>prt1-3-T</expectedanswernote>
+      </expected>
+      <expected>
+        <name>prt2</name>
+        <expectedscore>0.0000000</expectedscore>
+        <expectedpenalty/>
+        <expectedanswernote>prt2-4-T</expectedanswernote>
+      </expected>
+    </qtest>
+  </question>
+</quiz>

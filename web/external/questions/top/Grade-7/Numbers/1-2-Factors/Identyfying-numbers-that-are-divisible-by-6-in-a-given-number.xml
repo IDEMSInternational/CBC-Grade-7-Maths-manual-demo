@@ -1,0 +1,417 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Identyfying numbers that are divisible by 6 in a given number</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p> Which one of the following numbers are divisible by 6.</p>
+<p>[[input:ans1]] [[validation:ans1]] [[feedback:prt1]]</p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<p>A number is divisible 6 if that number is divisible by both 2 and 3. </p>
+<p> To check if a number is divisible by 2, we look at the last digit if it is even that is if the last digit is 0,2,4,6 or 8.</p>
+<p> To check if a number is divisible by 3, we add its digits and identify if the sum of the digits is divisible by 3.</p>
+<p> A number is not divisible by \(6\) if it is not divisible by both \(2\) and \(3\). i.e</p>
+<p>If the given number is even, then it is not divisible by \(3\) and if it is divisible by \(3\) then it is not even.</p>
+
+
+[[ if test="member(1, ta_index)" ]]
+<p>
+<ul>
+<li>
+<p>\({@num_3@}\) is divisible by \(6\), since it is divisible by both \(2\) and \(3\) .i.e </p>
+<p> It is divisible by \(2\) since its last digit is an even number.</p>
+<p>\({@num_3@}\) is divisible by \(3\) since the sum of its digits is divisible by \(3\). </p>
+<p> \({@num_3@}\) = \({@digit1_num_3@} + {@digit2_num_3@} + {@digit3_num_3@} + {@digit4_num_3@}  =  {@digitsum_num_3@}\)</p>
+
+</li>
+</ul>
+</p>
+
+[[/ if ]]
+
+[[ if test="member(2, ta_index)" ]]
+<p>
+<ul>
+<li>
+<p> \({@num_6@}\) is divisible by \(6\), since it is divisible by both \(2\) and \(3\).</p>
+<p>It is divisible by \(2\) since its last digit is an even number.</p>
+<p> \({@num_6@}\) is divisible by \(3\)  since the sum of its digits is divisible by \(3\).</p>
+<p> \({@num_6@}\) = \({@digit1_num_6@} + {@digit2_num_6@} + {@digit3_num_6@} + {@digit4_num_6@}  =  {@digitsum_num_6@}\)</p>
+</li>
+</ul>
+</p>
+
+[[/ if ]]
+
+[[ if test="member(3, ta_index)" ]]
+<p>
+<ul>
+<li>
+<p> \({@num_5@}\) is divisible by \(6\), since it is divisible by both \(2\) and \(3\).</p>
+<p>It is divisible by \(2\) since its last digit is an even number. </p>
+<p> \({@num_5@}\) is divisible by \(3\) since the sum of its digits is divisible by \(3\).</p>
+<p> \({@num_5@}\) = \({@digit1_num_5@} + {@digit2_num_5@} + {@digit3_num_5@} + {@digit4_num_5@}  =  {@digitsum_num_5@}\)</p>
+</li>
+</ul>
+</p>
+
+[[/ if ]]
+
+[[ if test="member(4, ta_index)" ]]
+<p>
+<ul>
+<li>
+<p> \({@num_8@}\) is divisible by \(6\), since it is divisible by both \(2\) and \(3\).</p>
+<p>It is divisible by \(2\) since its last digit is an even number. </p>
+<p> \({@num_8@}\) is divisible by \(3\) since the sum of its digits is divisible by \(3\).</p>
+<p> \({@num_8@}\) = \({@digit1_num_8@} + {@digit2_num_8@} + {@digit3_num_8@} + {@digit4_num_8@}  =  {@digitsum_num_8@}\)</p>
+</li>
+</ul>
+</p>
+
+[[/ if ]]
+
+[[ if test="member(5, ta_index)" ]]
+<p>
+<ul>
+<li>
+<p>  \({@num_1@}\) is not divisible by \(6\), since it is not divisible by both \(2\) and \(3\).</p>
+</li>
+</ul>
+</p>
+[[/ if ]]
+[[ if test="member(6, ta_index)" ]]
+<p>
+<ul>
+<li>
+<p>  \({@num_4@}\) is not divisible by \(6\), since it is not divisible by both \(2\) and \(3\). </p>
+</li>
+</ul>
+</p>
+[[/ if ]]
+[[ if test="member(7, ta_index)" ]]
+<p>
+<ul>
+<li>
+<p>  \({@num_2@}\) is not divisible by \(6\), since it is not divisible by both \(2\) and \(3\) </p>
+</li>
+</ul>
+</p>
+[[/ if ]]
+
+[[ if test="member(8, ta_index)" ]]
+<p>
+<ul>
+<li>
+<p> \({@num_7@}\) is divisible by \(6\), since it is divisible by both \(2\) and \(3\).</p>
+<p>It is divisible by \(2\) since its last digit is an even number. </p>
+<p> \({@num_7@}\) is divisible by \(3\) since the sum of its digits is divisible by \(3\).</p>
+<p> \({@num_7@}\) = \({@digit1_num_7@} + {@digit2_num_7@} + {@digit3_num_7@} + {@digit4_num_7@}  =  {@digitsum_num_7@}\)</p>
+</li>
+</ul>
+</p>
+[[/ if ]]]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2025012100</text>
+    </stackversion>
+    <questionvariables>
+      <text>/* Random numbers divisible by 6 */
+num_3 : rand_with_step(300, 800, 6);
+num_6 : rand_with_step(1200, 4200, 360);
+num_5 : rand_with_step(4200, 7200, 6);
+num_7 : rand_with_step(7824, 9654, 6);
+num_8 : rand_with_step(1800, 2500, 6);
+
+/* Define a function to check if a number is NOT divisible by 6 */
+is_not_divisible_by_6(n) := mod(n,6) # 0;
+/* Generate a list of 40 random numbers between 4000 and 8000 */
+random_list : makelist(rand(4000) + 4000, i, 1, 40);
+/* Filter the numbers that are NOT divisible by 6 */
+filtered_list : sublist(random_list, lambda([n], is_not_divisible_by_6(n)));
+
+
+/* Random numbers not divisible by 6*/
+num_1 : filtered_list[1];
+num_2 : filtered_list[3];
+num_4 : filtered_list[5];
+
+/* Extracting digits for num_1*/
+digit1_num_1:floor(num_1/1000);
+digit2_num_1:floor(mod(num_1/ 100,10));
+digit3_num_1:floor(mod(num_1/ 10,10));
+digit4_num_1:floor(mod(num_1,10));
+digitsum_num_1:digit1_num_1+digit2_num_1+digit3_num_1+digit4_num_1;
+
+/* Extracting digits for num_2*/
+digit1_num_2:floor(num_2/1000);
+digit2_num_2:floor(mod(num_2/ 100,10));
+digit3_num_2:floor(mod(num_2/ 10,10));
+digit4_num_2:floor(mod(num_2,10));
+digitsum_num_2:digit1_num_2+digit2_num_2+digit3_num_2+digit4_num_2;
+
+/* Extracting digits for num_3*/
+digit1_num_3:floor(num_3/100);
+digit2_num_3:floor(mod(num_3/ 10,10));
+digit3_num_3:floor(mod(num_3,10));
+digitsum_num_3:digit1_num_3+digit2_num_3+digit3_num_3;
+
+/* Extracting digits for num_4*/
+digit1_num_4:floor(num_4/1000);
+digit2_num_4:floor(mod(num_4/ 100,10));
+digit3_num_4:floor(mod(num_4/ 10,10));
+digit4_num_4:floor(mod(num_4,10));
+digitsum_num_4:digit1_num_4+digit2_num_4+digit3_num_4+digit4_num_4;
+
+/* Extracting digits for num_5*/
+digit1_num_5:floor(num_5/1000);
+digit2_num_5:floor(mod(num_5/ 100,10));
+digit3_num_5:floor(mod(num_5/ 10,10));
+digit4_num_5:floor(mod(num_5,10));
+digitsum_num_5:digit1_num_5+digit2_num_5+digit3_num_5+digit4_num_5;
+
+/* Extracting digits for num_6*/
+digit1_num_6:floor(num_6/1000);
+digit2_num_6:floor(mod(num_6/ 100,10));
+digit3_num_6:floor(mod(num_6/ 10,10));
+digit4_num_6:floor(mod(num_6,10));
+digitsum_num_6:digit1_num_6+digit2_num_6+digit3_num_6+digit4_num_6;
+
+/* Extracting digits for num_7*/
+digit1_num_7:floor(num_7/1000);
+digit2_num_7:floor(mod(num_7/ 100,10));
+digit3_num_7:floor(mod(num_7/ 10,10));
+digit4_num_7:floor(mod(num_7,10));
+digitsum_num_7:digit1_num_7+digit2_num_7+digit3_num_7+digit4_num_7;
+
+/* Extracting digits for num_8*/
+digit1_num_8:floor(num_8/1000);
+digit2_num_8:floor(mod(num_8/ 100,10));
+digit3_num_8:floor(mod(num_8/ 10,10));
+digit4_num_8:floor(mod(num_8,10));
+digitsum_num_8:digit1_num_8+digit2_num_8+digit3_num_8+digit4_num_8;
+
+
+correct_answer:rand_selection([
+[1, true, num_3],[2, true, num_6],
+[3, true, num_5],[4, true, num_8],[5, true, num_7]],3);
+
+incorrect_answers:rand_selection([
+[6, false, num_1],[7, false, num_4],
+[8, false, num_2]], 3);
+
+ta: random_permutation(append(correct_answer,incorrect_answers));
+ta_index: sort(makelist(x[1], x, ta));
+ta_largest: last(ta_index);
+
+
+</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="html">
+      <text><![CDATA[<p>Number divisible by 6- \({@num_3@}\) </p>
+<p>Number divisible by 6-\({@num_6@}\)</p>
+<p>Number divisible by 6-\({@num_5@}\)</p>
+<p>Number divisible by 6-\({@num_7@}\)</p>
+<p>Number divisible by 6-\({@num_8 @}\)</p>]]></text>
+    </questionnote>
+    <questiondescription format="html">
+      <text/>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>checkbox</type>
+      <tans>ta</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>0</mustverify>
+      <showvalidation>0</showvalidation>
+      <options>nonotanswered</options>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description/>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>mcq_correct(ta)</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <deployedseed>2077931875</deployedseed>
+    <deployedseed>984903106</deployedseed>
+    <deployedseed>893378943</deployedseed>
+    <deployedseed>1893769147</deployedseed>
+    <deployedseed>384004016</deployedseed>
+    <deployedseed>1355266380</deployedseed>
+    <deployedseed>2097440147</deployedseed>
+    <deployedseed>820708273</deployedseed>
+    <deployedseed>663527185</deployedseed>
+    <deployedseed>609773152</deployedseed>
+    <deployedseed>2126600823</deployedseed>
+    <deployedseed>64805550</deployedseed>
+    <deployedseed>107543746</deployedseed>
+    <deployedseed>1229361396</deployedseed>
+    <deployedseed>2121401973</deployedseed>
+    <deployedseed>1754072180</deployedseed>
+    <deployedseed>1262228641</deployedseed>
+    <deployedseed>630966952</deployedseed>
+    <deployedseed>405136099</deployedseed>
+    <deployedseed>1010266148</deployedseed>
+    <deployedseed>1828867419</deployedseed>
+    <deployedseed>1054223698</deployedseed>
+    <deployedseed>271120796</deployedseed>
+    <deployedseed>974819080</deployedseed>
+    <deployedseed>1150905293</deployedseed>
+    <deployedseed>1947080785</deployedseed>
+    <deployedseed>1310182777</deployedseed>
+    <deployedseed>996015622</deployedseed>
+    <deployedseed>480238100</deployedseed>
+    <deployedseed>1028944658</deployedseed>
+    <deployedseed>1496067416</deployedseed>
+    <deployedseed>280571116</deployedseed>
+    <deployedseed>1216005138</deployedseed>
+    <deployedseed>238324499</deployedseed>
+    <deployedseed>3057343</deployedseed>
+    <deployedseed>659689131</deployedseed>
+    <deployedseed>1746092965</deployedseed>
+    <deployedseed>609087438</deployedseed>
+    <deployedseed>1362054396</deployedseed>
+    <deployedseed>648579052</deployedseed>
+    <deployedseed>1080545072</deployedseed>
+    <deployedseed>203159404</deployedseed>
+    <deployedseed>1648814205</deployedseed>
+    <deployedseed>1802065073</deployedseed>
+    <deployedseed>1143756114</deployedseed>
+    <deployedseed>929859354</deployedseed>
+    <deployedseed>1108124568</deployedseed>
+    <deployedseed>1212634652</deployedseed>
+    <deployedseed>1126160341</deployedseed>
+    <deployedseed>1031218397</deployedseed>
+    <deployedseed>620422245</deployedseed>
+    <deployedseed>1504610560</deployedseed>
+    <deployedseed>2104170912</deployedseed>
+    <deployedseed>1797603843</deployedseed>
+    <deployedseed>82876507</deployedseed>
+    <deployedseed>1869867627</deployedseed>
+    <deployedseed>1894550386</deployedseed>
+    <deployedseed>2001441088</deployedseed>
+    <deployedseed>397739885</deployedseed>
+    <deployedseed>298036026</deployedseed>
+    <deployedseed>1115327250</deployedseed>
+    <deployedseed>102204780</deployedseed>
+    <deployedseed>1493982269</deployedseed>
+    <deployedseed>854066357</deployedseed>
+    <deployedseed>1809579968</deployedseed>
+    <deployedseed>92677910</deployedseed>
+    <deployedseed>1677444367</deployedseed>
+    <deployedseed>52748963</deployedseed>
+    <deployedseed>1816930093</deployedseed>
+    <deployedseed>711395988</deployedseed>
+    <deployedseed>2139897019</deployedseed>
+    <deployedseed>1013285018</deployedseed>
+    <deployedseed>72487541</deployedseed>
+    <deployedseed>2043488261</deployedseed>
+    <deployedseed>1620090046</deployedseed>
+    <deployedseed>1537781107</deployedseed>
+    <deployedseed>197137426</deployedseed>
+    <deployedseed>1161563396</deployedseed>
+    <deployedseed>1295035662</deployedseed>
+    <deployedseed>2124568941</deployedseed>
+    <deployedseed>31371045</deployedseed>
+    <deployedseed>1222187823</deployedseed>
+    <deployedseed>1564877964</deployedseed>
+    <deployedseed>125888297</deployedseed>
+    <deployedseed>1480571549</deployedseed>
+    <deployedseed>1301943158</deployedseed>
+    <deployedseed>397157213</deployedseed>
+    <deployedseed>21336042</deployedseed>
+    <deployedseed>1445362744</deployedseed>
+    <deployedseed>1585340182</deployedseed>
+    <deployedseed>531735509</deployedseed>
+    <deployedseed>1157971106</deployedseed>
+    <deployedseed>322665388</deployedseed>
+    <deployedseed>811731584</deployedseed>
+    <deployedseed>1647344722</deployedseed>
+    <deployedseed>1358494295</deployedseed>
+    <deployedseed>1156844288</deployedseed>
+    <deployedseed>1078290439</deployedseed>
+    <deployedseed>828790216</deployedseed>
+    <deployedseed>685477482</deployedseed>
+    <qtest>
+      <testcase>1</testcase>
+      <description>Test case assuming the teacher's input gets full marks.</description>
+      <testinput>
+        <name>ans1</name>
+        <value>mcq_correct(ta)</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt1-1-T</expectedanswernote>
+      </expected>
+    </qtest>
+  </question>
+</quiz>

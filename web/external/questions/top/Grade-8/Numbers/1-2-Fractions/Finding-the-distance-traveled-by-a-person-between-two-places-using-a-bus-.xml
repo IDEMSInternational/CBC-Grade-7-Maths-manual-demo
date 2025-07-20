@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Finding the distance traveled by a person between two places using a bus.</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p>Two schools are \({@distance@}\) km apart. Obiero traveled from one school to the other teaching Mathematics. He drove \({@fraction_1@}\) of the distance. He left his car in Kisomo parking and used a bus to cover \({@fraction_2@}\) of the remaining distance. He then worked for the rest of the journey. What distance did he cover by bus?</p><p>Distance covered = [[input:ans1]] [[validation:ans1]] [[feedback:prt1]] km</p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<h3>Worked Solution</h3>
+<p> To find the total distance Obiero drove we multiply \({@fraction_1@}\) by  \({@distance@}\)<p>
+<p> Hence \({@fraction_1@} \times {@distance@} = {@distance_droved@} \)</p>
+<p>Since the total distance Obiero covers traveling to the two schools is \({@distance@}\), we can get the remaining distance by subtracting the distance Obiero drove.</p>
+<p>Remaining distance \( \begin{align} &= {@distance@} - {@distance_droved@}\\ & \\ &= {@remaining_distance@} \end{align}\)</p>
+<p> To get the distance he covered by bus we take \({@fraction_2@}\) of the remaining distance.</p>
+<p>Therefore, the distance he covered using a bus is given as:</p>
+<p> \( \begin{align}{@fraction_2@} \times {@remaining_distance@}\\ &\\ &= {@bus_distance@} \end{align}\)</p>
+/*<p> The rest of the journey that Obiero walked is calculated by adding the distance he drove and the distance he covered using a bus then subtract it from the total distance between the two schools.</p>*/
+/*<p> \({@distance@}-({@distance_droved@}+{@bus_distance@}) = {@walking_distance@}\)</p>*/
+<p>Hence Obiero traveled \( {@bus_distance@}\) km by bus.   </p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2025012100</text>
+    </stackversion>
+    <questionvariables>
+      <text>num_1:rand_with_step(1,2,1);/*numerator of the first fraction*/
+den_1:rand_with_step(4,6,1);/*denominator of the second fraction*/
+fraction_1:(num_1/den_1);/*represents the fraction of the distance Obiero drove*/
+num_2:rand(2)+1;/*numerator of the second fraction*/
+den_2:rand(4)+6;/*denominator of the second fraction*/
+fraction_2:(num_2/den_2);/*represents fraction of the distance remaining distance Obiero used bus */
+distance: rand_with_step(45,55,1);
+distance_droved: fraction_1 * distance;
+remaining_distance: distance - distance_droved;
+bus_distance:fraction_2 * remaining_distance;
+walking_distance:distance-(distance_droved+bus_distance);
+
+/* mistake 1*/
+distance_by_bus:fraction_2 *distance;</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="html">
+      <text><![CDATA[<p>distance covered by bus-{@bus_distance@}</p>
+<p>remaining distance{@remaining_distance@}</p>]]></text>
+    </questionnote>
+    <questiondescription format="html">
+      <text/>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>bus_distance</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct distance coverd using a bus.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>bus_distance</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <description>Checks for the use of total distance in calculation of distance covered by bus.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>distance_by_bus</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-2-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>You failed to use the remaining distance to calculate the distance covered by the bus; instead, you used the total distance. Please review the step-by-step solution below.</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-2-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <deployedseed>1023548419</deployedseed>
+    <deployedseed>361932174</deployedseed>
+    <deployedseed>595700632</deployedseed>
+    <deployedseed>1216952988</deployedseed>
+    <deployedseed>1866030854</deployedseed>
+    <deployedseed>2117158589</deployedseed>
+    <deployedseed>1751745635</deployedseed>
+    <deployedseed>144473000</deployedseed>
+    <deployedseed>2048688330</deployedseed>
+    <deployedseed>899862147</deployedseed>
+    <deployedseed>58711799</deployedseed>
+    <deployedseed>97900778</deployedseed>
+    <deployedseed>1769696034</deployedseed>
+    <deployedseed>359216754</deployedseed>
+    <deployedseed>1817044779</deployedseed>
+    <deployedseed>636715159</deployedseed>
+    <deployedseed>176419717</deployedseed>
+    <deployedseed>669701248</deployedseed>
+    <deployedseed>1590714089</deployedseed>
+    <deployedseed>1069957539</deployedseed>
+    <deployedseed>1373801778</deployedseed>
+    <deployedseed>1036729532</deployedseed>
+    <deployedseed>922807647</deployedseed>
+    <deployedseed>646278925</deployedseed>
+    <deployedseed>1342111810</deployedseed>
+    <deployedseed>782579298</deployedseed>
+    <deployedseed>849072399</deployedseed>
+    <deployedseed>134815274</deployedseed>
+    <deployedseed>50342341</deployedseed>
+    <deployedseed>1801188893</deployedseed>
+    <deployedseed>642045335</deployedseed>
+    <deployedseed>388725430</deployedseed>
+    <deployedseed>75049043</deployedseed>
+    <deployedseed>1914400793</deployedseed>
+    <deployedseed>979471334</deployedseed>
+    <deployedseed>353570793</deployedseed>
+    <deployedseed>1878157343</deployedseed>
+    <deployedseed>190916568</deployedseed>
+    <deployedseed>594357283</deployedseed>
+    <deployedseed>1234681197</deployedseed>
+    <deployedseed>1001197860</deployedseed>
+    <deployedseed>105583202</deployedseed>
+    <deployedseed>1484543476</deployedseed>
+    <deployedseed>2004852051</deployedseed>
+    <deployedseed>384223395</deployedseed>
+    <deployedseed>640197199</deployedseed>
+    <deployedseed>1656337469</deployedseed>
+    <deployedseed>1236331839</deployedseed>
+    <deployedseed>78398072</deployedseed>
+    <deployedseed>476658895</deployedseed>
+    <deployedseed>1895361323</deployedseed>
+    <deployedseed>31065282</deployedseed>
+    <deployedseed>2078408406</deployedseed>
+    <deployedseed>754493565</deployedseed>
+    <deployedseed>525621968</deployedseed>
+    <deployedseed>2094277134</deployedseed>
+    <deployedseed>480302855</deployedseed>
+    <deployedseed>1693029884</deployedseed>
+    <deployedseed>1270164544</deployedseed>
+    <deployedseed>1323680262</deployedseed>
+    <deployedseed>586847681</deployedseed>
+    <deployedseed>285924203</deployedseed>
+    <deployedseed>181342195</deployedseed>
+    <deployedseed>1813697106</deployedseed>
+    <deployedseed>2111021076</deployedseed>
+    <deployedseed>94481529</deployedseed>
+    <deployedseed>675083037</deployedseed>
+    <deployedseed>226346636</deployedseed>
+    <deployedseed>1546656334</deployedseed>
+    <deployedseed>775890902</deployedseed>
+    <deployedseed>190967063</deployedseed>
+    <deployedseed>1046290768</deployedseed>
+    <deployedseed>1523611688</deployedseed>
+    <deployedseed>1876283845</deployedseed>
+    <deployedseed>1748990580</deployedseed>
+    <deployedseed>1459646801</deployedseed>
+    <deployedseed>1549660834</deployedseed>
+    <deployedseed>918823318</deployedseed>
+    <deployedseed>1124465589</deployedseed>
+    <deployedseed>1618245489</deployedseed>
+    <deployedseed>822589279</deployedseed>
+    <deployedseed>1994394734</deployedseed>
+    <deployedseed>19820276</deployedseed>
+    <deployedseed>2044119154</deployedseed>
+    <deployedseed>2124874559</deployedseed>
+    <deployedseed>701285177</deployedseed>
+    <deployedseed>404710061</deployedseed>
+    <deployedseed>1937143746</deployedseed>
+    <deployedseed>40099500</deployedseed>
+    <deployedseed>620041140</deployedseed>
+    <deployedseed>1940147636</deployedseed>
+    <deployedseed>1411459191</deployedseed>
+    <deployedseed>211032222</deployedseed>
+    <deployedseed>1912628592</deployedseed>
+    <deployedseed>1096365183</deployedseed>
+    <deployedseed>1646187149</deployedseed>
+  </question>
+</quiz>

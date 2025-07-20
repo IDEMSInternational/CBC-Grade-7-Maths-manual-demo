@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Finding the perimeter of a semi-circle.</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Find the perimeter of the following sectors shown with center O as the centre of the circle.</p>
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sector OAB</title>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jsxgraph/distrib/jsxgraphcore.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jsxgraph/distrib/jsxgraph.css" />
+</head>
+<body>
+
+<div id="box" class="jxgbox" style="width: 500px; height: 500px;"></div>
+
+<script type="text/javascript">
+  var board = JXG.JSXGraph.initBoard('box', {
+    boundingbox: [-10, 10, 10, -10],
+    axis: false,
+    showCopyright: false,
+    showNavigation: false
+  });
+
+  var radius = 8;
+  var angleDeg = 180;
+  var angleRad = angleDeg * Math.PI / 180;
+
+  // Invisible point O with label
+  var O = board.create('point', [0,0], { name: 'O', fixed: true, visible: false, showInfobox: false });
+  board.create('text', [O.X(), O.Y() - 0.5, 'O'], { fontSize: 14 });
+
+  // Invisible point A with label
+  var A = board.create('point', [radius, 0], { name: 'A', fixed: true, visible: false, showInfobox: false });
+  board.create('text', [A.X() + 0.3, A.Y(), 'A'], { fontSize: 14 });
+
+  // Invisible point B with label
+  var B = board.create('point', [radius * Math.cos(angleRad), radius * Math.sin(angleRad)], { name: 'B', fixed: true, visible: false, showInfobox: false });
+  board.create('text', [B.X(), B.Y() -0.4, 'B'], { fontSize: 14 });
+
+  var OA = board.create('line', [O, A], { straightFirst: false, straightLast: false });
+  var OB = board.create('line', [O, B], { straightFirst: false, straightLast: false });
+
+  var arc = board.create('arc', [O, A, B], {
+    strokeWidth: 2,
+    strokeColor: 'black'
+  });
+
+//   // Label the angle AOB = 60°
+//   var angle = board.create('nonreflexangle', [A, O, B], {
+//     radius: 1.9,
+//     name: '60°',
+//     label: {
+//       fontSize: 12
+//     },
+//     visible: true
+//   });
+
+  // Label line OB = 6 cm
+  var OBLabel = board.create('midpoint', [O, B], { visible: false });
+  var textOB = board.create('text', [
+    () => OBLabel.X(),
+    () => OBLabel.Y() + -1.2,
+    () => OBLabel.Y() -0.5,
+    '{#diameter#} cm'
+  ], { fontSize: 14 });
+</script>
+
+</body>
+</html>
+
+
+<p>[[input:ans1]] [[validation:ans1]][[feedback:prt1]]cm</p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<h3>Worked solution</h3>
+<p>To find the perimeter of the semicircular sector shown in the image, we need to add:</p>
+<p>1. The length of the curved arc (half the circumference of a circle)</p>
+<p>2. The two straight sides: from O to A and from O to B (which are both radii of the circle).</p>
+<p>Given:</p>
+<p>The diameter AB=  \({@diameter@} cm\)</p>
+<p>Therefore, radius r=\({@diameter@} cm \div 2 \) = \({@selected_diameter@}\)</p>
+<p></p>
+<p>Step 1: Calculate the arc length (half the circumference)</p>
+<p>Arc length=\(\frac{1}{2} \times 2 \pi \times r\)</p>
+<p>Arc length=\(\frac{1}{2} \times 2 \frac{22}{7} \times \({@selected_diameter@}\)\)</p>
+<p> = \({@arc_length@}\) cm</p>
+<p>Step 2: Add the two radii (OA and OB)</p>
+<p> \({@selected_diameter@}\) +  \({@selected_diameter@}\) =  \({@diameter@}\)</p>
+<p>Step 3: Total perimeter</p>
+<p>Perimeter=Arc length + OA + OB 
+</p>
+<p> = \({@arc_length@}\) cm + \({@diameter@}\) </p>
+<p> = \({@ta@}\)</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2025012100</text>
+    </stackversion>
+    <questionvariables>
+      <text>  /* Define the list of angle-diameter pairs */
+angle_diameter_pairs : [   [90, 6], [180, 12], [60, 6], [120, 12], [360, 8], [45, 4], [30, 10], [90, 12], [180, 24], [60, 9], [120, 18], 
+    [180, 10], [90, 10], [45, 12], [60, 12], [120, 6], [180, 8], [270, 6], [240, 4], [150, 9], [135, 6], [60, 3], 
+    [30, 12], [120, 15], [60, 15], [180, 5], [90, 15], [270, 10], [45, 8], [30, 4], [180, 6], [120, 4], [90, 8], 
+    [240, 6], [330, 10], [270, 12], [90, 18], [180, 14], [45, 10], [120, 9], [90, 3], [60, 5], [150, 12], [90, 6], 
+    [30, 8], [270, 8], [240, 8], [180, 16], [60, 18], [90, 4]];
+
+/* Select a random index between 1 and the length of the list */
+random_index : floor(rand(length(angle_diameter_pairs)) + 1);
+
+/* Select the random angle-radius pair */
+random_pair : angle_diameter_pairs[random_index];
+
+/* Extract angle and radius from the pair */
+selected_angle : random_pair[1];  /* Get the angle (first element) */
+diameter : random_pair[2]; /* Get the diameter (second element) */
+selected_diameter: diameter /2;
+/* Display the selected angle and radius */
+PI:float(22/7);/*constant pi*/
+radius_circle:rand_with_step(0.7,49,0.7);/*diameter of the circle*/
+angle_simp:selected_angle/360;
+arc_length:decimalplaces(180/360*2*PI*selected_diameter,2);
+perimeter:decimalplaces(180/360*2*PI*selected_diameter+2*selected_diameter,2);
+ta:perimeter;
+/*common mistakes a learner can make*/
+ta_1:decimalplaces(selected_angle*2*PI*selected_radius,2)/*Forgeting to convert the degree by division by 360*/
+/*Second Mistake*/
+ta_2:decimalplaces(angle_simp*PI*selected_radius,2);/*Wrong formula for arc length*/
+ta_3:decimalplaces(angle_simp*2*PI*selected_radius,2);
+
+/*perimeter of a sector*/
+/* Randomize radius r in the range [1.0, 2.0) */
+diameter : rand(550) + 19;
+
+/* Convert θ from degrees to fraction of a full circle */
+theta_frac: 180 / 360;
+
+
+/* Use pi as 22/7 instead of 3.1416 */
+pi_val : 22/7;
+r_square:r*2;
+dia: 2*diameter
+solution:pi_val*r_square;
+
+/* Compute area of the sector: A = (θ/360) × π × r² */
+peri : theta_frac * pi_val * r*2;
+peri:decimalplaces(peri,1);
+answer:  theta_frac * pi_val *2*diameter + dia;
+
+/*Mistake 1  Misapplying the Arc Length Formula Instead of Area of Sector*/
+
+peri_1:theta_frac*2*pi_val*r;
+peri1:decimalplaces(peri_1,1);</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="html">
+      <text>Radius = {@selected_diameter@}
+Diameter = {@diameter@}
+Arc length ={@arc_length@}
+Circumference = {@ta@}</text>
+    </questionnote>
+    <questiondescription format="html">
+      <text/>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>ta</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description/>
+        <answertest>NumDecPlaces</answertest>
+        <sans>ans1</sans>
+        <tans>ta</tans>
+        <testoptions>2</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <deployedseed>885920006</deployedseed>
+    <deployedseed>800738773</deployedseed>
+    <deployedseed>291913247</deployedseed>
+    <deployedseed>1686552538</deployedseed>
+    <deployedseed>1411290899</deployedseed>
+    <deployedseed>684659070</deployedseed>
+    <deployedseed>1927456591</deployedseed>
+    <deployedseed>1111736810</deployedseed>
+    <deployedseed>1263461952</deployedseed>
+    <deployedseed>804653527</deployedseed>
+    <deployedseed>1140913022</deployedseed>
+    <deployedseed>2092869916</deployedseed>
+    <deployedseed>170127097</deployedseed>
+    <deployedseed>1972917601</deployedseed>
+    <deployedseed>124285557</deployedseed>
+    <deployedseed>314102241</deployedseed>
+    <deployedseed>606631310</deployedseed>
+    <deployedseed>91301661</deployedseed>
+    <deployedseed>1775544186</deployedseed>
+    <deployedseed>467341650</deployedseed>
+    <deployedseed>508166060</deployedseed>
+    <deployedseed>425401243</deployedseed>
+    <deployedseed>1308386986</deployedseed>
+    <deployedseed>1140139259</deployedseed>
+    <deployedseed>1811832006</deployedseed>
+    <deployedseed>180228556</deployedseed>
+    <deployedseed>1141689022</deployedseed>
+    <deployedseed>1215762313</deployedseed>
+    <deployedseed>1968082979</deployedseed>
+    <deployedseed>1492858950</deployedseed>
+    <deployedseed>1183297183</deployedseed>
+    <deployedseed>2008142135</deployedseed>
+    <deployedseed>726147785</deployedseed>
+    <deployedseed>1541599984</deployedseed>
+    <deployedseed>1742093519</deployedseed>
+    <deployedseed>1709049241</deployedseed>
+    <deployedseed>598374896</deployedseed>
+    <deployedseed>938531002</deployedseed>
+    <deployedseed>166231229</deployedseed>
+    <deployedseed>468812508</deployedseed>
+    <deployedseed>1984142753</deployedseed>
+    <deployedseed>1591281647</deployedseed>
+    <deployedseed>1779227833</deployedseed>
+    <deployedseed>1601566559</deployedseed>
+    <deployedseed>1595282418</deployedseed>
+    <deployedseed>395332937</deployedseed>
+    <deployedseed>1085071949</deployedseed>
+    <deployedseed>1484486802</deployedseed>
+    <deployedseed>2029277991</deployedseed>
+    <deployedseed>1997881468</deployedseed>
+    <qtest>
+      <testcase>1</testcase>
+      <description>Checks for the correct answer</description>
+      <testinput>
+        <name>ans1</name>
+        <value>ta</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty/>
+        <expectedanswernote>NULL</expectedanswernote>
+      </expected>
+    </qtest>
+  </question>
+</quiz>

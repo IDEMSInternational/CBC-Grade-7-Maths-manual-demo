@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Performing combined operations on fractions involving division, multiplication, subtraction, addition.</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p>Work out each of the following fractions:</p>
+<p> (a) \({@frac1 @} \times {@whole_1 @}{@fracpart1@} - {@frac3@}   \div {@whole_2 @}{@fracpart2@} = \) [[input:ans1]] [[validation:ans1]] [[feedback:prt1]]</p>
+<p> (b) \({@frac_1 @} + {@whole_3 @}{@fracpart3@} - {@frac_2@} \times  {@whole_4 @}{@fracpart4@} \div {@frac_5@} = \) [[input:ans2]] [[validation:ans2]] [[feedback:prt2]]</p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<h3>Worked solution<h3>
+<p> Part (a) </p>
+<p>To solve the expression \({@frac1 @} \times {@whole_1 @}{@fracpart1@} - {@frac3@} \div   {@whole_2 @}{@fracpart2@} \), we follow the order of operations and start with the division: </p>
+<p> \(\begin{align}{@frac3@}  \div {@whole_2 @}{@fracpart2@}  &={@frac3@} \div {@frac4@}\\ \end{align}\)</p>
+<p>To solve this, we can multiply \({@frac3@} \) by the reciprocal of \({@frac4@}\)</p>
+<p>\(\begin{align} {@frac3@} \times {@reciprocal_frac4@} &= {@frac_div@}\end{align}\)</p>
+<p>Rewriting the expression we have: \({@frac1 @} \times {@whole_1 @}{@fracpart1@} - {@frac_div@} \)</p>
+<p>Next we perform multiplication: </p>
+<p> \(\begin{align}{@frac1 @} \times {@whole_1 @}{@fracpart1@} &= {@frac1@} \times {@frac2@}\\ &\\&={@frac_mult@} \end{align}\) </p> 
+<p>\( \text{Now, we have:} \begin{align}{@frac_mult@} - {@frac_div@}   \end{align}\)</p>
+<p>The LCM of \({@denominator_extract@}\) and \({@division_denominator@}\) is \({@lcm_sub@}\)</p>
+<p>Hence, \({@frac_mult@}-{@frac_div@}\)</p>
+<p>\(\begin{align}&=\frac{{@numerator1_sub@} - {@numerator2_sub@}}{{@lcm_sub@}} \\&= {@sub_result@} \end{align}\)    </p>
+<p> Par (b)</p>
+<p>To work out  \({@frac_1 @} + {@whole_3 @}{@fracpart3@} - {@frac_2@} \times  {@whole_4 @}{@fracpart4@} \div {@frac_5@} \), follow the order:</p>
+<p>Division \(\rightarrow\) Multiplication \(\rightarrow\) Addition \(\rightarrow\) Subtraction</p>
+<p> Carry out \({@whole_4 @}{@fracpart4@} \div {@frac_5@} \), by converting \({@whole_4 @}{@fracpart4@}\) to an improper fraction then multiply it by the reciprocal of \({@frac_5@} \) </p>
+<p> \( \begin{align}{@whole_4 @}{@fracpart4@} \div {@frac_5@} &= {@frac_4 @} \div {@frac_5@} \\ &=  {@frac_4 @} \times  {@frac5_reciprocal@}\\ &= {@div_result@} \end{align} \)</p>
+<p>Next, carry out multiplication:\({@frac_1 @} + {@whole_3 @}{@fracpart3@} - {@frac_2@} \times  {@div_result@}\)</p>
+<p>\({@frac_2@} \times  {@div_result@} = {@mult_result@}\)</p>
+<p> Re-writing the expression we have: \({@frac_1 @} + {@whole_3 @}{@fracpart3@} - {@mult_result@}\) </p>
+<p>Then carry out addition: \({@frac_1 @} + {@whole_3 @}{@fracpart3@}\) by first converting \({@whole_3 @}{@fracpart3@}\) to an improper fraction.</p>
+<p> \({@frac_1 @} + {@whole_3 @}{@fracpart3@} = {@frac_1 @} + {@frac_3@}\)  </p>
+<p> The LCM of \({@denominator1_extract@}\) and \({@denominator3_extract@}\) is \({@common_divisor@}\)</p>
+<p> \( \begin{align}{@frac_1 @} + {@frac_3@}&= \frac{{@numerator1_addition@}+{@numerator2_addition@}}{{@common_divisor@}}\\&= {@frac_addition@} \end{align}\)    </p>
+<p> Finally, we perform subtraction:\({@frac_addition@} -{@mult_result@}\)   </p>
+<p>The LCM of  \({@ denom_addition_etract @}\) and \({@denominator_mult_result@}\) is \({@least_divisor@}\)</p>
+<p>\( \begin{align} {@frac_addition@} -{@mult_result@} &= \frac{{@numerator1_subtraction@} - {@numerator2_subtraction@}}{{@least_divisor@}}\\ & \\ &= {@subtraction_frac@} \end{align} \)   </p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2025012100</text>
+    </stackversion>
+    <questionvariables>
+      <text><![CDATA[/*.....part a.....*/
+numerator1: rand_with_step(2,5,1);
+denominator1: rand_with_step(7,10,1);
+frac1: numerator1/denominator1;
+
+
+done1 : false;
+while not done1 do (
+    numerator2: rand_with_step(13,20,2),
+denominator2: rand_with_step(2,13,2),
+    if numerator2 >denominator2 and gcd( numerator2, denominator2) = 1 and mod( numerator2, denominator2) # 0 then done1 : true
+);
+frac2: numerator2/denominator2;
+whole_1 : floor(frac2);
+fracpart1 : frac2 - whole_1 ;
+
+
+
+numerator3:rand_with_step(1,5,2);
+denominator3:rand_with_step(2,8,2);
+frac3: numerator3/ denominator3;
+
+
+done2 : false;
+while not done2 do (
+    numerator4 : rand_with_step(11, 20, 3),
+    denominator4 : rand_with_step(3,11,3),
+    if numerator4 > denominator4 and gcd(numerator4, denominator4) = 1 and mod(numerator4, denominator4) # 0 then done2 : true
+);
+frac4 : numerator4 / denominator4;
+whole_2 : floor(frac4);
+fracpart2 : frac4 - whole_2;
+reciprocal_frac4: denominator4/numerator4;
+
+/*performing division*/
+numerator_div: numerator3 * denominator4;
+denominator_div: (denominator3 * numerator4);
+frac_div: frac3*reciprocal_frac4;
+division_numerator:num(frac_div);
+division_denominator: denom(frac_div);
+
+/*performing multiplication*/
+numerator_mult:(numerator1*numerator_div );
+denominator_mult:(denominator1*denominator_div);
+frac_mult:frac1*frac2;
+denominator_extract:denom(frac_mult);
+numerator_extract:num(frac_mult);
+
+
+/*performing subtraction*/
+lcm_sub:lcm(denominator_extract,division_denominator);
+numerator1_sub:(lcm_sub/denominator_extract) * numerator_extract;
+numerator2_sub:(lcm_sub/division_denominator)* division_numerator;
+sub_result:(numerator1_sub - numerator2_sub)/lcm_sub;
+
+
+
+
+
+/*...........PART B..........*/
+
+numerator_1:rand_with_step(2,11,3);/*numerator of the first fraction */
+denominator_1: rand_with_step(15,19,1);/*denominator of the first fraction*/
+frac_1:numerator_1/denominator_1;/* first fraction*/
+numerator1_extract:num(frac_1);
+denominator1_extract:denom(frac_1);
+
+numerator_2:rand_with_step(7,13,2);/*numerator of the second fraction */
+denominator_2:rand_with_step(16,20,1);/*denominator of the second fraction*/
+frac_2:numerator_2/denominator_2;/* second fraction*/
+
+/*generating the third fraction which is a mixed number*/
+
+done3 : false;
+while not done3 do (
+    numerator_3 : rand_with_step(15, 21, 2),
+    denominator_3 : rand_with_step(2, 14, 2),
+    if numerator_3 > denominator_3 and gcd(numerator_3, denominator_3) = 1 and mod(numerator_3, denominator_3) # 0 then done3 : true
+);
+frac_3 : numerator_3 / denominator_3;
+whole_3 : floor(frac_3);
+fracpart3 : frac_3 - whole_3;
+numerator3_extract:num(frac_3);
+denominator3_extract:denom(frac_3);
+
+/*codes to generating a mixed fraction which is the fourth fraction*/
+
+done4 : false;
+while not done4 do (
+    numerator_4 : rand_with_step(10, 19, 3),
+    denominator_4 : rand_with_step(3, 18, 3),
+    if numerator_4 > denominator_4 and gcd(numerator_4, denominator_4) = 1 and mod(numerator_4, denominator_4) # 0 then done4 : true
+);
+frac_4 : numerator_4 / denominator_4;
+whole_4 : floor(frac_4);
+fracpart4 : frac_4 - whole_4;
+
+/*codes for the fifth fraction*/
+
+numerator_5:rand_with_step(3,11,2);
+denominator_5:rand_with_step(14,18,1);
+frac_5:numerator_5/denominator_5;
+frac5_reciprocal:denominator_5/numerator_5;
+
+/*performing division*/
+div_result: frac_4 * frac5_reciprocal;
+
+/*performing multiplication*/
+mult_result: frac_2 * div_result;
+
+/* Extracting the denominator and numerator from mult_result */
+denominator_mult_result: denom(mult_result);
+numerator_mult_result: num(mult_result);
+
+/*LCM for addition*/
+common_divisor:lcm(denominator1_extract,denominator3_extract);
+numerator1_addition:(common_divisor/denominator1_extract)* numerator1_extract;
+numerator2_addition:(common_divisor/denominator3_extract) * numerator3_extract;
+numerators_total:(numerator1_addition + numerator2_addition);
+frac_addition:(numerator1_addition + numerator2_addition)/common_divisor;
+
+/*LCM for subtraction*/
+num_addition_extract:num(frac_addition);
+denom_addition_etract:denom(frac_addition)
+least_divisor: lcm( denom_addition_etract,denominator_mult_result);
+
+/*performing subtraction*/
+numerator1_subtraction: (least_divisor/denom_addition_etract)* numerators_total;
+numerator2_subtraction: (least_divisor/denominator_mult_result)*numerator_mult_result;
+subtraction_frac:frac_addition - mult_result;
+
+
+
+
+
+]]></text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="html">
+      <text>1</text>
+    </questionnote>
+    <questiondescription format="html">
+      <text/>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>sub_result</tans>
+      <boxsize>6</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans2</name>
+      <type>algebraic</type>
+      <tans>subtraction_frac</tans>
+      <boxsize>6</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct calculations of fractions, following the order of operations</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>sub_result</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt2</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct calculations on combined operations on fractions</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans2</sans>
+        <tans>subtraction_frac</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt2-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt2-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+  </question>
+</quiz>

@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Randomisation: Quad/line intersection with differentiation</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>The curve with equation \(y={@q@}\) is shown in the diagram below.</p>
+
+<p style="text-align: center;"></p><div style="margin-left:4em;margin-right:auto;">[[jsxgraph width='250px' height='250px']]
+  // boundingbox:[left, top, right, bottom]
+  JXG.Options.axis.ticks.majorHeight = 10;
+  JXG.Options.axis.ticks.insertTicks = false;
+  JXG.Options.axis.ticks.ticksDistance = 200;
+  JXG.Options.text.fontSize = 16; 
+  var board = JXG.JSXGraph.initBoard(divid, {boundingbox: {#BB#}, axis: true, showCopyright: false, showNavigation:false});
+  var f = board.jc.snippet('{#q#}', true, 'x', true);
+  board.create('functiongraph', [f,{#BB[1]#},{#BB[3]#}],{strokeColor:'#003399',strokeWidth:2});
+  var g = board.jc.snippet('{#line_AB#}', true, 'x', true);
+  board.create('functiongraph', [g,{#BB[1]#},{#BB[3]#}],{strokeColor:'#003399',strokeWidth:2});
+  var h = board.jc.snippet('{#line_ell#}', true, 'x', true);
+  board.create('functiongraph', [h,{#BB[1]#},{#BB[3]#}],{strokeColor:'#003399',strokeWidth:2,name:'ell'});
+  var ptllab = board.create('point',{#line_ell_label#}, {name:'\\(\\ell\\)',size:0, label: { offset: [0, {#10*cy#}],anchorX: 'middle', anchorY: 'middle' }});
+  var pta = board.create('point',{#A#}, {name:'A',size:2,fixed:true,strokeColor:'#003399',fillColor:'#003399', label: { offset: [0, {#-15*cy#}],anchorX: 'middle', anchorY: 'middle' }});
+  var ptb = board.create('point',{#B#}, {name:'B',size:2,fixed:true,strokeColor:'#003399',fillColor:'#003399', label: { offset: [-10, 0],anchorX: 'right', anchorY: 'middle' }});
+  var ptc = board.create('point',{#C#}, {name:'',size:1,fixed:true,strokeColor:'#003399',fillColor:'#003399'});
+  var xaxis = board.create('axis', [[0,0],[1,0]]);
+  board.create('ticks', [xaxis, [{#C[1]#},{#B[1]#}]], {strokeColor: '#003399', majorHeight:15, drawLabels: true, label: { offset: [0, -10],anchorX: 'middle', anchorY: 'top' }});
+[[/jsxgraph]]</div><p></p>
+
+<p>The line \(\ell\) is a tangent to the curve at \(x={@C[1]@}\).</p><p><b>(a) </b>Find the gradient of line \(\ell\).</p><p>[[input:ans1]][[feedback:prt1]][[validation:ans1]]</p><p><b>(b) </b>Given that the line through A and B is parallel to \(\ell\), find the coordinates of A.</p><p>Enter your answer as a list, e.g. to enter \((1,2)\) type <code>[1,2]</code></p><p>[[input:ans2]][[feedback:prt2]][[validation:ans2]]</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p><b>(a) </b>Evaluating the derivative \(\dfrac{dy}{dx}\) at \(x={@C[1]@}\) will give the slope of the tangent line there.</p><p>Since \(\dfrac{dy}{dx}={@diff(q,x)@}\) evaluating this at&nbsp;\(x={@C[1]@}\) gives the gradient of \(\ell\) to be {@ta1@}.</p><p><b>(b) </b>The line through A and B has gradient {@ta1@} since it is parallel to \(\ell\). The line passes through \(B({@B[1]@},{@B[2]@})\), so its equation is</p><p>\[\begin{align*} {@y-B[2]@}&amp;={@ta1*(x-B[1])@}\\ {@y@}&amp;={@expand(ta1*(x-B[1])+B[2])@}.\end{align*}\]</p><p>Equating this with the parabola to find the points of intersection gives</p><p>\[\begin{align*}{@q@} &amp;= {@expand(ta1*(x-B[1])+B[2])@} \\ {@q-expand(ta1*(x-B[1])+B[2])@}&amp;=0 \\&nbsp;{@factor(q-expand(ta1*(x-B[1])+B[2]))@}&amp;=0 \end{align*}\]</p><p>So the \(x\)-coordinate of A is {@A[1]@}, and substituting this into the quadratic to get the \(y\)-coordinate we get \(A({@A[1]@},{@A[2]@})\).</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2020061000</text>
+    </stackversion>
+    <questionvariables>
+      <text><![CDATA[tx:rand_with_prohib(-3,3,[0]);
+ty:rand_with_prohib(-3,3,[0]);
+cx:rand_with_prohib(-1,1,[0]);
+cy:rand_with_prohib(-2,2,[0]);
+/* The following are based on applying translations tx, ty and scalings cx, cy to a known "nice" question */
+T(x,y):=[cx*(x+tx),cy*(y+ty)];
+TF(y):=expand(ev(T(0,y)[2],x=x/cx-tx)); /* given an expression y=[fn], return a transformed y=[fn2] in new coords */
+/* q:-x^2; A:[-1,-1]; B:[5,-25]; C:[2,-4]  -- see: https://www.geogebra.org/m/hrwmsmcm  */
+q:TF(-x^2);  /*ev(expand(cy*(ty- ((x)/(cx)-tx)^(2))),simp);*/
+A:T(-1,-1);
+B:T(5,-25); 
+C:T(2,-4);
+line_AB:TF(-4*x-5);
+line_ell:TF(-4*x+4);
+line_ell_label:T(-1,8)
+dq:diff(q,x);
+ta1:ev(dq,x=C[1]);
+ta2:A;
+
+/*bounding box*/
+bbTL:T(-5,15);
+bbBR:T(6,-35);
+BBx:[bbTL[1],bbBR[1],-1.5,1.5];
+BBy:[bbTL[2],bbBR[2],-1.5,1.5];
+BB:[lmin(BBx),lmax(BBy),lmax(BBx),lmin(BBy)];]]></text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="moodle_auto_format">
+      <text>{@q@} gradient {@ta1@} A{@ta2@}</text>
+    </questionnote>
+    <questiondescription format="html">
+      <text/>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>ta1</tans>
+      <boxsize>10</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans2</name>
+      <type>algebraic</type>
+      <tans>ta2</tans>
+      <boxsize>10</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description/>
+        <answertest>FacForm</answertest>
+        <sans>ans1</sans>
+        <tans>ta1</tans>
+        <testoptions>x</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1.0000000</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0.0000000</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt2</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description/>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans2</sans>
+        <tans>ta2</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1.0000000</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt2-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0.0000000</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt2-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <deployedseed>1255206070</deployedseed>
+    <deployedseed>37910586</deployedseed>
+    <deployedseed>946957567</deployedseed>
+    <deployedseed>1273371035</deployedseed>
+    <deployedseed>1117747747</deployedseed>
+    <deployedseed>1255424710</deployedseed>
+    <deployedseed>1910266518</deployedseed>
+    <deployedseed>1970727779</deployedseed>
+    <deployedseed>1783424263</deployedseed>
+    <deployedseed>511793478</deployedseed>
+    <deployedseed>636965807</deployedseed>
+    <deployedseed>150588712</deployedseed>
+    <deployedseed>2019923464</deployedseed>
+    <deployedseed>571560815</deployedseed>
+    <deployedseed>1106081326</deployedseed>
+    <deployedseed>1978035814</deployedseed>
+    <deployedseed>1079093511</deployedseed>
+    <qtest>
+      <testcase>1</testcase>
+      <description/>
+      <testinput>
+        <name>ans1</name>
+        <value>ta1</value>
+      </testinput>
+      <testinput>
+        <name>ans2</name>
+        <value>ta2</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt1-1-T</expectedanswernote>
+      </expected>
+      <expected>
+        <name>prt2</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt2-1-T</expectedanswernote>
+      </expected>
+    </qtest>
+    <tags>
+      <tag><text>jsxgraph</text>
+</tag>
+    </tags>
+  </question>
+</quiz>

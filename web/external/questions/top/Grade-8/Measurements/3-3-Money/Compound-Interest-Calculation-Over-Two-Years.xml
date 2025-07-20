@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Compound Interest Calculation Over Two Years</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p>Eli borrowed \(\text{Ksh.}\, 800\,000\) in a bank at a compound interest rate of  \(10\,\circ\)nper annum for two years. Calculate:</p>
+
+<p><ol type="a"><li>
+<p>Interest paid for the first year.</p>
+<p>\(\text{First years interest}= \text{Ksh.}\) [[input:ans1]][[feedback:prt1]]</p>
+</li>
+<li>
+<p>Principal at the beginning of the second year</p>
+<p>\(\text{Second years principal}= \text{Ksh.}\) [[input:ans2]][[feedback:prt2]]</p>
+</li>
+<li>
+<p>Interest paid for the second year.</p>
+<p>\(\text{Second years interest}= \text{Ksh.}\) [[input:ans3]][[feedback:prt3]]</p>
+</li>
+<li>
+<p>Find  the total interest charged on the loan in the two years.</p>
+<p>\(\text{Total interest}= \text{Ksh.}\) [[input:ans4]][[feedback:prt4]]</p>
+</li></ol></p>
+
+
+
+
+<p hidden>[[validation:ans1]][[validation:ans2]][[validation:ans3]][[validation:ans4]]</p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<p><strong>Step 1: Interest paid for the first year</strong></p>
+<p>We use the formula:<br>
+\(\text{Interest} = \text{Principal} \times \text{Rate} \times \text{Time}\)</p>
+
+<p>For the first year:<br>
+\(\text{Principal} = {@P@}\),<br>
+\(\text{Rate} = {@R@}\% = \frac{{@R@}}{100}\),<br>
+\(\text{Time} = 1\)</p>
+
+<p>\(\text{Interest}_1 = {@P@} \times \frac{{@R@}}{100} \times 1 = {@I1@}\)</p>
+<p>Eli paid \(\text{Ksh.}\, {\color{blue} {@I1@}}\) in interest for the first year.</p>
+
+<p><strong>Step 2: Principal at the beginning of the second year</strong></p>
+<p>The interest is added to the original principal (compound interest):</p>
+<p>\(\text{New Principal} = {@P@}+ {@I1@} = {@P2@}\)</p>
+<p> The principal at the beginning of the second year is \(\text{Ksh.}\, {\color{blue} {@P2@}}\). </p>
+
+<p><strong>Step 3: Interest paid for the second year</strong></p>
+<p>Now use the new principal:</p>
+<p>\(\text{Interest}_2 = {@P2@} \times \frac{{@R@}}{100} = {@I2@}\)</p>
+<p>Eli paid \(\text{Ksh.}\, {\color{blue}{@I2@}}\) in interest for the second year. </p>
+
+<p><strong>Step 4: Total interest charged in two years</strong></p>
+<p>\(\text{Total Interest} = {@I1@} + {@I2@}= {@Total_Interest@}\)</p>
+<p>The total interest charged over the two years is \(\text{Ksh.}\, {\color{blue}{@Total_Interest@}}\).</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2025012100</text>
+    </stackversion>
+    <questionvariables>
+      <text>/* Generate a random principal in steps of 100,000 from 100,000 to 900,000 */
+P : 100000 * (1 + rand(19));
+
+/* Build a list of clean rates: divisors of 100 */
+rate_list : [];
+for r:1 thru 100 do (
+  if mod(100, r) = 0 then rate_list : cons(r, rate_list)
+);
+
+/* Add extra manually-verified rates that result in whole numbers */
+rate_list : append(rate_list, [6, 12, 15, 18, 24, 30, 36, 40, 45, 48, 54, 60, 66, 72, 75, 80, 84, 90, 96]);
+
+/* Remove duplicates manually */
+rate_list : sort(listify(setify(rate_list)));
+
+
+
+/* Randomly select a clean interest rate */
+R : rate_list[rand(length(rate_list)) + 1];
+
+/* Compute interest for the first year */
+I1 : P * R / 100;
+
+/* New principal for the second year */
+P2 : P + I1;
+
+/* Interest for the second year */
+I2 : P2 * R / 100;
+
+/* Total interest */
+Total_Interest : I1 + I2;
+</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="html">
+      <text><![CDATA[<p>\(\text{The initial principal}=  \text{Ksh.}\, {@P@}\)</p>
+<p>\(\text{The rate}=  {@R@}\,\%\)</p>
+<p>\(\text{The interest at year one}=  \text{Ksh.}\, {@I1@}\)</p>
+<p>\(\text{The principal at year one}=  \text{Ksh.}\, {@P2@}\)</p>
+<p>\(\text{The interest at year two}=  \text{Ksh.}\, {@I2@}\)</p>
+<p>\(\text{The total interest}=  \text{Ksh.}\, {@Total_Interest@}\)</p>]]></text>
+    </questionnote>
+    <questiondescription format="html">
+      <text><![CDATA[<p id="author">Henry Onyango</p>
+<p id="reviewer"></p>
+<p id="reviewer"></p>
+<p id="description">The question is about calculating compound interest over two years on a loan Eli took from a bank. It required the student to apply the compound interest concept by computing the interest for the first year, updating the principal for the second year, calculating the second year's interest, and finally finding the total interest charged. The student was expected to show correct step-by-step calculations using the compound interest method, ensure accuracy in arithmetic, and demonstrate an understanding of how compound interest differs from simple interest by adjusting the principal after the first year.</p>]]></text>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>I1</tans>
+      <boxsize>7</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>0</mustverify>
+      <showvalidation>0</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans2</name>
+      <type>algebraic</type>
+      <tans>P2</tans>
+      <boxsize>7</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>0</mustverify>
+      <showvalidation>0</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans3</name>
+      <type>algebraic</type>
+      <tans>I2</tans>
+      <boxsize>7</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>0</mustverify>
+      <showvalidation>0</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans4</name>
+      <type>algebraic</type>
+      <tans>Total_Interest</tans>
+      <boxsize>7</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>0</mustverify>
+      <showvalidation>0</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct interest at the end of first year.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>I1</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt2</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct principal at the beginning of the second year.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans2</sans>
+        <tans>P2</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt2-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt2-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt3</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct interest paid on the seond year.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans3</sans>
+        <tans>I2</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt3-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt3-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt4</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct total interest for the two years.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans4</sans>
+        <tans>Total_Interest</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt4-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt4-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <deployedseed>1288763646</deployedseed>
+    <deployedseed>445635376</deployedseed>
+    <deployedseed>875262610</deployedseed>
+    <deployedseed>1182056417</deployedseed>
+    <deployedseed>2041521504</deployedseed>
+    <deployedseed>1706295433</deployedseed>
+    <deployedseed>1795229305</deployedseed>
+    <deployedseed>1254163560</deployedseed>
+    <deployedseed>165910036</deployedseed>
+    <deployedseed>1687951287</deployedseed>
+    <deployedseed>2015043588</deployedseed>
+    <deployedseed>1444029133</deployedseed>
+    <deployedseed>1562167184</deployedseed>
+    <deployedseed>797869141</deployedseed>
+    <deployedseed>1076318527</deployedseed>
+    <qtest>
+      <testcase>1</testcase>
+      <description>Test case assuming the teacher's input gets full marks.</description>
+      <testinput>
+        <name>ans1</name>
+        <value>I1</value>
+      </testinput>
+      <testinput>
+        <name>ans2</name>
+        <value>P2</value>
+      </testinput>
+      <testinput>
+        <name>ans3</name>
+        <value>I2</value>
+      </testinput>
+      <testinput>
+        <name>ans4</name>
+        <value>Total_Interest</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt1-1-T</expectedanswernote>
+      </expected>
+      <expected>
+        <name>prt2</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt2-1-T</expectedanswernote>
+      </expected>
+      <expected>
+        <name>prt3</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt3-1-T</expectedanswernote>
+      </expected>
+      <expected>
+        <name>prt4</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt4-1-T</expectedanswernote>
+      </expected>
+    </qtest>
+  </question>
+</quiz>

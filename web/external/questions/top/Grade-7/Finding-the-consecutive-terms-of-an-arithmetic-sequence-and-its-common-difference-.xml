@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Finding the consecutive terms of an arithmetic sequence and its common difference.</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p>a. Find \(x\) so that (\({@a1@}\)), (\({@a2@}\)) and (\({@a3@}\))  are consecutive terms of an arithmetic sequence.</p>
+<p>[[input:ans1]] [[validation:ans1]][[feedback:prt1]]</p>
+<p>b. What is the common difference of the sequence?</p>
+<p>[[input:ans2]] [[validation:ans2]][[feedback:prt2]]]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<p>\(a.\) Let the three terms of the sequence to be:</p>
+<p>First term \(a_1\) = \({@a1@}\),</p>
+<p>Second term \(a_2\) = \({@a2@}\),</p>
+<p>Third term \(a_3\) = \({@a3@}\).</p>
+<p>To find the relationship in an arithmetic sequence, you find the difference between between consecutive terms so that it is the same:</p>
+<p>\(a_2\) - \(a_1\) = \(a_3\) - \(a_2\)</p>
+<p>Substituting in the above equation the values of terms \(a_1, a_2 ,a_3\) we get;</p>
+<p>(\({@a2@}\)) - (\({@a1@}\)) = (\({@a3@}\)) - (\({@a2@}\))</p>
+<p>Simplifying both sides:</p>
+<p>\({@b@}\)\(x\) - \({@a@}\)\(x\)   \({@e@}\) - \({@d@}\) = \({@c@}\)\(x\)  - \({@b@}\)\(x\) - \({@e@}\)</p>
+<p>Next we solve for the x:</p>
+<p>Here you simplify,</p>
+<p>\({@eq1@}\)</p>
+<p>Collecting like terms and solving for \(x\), we have,</p>
+<p>\({@solution[1]@}\)</p>
+<p>\(b.\) To find the common difference \(d:\)</p>
+<p>We use the formula \(d = a_2 - a_1\) or \(d = a_3 - a_2\)</p>
+<p>Here you verify the terms by substituting \({@solution[1]@}\) into the expressions for the terms:</p>
+<p>So, The terms are:</p>
+<p>First term  \({@first_term@}\)</p>
+<p>Second term \({@second_term@}\)</p>
+<p>Third term \({@third_term@}\)</p>
+<p>For this case we're going to use \(d = a_2 - a_1\) to find the common difference \(d\).</p>
+<p>Therefore,</p>
+<p>\(d = {@third_term@} - {@second_term@}\)</p>
+<p>\(\quad= {@common_diff@}\)</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2023060500</text>
+    </stackversion>
+    <questionvariables>
+      <text>/* Random coefficients and constants */
+a: rand(20) - 10; /* Random coefficient for x in a1 */
+b: rand(20) - 10; /* Random coefficient for x in a2 */
+c: rand(20) - 10; /* Random coefficient for x in a3 */
+d: rand(20) - 10; /* Random constant in a1 */
+e: rand(20) - 10; /* Random constant in a2 */
+
+/* The terms of the sequence */
+a1: a*x + d; /* First term: ax + d */
+a2: b*x + e; /* Second term: bx + e */
+a3: c*x;     /* Third term: cx */
+
+/* Arithmetic sequence condition */
+eq1: a2 - a1 = a3 - a2;
+solution: solve(eq1, x);
+
+x_value: rhs(solution[1]);/* Extract the value of x */
+
+/* terms solved by x */
+first_term: ev(a1, x=x_value);   /* First term */
+second_term: ev(a2, x=x_value); /* Second term */
+third_term: ev(a3, x=x_value);  /* Third term */
+
+common_diff: ev(a2 - a1, x=x_value);/* Common difference */</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="moodle_auto_format">
+      <text><![CDATA[<p>\({@a1@}\)</p>
+<p>\({@common_diff@}\)</p>]]></text>
+    </questionnote>
+    <questiondescription format="html">
+      <text><![CDATA[<p id="author">Rodgers Maragia</p>
+<p id="concept">https://docs.google.com/document/d/1-rNkER6DrNaEBqQ6tDD_0oUustCsRDdTtlZoP163OZE/edit?usp=sharing</p>
+<p id="reviewer"></p>
+<p id="reviewer"></p>
+<p id="description">In this question the student is required to find consecutive terms of an arithmetic sequence and its common difference for some given expressions, through solving for the questions the student is required to find the value of x and then solve for the values of the consecutive terms and then solve for the common difference.</p>]]></text>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>solution</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans2</name>
+      <type>algebraic</type>
+      <tans>common_diff</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct value of x.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>solution</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt2</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct value of the common difference for the terms.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>common_diff</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt2-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt2-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <deployedseed>1571933042</deployedseed>
+    <deployedseed>1287196325</deployedseed>
+    <deployedseed>259917263</deployedseed>
+    <deployedseed>1906343467</deployedseed>
+    <deployedseed>307020642</deployedseed>
+    <deployedseed>1382980694</deployedseed>
+    <deployedseed>1382786511</deployedseed>
+    <deployedseed>578537733</deployedseed>
+    <deployedseed>644668475</deployedseed>
+    <deployedseed>1152099037</deployedseed>
+    <deployedseed>1185860337</deployedseed>
+    <deployedseed>585683708</deployedseed>
+    <deployedseed>1789854673</deployedseed>
+    <deployedseed>2011485783</deployedseed>
+    <deployedseed>2045778156</deployedseed>
+    <deployedseed>453031761</deployedseed>
+    <deployedseed>175843026</deployedseed>
+    <deployedseed>1253404191</deployedseed>
+    <deployedseed>1410786630</deployedseed>
+    <deployedseed>1245768633</deployedseed>
+    <deployedseed>1736403073</deployedseed>
+    <deployedseed>694254681</deployedseed>
+    <deployedseed>858882749</deployedseed>
+    <deployedseed>1143177518</deployedseed>
+    <deployedseed>1351376030</deployedseed>
+    <deployedseed>1421506890</deployedseed>
+    <deployedseed>1190807377</deployedseed>
+    <deployedseed>1282058174</deployedseed>
+    <deployedseed>1224560954</deployedseed>
+    <deployedseed>202046846</deployedseed>
+    <deployedseed>419584279</deployedseed>
+    <deployedseed>1546557181</deployedseed>
+    <deployedseed>1912095896</deployedseed>
+    <deployedseed>237607650</deployedseed>
+    <deployedseed>1803365262</deployedseed>
+    <deployedseed>868193815</deployedseed>
+    <deployedseed>430184329</deployedseed>
+    <deployedseed>764037560</deployedseed>
+    <deployedseed>2122189700</deployedseed>
+    <deployedseed>1408189996</deployedseed>
+    <deployedseed>638774325</deployedseed>
+    <deployedseed>1572099042</deployedseed>
+    <deployedseed>1534801044</deployedseed>
+    <deployedseed>24961148</deployedseed>
+    <deployedseed>1559991102</deployedseed>
+    <deployedseed>898078280</deployedseed>
+    <deployedseed>581139979</deployedseed>
+    <deployedseed>1150741103</deployedseed>
+    <deployedseed>1684248445</deployedseed>
+    <deployedseed>2046689012</deployedseed>
+    <deployedseed>1629176903</deployedseed>
+    <deployedseed>1209567320</deployedseed>
+    <deployedseed>747565164</deployedseed>
+    <deployedseed>703258089</deployedseed>
+    <deployedseed>1603850548</deployedseed>
+    <deployedseed>1702859883</deployedseed>
+    <deployedseed>392145513</deployedseed>
+    <deployedseed>1010262547</deployedseed>
+    <deployedseed>1870972751</deployedseed>
+    <deployedseed>1424719629</deployedseed>
+    <deployedseed>1676844635</deployedseed>
+    <deployedseed>432528829</deployedseed>
+    <deployedseed>1006484147</deployedseed>
+    <deployedseed>728624912</deployedseed>
+    <deployedseed>1042566062</deployedseed>
+    <deployedseed>576517729</deployedseed>
+    <deployedseed>1176736763</deployedseed>
+    <deployedseed>419459742</deployedseed>
+    <deployedseed>1350545412</deployedseed>
+    <deployedseed>1720368555</deployedseed>
+    <deployedseed>1274089368</deployedseed>
+    <deployedseed>976331912</deployedseed>
+    <deployedseed>1447771720</deployedseed>
+    <deployedseed>1360325792</deployedseed>
+    <deployedseed>147308600</deployedseed>
+    <deployedseed>1028742468</deployedseed>
+    <deployedseed>1009454074</deployedseed>
+    <deployedseed>683405976</deployedseed>
+    <deployedseed>1757195695</deployedseed>
+    <deployedseed>1983525869</deployedseed>
+    <deployedseed>382877699</deployedseed>
+    <deployedseed>166170378</deployedseed>
+    <deployedseed>1562989697</deployedseed>
+    <deployedseed>1870057546</deployedseed>
+    <deployedseed>1595064327</deployedseed>
+    <deployedseed>1257413715</deployedseed>
+    <deployedseed>1646446513</deployedseed>
+    <deployedseed>1345731751</deployedseed>
+    <deployedseed>1033224778</deployedseed>
+    <deployedseed>537485937</deployedseed>
+    <deployedseed>31960321</deployedseed>
+    <deployedseed>1637463129</deployedseed>
+    <deployedseed>1565511756</deployedseed>
+    <deployedseed>1162144926</deployedseed>
+    <deployedseed>2047824048</deployedseed>
+    <deployedseed>783293313</deployedseed>
+    <deployedseed>778989459</deployedseed>
+    <deployedseed>1201120156</deployedseed>
+    <deployedseed>404874479</deployedseed>
+    <deployedseed>497766455</deployedseed>
+    <deployedseed>1149282670</deployedseed>
+    <qtest>
+      <testcase>1</testcase>
+      <description>Test case assuming the teacher's input gets full marks.</description>
+      <testinput>
+        <name>ans1</name>
+        <value>solution</value>
+      </testinput>
+      <testinput>
+        <name>ans2</name>
+        <value>common_diff</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt1-1-T</expectedanswernote>
+      </expected>
+      <expected>
+        <name>prt2</name>
+        <expectedscore>0.0000000</expectedscore>
+        <expectedpenalty>0.1000000</expectedpenalty>
+        <expectedanswernote>prt2-1-F</expectedanswernote>
+      </expected>
+    </qtest>
+  </question>
+</quiz>

@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Trial measuring angles</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Use the protractor to measure angle {@val_letter_1@}{@val_letter_2@}{@val_letter_3@}</p>
+<p><b>Hint: </b>Use the sliders to move the protractor horrizontally,vertically and also to rotate it </p>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> </title>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jsxgraph/1.4.5/jsxgraphcore.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .container {
+            position: relative;
+            width: 500px;
+            height: 550px;
+            margin: auto;
+            border: 2px solid black;
+            padding-bottom: 50px;
+        }
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        #protractor {
+            position: absolute;
+            width: 350px;
+            opacity: 0.5;
+            cursor: grab;
+            transform-origin: center;
+            left: 150px;
+            top: 50px;
+        }
+        #controls {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.8);
+            padding: 10px;
+            border-radius: 5px;
+            width: 70%;
+        }
+        label {
+            font-size: 14px;
+        }
+        input[type="range"] {
+            width: 56%;
+            margin: 3px 0;
+        }
+    </style>
+</head>
+<body>
+    <h2></h2>
+    <div class="container">
+        <canvas id="angleCanvas" width="600" height="600"></canvas>
+        <img id="protractor" src="https://i.imgur.com/PylIXU6.jpeg" alt="Protractor">
+        <div id="controls">
+            <label>Rotate:</label>
+            <input id="rotation-slider" type="range" min="0" max="360" value="0">
+            <label>Move Horizontally:</label>
+            <input id="position-sliderX" type="range" min="0" max="300" value="150">
+            <label>Move Vertically:</label>
+            <input id="position-sliderY" type="range" min="0" max="300" value="50">
+        </div>
+    </div>
+
+    <script>
+        function drawLines() {
+            var canvas = document.getElementById("angleCanvas");
+            var ctx = canvas.getContext("2d");
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.beginPath();
+            ctx.strokeStyle = "blue";
+            ctx.lineWidth = 2;
+            ctx.moveTo(300, 300);
+            ctx.lineTo(500, 300);
+            ctx.stroke();
+            ctx.font = "18px Arial";
+            ctx.fillText("{#val_letter_2#}", 290, 320);
+            ctx.fillText("{#val_letter_1#}", 490, 320);
+            var radians = ('{#angle#}') * Math.PI / 180;
+            var x = 300 + 200 * Math.cos(radians);
+            var y = 300 - 200 * Math.sin(radians);
+            ctx.beginPath();
+            ctx.moveTo(300, 300);
+            ctx.lineTo(x, y);
+            ctx.stroke();
+            ctx.fillText("{#val_letter_3#}", x, y - 10);
+        }
+        drawLines();
+
+        const protractor = document.getElementById("protractor");
+        const rotationSlider = document.getElementById("rotation-slider");
+        const positionSliderX = document.getElementById("position-sliderX");
+        const positionSliderY = document.getElementById("position-sliderY");
+
+        function updateProtractor() {
+            const rotation = rotationSlider.value;
+            const posX = positionSliderX.value;
+            const posY = positionSliderY.value;
+            protractor.style.transform = `rotate(${rotation}deg)`;
+            protractor.style.left = `${posX}px`;
+            protractor.style.top = `${posY}px`;
+        }
+        rotationSlider.addEventListener("input", updateProtractor);
+        positionSliderX.addEventListener("input", updateProtractor);
+        positionSliderY.addEventListener("input", updateProtractor);
+    </script>
+</body>
+</html>
+
+<p>\(\qquad\qquad\)Measured angle is [[input:ans1]]\(^\circ\) [[validation:ans1]][[feedback:prt1]]</p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[[[jsxgraph width="750px" height="500px" input-ref-ans1="ans1Ref"]]
+var board = JXG.JSXGraph.initBoard("jxgbox", {
+    boundingBox: [-4, 3, 4, -2], 
+    axis: false,  
+    showCopyright: false,
+    showNavigation: false,
+    grid: false
+});
+
+// Define base line points
+var baseLineLength = 6; 
+
+var A = board.create("point", [-baseLineLength / 2, 0], { name: "", size: 2, fixed: true });
+var B = board.create("point", [baseLineLength / 2, 0], { name: "", size: 2, fixed: true });
+
+// Draw base line
+var baseLine = board.create("segment", [A, B], { strokeWidth: 2, strokeColor: "black", fixed: true });
+
+// Define the angle vertex (center of the base line)
+var O = board.create("point", [0, 0], { name: "O", size: 2, fixed: true });
+
+// **Increase angle line length (slightly outside the protractor)**
+var angleLineLength = 2.2;  
+
+// Define circle to constrain movement
+var circle = board.create("circle", [O, angleLineLength], { strokeWidth: 1, strokeColor: "#888", dash: 2, fixed: true });
+
+// Define a constrained draggable point for the angle line
+var initialAngle = ('{#angle#}') * (Math.PI / 180); // Default to 60 degrees
+var C = board.create("glider", [
+    Math.cos(initialAngle) * angleLineLength, 
+    Math.sin(initialAngle) * angleLineLength, 
+    circle
+], {
+    name: "C", 
+    size: 2, 
+    strokeColor: "green", 
+    fillColor: "green"
+});
+
+// **Extend the angle line slightly beyond the protractor**
+var angleLine = board.create("segment", [O, C], { strokeWidth: 1.5, strokeColor: "green" });
+
+// **Protractor size (unchanged)**
+var protractorWidth = 4.2;   
+var protractorHeight = 2.1;
+
+// **Draggable point to move protractor (invisible)**
+var movePoint = board.create("point", [0, 1], { 
+    name: "", 
+    size: 0, 
+    fillColor: "transparent", 
+    strokeColor: "transparent", 
+    fixed: false 
+});
+
+// **Add protractor image**
+var protractorImage = board.create("image", [
+    "https://i.imgur.com/PylIXU6.jpeg", 
+    [movePoint.X() - protractorWidth / 2, movePoint.Y() - protractorHeight / 1.95], 
+    [protractorWidth, protractorHeight]  
+], {
+    fixed: false
+});
+
+// **Function to calculate angle dynamically**
+function getAngle() {
+    var angle = Math.atan2(C.Y() - O.Y(), C.X() - O.X()) * (180 / Math.PI);
+    angle = (angle + 360) % 360; // Normalize between 0° - 360°
+    return Math.round(angle);
+}
+
+// **Update angle value in STACK input box when C moves**
+C.on("drag", function() {
+    var currentAngle = getAngle();
+    stack_jxg.set_value(ans1Ref, currentAngle);  // Update STACK answer box
+});
+
+// **Ensure protractor updates when moved**
+board.on('update', function() {
+    protractorImage.setPosition(JXG.COORDS_BY_USER, [
+        movePoint.X() - protractorWidth / 2, 
+        movePoint.Y() - protractorHeight / 1.95
+    ]);
+});
+
+// **Bind C to STACK input (for validation)**
+stack_jxg.bind_point(ans1Ref, C);
+board.update();
+
+[[/jsxgraph]]]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2025012100</text>
+    </stackversion>
+    <questionvariables>
+      <text>val_letter_2:rand([A,B,C,D,N,R,U,X]);/*generating random letters for the base line*/
+val_letter_1:rand([E,F,G,H,P,S,V,Y]);/*generating random letters for the point where the base line and angle line bisect*/
+val_letter_3:rand([J,K,L,M,Q,T,W,Z]);/*generating random letters for the angle line*/
+angle:rand(165)+15;/*generating random angles*/
+ta:angle;/*teacher's answer*/
+/*possible mistakes*/
+ta_1:angle+2;/*mistake 1*/
+ta_2:angle-2;/*mistake 2*/
+ta_3:180-angle;/*mistake 3*/</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="html">
+      <text>1</text>
+    </questionnote>
+    <questiondescription format="moodle_auto_format">
+      <text/>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>ta</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>check correct measure</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>ta</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+  </question>
+</quiz>

@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Distance Conversion in a Safari Rally.</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p>A Safari rally drove the following distances:</p>
+<p><ol Type="i"><li><p>\(13\, 000\,m\)</p></li><li><p>\(240 \, km\)</p></li></ol></p>
+<p>Convert the distance in i to kilometers and ii to meters a Safari rally drove for.</p>
+<p><ol Type="i"><li><p>\(=\)[[input:ans1]] \(km\) [[validation:ans1]][[feedback:prt1]]</p> For i write your answer to \( \text{1 decimal places}\).<p></p></li><li><p>\(=\)[[input:ans2]] \(m\) [[validation:ans2]][[feedback:prt2]]</p></li></ol></p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<h3>Worked solution</h3>
+<p>Before converting the above units, we soul understand the units of conversions which are, </p>
+<p>\(1\, \text{ kilometer} \, (km) = 1\,000 \text{ meters}\, (m)\).</p>
+<p>Therefore;</p>
+<p>To convert meters to kilometers, divide by \(1\,000\).</p>
+<p>To convert kilometers to meters, multiply by \(1\,000\).</p>
+<p><ol Type="i"><li><p> Convert {@random_meters@} meters to kilometers </p><p>\( \begin{align} \text{Kilometers} &= 
+\frac{\text{Meters}}{1\,000} \\ &= \frac{{@random_meters@}}{1\,000} \\ &= {@distance_km@} \,km\end{align}\)</p><p>Therefore, \({@random_meters@} \, m=  {@distance_km@} \,km\) </p>
+</li><li><p>Convert {@random_kilometers@} kilometers to meters</p><p>\( \begin{align} \text{Meters} &= \text{Kilometers} \times     1\,000 \\ &={@random_kilometers@} \times 1\,000 \\ &=  {@converted_m@} \,m \end{align}\)</p><p>Therefore, \({@random_kilometers@}\,km={@converted_m@} \,m \).</p>
+</li></ol></p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2025012100</text>
+    </stackversion>
+    <questionvariables>
+      <text>/* Generate Random Values  for both meters and kilometer*/
+random_meters: rand(10000) + 1000; /* Between 1,000 and 100,000 meters */
+random_kilometers: rand(500) + 10;  /* Between 10 and 500 kilometers */
+
+/*  Convert  Meters to Kilometers   */
+converted_km: random_meters / 1000;
+
+/* Ensure One Decimal Place with  */
+distance_km:decimalplaces(converted_km,1);
+
+/* Convert Kilometers to Meters */
+converted_m: random_kilometers * 1000;</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="html">
+      <text><![CDATA[<p>The distance given in the question in \(m ={@random_meters@}\) </p>
+<p>The distance given in the question in \(km={@random_kilometers@}\) </p>
+<p>The  converted distance in \(km ={@distance_km@} \)</p>
+<p>The distance in \(m ={@converted_m@} \)</p>]]></text>
+    </questionnote>
+    <questiondescription format="html">
+      <text><![CDATA[<p id="author">Henry Onyango</p>
+<p id="reviewer"></p>
+<p id="reviewer"></p>
+
+<p id="description">The question s about converting units of distance that is from kilometers to meters and meters to kilometer. The learner is required to convert the distance covered in a safari rally in kilometers and kilometers respectively having in mind  that to convert meters to kilometers, divide by 1000 and to convert kilometers to meters, multiply by 1000.
+.</p>]]></text>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>distance_km</tans>
+      <boxsize>4</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans2</name>
+      <type>algebraic</type>
+      <tans>converted_m</tans>
+      <boxsize>4</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct conversion m to km </description>
+        <answertest>NumDecPlaces</answertest>
+        <sans>ans1</sans>
+        <tans>distance_km</tans>
+        <testoptions>1</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt2</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct conversion km to m</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans2</sans>
+        <tans>converted_m</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt2-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt2-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <deployedseed>1180933010</deployedseed>
+    <deployedseed>1458309585</deployedseed>
+    <deployedseed>323046467</deployedseed>
+    <deployedseed>759569200</deployedseed>
+    <deployedseed>432403109</deployedseed>
+    <deployedseed>510769718</deployedseed>
+    <deployedseed>482756596</deployedseed>
+    <deployedseed>458461452</deployedseed>
+    <deployedseed>1113283202</deployedseed>
+    <deployedseed>840424566</deployedseed>
+    <deployedseed>80623367</deployedseed>
+    <deployedseed>720047411</deployedseed>
+    <deployedseed>1041869994</deployedseed>
+    <deployedseed>180067510</deployedseed>
+    <deployedseed>1410585984</deployedseed>
+    <deployedseed>926043187</deployedseed>
+    <deployedseed>1335497240</deployedseed>
+    <deployedseed>180218024</deployedseed>
+    <deployedseed>1187759153</deployedseed>
+    <deployedseed>92090009</deployedseed>
+    <deployedseed>1428979421</deployedseed>
+    <deployedseed>1228065149</deployedseed>
+    <deployedseed>1254127059</deployedseed>
+    <deployedseed>567885178</deployedseed>
+    <deployedseed>1293785639</deployedseed>
+    <deployedseed>37482945</deployedseed>
+    <deployedseed>1288877792</deployedseed>
+    <deployedseed>2007341795</deployedseed>
+    <deployedseed>1930700578</deployedseed>
+    <qtest>
+      <testcase>1</testcase>
+      <description>Test case assuming the teacher's input gets full marks.</description>
+      <testinput>
+        <name>ans1</name>
+        <value>distance_km</value>
+      </testinput>
+      <testinput>
+        <name>ans2</name>
+        <value>converted_m</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt1-1-T</expectedanswernote>
+      </expected>
+      <expected>
+        <name>prt2</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt2-1-T</expectedanswernote>
+      </expected>
+    </qtest>
+  </question>
+</quiz>

@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Finding the area of a right-angle triangle</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p>Find the area of the figure shown below.</p>
+[[jsxgraph]]
+var board = JXG.JSXGraph.initBoard('jxgbox', {boundingbox:[-5,10,10,-5],axis: false, showCopyright: false,keepAspectRatio:true});
+        // Defining the points of the triangle
+        var A = board.create('point', [1, 0], {name: 'A',visible:false});
+        var C = board.create('point', [1, 5], {name: 'B',visible:false});
+        var B = board.create('point', [5, 0], {name: 'C',visible:false});
+        // Drawing the triangle using the points
+        var triangle = board.create('polygon', [A, B, C], {fillColor: 'white', borders: {strokeColor: 'black'}});
+        // Labelling the sides of the triangle
+        var labelA = board.create('text', [2.5, -0.5, '{#base#} m'], {fontSize: 12});
+        var labelC = board.create('text', [-1,2.5, '{#height#} m'], {fontSize: 12});
+        var labelB = board.create('text', [4,2.5, ''], {fontSize: 12});
+[[/jsxgraph]]
+
+<p>Area \(=\) [[input:ans1]][[validation:ans1]]\(m^{2}\) [[feedback:prt1]]</p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<h3>Worked soluition</h3>
+<p>To find the area of a right angle triangle,we use the following formula:</p>
+<p>\(Area = {@frac_multipl@} \times Base \times Height\)</p>
+<p>Where:</p>
+<p>Base \(= {@base@}m\)</p>
+<p>Height \(= {@height@}m\)</p>
+<p>Step 1: We substitute the values for the Base and Height into the area formula:</p>
+<p>\(Area = {@frac_multipl@} \times {@base@}m \times {@height@}m\)</p>
+<p>Step 2: We multiply the Base and the Height separately, we have:</p>
+<p>\({@base@}m \times {@height@}m = {@base_times_height@}m^{2} \)</p>
+<p>Step 3: We now multiply  the result above by \({@frac_multipl@}\):</p>
+<p>Area \(= {@frac_multipl@} \times {@base_times_height@}m^{2}\)</p>
+<p>\(\qquad  = {@Area@}m^{2}\)</p>
+<p>Therefore, </p>
+<p>The area of the figure given is \( = {@Area@}m^{2}\)</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2023060500</text>
+    </stackversion>
+    <questionvariables>
+      <text>base:rand_with_step(200,700,2);/*The base length of the right angle triangle*/
+height:rand_with_step(750,1000,2);/*The height length of the right angle triangle*/
+base_times_height:base*height;/*the base multiplied by height*/
+frac_multipl:1/2;/*The constant fraction used in the  formula*/
+Area:frac_multipl*base_times_height;/*Compute the area of the right angle triangle*/
+
+</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="moodle_auto_format">
+      <text><![CDATA[<p>\({@Area@}\)</p>]]></text>
+    </questionnote>
+    <questiondescription format="html">
+      <text/>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>Area</tans>
+      <boxsize>9</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text>/*mistake 1*/
+Area_mistake1:base_times_height;</text>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks the correct area of the figure shown.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>Area</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <description>Use of wrong formula. That is formula of calculating parralelogram instade of rigrt angle triangle.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>Area_mistake1</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>0.5</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-2-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>good trial</p>
+<p>You have used a wrong formula for calculating the area of the triangle given above.</p>
+<p>So kindly look at the step by step worked solution for the correct calculation.</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-2-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <deployedseed>448440944</deployedseed>
+    <deployedseed>45406349</deployedseed>
+    <deployedseed>2112914238</deployedseed>
+    <deployedseed>167822415</deployedseed>
+    <deployedseed>440675320</deployedseed>
+    <deployedseed>1425591462</deployedseed>
+    <deployedseed>1994203863</deployedseed>
+    <deployedseed>1573819599</deployedseed>
+    <deployedseed>1516023889</deployedseed>
+    <deployedseed>1822788437</deployedseed>
+    <deployedseed>2099313370</deployedseed>
+    <deployedseed>211471371</deployedseed>
+    <deployedseed>1592797195</deployedseed>
+    <deployedseed>185709666</deployedseed>
+    <deployedseed>1842209875</deployedseed>
+    <deployedseed>1227260455</deployedseed>
+    <deployedseed>1482728168</deployedseed>
+    <deployedseed>752897032</deployedseed>
+    <deployedseed>1925812</deployedseed>
+    <deployedseed>416002916</deployedseed>
+    <deployedseed>1538999417</deployedseed>
+    <deployedseed>505198038</deployedseed>
+    <deployedseed>743345642</deployedseed>
+    <deployedseed>1823975412</deployedseed>
+    <deployedseed>2032049375</deployedseed>
+    <deployedseed>1131970144</deployedseed>
+    <deployedseed>807012273</deployedseed>
+    <deployedseed>1115215833</deployedseed>
+    <deployedseed>435283089</deployedseed>
+    <deployedseed>343253844</deployedseed>
+    <qtest>
+      <testcase>1</testcase>
+      <description>Test case assuming the teacher's input gets full marks.</description>
+      <testinput>
+        <name>ans1</name>
+        <value>Area</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt1-1-T</expectedanswernote>
+      </expected>
+    </qtest>
+  </question>
+</quiz>

@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Calculating account balances after transactions are made.</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p>{@name_individual@} buys and sells animals.He deposited  Ksh \({@amount_deposit@}\) into his business,households and fees accounts in equal amount.One day he withdrew money from his business account to buy three cows at a cost of Ksh \({@amount_each_cow@}\) each. Later,he deposited Ksh \({@amount_later_deposited@}\) into his business account.Work out his account balance in the business account.</p>
+<p>Business account balance = Ksh[[input:ans1]] [[validation:ans1]][[feedback:prt1]]</p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<h3>Worked solution</h3>
+<p>In order to work out Hassan's business account balance, follow the steps below:</p>
+<p>Step 1:  Determining  the amount deposited in his accounts</p>
+<p>He deposited Ksh \({@amount_deposit@}\)in his three accounts equally , the amount deposited into each   account  is:</p> <p>\(\displaystyle\frac{@amount_deposit@}{@divisor_val@}\)=Ksh {@amount_each_account@}</p></p>
+
+<p>Therefore, </p>
+<p>\(\qquad \qquad\) Business - Ksh {@amount_each_account@} </p>
+<p>\(\qquad \qquad\)  Households  - Ksh  {@amount_each_account@} </p>
+<p>\(\qquad \qquad\)  Fees - Ksh {@amount_each_account@}</p>
+<p>Step 2: Account balance after withdrawal</p>
+<p>He withdrew money from his business account to purchase cows.The amount withdrawn is calculated as follows;</p>
+<p>Multiplying the cost of each cow by the number of cows bought ;</p>
+<p>Ksh \({@amount_each_cow@}\times3\) = ksh {@total_amount_cows@}</p>
+<p>Therefore  the business account balance after withdrawal is:</p>
+<p>Ksh {@amount_each_account@}-Ksh {@total_amount_cows@}=ksh {@business_account@}</p>
+<p>Step 3: Adding the additional deposit to the business account  to obtain the account balance in {@name_individual@}\(\textit{'s}\) business account.</p>
+<p>Account balance in business = Ksh \({@business_account@}\)+Ksh \({@amount_later_deposited@}\)</p>
+<p>\(\qquad \qquad \qquad \qquad \qquad \quad\)=  Ksh\({@business_account_new_balance @}\)</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2023060500</text>
+    </stackversion>
+    <questionvariables>
+      <text>name_individual:rand([Hassan,Mary,Joyce,Henry,Felix,Harriet,Dan,Purity,Wekesa,Rodgers,Shila,Derickson,Jerald,Joe,Cesil,Joyline,Mike,Kepha,Isdora,Emmaculate]);
+amount_deposit:rand_with_step(600000,2000000,3);/*Total amount deposited*/
+amount_each_cow:rand_with_step(500,60000,5000);/*Amount withdrawn for each cow*/
+number_cows:rand(4)+2;/*total number of cows bought*/
+total_amount_cows:number_cows*amount_each_cow;/*Total amount of  cows withdrawn*/
+amount_later_deposited:rand_with_step(30000,50000,5000);/*Amount that was later deposited*/
+divisor_val:3;/*total number of accounts*/
+amount_each_account:amount_deposit/divisor_val;/*Amount for both business account,households account and fees account*/
+business_account:amount_each_account-total_amount_cows;/*The balance in business account after deducting  the total amount withdrawn in buying cows*/
+business_account_new_balance :business_account+amount_later_deposited;/*The account balance in business account*/
+
+
+
+/*Possible mistakes 1*/
+amount_deposit_mistake1:rand_with_step(600000,896532,3);/*Total amount deposited*/
+amount_each_cow_mistake1:rand_with_step(30000,50000,1);/*Amount withdrawn for each cow*/
+amount_later_deposited_mistake1:rand_with_step(30000,50000,3);/*Amount that was later deposited*/
+number_cows_mistake1:rand(4)+2;/*total number of cows bought*/
+divisor_val_mistake1:2/*using only 2 accounts*/
+amount_each_account_mistake1:amount_deposit_mistake1/divisor_val_mistake1;/*Amount for both business account,households account and fees account*/
+business_account_mistake1:amount_each_account_mistake1-(number_cows_mistake1*amount_each_cow);/*The balance in business account after deducting  the total amount withdrawn in buying cows*/
+business_account_new_balance _mistake1:business_account_mistake1+amount_later_deposited_mistake1;/*The account balance in business account*/
+
+
+/*Possible mistakes 2*/
+
+amount_deposit_mistake2:rand_with_step(600000,896532,3);/*Total amount deposited*/
+amount_each_cow_mistake2:rand_with_step(30000,50000,1);/*Amount withdrawn for each cow*/
+amount_later_deposited_mistake2:rand_with_step(30000,50000,3);/*Amount that was later deposited*/
+number_cows_mistake2:rand(4)+2;/*total number of cows bought*/
+divisor_val_mistake2:2/*using only 2 accounts*/
+amount_each_account_mistake2:amount_deposit_mistake2/divisor_val_mistake1;/*Amount for both business account,households account and fees account*/
+business_account_mistake2:amount_each_account_mistake2-(number_cows_mistake2*amount_each_cow);/*The balance in business account after deducting  the total amount withdrawn in buying cows*/
+business_account_new_balance _mistake2:business_account_mistake1+amount_later_deposited_mistake2;/*The account balance in business account*/
+
+
+/*Possible mistakes 3*/
+
+amount_deposit_mistake3:rand_with_step(600000,896532,3);/*Total amount deposited*/
+amount_each_cow_mistake3:rand_with_step(30000,50000,1);/*Amount withdrawn for each cow*/
+amount_later_deposited_mistake3:rand_with_step(30000,50000,3);/*Amount that was later deposited*/
+number_cows_mistake3:rand(4)+2;/*total number of cows bought*/
+divisor_val_mistake3:/*using only 2 accounts*/
+amount_each_account_mistake3:amount_deposit_mistake3/divisor_val_mistake3;/*Amount for both business account,households account and fees account*/
+business_account_mistake3:amount_each_account_mistake3-amount_each_cow_mistake3;/*The balance in business account after deducting  the total amount withdrawn in buying cows*/
+business_account_new_balance _mistake3:business_account_mistake1+amount_later_deposited_mistake3;/*The account balance in business account*/</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="moodle_auto_format">
+      <text><![CDATA[<p>{@name_individual@}</p>
+<p>\({@amount_deposit@}\)</p>
+<p>\({@total_amount_cows@}\)</p>
+<p>\({@business_account_new_balance @}\)</p>]]></text>
+    </questionnote>
+    <questiondescription format="html">
+      <text><![CDATA[<p id="author">Henry Onyango </p>
+<p id="concept">https://docs.google.com/document/d/1KEPv4enWjCIQIfyZEIoNg1dP1emypy5OMLoBt5DVRtk/edit?tab=t.0</p>
+<p id="reviewer"></p>
+<p id="reviewer"></p>
+
+<p id="description">This question deals with order of operation in a word problem question.A student is required to calculate the balances that an account ill remain with in a question having different transaction.</p>]]></text>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>business_account_new_balance </tans>
+      <boxsize>9</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks the correct business account balance</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>business_account_new_balance </tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <deployedseed>1242540537</deployedseed>
+    <deployedseed>705441203</deployedseed>
+    <deployedseed>1152797876</deployedseed>
+    <deployedseed>545923677</deployedseed>
+    <deployedseed>2019650010</deployedseed>
+    <deployedseed>1278818721</deployedseed>
+    <deployedseed>1610529630</deployedseed>
+    <deployedseed>1408973321</deployedseed>
+    <deployedseed>54837935</deployedseed>
+    <deployedseed>1981666866</deployedseed>
+    <deployedseed>894381565</deployedseed>
+    <deployedseed>1963422038</deployedseed>
+    <deployedseed>1136796365</deployedseed>
+    <deployedseed>1204359038</deployedseed>
+    <deployedseed>541801309</deployedseed>
+    <deployedseed>207338711</deployedseed>
+    <deployedseed>41206619</deployedseed>
+    <deployedseed>2100166404</deployedseed>
+    <deployedseed>862939348</deployedseed>
+    <deployedseed>864799795</deployedseed>
+    <deployedseed>1267025787</deployedseed>
+    <deployedseed>1125201450</deployedseed>
+    <deployedseed>650353518</deployedseed>
+    <deployedseed>547196821</deployedseed>
+    <deployedseed>1579004257</deployedseed>
+    <deployedseed>1972215424</deployedseed>
+    <deployedseed>1362713170</deployedseed>
+    <deployedseed>1816847043</deployedseed>
+    <deployedseed>329903433</deployedseed>
+    <deployedseed>918737888</deployedseed>
+    <deployedseed>331802517</deployedseed>
+    <deployedseed>1119247076</deployedseed>
+    <deployedseed>1849441799</deployedseed>
+    <deployedseed>477849797</deployedseed>
+    <deployedseed>767108018</deployedseed>
+    <deployedseed>817172421</deployedseed>
+    <deployedseed>854541964</deployedseed>
+    <deployedseed>1031353927</deployedseed>
+    <deployedseed>1035062948</deployedseed>
+    <deployedseed>234741939</deployedseed>
+    <deployedseed>1897751076</deployedseed>
+    <deployedseed>380829665</deployedseed>
+    <deployedseed>1253372533</deployedseed>
+    <deployedseed>1058337290</deployedseed>
+    <deployedseed>769785496</deployedseed>
+    <deployedseed>1362465970</deployedseed>
+    <deployedseed>1167326857</deployedseed>
+    <deployedseed>1743228568</deployedseed>
+    <deployedseed>861260880</deployedseed>
+    <deployedseed>1808559302</deployedseed>
+    <deployedseed>2131046984</deployedseed>
+    <deployedseed>2143660096</deployedseed>
+    <deployedseed>225169952</deployedseed>
+    <deployedseed>923763990</deployedseed>
+    <deployedseed>1431471583</deployedseed>
+    <deployedseed>925587829</deployedseed>
+    <deployedseed>1138652295</deployedseed>
+    <deployedseed>1184302866</deployedseed>
+    <deployedseed>724569386</deployedseed>
+    <deployedseed>926714623</deployedseed>
+    <deployedseed>333296827</deployedseed>
+    <deployedseed>1026392603</deployedseed>
+    <deployedseed>1526569160</deployedseed>
+    <deployedseed>455359452</deployedseed>
+    <deployedseed>707110912</deployedseed>
+    <deployedseed>1380970436</deployedseed>
+    <deployedseed>1429235433</deployedseed>
+    <deployedseed>1056530130</deployedseed>
+    <deployedseed>649242959</deployedseed>
+    <deployedseed>1199130624</deployedseed>
+    <deployedseed>1774373247</deployedseed>
+    <deployedseed>909243384</deployedseed>
+    <deployedseed>1423062422</deployedseed>
+    <deployedseed>1897182971</deployedseed>
+    <deployedseed>147995501</deployedseed>
+    <deployedseed>2049775465</deployedseed>
+    <deployedseed>1190676227</deployedseed>
+    <deployedseed>741167464</deployedseed>
+    <deployedseed>1151928916</deployedseed>
+    <deployedseed>700984428</deployedseed>
+    <deployedseed>1520996517</deployedseed>
+    <deployedseed>2013109573</deployedseed>
+    <deployedseed>1860497028</deployedseed>
+    <deployedseed>1620139755</deployedseed>
+    <deployedseed>753757116</deployedseed>
+    <deployedseed>1531298709</deployedseed>
+    <deployedseed>704447543</deployedseed>
+    <deployedseed>800175739</deployedseed>
+    <deployedseed>103422146</deployedseed>
+    <deployedseed>51875540</deployedseed>
+    <deployedseed>1647199989</deployedseed>
+    <deployedseed>1271604596</deployedseed>
+    <deployedseed>193954605</deployedseed>
+    <deployedseed>52101544</deployedseed>
+    <deployedseed>629444900</deployedseed>
+    <deployedseed>409593027</deployedseed>
+    <deployedseed>133846366</deployedseed>
+    <deployedseed>388782952</deployedseed>
+    <deployedseed>1950964994</deployedseed>
+    <deployedseed>1563419787</deployedseed>
+    <qtest>
+      <testcase>1</testcase>
+      <description>Test case assuming the teacher's input gets full marks.</description>
+      <testinput>
+        <name>ans1</name>
+        <value>business_account_new_balance </value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt1-1-T</expectedanswernote>
+      </expected>
+    </qtest>
+  </question>
+</quiz>

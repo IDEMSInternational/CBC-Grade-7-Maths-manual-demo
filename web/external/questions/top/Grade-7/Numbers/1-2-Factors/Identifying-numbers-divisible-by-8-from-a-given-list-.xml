@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Identifying numbers divisible by 8 from a given list.</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p>Which of the following number is not divisible by 8?</p>
+<p>[[input:ans1]] [[validation:ans1]][[feedback:prt1]]</p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<p>A number is divisible by 8 if the number formed by the ones, the tens and the hundreds place value digits is divisible by 8. </p>
+<p> Also, a number is divisible by 8 if its 3 last digits are zeros.</p>
+<p> To check if a number is divisible by 8:</p>
+<p>a). We extract the last three digits of the number and check if that three-digit number is divisible by 8</p>
+<p>b). If the 3- digit number is divisible by 8, then the whole number is divisible by 8.</p>
+<p>c). If the 3- digit number is not divisible by 8, then the whole number is not divisible by 8.</p>
+
+[[ if test="member(1, ta_index)" ]]
+<p>
+<ul>
+<li>
+<p>\({@num_list_3@}\) is divisible by \(8\), since  \(8\)  divides \({@last_3_num_3@}\) without a remainder. </p>
+<p>\({@last_3_num_3@} \div 8 = {@div_result_3@} \)</p>
+</li>
+</ul>
+</p>
+
+[[/ if ]]
+
+[[ if test="member(2, ta_index)" ]]
+<p>
+<ul>
+<li>
+<p> By definition, \({@num_list_6@}\) is divisible by 8 since its 3 last digits are zeros.</p>
+</li>
+</ul>
+</p>
+
+[[/ if ]]
+
+[[ if test="member(3, ta_index)" ]]
+<p>
+<ul>
+<li>
+<p> \({@num_list_5@}\) is divisible by \(8\), since  \(8\)  divides \({@last_3_num_5@}\) without a remainder.</p>
+<p> \({@last_3_num_5@} \div 8 = {@div_result_5@}\)</p>
+</li>
+</ul>
+</p>
+
+[[/ if ]]
+
+[[ if test="member(4, ta_index)" ]]
+<p>
+<ul>
+<li>
+<p> \({@num_list_8@}\) is divisible by \(8\), since  \(8\)  divides \({@last_3_num_8@}\) without a remainder.</p>
+<p> \({@last_3_num_8@} \div 8 = {@div_result_8@} \)</p>
+</li>
+</ul>
+</p>
+
+[[/ if ]]
+
+[[ if test="member(5, ta_index)" ]]
+<p>
+<ul>
+<li>
+<p>  \({@num_list_1@}\) is not divisible by \(8\), since  \(8\)  divides \({@last_3_num_1@}\) leaving a remainder.</p>
+<p> \({@last_3_num_1@} \div 8 =  \) \({@floor(last_3_num_1/8)@}\) remainder \({@mod(num_list_1,8)@}\)</p>
+</li>
+</ul>
+</p>
+[[/ if ]]
+[[ if test="member(6, ta_index)" ]]
+<p>
+<ul>
+<li>
+<p>  \({@num_list_4@}\) is not divisible by \(8\), since  \(8\)  divides \({@last_3_num_4@}\) leaving a remainder. </p>
+<p> \({@last_3_num_4@} \div 8 = \) \({@floor(last_3_num_4/8)@} \) remainder \({@mod(num_list_4,8)@}\) </p>
+</li>
+</ul>
+</p>
+[[/ if ]]
+[[ if test="member(7, ta_index)" ]]
+<p>
+<ul>
+<li>
+<p>  \({@num_list_2@}\) is not divisible by \(8\), since  \(8\)  divides \({@last_3_num_2@}\) leaving a remainder. </p>
+<p> \({@last_3_num_2 @} \div 8 = \)  \({@floor(last_3_num_2/8)@} \) remainder \({@mod(num_list_2,8)@}\)</p>
+</li>
+</ul>
+</p>
+[[/ if ]]
+
+[[ if test="member(8, ta_index)" ]]
+<p>
+<ul>
+<li>
+<p> \({@num_list_7@}\) is divisible by \(8\), since  \(8\)  divides \({@last_3_num_7@}\) without leaving a remainder.</p>
+<p> \({@last_3_num_7@} \div 8 = {@div_result_7@} \)</p>
+</li>
+</ul>
+</p>
+[[/ if ]]]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2025012100</text>
+    </stackversion>
+    <questionvariables>
+      <text>/* Function to extract the last three digits of a number */
+last_three_digits(n) := remainder(n, 1000);
+
+/* Function to divide last three digits by 8 */
+division_result(n) := floor(last_three_digits(n)) / 8;
+
+/* Random numbers divisible by 8 */
+num_list_3 : rand_with_step(320, 800, 8);
+num_list_6 : rand_with_step(8000, 11000, 1000);
+num_list_5 : rand_with_step(3200, 4800, 8);
+num_list_7 : rand_with_step(7432, 9456, 8);
+num_list_8 : rand_with_step(1600, 2500, 8);
+
+/* Define a function to check if a number is NOT divisible by 8 */
+is_not_divisible_by_8(n) := mod(n,8) # 0;
+/* Generate a list of 40 random numbers between 4000 and 8000 */
+random_list : makelist(rand(4000) + 4000, i, 1, 40);
+/* Filter the numbers that are NOT divisible by 8 */
+filtered_list : sublist(random_list, lambda([n], is_not_divisible_by_8(n)));
+
+
+/* Random numbers not divisible by 8*/
+num_list_1 : filtered_list[1];
+num_list_2 : filtered_list[3];
+num_list_4 : filtered_list[5];
+
+/* Extract last three digits for each number */
+last_3_num_1 : last_three_digits(num_list_1);
+last_3_num_2 : last_three_digits(num_list_2);
+last_3_num_3 : last_three_digits(num_list_3);
+last_3_num_4 : last_three_digits(num_list_4);
+last_3_num_5 : last_three_digits(num_list_5);
+last_3_num_6 : last_three_digits(num_list_6);
+last_3_num_7 : last_three_digits(num_list_7);
+last_3_num_8 : last_three_digits(num_list_8);
+
+/* Perform division for each last three-digit value */
+div_result_1 : division_result(num_list_1);
+div_result_2 : division_result(num_list_2);
+div_result_3 : division_result(num_list_3);
+div_result_4 : division_result(num_list_4);
+div_result_5 : division_result(num_list_5);
+div_result_6 : division_result(num_list_6);
+div_result_7 : division_result(num_list_7);
+div_result_8 : division_result(num_list_8);
+
+correct_answer:rand_selection([
+[1, true, num_list_3],[2, true, num_list_6],
+[3, true, num_list_5],[4, true, num_list_8],[5, true, num_list_7]],3);
+
+incorrect_answers:rand_selection([
+[6, false, num_list_1],[7, false, num_list_4],
+[8, false, num_list_2]], 3);
+
+ta: random_permutation(append(correct_answer,incorrect_answers));
+ta_index: sort(makelist(x[1], x, ta));
+ta_largest: last(ta_index);
+
+
+</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="moodle_auto_format">
+      <text><![CDATA[<p>Number divisible by 8- \({@num_list_3@}\) </p>
+<p>Number divisible by 8-\({@num_list_6@}\)</p>
+<p>Number divisible by 8-\({@num_list_5@}\)</p>
+<p>Number divisible by 8-\({@num_list_7@}\)</p>
+<p>Number divisible by 8-\({@num_list_8 @}\)</p>]]></text>
+    </questionnote>
+    <questiondescription format="html">
+      <text><![CDATA[<p id="author"> Sheila Cherotich</p>
+<p id="concept"></p>
+<p id="reviewer"></p>
+<p id="reviewer"></p>
+<p id="description"> The question requires the student to identify numbers that are divisible by 8 through extracting the last 3 digits and dividing it by 8 to determine if the results is a multiple of 8.</p>]]></text>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>checkbox</type>
+      <tans>ta</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>0</mustverify>
+      <showvalidation>0</showvalidation>
+      <options>nonotanswered</options>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for numbers divisible by 8</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>mcq_correct(ta)</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <description>Checks for a number not divisible by 8</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>incorrect_answers</tans>
+        <testoptions/>
+        <quiet>1</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-2-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>You have failed to correctly divide the last three digits extracted from the given number by 8. Please ensure that the division is performed correctly to identify if the number is divisible by 8.<p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-2-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <deployedseed>211212977</deployedseed>
+    <deployedseed>552155094</deployedseed>
+    <deployedseed>888248148</deployedseed>
+    <deployedseed>1205577544</deployedseed>
+    <deployedseed>965719702</deployedseed>
+    <deployedseed>2119824459</deployedseed>
+    <deployedseed>1211080409</deployedseed>
+    <deployedseed>714851844</deployedseed>
+    <deployedseed>1074027619</deployedseed>
+    <deployedseed>1275627298</deployedseed>
+    <deployedseed>434973973</deployedseed>
+    <deployedseed>606215183</deployedseed>
+    <deployedseed>398672885</deployedseed>
+    <deployedseed>656734026</deployedseed>
+    <deployedseed>1909635581</deployedseed>
+    <deployedseed>1520729218</deployedseed>
+    <deployedseed>1747535798</deployedseed>
+    <deployedseed>1385108397</deployedseed>
+    <deployedseed>705643249</deployedseed>
+    <deployedseed>369762930</deployedseed>
+    <deployedseed>1365463487</deployedseed>
+    <deployedseed>800477578</deployedseed>
+    <deployedseed>1632940201</deployedseed>
+    <deployedseed>159216320</deployedseed>
+    <deployedseed>383423963</deployedseed>
+    <deployedseed>1156620942</deployedseed>
+    <deployedseed>1011178853</deployedseed>
+    <deployedseed>1632952911</deployedseed>
+    <deployedseed>1565549873</deployedseed>
+    <deployedseed>1089366930</deployedseed>
+    <deployedseed>744140792</deployedseed>
+    <deployedseed>877716253</deployedseed>
+    <deployedseed>1081672743</deployedseed>
+    <deployedseed>1869040992</deployedseed>
+    <deployedseed>1178525871</deployedseed>
+    <deployedseed>507637387</deployedseed>
+    <deployedseed>2136160174</deployedseed>
+    <deployedseed>1849007311</deployedseed>
+    <deployedseed>217866927</deployedseed>
+    <deployedseed>1677737256</deployedseed>
+    <deployedseed>1786833591</deployedseed>
+    <deployedseed>244137883</deployedseed>
+    <deployedseed>2047496577</deployedseed>
+    <deployedseed>340396948</deployedseed>
+    <deployedseed>801163312</deployedseed>
+    <deployedseed>1975094610</deployedseed>
+    <deployedseed>948659503</deployedseed>
+    <deployedseed>675483419</deployedseed>
+    <deployedseed>535713979</deployedseed>
+    <deployedseed>172091190</deployedseed>
+    <deployedseed>1795728500</deployedseed>
+    <deployedseed>1305509493</deployedseed>
+    <deployedseed>227467201</deployedseed>
+    <deployedseed>1666566201</deployedseed>
+    <deployedseed>1544647793</deployedseed>
+    <deployedseed>473600454</deployedseed>
+    <deployedseed>1721075878</deployedseed>
+    <deployedseed>928247711</deployedseed>
+    <deployedseed>819459694</deployedseed>
+    <deployedseed>1298581562</deployedseed>
+    <deployedseed>1312765553</deployedseed>
+    <deployedseed>1672482966</deployedseed>
+    <deployedseed>1823225458</deployedseed>
+    <deployedseed>954998738</deployedseed>
+    <deployedseed>1522641403</deployedseed>
+    <deployedseed>1099838150</deployedseed>
+    <deployedseed>1924303023</deployedseed>
+    <deployedseed>1456532684</deployedseed>
+    <deployedseed>1439303895</deployedseed>
+    <deployedseed>108983156</deployedseed>
+    <deployedseed>1742428613</deployedseed>
+    <deployedseed>963247773</deployedseed>
+    <deployedseed>1942609239</deployedseed>
+    <deployedseed>540935571</deployedseed>
+    <deployedseed>1592310815</deployedseed>
+    <deployedseed>1409866619</deployedseed>
+    <deployedseed>1622361707</deployedseed>
+    <deployedseed>2009066092</deployedseed>
+    <deployedseed>45251705</deployedseed>
+    <deployedseed>1238176537</deployedseed>
+    <deployedseed>1855854064</deployedseed>
+    <deployedseed>1915162971</deployedseed>
+    <deployedseed>783678611</deployedseed>
+    <deployedseed>768243530</deployedseed>
+    <deployedseed>333693695</deployedseed>
+    <deployedseed>961235615</deployedseed>
+    <deployedseed>144926398</deployedseed>
+    <deployedseed>886591869</deployedseed>
+    <deployedseed>2076629133</deployedseed>
+    <deployedseed>1486815236</deployedseed>
+    <deployedseed>69579104</deployedseed>
+    <deployedseed>1617818191</deployedseed>
+    <deployedseed>1350047383</deployedseed>
+    <deployedseed>879631843</deployedseed>
+    <deployedseed>1437886992</deployedseed>
+    <deployedseed>635463794</deployedseed>
+    <deployedseed>1281494686</deployedseed>
+    <deployedseed>337294470</deployedseed>
+    <deployedseed>866556190</deployedseed>
+    <deployedseed>1970333639</deployedseed>
+  </question>
+</quiz>

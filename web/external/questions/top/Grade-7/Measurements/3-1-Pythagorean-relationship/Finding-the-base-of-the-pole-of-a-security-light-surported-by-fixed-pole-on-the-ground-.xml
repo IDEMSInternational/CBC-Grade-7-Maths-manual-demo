@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Finding the base of the pole of a security light surported by fixed pole on the ground.</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p>An electric post is supported by a wire \({@c@}\, m\) long .The wire is tired at a height of \({@a@}\, m \) on the post above the ground. Find the distance from the post to where the wire is pegged on the ground.</p>
+
+
+
+
+
+
+<p>The distance from the post to where the wire is pegged on the ground \(=\)[[input:ans1]] \(m\)[[validation:ans1]][[feedback:prt1]]</p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<h3>Worked solution<h3>
+<p>We apply the Pythagorean relationship that states \(a^2+b^2=c^2\)</p>
+<p>Where;</p>
+<p>\(a\) is the base, \(b\) is the height and \(c\) is the longest side (hypotenuse). </p>
+<p>From the above question, it clearly shows that;</p>
+<p>The height of the post \(b = {@a@}\, m\)</p>
+<p>The wire (hypotenuse) \(c= {@c@} \,m\) </p>
+<p>The distance from the post to the peg on the ground\(a\) is unknown.</p>
+<p>We now apply the formula to get the distance from the post to the peg on the ground</p>
+<p>\({@a@}^2+a^2={@c@}^2\)</p>
+<p>\({@height_squared@}+a^2={@hypotenuse_squared@}\)</p>
+<p>\(a^2={@hypotenuse_squared@}-{@height_squared@}\)</p>
+<p>\(a= \sqrt{{@sum_base_and_height@}}\)</p>
+<p>\(a={@b@}\,m\)</p>
+<p>Therefore;</p>
+<p>The distance from the post to where the wire is pegged on the ground is \({@b@}\,m\).</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2025012100</text>
+    </stackversion>
+    <questionvariables>
+      <text>/* The question for electric pole*/
+random_wire_length() := block(
+    /* Generate a random hypotenuse between 10 and 30 */
+    c : rand(21) + 30, /* Ensuring c is at least 10 */
+
+    hypotenuse_squared:c^2,
+    
+    /* Generate a valid height (a) less than c */
+    a : rand(c-2) + 2, /* Ensuring a is at least 2 */
+     
+    height_squared:a^2,
+    
+    /*sum of the squares*/
+    
+    sum_base_and_height:hypotenuse_squared-height_squared,
+    
+    
+    /* Calculate b using the Pythagorean theorem */
+    b2 : c^2 - a^2,
+    b : isqrt(b2), /* Ensure b is an integer */
+   
+     
+    /*Mistake 1*/
+    b_1:c - a, /*treating the pythagorean relationship a simple sum rather than    a squared relationship*/
+
+
+
+    /* Ensure b is a whole number */
+    if b^2 = b2 then return([a, b, c]) else random_wire_length()
+);
+
+
+/* Run the function */
+random_wire_length();</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="html">
+      <text><![CDATA[<p>The distance from the post to where the wire is pegged on the ground \(={@b@}\)</p>]]></text>
+    </questionnote>
+    <questiondescription format="html">
+      <text><![CDATA[<p id="author">Henry Onyango</p>
+<p id="reviewer"></p>
+<p id="reviewer"></p>
+
+<p id="description">The question provided is for the Pythagorean relationship. The leaner is required to calculate tha base of the pole supported by two poles from the ground .</p>]]></text>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>b</tans>
+      <boxsize>4</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checkes the crrect answer of the base of the pole being surported.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>b</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <description>Checks for the incorrect Application of the Pythagorean Theorem</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>b_1</sans>
+        <tans>ans1</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-2-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>Oops! You might have incorrectly treated the Pythagorean relationship as a simple equation, interpreting it as \( a + b = c\) instead of \( a^2 + b^2= c^2\). This leads to the wrong answer.</p>
+<p>The correct approach is to use the Pythagorean Theorem by substituting the values of\( a\), \(b\), and \(c\) into
+\( a^2+ b^2 = c^2\), which will give the correct solution. Kindly check the step-by-step solution below for accuracy. </p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-2-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <deployedseed>1165511236</deployedseed>
+    <deployedseed>825295312</deployedseed>
+    <deployedseed>1443179332</deployedseed>
+    <deployedseed>820728551</deployedseed>
+    <deployedseed>713113353</deployedseed>
+    <deployedseed>199258755</deployedseed>
+    <deployedseed>1890297515</deployedseed>
+    <deployedseed>1797463126</deployedseed>
+    <deployedseed>1174908767</deployedseed>
+    <deployedseed>1505631692</deployedseed>
+    <deployedseed>1260488601</deployedseed>
+    <qtest>
+      <testcase>1</testcase>
+      <description>Test case assuming the teacher's input gets full marks.</description>
+      <testinput>
+        <name>ans1</name>
+        <value>b</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt1-1-T</expectedanswernote>
+      </expected>
+    </qtest>
+    <qtest>
+      <testcase>2</testcase>
+      <description>The correct approach is to use the Pythagorean Theorem by substituting the values of a, b, and c into a² + b² = c², which will give the correct solution. Kindly check the step-by-step solution below for accuracy.</description>
+      <testinput>
+        <name>ans1</name>
+        <value>b_1</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>0.0000000</expectedscore>
+        <expectedpenalty/>
+        <expectedanswernote>prt1-2-T</expectedanswernote>
+      </expected>
+    </qtest>
+  </question>
+</quiz>

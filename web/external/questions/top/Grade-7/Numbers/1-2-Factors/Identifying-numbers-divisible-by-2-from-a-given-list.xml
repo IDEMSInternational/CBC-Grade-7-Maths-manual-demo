@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Identifying numbers divisible by 2 from a given list</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p>Which of the following numbers are divisible by \(2\)? [[input:ans1]] [[validation:ans1]][[feedback:prt1]]</p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<h3>Worked solution</h3>
+<p>A number is divisible \(2\) if the digit in the ones place value is an even number or zero.</p>
+<p>The numbers \({@correct_answers[1][3]@},{@correct_answers[2][3]@}\) are divisible by \(2\) because the digits in the ones place value are either even numbers or zero.</p>
+<p>The numbers \({@incorrect_answers[1][3]@},{@incorrect_answers[2][3]@},{@incorrect_answers[3][3]@}\) are not divisible by \(2\) because the digits in the ones place value are odd numbers.</p>
+<p></p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2025012100</text>
+    </stackversion>
+    <questionvariables>
+      <text>/*Divisibility test for 2*/
+
+/*numbers divisible by two*/
+num1_div_by_2:rand_with_step(10000,15000,2);
+num2_div_by_2:rand_with_step(5000,9000,2);
+
+/*numbers not divisible by two*/
+num1_not_div_by_2:rand_with_step(5001,7000,2);
+num2_not_div_by_2:rand_with_step(7001,9000,2);
+num3_not_div_by_2:rand_with_step(10001,15000,2);
+
+/*correct answer*/
+correct_answers:rand_selection([
+[1, true, num1_div_by_2],[2,true,num2_div_by_2]], 2);
+
+/*incorrect answers*/
+incorrect_answers:rand_selection([
+[3, false, num1_not_div_by_2],
+[4, false, num2_not_div_by_2],
+[5, false, num3_not_div_by_2]
+], 3);
+
+ta: random_permutation(append(correct_answers,incorrect_answers));
+ta_index: sort(makelist(x[1], x, ta));
+ta_largest: last(ta_index); 
+
+
+
+</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="html">
+      <text><![CDATA[<p>Number divisible by 2: \({@num1_div_by_2@}\)</p>
+<p>Number divisible by 2: \({@num2_div_by_2@}\)</p>
+<p>Number not divisible by 2: \({@num1_not_div_by_2@}\)</p>
+<p>Number not divisible by 2: \({@num2_not_div_by_2@}\)</p>
+<p>Number not divisible by 2: \({@num3_not_div_by_2@}\)</p>]]></text>
+    </questionnote>
+    <questiondescription format="html">
+      <text><![CDATA[<p id="author">Daniel Murunga</p>
+<p id="concept"></p>
+<p id="reviewer"></p>
+<p id="reviewer"></p>
+<p id="description">The question requires the student to examine the digit in the ones place value. If the digit is an even number, then the number is divisible by 2.</p>]]></text>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>checkbox</type>
+      <tans>ta</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>0</mustverify>
+      <showvalidation>0</showvalidation>
+      <options>nonotanswered</options>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct number that is a divisible by 2</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>mcq_correct(ta) </tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+  </question>
+</quiz>

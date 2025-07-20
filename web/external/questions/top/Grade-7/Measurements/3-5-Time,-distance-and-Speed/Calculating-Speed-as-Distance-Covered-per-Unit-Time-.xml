@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Calculating Speed as Distance Covered per Unit Time.</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p>A pilot took \({@time_take_random_fraction@}\) hours to cover a distance of \({@distance_covered@} km\), find the speed in kilometers per hour.</p>
+<p>Speed = [[input:ans1]] [[validation:ans1]] \(km/hr\)[[feedback:prt1]] </p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<h3>Worked Solution.</h3>
+<p>Time taken is \({@time_take_random_fraction@}\) hrs, and distance covered is \({@distance_covered@} km\).</p>
+<p>So, to find the speed of the plane we use the formula below.</p>
+<p>\(Speed = \frac{Distance (km)}{Time Taken (h)}\)</p>
+<p>Substituting the distance and time we have;</p>
+<p>\(Speed = \frac{{@distance_covered@} km} { {@time_take_random_fraction@} hr}\)</p>
+<p>Multiplying the numerator by the reciprocal of the denominator we have;</p>
+<p>\(speed = {@distance_covered@} km×{@time_reciprocal@} hr\)</p>
+<p>Therefore, the speed is ;</p>
+<p>\(speed = {@speed@} km/hr\)</p>
+<p></p>
+<p></p><p></p><p></p><p></p><p></p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2023060500</text>
+    </stackversion>
+    <questionvariables>
+      <text>/*PG143 EXE6 No 4 :TOP SCHOLAR Mathematics GD7*/
+
+/* Generate a random fraction where numerator and denominator are between 1 and 10 */
+numerator: rand_with_step(2,8,2);
+denominator: rand_with_step(9,19,3);
+time_take_random_fraction: (numerator / denominator);
+time_reciprocal:1/time_take_random_fraction;
+/*Distance Covered*/
+distance_covered:rand_with_step(100,2000,50);
+speed:decimalplaces(distance_covered/time_take_random_fraction,2);
+
+
+
+/*Mistakes*/
+/*Mistake 1 - Multiplying the the distance by time given instead of dividing the the distance over time*/
+speed_mistake_1:decimalplaces(distance_covered*time_take_random_fraction,2);</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="moodle_auto_format">
+      <text><![CDATA[<p>\({@speed@}\)</p>]]></text>
+    </questionnote>
+    <questiondescription format="html">
+      <text><![CDATA[<p id="author">Rodgers Maragia</p>
+<p id="concept">https://docs.google.com/document/d/1N2kL2Ru_jDZba-X9S9Qfr12PTFIsFGCXQM7Ll8h1hTc/edit?usp=sharing</p>
+<p id="reviewer"></p>
+<p id="reviewer"></p>
+<p id="description">In this question the student is required to calculate the speed of the plane using a given distance and time taken. The student is supposed to use the formula for speed to end up with the correct answer of speed.</p>]]></text>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>speed</tans>
+      <boxsize>10</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct speed of the plane.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>speed</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <description/>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>speed_mistake_1</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-2-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>You have multiplied the distance by time. Instead use the formula below. </p>
+<p>\(speed = \frac{Distance (km)}{Time Taken (hr)}\)</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-2-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <deployedseed>1251190079</deployedseed>
+    <deployedseed>1903528966</deployedseed>
+    <deployedseed>132528606</deployedseed>
+    <deployedseed>1848681701</deployedseed>
+    <deployedseed>1621934907</deployedseed>
+    <deployedseed>1157408811</deployedseed>
+    <deployedseed>176539966</deployedseed>
+    <deployedseed>24527772</deployedseed>
+    <deployedseed>735969968</deployedseed>
+    <deployedseed>251408551</deployedseed>
+    <deployedseed>362811290</deployedseed>
+    <deployedseed>2084630491</deployedseed>
+    <deployedseed>503278620</deployedseed>
+    <deployedseed>1248937790</deployedseed>
+    <deployedseed>1887336445</deployedseed>
+    <deployedseed>409512222</deployedseed>
+    <deployedseed>1992780832</deployedseed>
+    <deployedseed>1077418040</deployedseed>
+    <deployedseed>1351365170</deployedseed>
+    <deployedseed>1410023255</deployedseed>
+    <deployedseed>1622240027</deployedseed>
+    <deployedseed>317493790</deployedseed>
+    <deployedseed>1597955788</deployedseed>
+    <deployedseed>979463205</deployedseed>
+    <deployedseed>2123504546</deployedseed>
+    <deployedseed>2030518000</deployedseed>
+    <deployedseed>785173342</deployedseed>
+    <deployedseed>2056072804</deployedseed>
+    <deployedseed>1326797415</deployedseed>
+    <deployedseed>1070890162</deployedseed>
+    <deployedseed>110393946</deployedseed>
+    <deployedseed>778939575</deployedseed>
+    <deployedseed>221759576</deployedseed>
+    <deployedseed>620344007</deployedseed>
+    <deployedseed>1553009035</deployedseed>
+    <deployedseed>564800748</deployedseed>
+    <deployedseed>1205256185</deployedseed>
+    <deployedseed>1783969290</deployedseed>
+    <deployedseed>811263389</deployedseed>
+    <deployedseed>1270564541</deployedseed>
+    <deployedseed>1743615267</deployedseed>
+    <deployedseed>97029312</deployedseed>
+    <deployedseed>1213893159</deployedseed>
+    <deployedseed>233704162</deployedseed>
+    <deployedseed>299846620</deployedseed>
+    <deployedseed>132743548</deployedseed>
+    <deployedseed>729871049</deployedseed>
+    <deployedseed>1882252582</deployedseed>
+    <deployedseed>999470529</deployedseed>
+    <deployedseed>1789374341</deployedseed>
+    <qtest>
+      <testcase>1</testcase>
+      <description>Test case assuming the teacher's input gets full marks.</description>
+      <testinput>
+        <name>ans1</name>
+        <value>speed</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt1-1-T</expectedanswernote>
+      </expected>
+    </qtest>
+  </question>
+</quiz>

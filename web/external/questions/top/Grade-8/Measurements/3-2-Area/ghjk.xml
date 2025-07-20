@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>ghjk</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p></p><p>[[input:ans1]] [[validation:ans1]][[feedback:prt1]]</p>
+
+[[jsxgraph width="300px" height="300px"]]
+var board = JXG.JSXGraph.initBoard(divid, {
+    boundingbox: [-8, 8, 8, -8], // Adjusted bounding box to fit labels
+    axis: false,
+    showCopyright: false,
+    showNavigation: false,
+    grid: false
+});
+
+// Center point O
+var O = board.create('point', [0, 0], {fixed: true, visible: false, name: 'O'});
+
+var radius = 7;
+var angleDegrees = 45;
+var angleRadians = angleDegrees * Math.PI / 180;
+
+// Point A on the circumference
+var Ax = radius * Math.cos(0);
+var Ay = radius * Math.sin(0);
+var A = board.create('point', [Ax, Ay], { fixed: true, visible: false, name: 'A'});
+
+// Point B on the circumference
+var Bx = radius * Math.cos(angleRadians);
+var By = radius * Math.sin(angleRadians);
+var B = board.create('point', [Bx, By], { fixed: true, visible: false, name: 'B'});
+
+// Draw the arc (sector boundary)
+var arcSector = board.create('arc', [O, A, B], {
+    strokeColor: 'black',
+    strokeWidth: 1,
+    fillColor: 'lightblue',
+    fillOpacity: 0.5,
+    anticlockwise: true
+});
+
+// Draw the two segments (radii)
+var segmentOA = board.create('segment', [O, A], { strokeColor: 'black', strokeWidth: 1 });
+var segmentOB = board.create('segment', [O, B], { strokeColor: 'black', strokeWidth: 1 });
+
+// Label for the radius OA
+var midPointOA = [(O.X() + A.X()) / 2, (O.Y() + A.Y()) / 2];
+board.create('text', midPointOA, '7 cm', { anchorX: 'middle', anchorY: 'middle' });
+
+// Angle arc and label inside the sector
+var angleArc = board.create('arc', [O, radius * 0.6, 0, angleRadians], {
+    strokeColor: 'black',
+    strokeWidth: 1,
+    fillColor: 'none',
+    anticlockwise: true
+});
+board.create('text', [radius * 0.4 * Math.cos(angleRadians / 2), radius * 0.4 * Math.sin(angleRadians / 2)], '45°', { anchorX: 'middle', anchorY: 'middle', fontSize: 14 });
+
+// Label for the sector AOB
+var sectorLabelX = radius * 0.7 * Math.cos(angleRadians / 2);
+var sectorLabelY = radius * 0.7 * Math.sin(angleRadians / 2);
+board.create('text', [sectorLabelX, sectorLabelY], 'AOB', { anchorX: 'middle', anchorY: 'middle', fontSize: 16 });
+
+[[/jsxgraph]]]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text>1</text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2025012100</text>
+    </stackversion>
+    <questionvariables>
+      <text/>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="html">
+      <text>1</text>
+    </questionnote>
+    <questiondescription format="html">
+      <text>1</text>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>1</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>etryty</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>1</sans>
+        <tans>1</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+  </question>
+</quiz>

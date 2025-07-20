@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Construction of an irregular quadrilateral given two sides and an angle.</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p>Construct a quadrilateral \(ABCD\) such that line \(AB = {@AB@}\,cm,\,BC = {@AD@}\,cm\) and \(\angle\,ABC = {@angle_ABC@}^\circ.\) Measure:</p>
+<p>\(\angle BAD = \)[[input:ans1]]\(^\circ\) [[validation:ans1]][[feedback:prt1]]</p>
+<p>Length \(CD = \)[[input:ans2]] (1 decimal place) [[validation:ans2]][[feedback:prt2]]</p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<h3>Worked Solution.</h3>
+[[jsxgraph]]
+var board = JXG.JSXGraph.initBoard('jxgbox',{
+            boundingbox:[-3,5,5,0], 
+            axis:false,
+            showCopyright:false,keepAspectRatio:true
+
+
+        });
+
+        var p1 = board.create('point', [0.0, 0.0],{name:'A',visible:true});
+        var p2 = board.create('point', {#coordinate_pointB#},{name:'B',visible:true});
+        var p3 = board.create('point', {#coordinate_pointD#},{name:'D',visible:true});
+
+        var pp1 = board.create('parallelpoint', [p1, p2, p3],{name:'C',visible:true});
+        
+        var Parallelogram = board.create('polygon',[p1,p2,pp1,p3]);
+        
+        
+
+        var angle1 = board.create('angle', [p1,p3,pp1], {type:'sector', orthoType:'square', orthoSensitivity:2, radius:0.4, name:'y', visible:false});
+        var angle2 = board.create('angle', [pp1,p2,p1], {type:'sector', orthoType:'square', orthoSensitivity:2, radius:0.4, name:'{#angle_ABC#}&deg', visible:true});
+        var angle3 = board.create('angle', [p3,pp1,p2], {type:'sector', orthoType:'square', orthoSensitivity:2, radius:0.4, name:'x', visible:false});
+        var angle4 = board.create('angle', [p2,p1,p3], {type:'sector', orthoType:'square', orthoSensitivity:2, radius:0.4, name:'z', visible:false});
+[[/jsxgraph]]]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2025012100</text>
+    </stackversion>
+    <questionvariables>
+      <text>/*randomize the lengths of the quadrilateral*/
+AB:rand_with_step(4,9,.1);
+AD:rand_with_step(5,9,.1);
+
+/*angle BAD*/
+angle_BAD:rand_with_step(30,160,1);
+angle_ABC:180-angle_BAD;
+
+/*coordinates of the quadrilateral */
+dtr(d) := d*%pi/180; /* Convert degrees to radians */
+angle_to_point(r, d) := [float(r*cos(dtr(d))), float(r*sin(dtr(d)))];
+coordinate_pointB: angle_to_point(AB, 0);
+coordinate_pointD: angle_to_point(AD, angle_BAD);
+ta_1:angle_BAD;
+ta_2:AB;</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="html">
+      <text><![CDATA[<p>{@AB@}</p>
+<p>{@AD@}</p>
+<p>{@coordinate_pointB@}</p>
+<p>{@coordinate_pointD@}</p>
+<p>{@angle_ABC@}</p>
+<p>{@angle_BAD@}</p>]]></text>
+    </questionnote>
+    <questiondescription format="html">
+      <text/>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>ta_1</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans2</name>
+      <type>algebraic</type>
+      <tans>ta_2</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct value of the angle BAD.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>ta_1</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt2</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct value of the length CD</description>
+        <answertest>NumDecPlaces</answertest>
+        <sans>ans2</sans>
+        <tans>ta_2</tans>
+        <testoptions>1</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt2-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt2-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <deployedseed>2031652401</deployedseed>
+    <deployedseed>1247538039</deployedseed>
+    <deployedseed>1837524424</deployedseed>
+    <deployedseed>897250206</deployedseed>
+    <deployedseed>1799341130</deployedseed>
+    <deployedseed>1546988276</deployedseed>
+    <deployedseed>1449045025</deployedseed>
+    <deployedseed>822453096</deployedseed>
+    <deployedseed>875733739</deployedseed>
+    <deployedseed>479126830</deployedseed>
+    <deployedseed>107135723</deployedseed>
+    <deployedseed>1917609529</deployedseed>
+    <deployedseed>534728408</deployedseed>
+    <deployedseed>1212038254</deployedseed>
+    <deployedseed>1269325049</deployedseed>
+    <deployedseed>453247183</deployedseed>
+    <deployedseed>1714784596</deployedseed>
+    <deployedseed>472976701</deployedseed>
+    <deployedseed>584527880</deployedseed>
+    <deployedseed>1360238809</deployedseed>
+    <deployedseed>1882591380</deployedseed>
+    <deployedseed>1173936505</deployedseed>
+    <deployedseed>525111503</deployedseed>
+    <deployedseed>1828165166</deployedseed>
+    <deployedseed>1380227820</deployedseed>
+    <deployedseed>1615258158</deployedseed>
+    <deployedseed>2071774850</deployedseed>
+    <deployedseed>981590303</deployedseed>
+    <deployedseed>49982041</deployedseed>
+    <deployedseed>595845909</deployedseed>
+    <deployedseed>688947244</deployedseed>
+    <deployedseed>2055498163</deployedseed>
+    <deployedseed>692497844</deployedseed>
+    <deployedseed>624703545</deployedseed>
+    <deployedseed>1448169022</deployedseed>
+    <deployedseed>1858444851</deployedseed>
+    <deployedseed>1471900293</deployedseed>
+    <deployedseed>1542423552</deployedseed>
+    <deployedseed>1634366818</deployedseed>
+    <deployedseed>1361174771</deployedseed>
+    <deployedseed>667932505</deployedseed>
+    <deployedseed>275264247</deployedseed>
+    <deployedseed>121084845</deployedseed>
+    <deployedseed>1450434222</deployedseed>
+    <deployedseed>2078742334</deployedseed>
+    <deployedseed>1082717032</deployedseed>
+    <deployedseed>926174395</deployedseed>
+    <deployedseed>620386218</deployedseed>
+    <deployedseed>1676102501</deployedseed>
+    <deployedseed>1924024583</deployedseed>
+  </question>
+</quiz>

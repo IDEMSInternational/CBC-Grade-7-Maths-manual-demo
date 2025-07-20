@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Identifying integers in different situations</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p>Which of the following numbers are integers.</p>
+<p>[[input:ans1]] [[validation:ans1]][[feedback:prt1]]</p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<h3>Worked solution</h3>
+<p>An integer is a whole number that can be positive, negative, or zero. It does not include fractions or decimals.</p>
+<p>\({@int_number1@}\) is a whole number with no fractional or decimal part, therefore it is an integer.</p>
+<p>\({@int_number2@}\) is also a whole number with no fractional or decimal part and thus it is an integer..</p>
+<p>\({@decimal_number@}\) is a decimal number and not a whole number thus not an integer.</p>
+<p>\({@fraction@}\)  is expressed as a fraction, which means it is not a whole number and thus not an integer.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2025012100</text>
+    </stackversion>
+    <questionvariables>
+      <text><![CDATA[int_number1:rand_with_step(-20,80,1); /* Generate a random integer between -20 and 80 with step size 1 */
+
+divisor:rand([10,100]); /* Randomly choose a divisor from the list [10,100] */
+
+decimal_number:float(rand_with_prohib(-30,90,[-30,-20,-10,10,20,30,40,50,60,70,80,90,int_number])/divisor);
+/* Generate a decimal number by dividing a random number (excluding specified prohibited values) between -30 and 90 by the divisor */
+
+int_number2:rand_with_step(100,600,1); /* Generate a second random integer between 100 and 600 */
+
+numerator:rand(20)+1; /* Generate a random numerator between 1 and 20 */
+
+denominator:rand(20)+1; /* Generate a random denominator between 1 and 20 */
+
+if numerator > denominator then (k:numerator,numerator:denominator,denominator:k)
+/* Swap numerator and denominator if numerator is greater, ensuring a proper fraction */
+
+/* simp:false;  Disable automatic simplification in Maxima */
+
+fraction:numerator/denominator; /* Create a fraction using the generated numerator and denominator */
+
+/*correct answer*/
+correct_answers:rand_selection([
+[1, true, int_number1],[2,true,int_number2]], 2);
+/* Randomly select two correct answers from the given integers */
+
+/*incorrect answers*/
+incorrect_answers:rand_selection([[3, false, decimal_number],[4,false,fraction]], 2);
+/* Randomly select two incorrect answers: a decimal and a fraction */
+
+/* Combine correct and incorrect answers, then randomly shuffle them */
+ta: random_permutation(append(correct_answers,incorrect_answers));
+
+/* Extract only the indices from the shuffled list */
+ta_index: sort(makelist(x[1], x, ta));
+
+/* Get the largest index value from the shuffled list */
+ta_largest: last(ta_index);
+
+]]></text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="html">
+      <text><![CDATA[<p> Integer number \({@int_number1@}\)</p>
+<p> Integer number  \({@int_number2@}\)</p>
+<p> Decimal number\({@decimal_number@}\)</p>
+<p> Fraction \({@fraction@}\)</p>
+<p> Teacher's answer \({@ta@}\)</p>]]></text>
+    </questionnote>
+    <questiondescription format="html">
+      <text><![CDATA[<p id="author">Daniel Murunga </p>
+<p id="concept"></p>
+<p id="reviewer"></p>
+<p id="reviewer"></p>
+<p id="description">Students are required to identify and select the integer values from the provided set of numbers.</p>]]></text>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>checkbox</type>
+      <tans>ta</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>0</mustverify>
+      <showvalidation>0</showvalidation>
+      <options>nonotanswered</options>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct indentified integer numbers</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>mcq_correct(ta)</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+  </question>
+</quiz>

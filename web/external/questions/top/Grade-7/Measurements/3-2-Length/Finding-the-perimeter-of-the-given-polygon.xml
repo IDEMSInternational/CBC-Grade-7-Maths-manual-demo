@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Finding the perimeter of the given polygon</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p> Find the perimeter of the polygon below. </p>
+<p>Perimeter =  [[input:ans1]] cm [[validation:ans1]][[feedback:prt1]]</p>
+[[jsxgraph]]
+var board = JXG.JSXGraph.initBoard('jxgbox', {boundingbox: [-5, 10, 10, -5],
+                keepAspectRatio:true, showCopyright:false, showNavigation:true ,axis:false});
+
+        const A = board.create('point', [0,6], { name: 'A', visible: false });
+        const B = board.create('point', [4,6], { name: 'B', visible: false });
+        const C = board.create('point', [4,3], { name: 'C', visible: false});
+        const D = board.create('point', [8,3], { name: 'D', visible: false });
+        const E = board.create('point', [8,0], { name: 'E', visible: false });
+        const F = board.create('point', [0,0], { name: 'F', visible: false });
+
+        board.create('polygon', [A, B, C, D,E,F], {borders: {
+                                               strokeWidth: 1,
+                                               strokeColor: 'blue',},
+                                              fillColor: 'none',});
+        
+        board.create('line',[[0,5.7],[0.3,5.7]],{straightFirst: false,
+                                    straightLast: false,
+                                    strokeWidth: 1,
+                                    strokeColor:  'blue'});
+        board.create('line',[[0.3,5.7],[0.3,6]],{straightFirst: false,
+                                    straightLast: false,
+                                    strokeWidth: 1,
+                                    strokeColor:  'blue'});
+        
+        board.create('line',[[3.7,5.7],[4,5.7]],{straightFirst: false,
+                                    straightLast: false,
+                                    strokeWidth: 1,
+                                    strokeColor:  'blue'});
+        board.create('line',[[3.7,5.7],[3.7,6]],{straightFirst: false,
+                                    straightLast: false,
+                                    strokeWidth: 1,
+                                    strokeColor:  'blue'});
+        
+        board.create('line',[[4,3.3],[4.3,3.3]],{straightFirst: false,
+                                    straightLast: false,
+                                    strokeWidth: 1,
+                                    strokeColor:  'blue'});
+        board.create('line',[[4.3,3.3],[4.3,3]],{straightFirst: false,
+                                    straightLast: false,
+                                    strokeWidth: 1,
+                                    strokeColor:  'blue'});
+
+       board.create('line',[[7.7,2.7],[8,2.7]],{straightFirst: false,
+                                    straightLast: false,
+                                    strokeWidth: 1,
+                                    strokeColor:  'blue'});
+        board.create('line',[[7.7,2.7],[7.7,3]],{straightFirst: false,
+                                    straightLast: false,
+                                    strokeWidth: 1,
+                                    strokeColor:  'blue'});
+
+        board.create('line',[[7.7,0.3],[8,0.3]],{straightFirst: false,
+                                    straightLast: false,
+                                    strokeWidth: 1,
+                                    strokeColor:  'blue'});
+        board.create('line',[[7.7,0.3],[7.7,0]],{straightFirst: false,
+                                    straightLast: false,
+                                    strokeWidth: 1,
+                                    strokeColor:  'blue'});
+
+        board.create('line',[[0,0.3],[0.3,0.3]],{straightFirst: false,
+                                    straightLast: false,
+                                    strokeWidth: 1,
+                                    strokeColor:  'blue'});
+        board.create('line',[[0.3,0.3],[0.3,0]],{straightFirst: false,
+                                    straightLast: false,
+                                    strokeWidth: 1,
+                                    strokeColor:  'blue'});
+
+        board.create('text', [1.5,6.5, '{#side1#} cm'], { fontSize: 14 });
+        board.create('text', [4.2, 4.5, '{#side2#} cm'], { fontSize: 14});
+        board.create('text', [6,3.5, '{#side3#} cm'], { fontSize: 14 });
+        board.create('text', [8.2, 1.5, '{#side4#} cm'], { fontSize: 14});
+        board.create('text', [4,-0.45, '{#side5#} cm'], { fontSize: 14});
+        board.create('text', [-1.5, 3, '{#side6#} cm'], { fontSize: 14});
+
+[[/jsxgraph]]]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<h3>Worked solution</h3>
+<p>The perimeter of a polygon is the total length of all its sides. Therefore, we can calculate the perimeter by adding the lengths of all the sides:
+ </p>
+<p>Perimeter \(= {@side1@}\) cm + \({@side2@}\) cm +  \({@side3@}\) cm +  \({@side4@}\) cm +  \({@side5@}\) cm +  \({@side6@}\) cm</p>
+<p>Perimeter \(= {@ta@}\) cm</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2023060500</text>
+    </stackversion>
+    <questionvariables>
+      <text>side5:rand(15)+12;  /* Generate a random length for side 5 of the polygon */
+side3:rand(9)+2;    /* Generate a random length for side 3 of the polygon */
+side1:side5-side3;  /* Calculate the length of side 1 based on side 5 and side 3 */
+
+side6:rand(25)+15;  /* Generate a random length for side 6 of the polygon */
+side2:rand(10)+3;   /* Generate a random length for side 2 of the polygon */
+side4:side6-side2;  /* Calculate the length of side 4 based on side 6 and side 2 */
+
+ta:side6+side5+side4+side3+side2+side1; /* Calculate the total perimeter of the polygon */</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="moodle_auto_format">
+      <text><![CDATA[<p>Perimeter of the polygon \({@ta@}\)</p>]]></text>
+    </questionnote>
+    <questiondescription format="html">
+      <text><![CDATA[<p id="author">Daniel Murunga</p>
+<p id="concept">https://docs.google.com/document/d/102Bfa1l4YnQtBUkIWr1tWc1M73QgveVE5ovHS-o7kYE/edit?tab=t.0</p>
+<p id="reviewer"></p>
+<p id="reviewer"></p>
+<p id="description">To calculate the perimeter of a polygon, first identify the length of each side. Next, add the lengths of all sides together. The sum of these lengths is the perimeter of the polygon.<p>]]></text>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>ta</tans>
+      <boxsize>5</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct perimeter of the polygon.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>ta</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+  </question>
+</quiz>

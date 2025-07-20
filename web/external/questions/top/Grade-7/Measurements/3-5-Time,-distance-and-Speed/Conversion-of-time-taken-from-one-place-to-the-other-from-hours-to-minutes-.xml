@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Conversion of time taken from one place to the other from hours to minutes.</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p>\({@name@}\) took \({@hours@}\) hours and \({@minutes@}\) minutes to \({@transport_means@}\) from the market to his home. How long was the journey in minutes?
+</p>
+<p>Time in minutes \(=\) [[input:ans1]][[validation:ans1]]Minutes[[feedback:prt1]]</p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<h3>Worked solution</h3>
+<p>Conversion of hours to minutes:</p>
+<p>since 1 hour = 60 minutes</p>
+<p> \({@hours@}\) hours = (\({@hours@}\) \(\times\) 60) minutes = \({@convert_hours@}\) minutes</p>
+<p>Total time taken in minutes is: </p> 
+<p>(\({@convert_hours@}\) + \({@minutes@}\)) minutes = \({@total_time@}\) minutes</p>
+<p> Therefore, \({@name@}\) takes \({@total_time@}\) minutes to \({@transport_means@}\) home.]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2023060500</text>
+    </stackversion>
+    <questionvariables>
+      <text>name:rand([Albania,Gabriella,Rivaan,Amelia,Eliud,Allan,Ariaz,Adrian,Jayden,Harriet,Harrison,Andorra,Gavin,Liam,Finley,Shillah,Romio,Henry,Mitch,Oliver,Aurelia,Martina,Emma,Jane,Lucia, JohnJanes,Emilia,Marie,Hema]);/*names*/
+transport_means:rand([walk,ride,drive,run]);/*means of transport*/
+hours:rand_with_step(2,12,1);/*hours used to walk home*/
+minutes:rand_with_step(2,59,1);/*hours used to walk home*/
+convert_hours:hours*60;/*conversion of hours to minutes*/
+total_time:convert_hours+minutes;/*total time taken in minutes*/
+
+convert_hours_mistake1:hours/60 + minutes;/*conversion of hours to minutes through division*/
+
+convert_hours_mistake2:hours*100;/*conversion of hours to minutes using 100*/
+mistake2:convert_hours_mistake2 + minutes;/* total time taken*/
+</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="moodle_auto_format">
+      <text><![CDATA[<p> \({@hours@}\) </p>
+<p> \({@minutes@}\) </p>
+<p> \({@convert_hours@}\)</p>
+<p> \({@total_time@}\)</p>
+ ]]></text>
+    </questionnote>
+    <questiondescription format="html">
+      <text><![CDATA[Question Description tags:
+<p id="author">Harriet Mogaka</p>
+<p id="concept">https://docs.google.com/document/d/1ddWL5bgUuUdGQodUJZ_JmxifuBqH61GTvqiyBkTioc4/edit?tab=t.0</p>
+<p id="reviewer"></p>
+<p id="reviewer"></p>
+
+<p id="description">The question is testing the student's ability to convert time from hours to minutes and adding to sum up the total distance walked from one place to the other.</p>]]></text>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>total_time</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Conversion of time from hours to minutes.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>total_time</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <description>Converting hours through division</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>convert_hours_mistake1</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-2-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>You have worked out division instead of multiplication. Kindly check the worked solution and multiply whenever converting hours to minutes.</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>2</falsenextnode>
+        <falseanswernote>prt1-2-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>2</name>
+        <description>Converting hours using 100</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>mistake2</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-3-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>It seems you converted using 1 hour = 100 minutes. Remember that time is not base 10. We convert hours using 60 minutes. Kindly check the work solution to note the difference.</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-3-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <deployedseed>317622801</deployedseed>
+    <deployedseed>1775771785</deployedseed>
+    <deployedseed>1315396614</deployedseed>
+    <deployedseed>406866331</deployedseed>
+    <deployedseed>2057715390</deployedseed>
+    <deployedseed>1575246331</deployedseed>
+    <deployedseed>1994966964</deployedseed>
+    <deployedseed>1782686902</deployedseed>
+    <deployedseed>221941092</deployedseed>
+    <deployedseed>1851210197</deployedseed>
+    <deployedseed>1244864945</deployedseed>
+    <deployedseed>464544556</deployedseed>
+    <deployedseed>2113779712</deployedseed>
+    <deployedseed>993599446</deployedseed>
+    <deployedseed>1714527285</deployedseed>
+  </question>
+</quiz>

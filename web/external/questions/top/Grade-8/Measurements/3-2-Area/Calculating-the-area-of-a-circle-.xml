@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Calculating the area of a circle.</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p>A circular open space has a diameter of \({@diameter@} \) {@Units@}. Find its area. (Use \(\pi = \frac{22}{7})\)</p>
+
+
+
+
+
+
+<p>Area \(=\)[[input:ans1]]\({@Units@}^2\) [[validation:ans1]][[feedback:prt1]]</p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<p>The area of a circle is;</p>
+<p> \(\text{A}= \pi r^2\)</p>
+<p>Given diameter \(\text{d}= {@diameter@}\) \({@Units@}\), we find:</p>
+<p>\(\text{r}= \frac{{@diameter@}}{2}={@radius@}\) {@Units@}</p>
+<p> Substitute The value of \(\text{r}\) to the formulae:</p>
+
+
+ <p>  \( \begin{align}
+\text{A}&={@Pi@} \times {@radius@}^2  \\  
+&=  {@Pi@} \times {@radius@} \times  {@radius@} \\
+&={@Area@}\, {@Units@}^2 
+
+\end{align}  \)</p>
+
+<p>Therefore, the area of the  circular open space is {@Area@} \({@Units@}^2\)</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2025012100</text>
+    </stackversion>
+    <questionvariables>
+      <text>/* Generate random integer between 1 and 10, then multiply by 7 to get radius */
+Units:rand([mm,cm,m,ha,mi,yd,ft,in]);
+radius : 7 * (rand_with_step(1,30,1));
+diameter : 2 * radius; /*The diameter of the circular space*/
+Pi:22/7;  /*uUsing pi=22/7*/
+Area:Pi*radius^2; /*The area of the circular space */
+
+/*Mistakes 1: Using Diameter Instead of Radius:*/
+Area_1:Pi*diameter^2; 
+
+/*Mistakes 1: Misapplying the Formula . Using the circumference of the circle as A= 2pir*/
+Area_2:2*Pi*radius; </text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="html">
+      <text><![CDATA[<p>\(\text{The diameter of the circle is}\) {@diameter@}</p>
+<p>\(\text{The calculated radius }=\){@radius@}</p>
+<p>\(\text{Are}=\){@Area@}</p>]]></text>
+    </questionnote>
+    <questiondescription format="html">
+      <text><![CDATA[<p id="author">Henry Onyango</p>
+<p id="reviewer"></p>
+<p id="reviewer"></p>
+
+<p id="description">The question provided is about finding the area of a circular open space. The learner is required to calculate the area of the space in different units and also use the formula π = 22/7.</p>]]></text>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>Area</tans>
+      <boxsize>9</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct area of the circular of open space.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>Area</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <description>Checks for Using Diameter Instead of Radius</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>Area_1</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0.3</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-2-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>You might have substituted the diameter {@diameter@} {@Units@}directly into the area formula.<p>
+<p>This is incorrect because the area of a circle requires the radius, not the diameter.<p>
+<p>\(\textbf{What You Should Do}\):<p>
+<p>Always remember to divide the diameter by \(2\) to get the radius before substituting into the formular.<p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>2</falsenextnode>
+        <falseanswernote>prt1-2-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>2</name>
+        <description>checks for Misapplying the Formula as A=2pi r</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>Area_2</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-3-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>You might have used the formula for circumference: \(\text{C}=2 \pi r\) instead of \(\text{A}=\pi r^2\)<p>
+<p>\(\textbf{What You Should Do}\):<p>
+<p>Carefully read the question and identify whether you're being asked to find area or circumference. For area, the correct formula is:<p>
+<p>\(\text{A}=\pi r^2\)<p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-3-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <deployedseed>1976482775</deployedseed>
+    <deployedseed>305467145</deployedseed>
+    <deployedseed>2121297712</deployedseed>
+    <deployedseed>1377860854</deployedseed>
+    <deployedseed>613007092</deployedseed>
+    <deployedseed>1803854650</deployedseed>
+    <deployedseed>1433598180</deployedseed>
+    <deployedseed>1097796609</deployedseed>
+    <deployedseed>549053627</deployedseed>
+    <deployedseed>737709323</deployedseed>
+    <deployedseed>1795786220</deployedseed>
+    <deployedseed>1930056541</deployedseed>
+    <deployedseed>1890311888</deployedseed>
+    <deployedseed>129960639</deployedseed>
+    <deployedseed>349380076</deployedseed>
+    <deployedseed>1838317367</deployedseed>
+    <deployedseed>1015917882</deployedseed>
+    <deployedseed>1422569944</deployedseed>
+    <deployedseed>946010891</deployedseed>
+    <deployedseed>1994171644</deployedseed>
+    <deployedseed>658983481</deployedseed>
+    <deployedseed>1193466802</deployedseed>
+    <deployedseed>1628394825</deployedseed>
+    <qtest>
+      <testcase>1</testcase>
+      <description>Test case assuming the teacher's input gets full marks.</description>
+      <testinput>
+        <name>ans1</name>
+        <value>Area</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt1-1-T</expectedanswernote>
+      </expected>
+    </qtest>
+    <qtest>
+      <testcase>2</testcase>
+      <description>Checks for Using Diameter Instead of Radius</description>
+      <testinput>
+        <name>ans1</name>
+        <value>Area_1</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>0.3000000</expectedscore>
+        <expectedpenalty/>
+        <expectedanswernote>prt1-2-T</expectedanswernote>
+      </expected>
+    </qtest>
+    <qtest>
+      <testcase>3</testcase>
+      <description>checks for Misapplying the Formula as A=2pi r</description>
+      <testinput>
+        <name>ans1</name>
+        <value>Area_2</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>0.0000000</expectedscore>
+        <expectedpenalty/>
+        <expectedanswernote>prt1-3-T</expectedanswernote>
+      </expected>
+    </qtest>
+  </question>
+</quiz>

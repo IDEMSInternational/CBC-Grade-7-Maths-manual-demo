@@ -1,0 +1,517 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Finding angles in a parallelogram.</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p>Calculate the angle marked with a letters in the figure below.</p>
+
+[[jsxgraph]]
+ const board = JXG.JSXGraph.initBoard('jxgbox', {
+        boundingbox: [-5, 5, 5, -5], 
+        axis: false
+    });
+
+    // Define parallelogram vertices
+    let A = board.create('point', [-3, 2], { name: 'A', size: 3, color: 'black' });
+    let B = board.create('point', [2, 2], { name: 'B', size: 3, color: 'black' });
+    let C = board.create('point', [3, -1], { name: 'C', size: 3, color: 'black' });
+    let D = board.create('point', [-2, -1], { name: 'D', size: 3, color: 'black' });
+
+    // Draw parallelogram sides
+    board.create('polygon', [A, B, C, D], { borders: { strokeColor: 'blue', strokeWidth: 2 } });
+
+    // Draw angles at each vertex
+    // let angleA = board.create('angle', [D, A, B], { radius: 0.8, fillColor: 'orange', label: { text: '∠A' } });
+    // let angleB = board.create('angle', [A, B, C], { radius: 0.8, fillColor: 'green', label: { text: '∠B' } });
+    // let angleC = board.create('angle', [B, C, D], { radius: 0.8, fillColor: 'purple', label: { text: '∠C' } });
+    // let angleD = board.create('angle', [C, D, A], { radius: 0.8, fillColor: 'yellow', label: { text: '∠D' } });
+    let angleA = board.create('angle', [A,B,C], {type:'sector', orthoSensitivity:2, radius:0.5,name: '{#angle_ABC#}'});
+    let angleB = board.create('angle', [B,C,D], {type:'sector', orthoSensitivity:2, radius:0.5,name: '{#angle_BCD#}'});
+    let angleC = board.create('angle', [D,A,B], {type:'sector', orthoSensitivity:2, radius:0.5,name: '{#angle_DAB#}'});
+    let angleD = board.create('angle', [C,D,A], {type:'sector', orthoSensitivity:2, radius:0.5,name: '{#angle_CDA#}&deg'});
+[[/jsxgraph]]
+<p>{@angle_DAB@}[[input:ans1]]\(^\circ\) [[validation:ans1]][[feedback:prt1]]</p>
+<p>{@angle_BCD@} [[input:ans2]]\(^\circ\) [[validation:ans2]][[feedback:prt2]]</p>
+<p>{@angle_ABC@} [[input:ans3]] \(^\circ\)[[validation:ans3]][[feedback:prt3]]</p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<h3>Worked solution</h3>
+<p>Angles marked {@angle_DAB@} and \({@angle_CDA@}^\circ\) are co-interior angles.Therefore:</p>
+<p>Angle marked {@angle_DAB@} = \(180^\circ-{@angle_CDA@}^\circ\).</p>
+<p>\(\qquad{@ta_2@}^\circ\)</p>
+<p>Angles marked {@angle_BCD@} and \({@angle_CDA@}^\circ\) are co-interior angles.Therefore:</p>
+<p>Angle marked {@angle_BCD@} = \(180^\circ-{@angle_CDA@}^\circ.\)</p>
+<p>\(\qquad{@ta_3@}^\circ\) </p>
+<p>Angles marked  {@angle_BCD@} and {@angle_ABC@} are co-interior angles.Therefore:<p/>
+<p> \({@angle_BCD@}+{@angle_ABC@}=180^\circ\)</p>
+<p> {@angle_BCD@}=\(180^\circ-{@angle_ABC@}\)</p>
+<p>\(\qquad{@ta_1@}^\circ\)<p/>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2025012100</text>
+    </stackversion>
+    <questionvariables>
+      <text>/*angles in a parallelogram*/
+angle_ABC:rand([a,b,c,d,f,z]);/*generates random numbers for the known angle */
+angle_DAB:rand([g,h,j,k,w,x,y]);/*generates random numbers for the known angle */
+angle_BCD:rand([n,m,p,q,r,s,t,u]);/*generates random numbers for the known angle */
+angle_CDA:rand(50)+93;/*randomized values of the known angle CDA*/
+known_angle_ABC:angle_CDA;/*opposite angles in a parallelogram are equal*/
+known_angle_DAB:180-angle_CDA;/*co-interior angles*/
+known_angle_BCD:180-angle_CDA;/*co-interior angles*/
+ta_1:known_angle_ABC;/*teacher's ansewr*/
+ta_2:known_angle_DAB;/*teacher's ansewr*/
+ta_3:known_angle_BCD;/*teacher's ansewr*/
+/*possible mistakes*/
+angle_DAB_1:angle_CDA;/*confusing opposite angles and co-interior angles*/
+ta_4:angle_DAB_1;
+angle_BCD_1:angle_CDA;/*confusing opposite angles and co-interior angles*/
+ta_5:angle_BCD_1;
+angle_ABC_1:180-angle_CDA;/*confusing opposite angles add upto 180 degrees*/
+ta_6:angle_ABC_1
+</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="html">
+      <text><![CDATA[<p>Angle BAD  {@ta_2@}</p>
+<p>Angle BCD {@ta_3@}</p>
+<p>Angle ABC  {@t_1@}</p>]]></text>
+    </questionnote>
+    <questiondescription format="html">
+      <text><![CDATA[<p id="author">Eric Morara </p>
+<p id="concept">https://ecampus.idems.international/question/bank/history/history.php?entryid=127162&returnurl=%2Fquestion%2Fedit.php%3Fcourseid%3D430%26cat%3D18812%252C121817&courseid=430&filter=%7B%22category%22%3A%7B%22jointype%22%3A1%2C%22values%22%3A%5B%2218812%22%5D%2C%22filteroptions%22%3A%7B%22includesubcategories%22%3Afalse%7D%7D%2C%22hidden%22%3A%7B%22jointype%22%3A1%2C%22values%22%3A%5B0%5D%7D%7D</p>
+<p id="reviewer"></p>
+<p id="reviewer"></p>
+
+<p id="description">The question requires the learner to find the unknown angles in a parallelogram</p>]]></text>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>ta_2</tans>
+      <boxsize>8</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans2</name>
+      <type>algebraic</type>
+      <tans>ta_3</tans>
+      <boxsize>8</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans3</name>
+      <type>algebraic</type>
+      <tans>ta_1</tans>
+      <boxsize>8</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>checks for correct angle</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>ta_2</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <description>confusing opposite angles and co-interior angles</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>ta_4</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-2-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>It appears you've treated opposite angles in the parallelogram as if they were co-interior angles.  Remember, co-interior angles are formed on the same side of a transversal.</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-2-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt2</name>
+      <value>2.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>checks for correct angle</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans2</sans>
+        <tans>ta_3</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt2-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt2-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <description>confusing opposite angles and co-interior angles</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans2</sans>
+        <tans>ta_5</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt2-2-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>It appears you've treated opposite angles in the parallelogram as if they were co-interior angles.  Remember, co-interior angles are formed on the same side of a transversal.</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt2-2-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt3</name>
+      <value>3.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>checks for correct angle</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans3</sans>
+        <tans>ta_1</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt3-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt3-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <description/>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans3</sans>
+        <tans>ta_6</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt3-2-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>It looks like you might have thought opposite angles in a parallelogram sum to \(180^\circ\).  Just a reminder that opposite angles in a parallelogram are actually equal to each other.</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt3-2-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <deployedseed>2085728039</deployedseed>
+    <deployedseed>309077761</deployedseed>
+    <deployedseed>338121287</deployedseed>
+    <deployedseed>974383612</deployedseed>
+    <deployedseed>1904098823</deployedseed>
+    <deployedseed>166044944</deployedseed>
+    <deployedseed>1753404452</deployedseed>
+    <deployedseed>766878137</deployedseed>
+    <deployedseed>661346757</deployedseed>
+    <deployedseed>1578441359</deployedseed>
+    <deployedseed>1567684140</deployedseed>
+    <deployedseed>1865862262</deployedseed>
+    <deployedseed>395035922</deployedseed>
+    <deployedseed>1906252066</deployedseed>
+    <deployedseed>857835455</deployedseed>
+    <deployedseed>166926786</deployedseed>
+    <deployedseed>1455530972</deployedseed>
+    <deployedseed>1317616296</deployedseed>
+    <deployedseed>1732976006</deployedseed>
+    <deployedseed>1682352094</deployedseed>
+    <deployedseed>1720143049</deployedseed>
+    <deployedseed>1352881489</deployedseed>
+    <deployedseed>1248058661</deployedseed>
+    <deployedseed>674781584</deployedseed>
+    <deployedseed>1493593845</deployedseed>
+    <deployedseed>1853092852</deployedseed>
+    <deployedseed>15426966</deployedseed>
+    <deployedseed>394611301</deployedseed>
+    <deployedseed>200309771</deployedseed>
+    <deployedseed>1349438841</deployedseed>
+    <deployedseed>1399491536</deployedseed>
+    <deployedseed>833166374</deployedseed>
+    <deployedseed>405406608</deployedseed>
+    <deployedseed>631229259</deployedseed>
+    <deployedseed>2083907149</deployedseed>
+    <deployedseed>435638372</deployedseed>
+    <deployedseed>1109126261</deployedseed>
+    <deployedseed>1365322733</deployedseed>
+    <deployedseed>1477549798</deployedseed>
+    <deployedseed>1803651678</deployedseed>
+    <deployedseed>271956243</deployedseed>
+    <deployedseed>1748246380</deployedseed>
+    <deployedseed>1454082841</deployedseed>
+    <deployedseed>1952970443</deployedseed>
+    <deployedseed>796045311</deployedseed>
+    <deployedseed>600472731</deployedseed>
+    <deployedseed>957091988</deployedseed>
+    <deployedseed>1105415612</deployedseed>
+    <deployedseed>1736923805</deployedseed>
+    <deployedseed>1529829697</deployedseed>
+    <deployedseed>1812562739</deployedseed>
+    <deployedseed>174182650</deployedseed>
+    <deployedseed>372384543</deployedseed>
+    <deployedseed>639189911</deployedseed>
+    <deployedseed>239200718</deployedseed>
+    <deployedseed>1219286790</deployedseed>
+    <deployedseed>845462243</deployedseed>
+    <deployedseed>2114570151</deployedseed>
+    <deployedseed>1270909614</deployedseed>
+    <deployedseed>890666812</deployedseed>
+    <deployedseed>675516083</deployedseed>
+    <deployedseed>1022702382</deployedseed>
+    <deployedseed>158610132</deployedseed>
+    <deployedseed>1707786387</deployedseed>
+    <deployedseed>1184265112</deployedseed>
+    <deployedseed>1063212103</deployedseed>
+    <deployedseed>1307379690</deployedseed>
+    <deployedseed>1828352890</deployedseed>
+    <deployedseed>2061472580</deployedseed>
+    <deployedseed>868349895</deployedseed>
+    <deployedseed>290733976</deployedseed>
+    <deployedseed>65142631</deployedseed>
+    <deployedseed>1048824612</deployedseed>
+    <deployedseed>1609315715</deployedseed>
+    <deployedseed>1770123461</deployedseed>
+    <deployedseed>105552862</deployedseed>
+    <deployedseed>2147109371</deployedseed>
+    <deployedseed>392760977</deployedseed>
+    <deployedseed>881012723</deployedseed>
+    <deployedseed>1559244443</deployedseed>
+    <deployedseed>746818152</deployedseed>
+    <deployedseed>856177900</deployedseed>
+    <deployedseed>1464442435</deployedseed>
+    <deployedseed>468715222</deployedseed>
+    <deployedseed>2099125040</deployedseed>
+    <deployedseed>171466073</deployedseed>
+    <deployedseed>1537422782</deployedseed>
+    <deployedseed>687689737</deployedseed>
+    <deployedseed>1949842863</deployedseed>
+    <deployedseed>687139170</deployedseed>
+    <deployedseed>721163809</deployedseed>
+    <deployedseed>670857772</deployedseed>
+    <deployedseed>1767315601</deployedseed>
+    <deployedseed>487335609</deployedseed>
+    <deployedseed>1707613195</deployedseed>
+    <deployedseed>1435526188</deployedseed>
+    <deployedseed>464503658</deployedseed>
+    <deployedseed>1754712272</deployedseed>
+    <deployedseed>2017386358</deployedseed>
+    <deployedseed>1669865202</deployedseed>
+    <qtest>
+      <testcase>1</testcase>
+      <description>Test case assuming the teacher's input gets full marks.</description>
+      <testinput>
+        <name>ans1</name>
+        <value>ta_2</value>
+      </testinput>
+      <testinput>
+        <name>ans2</name>
+        <value>ta_3</value>
+      </testinput>
+      <testinput>
+        <name>ans3</name>
+        <value>ta_1</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt1-1-T</expectedanswernote>
+      </expected>
+      <expected>
+        <name>prt2</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt2-1-T</expectedanswernote>
+      </expected>
+      <expected>
+        <name>prt3</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt3-1-T</expectedanswernote>
+      </expected>
+    </qtest>
+    <qtest>
+      <testcase>2</testcase>
+      <description/>
+      <testinput>
+        <name>ans1</name>
+        <value>ta_4</value>
+      </testinput>
+      <testinput>
+        <name>ans2</name>
+        <value>ta_5</value>
+      </testinput>
+      <testinput>
+        <name>ans3</name>
+        <value>ta_6</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>0.0000000</expectedscore>
+        <expectedpenalty/>
+        <expectedanswernote>prt1-2-T</expectedanswernote>
+      </expected>
+      <expected>
+        <name>prt2</name>
+        <expectedscore>0.0000000</expectedscore>
+        <expectedpenalty/>
+        <expectedanswernote>prt2-2-T</expectedanswernote>
+      </expected>
+      <expected>
+        <name>prt3</name>
+        <expectedscore>0.0000000</expectedscore>
+        <expectedpenalty/>
+        <expectedanswernote>prt3-2-T</expectedanswernote>
+      </expected>
+    </qtest>
+  </question>
+</quiz>

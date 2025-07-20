@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Perpendicular lines, interactive JSX graph</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Move the points \(C\) and \(D\) so that line \(CD\) is perpendicular to the line \(AB.\) </p>
+ <p><b>Note1:</b> Please make sure you move both points, otherwise your answer will not be assessed.</p>
+ <center> 
+[[jsxgraph input-ref-ans1="sR1" input-ref-ans2="sR2"]] 
+
+JXG.Options.text.useMathJax = true; 
+var board = JXG.JSXGraph.initBoard(divid, {
+    axis: true, 
+    showCopyright: false, 
+    boundingbox: [-7,6,7,-6], 
+    keepaspectratio: true,
+    grid:true
+}); 
+
+// Fixed line AB
+var p3 = board.create('point', [{#x_A#},{#y_A#}],{name:'A',visible:true, fixed:true});
+var p4 = board.create('point', [{#x_B#},{#y_B#}],{name:'B',visible:true, fixed:true});
+var l2 = board.create('line', [p3, p4], { strokeWidth: 2 });
+
+// Moveable points C and D
+var p1 = board.create('point',[{#x_C#},{#y_C#}],{name:'C',snapToGrid:true,size:3});
+var p2 = board.create('point',[{#x_D#},{#y_D#}],{name:'D',snapToGrid:true,size:3});
+
+// Create line CD
+var l1 = board.create('line', [p1, p2], { strokeWidth: 2 });
+
+// Function to check perpendicularity and update color
+function updateLineColor() {
+    var m_CD = (p2.Y() - p1.Y()) / (p2.X() - p1.X());  
+    var isPerpendicular = Math.abs(m_CD * {#ta#} + 1) < 0.01; // Allow small margin for floating point precision
+
+    l1.setAttribute({ strokeColor: isPerpendicular ? 'green' : 'red' });
+}
+
+// Attach event listeners to update color on movement
+p1.on('drag', updateLineColor);
+p2.on('drag', updateLineColor);
+
+// Initial check
+updateLineColor();
+
+stack_jxg.bind_point(sR1,p1); stack_jxg.bind_point(sR2,p2); 
+board.unsuspendUpdate();
+ [[/jsxgraph]]
+ </center> 
+<p style="visibility:hidden">[[input:ans1]] [[validation:ans1]] </p> <p style="visibility:hidden">[[input:ans2]] [[validation:ans2]] </p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text/>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2025012100</text>
+    </stackversion>
+    <questionvariables>
+      <text>/*coordinates of the fixed line AB*/
+ x_A:rand_with_step(-5,5,1);
+ y_A:rand_with_step(-5,5,1);
+ x_B:rand_with_prohib(-5,5,[x_A]);
+ y_B:rand_with_prohib(-5,5,[y_A]);
+
+/*Gradient of line AB, teachers answer*/ 
+ m_teacher:(y_B-y_A)/(x_B-x_A);
+ ta:-1/m_teacher;
+
+ /*Equation for line AB*/
+ eqn_AB:y=m_teacher*x-m_teacher*x_A+y_A;
+ /* Coordinates of the points to be moved */
+ x_C:rand_with_prohib(-5,5,[x_A,x_B]);
+ y_C:rand_with_prohib(-5,5,[y_A,y_B]);
+ x_D:rand_with_prohib(-5,5,[x_A,x_B,x_C]);
+ y_D:rand_with_prohib(-5,5,[y_A,y_B,y_C]); 
+
+s:rand_with_step(-3,3,1);</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text>[[feedback:prt1]]</text>
+    </specificfeedback>
+    <questionnote format="html">
+      <text>1</text>
+    </questionnote>
+    <questiondescription format="html">
+      <text/>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>[x_C, y_C]</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans2</name>
+      <type>algebraic</type>
+      <tans>[x_C + s, y_C + s * ta]</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text>/* checks if the points are move*/
+is_moved:diff(ans1[1], ans2[1]) != 0;
+
+/*Check perpendicularity condition*/
+is_perpendicular:(sans2[2] - sans1[2]) / (sans2[1] - sans1[1]) * ta = -1;
+
+/*Check fixed distance constraint*/
+is_fixed:sqrt((sans2[1] - sans1[1])^2 + (sans2[2] - sans1[2])^2) = s;
+
+
+</text>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Check if both points are moved</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>diff(ans1[1], ans2[1]) != 0</sans>
+        <tans>is_moved</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>Ensure both points C and D are moved to form a perpendicular line.</p>]]></text>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <description>Checks if the line is perpendicular</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>(sans2[2] - sans1[2]) / (sans2[1] - sans1[1]) * ta = -1</sans>
+        <tans>ta</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-2-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>Great! You've placed C and D correctly to form a perpendicular line.</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>2</falsenextnode>
+        <falseanswernote>prt1-2-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>2</name>
+        <description>Checks if the line is not perpendicular.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>not((sans2[2] - sans1[2]) / (sans2[1] - sans1[1]) * ta = -1)</sans>
+        <tans>ta</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-3-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA["The line CD is not perpendicular. Try adjusting the points]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-3-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+  </question>
+</quiz>

@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Finding the size of interior angles of a polygon with n sides</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>The sum of the interior angles of a regular polygon with <br> \({@letters@}\) + \({@angle_number@}\) sides is twice the sum of the interior angles of a regular polygon with \({@letters@}\) sides.</p>
+
+<p> ( a ). Find the value of \({@letters@}\) </p> <p>[[input:ans1]] [[validation:ans1]][[feedback:prt1]]</p>
+
+<p> ( b ). Find Size of the interior angle of the polygon with \({@letters@}\)  sides.</p><p> [[input:ans2]] [[validation:ans2]][[feedback:prt2]]</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<h3>Worked solution</h3>
+<p>We have to know that sum of interior angles of a regular polygon with n sides is given by: <br>Sum of interior angles = (  \({@letters@}\) - 2 )  180</p>
+<p>The question states that the sum of the interior angles of a regular polygon with ( \({@letters@}\) + \({@angle_number@}\) sides is twice the sum of the interior angles of a regular polygon with ( \({@letters@}\) sides.
+ <br> ( \({@letters@}\) + \({@angle_number@}\) - 2)180=2(\({@letters@}\)-2)180 </p>
+
+<p>Simplifying the equation we get: <br> ( \({@letters@}\)180=2 = ( \({@letters@}\) - 2)180</p>
+<p>We divide both sides by 180 <br> we get ( \({@letters@}\) + \({@angle_number@}\) - 2)  =  2(\({@letters@}\)-2)</p>
+<p> we solve and get ( \({@solution_n@}\)</p>
+<p>Now we find the interior angle by ( \({@n_value@}\) - 2)*180/ \({@n_value@}\) </p>
+<p> The size of interior angle is \({@interior_angle@}\) </p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2023060500</text>
+    </stackversion>
+    <questionvariables>
+      <text>angle_number : rand(10) + 5; /*  random number of angles between */
+letters:rand([d,f,g,h,j,k,l,m,q,v,z,y,r,o,b,c,x]); /*random letters*/
+sum_equation_plus_2 : (letters + angle_number - 2) * 180; /* This is the equation given for unkown sum of interior angles  */
+sum_equation : (letters - 2) * 180; /* equation of sum of interior angles*/
+
+eq : sum_equation_plus_2 = 2 * sum_equation; /* Setting up the equation */
+solution_n : solve(eq, letters); /* Solve for letters */
+n_value : rhs(solution_n[1]);/*value of solution*/
+interior_angle_n : (( n_value- 2) * 180) / n_value; /* Finding the interior angle for a polygon with n sides */
+interior_angle:decimalplaces(interior_angle_n,2);/*angles in decimal*/
+
+
+/* Mistake one*/
+sum_equation_plus_2_mistake : 180 * letters + angle_number - 2; /* Missing parentheses in the equation */
+sum_equation_mistake : 180 * letters - 2; /* Missing parentheses in the equation */
+eq_mistake : sum_equation_plus_2_mistake = 2 * sum_equation_mistake; /* Setting up the equation */
+solution_mistake : solve(eq_mistake, letters); /* Solve for letters */
+solution_mistake_decimal:rhs((decimalplaces(solution_mistake,2))[1]); /*value of solution in 2 decimal places*/</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="moodle_auto_format">
+      <text><![CDATA[<p>\({@interior_angle@}\) </p>
+<p>\({@angle_number@}\) </p>
+<p>\({@letters@}\) </p>
+<p>\({@sum_equation_plus_2@}\) </p>
+<p>\({@sum_equation@}\) </p>
+<p>\({@eq@}\) </p>
+<p>\({@n_value@}\) </p>
+<p>\({@solution_n@}\) </p>
+<p>\({@interior_angle_n@}\) </p>
+<p>\({@sum_equation_plus_2_mistake@}\) </p>
+<p>\({@sum_equation_mistake@}\) </p>
+<p>\({@eq_mistake@}\) </p>
+<p>\({@solution_mistake@}\) </p>
+<p>\({@solution_mistake_decimal@}\) </p>]]></text>
+    </questionnote>
+    <questiondescription format="html">
+      <text><![CDATA[<p id="author"> Joseph Baya</p>
+<p>id="concept">https://docs.google.com/document/d/17Aa8qkWA3kUC_IxXckmqz22MNfzQjbhsc7iBOZI0kfg/edit?tab=t.0#heading=h.vy8x1tbmoha9</p>
+<p id="reviewer"></p>
+<p id="reviewer"></p>
+
+<p id="description">The problem involves two regular polygons: one with n + 2 sides and another with n sides. The sum of the interior angles of the first polygon is twice that of the second. Using the formula for the sum of interior angles, ((n - 2) \times 180, we determine n and calculate the interior angle for the second polygon.</p>]]></text>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>n_value</tans>
+      <boxsize>5</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans2</name>
+      <type>algebraic</type>
+      <tans>interior_angle</tans>
+      <boxsize>5</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>checks for value of solution</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>n_value</tans>
+        <testoptions>2</testoptions>
+        <quiet>1</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <description>Checks for Forgetting parentheses in the formula</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>solution_mistake_decimal</tans>
+        <testoptions>2</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>0</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-2-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>You forgot to place a bracket in the formulas and this will calculate 180*n first then add/subtract leading to incorrect sums </p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-2-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt2</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>checks for angles in decimal</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans2</sans>
+        <tans>interior_angle</tans>
+        <testoptions>2</testoptions>
+        <quiet>1</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt2-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt2-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <deployedseed>1307418561</deployedseed>
+    <deployedseed>1653378406</deployedseed>
+    <deployedseed>1285432385</deployedseed>
+    <deployedseed>981317189</deployedseed>
+    <deployedseed>1490561496</deployedseed>
+    <deployedseed>1444540285</deployedseed>
+    <deployedseed>1085477399</deployedseed>
+    <deployedseed>283104394</deployedseed>
+    <deployedseed>1444764524</deployedseed>
+    <deployedseed>605966930</deployedseed>
+    <deployedseed>403073172</deployedseed>
+    <deployedseed>1533654826</deployedseed>
+    <deployedseed>1998961467</deployedseed>
+    <deployedseed>1650233346</deployedseed>
+    <deployedseed>1591302059</deployedseed>
+    <deployedseed>742717527</deployedseed>
+    <deployedseed>907499406</deployedseed>
+    <deployedseed>1510510963</deployedseed>
+    <deployedseed>653259223</deployedseed>
+    <deployedseed>767931469</deployedseed>
+    <deployedseed>603019987</deployedseed>
+    <deployedseed>1462938487</deployedseed>
+    <deployedseed>471222425</deployedseed>
+    <deployedseed>1582187824</deployedseed>
+    <deployedseed>1069215371</deployedseed>
+    <deployedseed>565344267</deployedseed>
+    <deployedseed>859905785</deployedseed>
+    <deployedseed>699853306</deployedseed>
+    <deployedseed>2032152622</deployedseed>
+    <deployedseed>75077471</deployedseed>
+    <deployedseed>1252724897</deployedseed>
+    <deployedseed>1265861266</deployedseed>
+    <deployedseed>9474221</deployedseed>
+    <deployedseed>1528537656</deployedseed>
+    <deployedseed>863649038</deployedseed>
+    <deployedseed>703075784</deployedseed>
+    <deployedseed>1120469139</deployedseed>
+    <deployedseed>1724329703</deployedseed>
+    <deployedseed>2036246792</deployedseed>
+    <deployedseed>598924570</deployedseed>
+    <deployedseed>1938667150</deployedseed>
+    <deployedseed>115626010</deployedseed>
+    <deployedseed>1713192628</deployedseed>
+    <deployedseed>1452881751</deployedseed>
+    <deployedseed>1240125347</deployedseed>
+    <deployedseed>1561751794</deployedseed>
+    <deployedseed>1197450390</deployedseed>
+    <deployedseed>227333515</deployedseed>
+    <deployedseed>1241254175</deployedseed>
+    <deployedseed>777025029</deployedseed>
+    <deployedseed>937870571</deployedseed>
+    <deployedseed>33459884</deployedseed>
+    <deployedseed>1869581794</deployedseed>
+    <deployedseed>407541665</deployedseed>
+    <deployedseed>997912552</deployedseed>
+    <deployedseed>212901036</deployedseed>
+    <deployedseed>238705008</deployedseed>
+    <deployedseed>1822633677</deployedseed>
+    <deployedseed>1269082452</deployedseed>
+  </question>
+</quiz>

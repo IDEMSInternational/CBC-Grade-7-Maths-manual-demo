@@ -1,0 +1,493 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Temperature changes in water left outside on a hot day.</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p>Grade 7 learners put water in a basin and left it outside on a hot day. They recorded the temperature of water at different times as shown below.</p>
+
+<p>   <table  border="1" >
+        <tr>
+            <th>Time</th>
+            <th>  9:00 a.m </th>
+            <th>  11:00 a.m </th>
+            <th>  1 :00 p.m  </th>
+            <th>  3:00 p.m  </th>
+        </tr>
+        <tr>
+            <td>Temperature in °C</td>
+            <td>{@random_numbers1@} °C</td>
+            <td>{@random_numbers2@} °C</td>
+            <td>{@random_numbers3@} °C</td>
+            <td>{@random_numbers4@} °C</td>
+        </tr>
+        <tr>
+            <td>Temperature in Kelvin</td>
+            <td>{@kelvin1@} K</td>
+            <td>{@kelvin2@} K</td>
+            <td>{@kelvin3@} K</td>
+            <td>{@kelvin4@} K</td>
+        </tr>
+    </table></p>
+<p><ol Type="a"><li><p>What was the highest temperature of water recorded in Kelvin?</p><p> Highest temperature of water [[input:ans1]] K [[validation:ans1]][[feedback:prt1]]</p></li><li><p>What was the temperature of water in Kelvins at \(\textbf{11:00am}\)?</p><p> Temperature of water is [[input:ans2]] K [[validation:ans2]][[feedback:prt2]]</p></li><li><p>What was the lowest temperature of water recorded in degrees Celsius?</p><p>Lowest temperature of water \(=\)[[input:ans3]]°C [[validation:ans3]][[feedback:prt3]]</p></li><li><p>What was the change in temperature in Kelvin at these time \(\textbf{(9:00am and 1:00pm)}\)?</p><p> Temperature change is  [[input:ans4]] K [[validation:ans4]][[feedback:prt4]]</li><li><p>Find the average temperature of water for the whole time in °C leaving your answer in \(\textbf{1 decimal places}\) . </p><p> Average temperature \(=\) [[input:ans5]] °C [[validation:ans5]][[feedback:prt5]]</li>
+</ol>
+</p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<h3>Worked solution</h3>
+<p>All the solutions are gotten hear!</p>
+<p>   <table  border="1" >
+        <tr>
+            <th>Time</th>
+            <th>  9:00 a.m </th>
+            <th>  11:00 a.m </th>
+            <th>  1 :00 p.m  </th>
+            <th>  3:00 p.m  </th>
+        </tr>
+        <tr>
+            <td>Temperature in °C</td>
+            <td>{@random_numbers1@} °C</td>
+            <td>{@random_numbers2@} °C</td>
+            <td>{@random_numbers3@} °C</td>
+            <td>{@random_numbers4@} °C</td>
+        </tr>
+        <tr>
+            <td>Temperature in Kelvin</td>
+            <td>{@kelvin1@} K</td>
+            <td>{@kelvin2@} K</td>
+            <td>{@kelvin3@} K</td>
+            <td>{@kelvin4@} K</td>
+        </tr>
+    </table></p>
+<p>From the table above its clear that;</p>
+<p><ol Type="a">
+<li><p>The highest temperature of water is {@highest_tempinK@} K  at \(\textbf{1:00 pm}\)</p>
+</li><li><p>Temperature of water at \(\textbf{11:00 am}\) is {@temp_11K@} K </p>
+</li><li><p>The lowest temperature of water is {@Lowest_tempD@} °C  at \(\textbf{9:00 am}\)
+</p></li><li><p>To find the temperature change at \(\textbf{(9:00 am and 1:00 pm)}\),
+</p><p>We take temperature in degrees at \(\textbf{9:00 am}\) and subtract from \(\textbf{9:00 am}\) as shown;</p>
+<p>\(\begin{align} \text{Temperature change} &= {@kelvin3@}-{@kelvin1@}\\ &= {@temp_change@} \text{K} \end{align} \)</p></li>
+<li>
+<p>To find the average temperature for the whole time in  °C;
+</p><p>We add all the temperature in the °C and divide by \(4\) as shown bellow;</p><p>
+\( \begin{align}\text{Average temperature}& = \frac{{@random_numbers1@} +{@random_numbers2@} + {@random_numbers3@}+{@random_numbers4@}}{4} \\ &= {@Average@} \\ &= {@Average_temp@} \text{ °C} \end{align}\)</p></li>
+</ol>
+</p>
+<p></p>
+<p></p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2025012100</text>
+    </stackversion>
+    <questionvariables>
+      <text>/* Generate random temperature. */
+random_numbers1: rand(25) + 10;
+random_numbers2: random_numbers1 + 5;
+random_numbers3: random_numbers2 + 5;
+random_numbers4: random_numbers1 + 4;
+
+
+/*Generate random Kelvins*/
+kelvin1:random_numbers1 + 273;
+kelvin2:random_numbers2 + 273;
+kelvin3:random_numbers3 + 273;
+kelvin4:random_numbers4 + 273;
+
+/*Temperature change in Kelvin at 9:00am and 1:00pm*/
+temp_change:kelvin3-kelvin1;
+
+/*Average temperature in degrees Celsius.*/
+Average:(random_numbers1+random_numbers2+random_numbers3+random_numbers4)/4
+
+
+
+highest_tempinK:kelvin3;
+temp_11K:kelvin2;
+Lowest_tempD:random_numbers1;
+temp_change:kelvin3-kelvin1;
+Average_temp:decimalplaces(Average,1)
+
+
+
+
+
+
+
+
+
+</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="html">
+      <text><![CDATA[<p>The highest temperature \(= {@highest_tempinK@}\) K</p>
+<p>Temperature at \(\textbf{11:00am}\) \(= {@temp_11K@}\) K</p>
+<p>The lowest temperature \(= {@Lowest_tempD@}\) °C</p>
+<p>The change in temperature \(= {@temp_change@}\) K</p>
+<p>The average temperature \( = {@Average_temp@}\) °C</p>]]></text>
+    </questionnote>
+    <questiondescription format="html">
+      <text><![CDATA[<p id="author"> Henry Onyango</p>
+<p id="reviewer"></p>
+<p id="reviewer"></p>
+<p id="description">This question is for temperature. The student is required to use the table provided to answer the four questions ask in the table. The question involves temperature in both Kelvin(K) and Degrees Celsius.</p>]]></text>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>highest_tempinK</tans>
+      <boxsize>5</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans2</name>
+      <type>algebraic</type>
+      <tans>temp_11K</tans>
+      <boxsize>4</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans3</name>
+      <type>algebraic</type>
+      <tans>Lowest_tempD</tans>
+      <boxsize>4</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans4</name>
+      <type>algebraic</type>
+      <tans>temp_change</tans>
+      <boxsize>4</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans5</name>
+      <type>algebraic</type>
+      <tans>Average_temp</tans>
+      <boxsize>4</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct highest temparature in Kelvin</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>highest_tempinK</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt2</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks the correct temperature at 11:00am.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans2</sans>
+        <tans>temp_11K</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt2-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt2-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt3</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct lowest temparature in degrees Celcius.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans3</sans>
+        <tans>Lowest_tempD</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt3-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt3-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt4</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct temperature change.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans4</sans>
+        <tans>temp_change</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt4-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt4-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt5</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the avearange temperature for the whole time.</description>
+        <answertest>NumDecPlaces</answertest>
+        <sans>ans5</sans>
+        <tans>Average_temp</tans>
+        <testoptions>1</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt5-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt5-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <deployedseed>1437458914</deployedseed>
+    <deployedseed>467101784</deployedseed>
+    <deployedseed>1402145252</deployedseed>
+    <deployedseed>1211484907</deployedseed>
+    <deployedseed>1139029272</deployedseed>
+    <deployedseed>266483620</deployedseed>
+    <deployedseed>577019530</deployedseed>
+    <deployedseed>47930183</deployedseed>
+    <deployedseed>1359228168</deployedseed>
+    <deployedseed>728748160</deployedseed>
+    <deployedseed>7221233</deployedseed>
+    <deployedseed>34595847</deployedseed>
+    <deployedseed>1999274759</deployedseed>
+    <deployedseed>878227734</deployedseed>
+    <deployedseed>1045516156</deployedseed>
+    <deployedseed>1539217205</deployedseed>
+    <qtest>
+      <testcase>1</testcase>
+      <description>Test case assuming the teacher's input gets full marks.</description>
+      <testinput>
+        <name>ans1</name>
+        <value>highest_tempinK</value>
+      </testinput>
+      <testinput>
+        <name>ans2</name>
+        <value>temp_11K</value>
+      </testinput>
+      <testinput>
+        <name>ans3</name>
+        <value>Lowest_tempD</value>
+      </testinput>
+      <testinput>
+        <name>ans4</name>
+        <value>temp_change</value>
+      </testinput>
+      <testinput>
+        <name>ans5</name>
+        <value>Average_temp</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt1-1-T</expectedanswernote>
+      </expected>
+      <expected>
+        <name>prt2</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt2-1-T</expectedanswernote>
+      </expected>
+      <expected>
+        <name>prt3</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt3-1-T</expectedanswernote>
+      </expected>
+      <expected>
+        <name>prt4</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt4-1-T</expectedanswernote>
+      </expected>
+      <expected>
+        <name>prt5</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt5-1-T</expectedanswernote>
+      </expected>
+    </qtest>
+  </question>
+</quiz>

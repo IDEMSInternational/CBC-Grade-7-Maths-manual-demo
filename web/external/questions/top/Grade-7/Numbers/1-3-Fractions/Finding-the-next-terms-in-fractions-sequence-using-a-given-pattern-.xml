@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Finding the next terms in fractions sequence using a given pattern.</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p>Find the next two items in the sequence of fractions below.
+\({@fraction1@}, {@fraction2@}, {@fraction3@}, {@fraction4@}, {@fraction5@}, \) [[input:ans1]] \(,\) [[input:ans2]] [[validation:ans1]][[feedback:prt1]]  [[validation:ans2]][[feedback:prt2]]</p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<h3>Worked solution</h3>
+<p>From \({@fraction1@}, {@fraction2@}, {@fraction3@}, {@fraction4@}, {@fraction5@}\) look at the pattern formed by the numerator and establish the rule.
+</p>
+<p>from \({@first_num@}\) to \({@second_num@}\), add \({@n_com@}\).</p>
+<p>from \({@second_num@}\) to \({@third_num@}\), add \({@n_com@}\).</p>
+<p>from \({@third_num@}\) to \({@fourth_num@}\), add \({@n_com@}\).</p>
+<p>from \({@fourth_num@}\) to \({@fifth_num@}\), add \({@n_com@}\).</p>
+<p>Rule is add \({@n_com@}\) to the numerator for the next term.</p>
+<p>Again look at the pattern formed by the denominators and establish the rule.
+</p>
+<p>from \({@first_den@}\) to \({@second_den@}\), add \({@d_com@}\).</p>
+<p>from \({@second_den@}\) to \({@third_den@}\), add \({@d_com@}\).</p>
+<p>from \({@third_den@}\) to \({@fourth_den@}\), add \({@d_com@}\).</p>
+<p>from \({@fourth_den@}\) to \({@fifth_den@}\), add \({@d_com@}\).</p>
+<p>Rule is add \({@d_com@}\) to the denominator for the next term.</p>
+<p>The next term after \({@fraction5@}\) is \( \frac{{@fifth_num@} +{@n_com@}}{{@fifth_den@}+{@d_com@}} = {@fraction6@}\)</p>
+<p>The next term after \({@fraction6@}\) is \( \frac{{@sixth_num@}+ {@n_com@}}{{@sixth_den@}+{@d_com@}} = {@fraction7@}\)</p>
+<p>The next two terms in the sequence are \({@fraction6@}\) and \({@fraction7@}\) </p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2023060500</text>
+    </stackversion>
+    <questionvariables>
+      <text><![CDATA[n_com:rand(10)+1; /* Generate a random integer between 1 and 10 to be used as the numerator's common difference. */
+d_com:rand(10)+1; /* Generate a random integer between 1 and 10 to be used as the denominator's common difference. */
+first_num:rand(20)+1; /* Generate a random integer between 1 and 20 to serve as the numerator of the first fraction. */
+first_den:rand(20)+1; /* Generate a random integer between 1 and 20 to serve as the denominator of the first fraction. */
+
+/* Swap the numerator and denominator of the first fraction if the numerator is greater than the denominator. */
+if first_num > first_den then (k:first_num,first_num:first_den,first_den:k)
+/* If the numerator and denominator of the first fraction are equal, increment the denominator by a random value between 1 and 4. */
+elseif first_num=first_den then first_den:first_den+rand(4)+1;
+
+/* Swap the common differences for numerator and denominator if the numerator's common difference is greater. */
+if n_com > d_com then (l:n_com,n_com:d_com,d_com:l);
+
+/* Generate the second fraction. */
+second_num:first_num+n_com; /* Calculate the numerator of the second fraction. */
+second_den:first_den+d_com; /* Calculate the denominator of the second fraction. */
+
+/* Generate the third fraction. */
+third_num:second_num+n_com; /* Calculate the numerator of the third fraction. */
+third_den:second_den+d_com; /* Calculate the denominator of the third fraction. */
+
+/* Generate the fourth fraction. */
+fourth_num:third_num+n_com; /* Calculate the numerator of the fourth fraction. */
+fourth_den:third_den+d_com; /* Calculate the denominator of the fourth fraction. */
+
+/* Generate the fifth fraction. */
+fifth_num:fourth_num+n_com; /* Calculate the numerator of the fifth fraction. */
+fifth_den:fourth_den+d_com; /* Calculate the denominator of the fifth fraction. */
+
+/* Generate the sixth fraction. */
+sixth_num:fifth_num+n_com; /* Calculate the numerator of the sixth fraction. */
+sixth_den:fifth_den+d_com; /* Calculate the denominator of the sixth fraction. */
+
+/* Generate the seventh fraction. */
+seventh_num:sixth_num+n_com; /* Calculate the numerator of the seventh fraction. */
+seventh_den:sixth_den+d_com; /* Calculate the denominator of the seventh fraction. */
+
+simp:false; /* Disable simplification of expressions to keep fractions in their current form. */
+fraction1:first_num/first_den; /* Create the first fraction. */
+fraction2:second_num/second_den; /* Create the second fraction. */
+fraction3:third_num/third_den; /* Create the third fraction. */
+fraction4:fourth_num/fourth_den; /* Create the fourth fraction. */
+fraction5:fifth_num/fifth_den; /* Create the fifth fraction. */
+fraction6:sixth_num/sixth_den; /* Create the sixth fraction. */
+fraction7:seventh_num/seventh_den; /* Create the seventh fraction. */
+]]></text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="moodle_auto_format">
+      <text><![CDATA[<p>Common difference for the numerator \({@n_com@}\)</p>
+<p>Common difference for the denominator \({@d_com@}\)</p>
+<p>sixth next term in the sequence \({@fraction6@}\)</p>
+<p>seventh next term in the sequence \({@fraction7@}\)</p>]]></text>
+    </questionnote>
+    <questiondescription format="html">
+      <text><![CDATA[<p id="author">Daniel Murunga</p>
+<p id="concept">https://docs.google.com/document/d/1bkQ8t2WpJKHIq9YMdNa35n9ELUzcaIBAQJBsGDSks8g/edit?tab=t.0</p>
+<p id="reviewer"></p>
+<p id="reviewer"></p>
+<p id="description">To determine the next term in a fraction sequence, start by identifying the patterns in both the numerators and denominators. Check if the numerators increase or decrease by a specific value and note the common difference. Similarly, observe the denominators to determine if they follow a consistent change, such as a common difference.
+Once the patterns are identified, calculate the next term by adding the numerator's common difference to the numerator of the last fraction in the sequence. Do the same for the denominator by adding its common difference to the denominator of the last fraction. </p>]]></text>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>fraction6</tans>
+      <boxsize>4</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans2</name>
+      <type>algebraic</type>
+      <tans>fraction7</tans>
+      <boxsize>4</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct numerator, and denominator for the first next term in the sequence</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>fraction6</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt2</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct numerator, and denominator for the second next term in the sequence</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans2</sans>
+        <tans>fraction7</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt2-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt2-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <deployedseed>1397800583</deployedseed>
+  </question>
+</quiz>

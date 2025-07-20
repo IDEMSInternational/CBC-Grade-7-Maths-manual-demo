@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Construction of parallel lines by dragging points on a graph</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Move the points \(C\) and \(D\) so that line \(CD\) is parallel to the line \(AB.\) </p>
+<p><b>Note1:</b> Please make sure you move both points, otherwise your answer will not be assessed.</p>
+<center>
+[[jsxgraph input-ref-ans1="sR1" input-ref-ans2="sR2"]] 
+JXG.Options.text.useMathJax = true; 
+var board = JXG.JSXGraph.initBoard(divid, {
+  axis: true, 
+  showCopyright: false, 
+  boundingbox: [-7,6,7,-6], 
+  keepaspectratio: true,
+  grid:true
+}); 
+
+var p1 = board.create('point',[{#x_C#},{#y_C#}],{
+  name:'C',
+  snapToGrid:true,
+  size:3,
+  snapSizeX:0.1,
+  snapSizeY:0.1,
+  showInfobox:false
+}); 
+
+var p2 = board.create('point',[{#x_D#},{#y_D#}],{
+  name:'D',
+  snapToGrid:true,
+  size:3,
+  snapSizeX:0.1,
+  snapSizeY:0.1,
+  showInfobox:false
+}); 
+
+var l1 = board.create('line', [p1, p2], {
+  fixed: true,
+  straightFirst: true,
+  straightLast: true,
+  strokeWidth: 2
+});
+
+var p3 = board.create('point', [{#x_A#},{#y_A#}],{name:'A',visible:true, fixed:true});
+var p4 = board.create('point', [{#x_B#},{#y_B#}],{name:'B',visible:true, fixed:true});
+ var l2 = board.create('line', [p3, p4], {
+                    fixed: true,
+                    straightFirst: true,
+                    straightLast: true,
+                    strokeWidth: 2
+                    });
+
+stack_jxg.bind_point(sR1,p1);
+stack_jxg.bind_point(sR2,p2);
+
+board.unsuspendUpdate();
+[[/jsxgraph]]
+</center>
+
+<p style="visibility:hidden">[[input:ans1]] [[validation:ans1]] </p>
+
+<p style="visibility:hidden">[[input:ans2]] [[validation:ans2]] </p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text/>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2025012100</text>
+    </stackversion>
+    <questionvariables>
+      <text>/*coordinates of the fixed line AB*/
+x_A:rand_with_step(-5,5,1);
+y_A:rand_with_step(-5,5,1);
+x_B:rand_with_prohib(-5,5,[x_A]);
+y_B:rand_with_prohib(-5,5,[y_A]);
+/*Gradient of line AB, teachers answer*/
+m_teacher:(y_B-y_A)/(x_B-x_A);
+
+
+/* Coordinates of the points to be moved */
+x_C:rand_with_prohib(-5,5,[x_A,x_B]);
+y_C:rand_with_prohib(-5,5,[y_A,y_B]);
+x_D:rand_with_prohib(-5,5,[x_A,x_B,x_C]);
+y_D:rand_with_prohib(-5,5,[y_A,y_B,y_C]);
+
+/* Extract student points */
+pointC: ans1[1]; /* x-coordinate of point C */
+pointD: ans1[2]; /* y-coordinate of point C */
+pointE: ans2[1]; /* x-coordinate of point D */
+pointF: ans3[2]; /* y-coordinate of point D */
+
+/* Calculate student's gradient for line CD */
+m_student: (pointF - pointD) / (pointE - pointC);
+
+/* Check if the student's line is parallel (allow small tolerance) */
+is_parallel: abs(m_student / m_teacher) = 1;</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text>[[feedback:prt1]]</text>
+    </specificfeedback>
+    <questionnote format="html">
+      <text><![CDATA[<p>{@x_C@}</p>
+<p>{@x_D@}</p>
+<p>{@y_C@}</p>
+<p>{@y_D@}</p>
+<p>{@m_teacher@}</p>
+<p>{@m_student@}</p>]]></text>
+    </questionnote>
+    <questiondescription format="html">
+      <text/>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>m_teacher</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans2</name>
+      <type>algebraic</type>
+      <tans>m_teacher</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks if the quotient of the teachers and students gradient is 1.</description>
+        <answertest>NumAbsolute</answertest>
+        <sans>(m_student /m_teacher,1,0.1)</sans>
+        <tans>m_teacher</tans>
+        <testoptions>1</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+  </question>
+</quiz>

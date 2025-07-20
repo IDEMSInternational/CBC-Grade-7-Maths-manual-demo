@@ -1,0 +1,623 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Intepreting Pie chart representing number of animals of a farm</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>The pie chart below represents the number of animals on the Tipis farm. </p>
+
+<br>
+
+<p>Total number of farm animals is {#Total_farm_animals#}</p>
+
+<div style="width: 300px; height: 300px; position: relative; left: 0; text-align: left;">
+    <canvas id="pieChart"></canvas>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    var ctx = document.getElementById('pieChart').getContext('2d');
+
+    var animalLabels = ["Cows", "Sheep", "Goats", "Chickens", "Ducks", "Turkeys"];
+    var animalCounts = [ {#Cows#}, {#Sheeps#}, {#Goats#}, {#Chicken#}, {#Ducks#}, {#Turkeys#} ];
+    var totalAnimals = animalCounts.reduce((a, b) => a + b, 0);
+
+    var animalDegrees = animalCounts.map(count => ((count / totalAnimals) * 360).toFixed(1));
+
+    Chart.register(ChartDataLabels);
+
+    var pieChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: animalLabels,
+            datasets: [{
+                data: animalCounts,
+                backgroundColor: ["red", "blue", "green", "orange", "purple", "cyan"]
+            }]
+        },
+        options: {
+            responsive: false, // Fixed size
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { display: false },
+                datalabels: {
+                    color: 'black',
+                    font: { size: 10, weight: 'bold' },
+                    formatter: (value, ctx) => {
+                        let index = ctx.dataIndex;
+                        return `${animalLabels[index]} (${animalDegrees[index]}°)`;
+                    }
+                }
+            }
+        }
+    });
+});
+</script>
+
+
+<p><br></p>
+<p><br></p>
+<p> NB <br >Use the Total number of Farm Animals to Calculate : </p>
+
+<ol>
+<li><p>What angle represents the number of sheep? [[input:ans1]] [[validation:ans1]]Sheep[[feedback:prt1]]</p></li>
+<li><p>How many cows are on the farm?[[input:ans2]] [[validation:ans2]]Cows[[feedback:prt2]]</p></li>
+<li><p>How many more goats than sheep are on the farm [[input:ans3]] [[validation:ans3]]goats[[feedback:prt3]]</p></li>
+<li><p>How many more Turkeys than Ducks are on the farm? [[input:ans4]] [[validation:ans4]]Turkeys[[feedback:prt4]]</p></li>
+<li><p>How many more Cows than Chicken are on the farm? [[input:ans5]] [[validation:ans5]]Cows[[feedback:prt5]]</p></li>
+<li><p>How many goats  are on the farm? [[input:ans6]] [[validation:ans6]]goats[[feedback:prt6]]</p></li>
+
+</ol>
+
+
+
+
+
+<p></p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<ol>
+<li><p>The angle representing the number of sheep  is {@tans1@} </p></li>
+<li><p>
+Number of cows  on the farm is {@tans2@} Cows 
+
+\((\frac{{@Cows_angle@}}{360})\times {@Total_farm_animals@} \)
+
+ =  \({@tans2@}\)
+</p></li>
+<li><p>
+There are {@tans3@} more goats than sheep are on the farm
+
+<p>Find the total number of Goats and subtract with the total number of Sheep <br> =Number of Goats - Numbers of Sheep</p>
+
+\((\frac{{@Goats_angle@}}{360})\times {@Total_farm_animals@}  - (\frac{{@Sheeps_angle@}}{360})\times {@Total_farm_animals@} \)
+
+which is equal \({@tans3@}\)
+</p></li>
+<li><p>
+There are {@tans4@} more Turkeys than Ducks are on the farm
+
+<p>Find the total number of Turkeys and subtract with the total number of Ducks <br> =Number of Turkeys - Numbers of Ducks</p>
+
+\((\frac{{@Turkeys_angle@}}{360})\times {@Total_farm_animals@} - (\frac{{@Ducks_angle@}}{360})\times {@Total_farm_animals@} \)
+
+which is equal to \({@tans4@}\)
+</p></li>
+<li><p>
+There are {@tans5@} more Cows than Chicken are on the farm
+
+<p>Find the total number of cows and subtract with the total number of Chicken <br> =Number of cows - Numbers of Chicken</p>
+
+\((\frac{{@Cows_angle@}}{360})\times {@Total_farm_animals@} - (\frac{{@Chicken_angle@}}{360})\times {@Total_farm_animals@} \)
+
+which is equal to {@tans5@}
+</p></li>
+<li><p>
+There are {@tans6@} goats  are on the farm
+\((\frac{{@Goats_angle@}}{360})\times {@Total_farm_animals@} \)
+
+which is equal {@Goats@}
+</p></li>
+
+</ol>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2025012100</text>
+    </stackversion>
+    <questionvariables>
+      <text>Cows: rand(30) +150;
+Sheeps: rand(20) + 100;
+Goats: rand(20) +120;
+Chicken:rand (20) +60;
+Ducks: rand(20) +80;
+Turkeys: rand(50) + 100;
+Total_farm_animals:Cows + Sheeps + Goats + Chicken + Ducks + Turkeys ;
+
+
+Cows_angle: decimalplaces((Cows/Total_farm_animals)*360,1) ;
+Sheeps_angle: decimalplaces((Sheeps/Total_farm_animals)*360,1);
+Goats_angle: decimalplaces((Goats/Total_farm_animals)*360,1);
+Chicken_angle:decimalplaces((Chicken/Total_farm_animals)*360,1);
+Ducks_angle: decimalplaces((Ducks/Total_farm_animals)*360,1);
+Turkeys_angle: decimalplaces((Turkeys/Total_farm_animals)*360,1);
+
+
+
+
+
+
+tans1: Sheeps_angle;
+tans2:Cows;
+tans3:Goats - Sheeps;
+tans4:Turkeys - Ducks;
+tans5: Cows - Chicken;
+tans6: Goats;
+</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="html">
+      <text>\({@Cows@}\)
+\({@Goats@}\)
+\({@Sheeps@}\)
+\({@Chicken@}\)
+\({@Turkeys@}\)
+\({@Ducks@}\)
+\({@Total_farm_animals@}\)
+
+
+\({@Cows_angle@}\)
+\({@Sheeps_angle@}\)
+\({@Goats_angle@}\)
+\({@Chicken_angle@}\)
+\({@Ducks_angle@}\)
+\({@Turkeys_angle@}\)</text>
+    </questionnote>
+    <questiondescription format="html">
+      <text><![CDATA[<p id="author">Joseph Baya</p>
+<p id="reviewer"></p>
+<p id="description">The question presents a pie chart representing the number of different animals on Tipis farm and requires students to analyze the data. They must calculate angles, compare animal counts and determine differences based on the total number of farm animals.</p>]]></text>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>tans1</tans>
+      <boxsize>4</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>0</mustverify>
+      <showvalidation>0</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans2</name>
+      <type>algebraic</type>
+      <tans>tans2</tans>
+      <boxsize>4</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>0</mustverify>
+      <showvalidation>0</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans3</name>
+      <type>algebraic</type>
+      <tans>tans3</tans>
+      <boxsize>4</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>0</mustverify>
+      <showvalidation>0</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans4</name>
+      <type>algebraic</type>
+      <tans>tans4</tans>
+      <boxsize>4</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>0</mustverify>
+      <showvalidation>0</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans5</name>
+      <type>algebraic</type>
+      <tans>tans5</tans>
+      <boxsize>4</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>0</mustverify>
+      <showvalidation>0</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans6</name>
+      <type>algebraic</type>
+      <tans>tans6</tans>
+      <boxsize>4</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>0</mustverify>
+      <showvalidation>0</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>checks for correct answer</description>
+        <answertest>NumAbsolute</answertest>
+        <sans>ans1</sans>
+        <tans>tans1</tans>
+        <testoptions>1</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt2</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for correct answer</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans2</sans>
+        <tans>tans2</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt2-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt2-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt3</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for correct answer</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans3</sans>
+        <tans>tans3</tans>
+        <testoptions/>
+        <quiet>1</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt3-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt3-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt4</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for correct answer</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans4</sans>
+        <tans>tans4</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt4-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt4-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt5</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for correct answer</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans5</sans>
+        <tans>tans5</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt5-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt5-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt6</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>checks for correct answer</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans6</sans>
+        <tans>tans6</tans>
+        <testoptions/>
+        <quiet>1</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt6-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt6-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <deployedseed>1519748627</deployedseed>
+    <deployedseed>2091433027</deployedseed>
+    <deployedseed>1744669954</deployedseed>
+    <deployedseed>1794607705</deployedseed>
+    <deployedseed>116214841</deployedseed>
+    <deployedseed>834582577</deployedseed>
+    <deployedseed>798762987</deployedseed>
+    <deployedseed>772791725</deployedseed>
+    <deployedseed>1077895791</deployedseed>
+    <deployedseed>1014378679</deployedseed>
+    <deployedseed>776599975</deployedseed>
+    <deployedseed>1237585990</deployedseed>
+    <deployedseed>961817322</deployedseed>
+    <deployedseed>2019815055</deployedseed>
+    <deployedseed>1476847164</deployedseed>
+    <deployedseed>601890931</deployedseed>
+    <deployedseed>1264215133</deployedseed>
+    <deployedseed>1732133702</deployedseed>
+    <deployedseed>79476362</deployedseed>
+    <deployedseed>2091832064</deployedseed>
+    <deployedseed>734832550</deployedseed>
+    <deployedseed>425325373</deployedseed>
+    <deployedseed>942591221</deployedseed>
+    <deployedseed>1863123970</deployedseed>
+    <deployedseed>992118668</deployedseed>
+    <deployedseed>1312565838</deployedseed>
+    <deployedseed>848933157</deployedseed>
+    <deployedseed>338830399</deployedseed>
+    <deployedseed>1253454053</deployedseed>
+    <deployedseed>482545256</deployedseed>
+    <deployedseed>1103756248</deployedseed>
+    <deployedseed>113548671</deployedseed>
+    <deployedseed>308677559</deployedseed>
+    <deployedseed>1758815572</deployedseed>
+    <deployedseed>1912068780</deployedseed>
+    <deployedseed>118559586</deployedseed>
+    <deployedseed>313910798</deployedseed>
+    <deployedseed>877298790</deployedseed>
+    <deployedseed>838105585</deployedseed>
+    <deployedseed>1128029587</deployedseed>
+    <deployedseed>1007086375</deployedseed>
+    <deployedseed>1577385127</deployedseed>
+    <deployedseed>2033526807</deployedseed>
+    <deployedseed>1106940820</deployedseed>
+    <deployedseed>573601208</deployedseed>
+    <deployedseed>404781069</deployedseed>
+    <deployedseed>1975467674</deployedseed>
+    <deployedseed>269659618</deployedseed>
+    <deployedseed>1405906966</deployedseed>
+    <deployedseed>1751164755</deployedseed>
+    <deployedseed>1301398593</deployedseed>
+    <deployedseed>2037267824</deployedseed>
+    <deployedseed>1267862373</deployedseed>
+    <deployedseed>517126357</deployedseed>
+    <deployedseed>941538597</deployedseed>
+    <deployedseed>464430761</deployedseed>
+    <deployedseed>1002368899</deployedseed>
+    <deployedseed>1568972973</deployedseed>
+    <deployedseed>327560718</deployedseed>
+    <deployedseed>526225452</deployedseed>
+    <deployedseed>906536921</deployedseed>
+    <deployedseed>1560659383</deployedseed>
+    <deployedseed>551902765</deployedseed>
+    <deployedseed>1720262386</deployedseed>
+    <deployedseed>1119084746</deployedseed>
+    <deployedseed>1527449275</deployedseed>
+    <deployedseed>1575841829</deployedseed>
+    <deployedseed>352527758</deployedseed>
+    <deployedseed>1474017364</deployedseed>
+    <deployedseed>1981613124</deployedseed>
+    <deployedseed>2023050738</deployedseed>
+    <deployedseed>1907881762</deployedseed>
+    <deployedseed>1128051057</deployedseed>
+    <deployedseed>1170394361</deployedseed>
+    <deployedseed>1743473249</deployedseed>
+    <deployedseed>2111051864</deployedseed>
+    <deployedseed>2128806198</deployedseed>
+    <deployedseed>2142388615</deployedseed>
+    <deployedseed>592938012</deployedseed>
+    <deployedseed>1218233353</deployedseed>
+    <deployedseed>612345455</deployedseed>
+    <deployedseed>780859084</deployedseed>
+    <deployedseed>1344097748</deployedseed>
+    <deployedseed>122624080</deployedseed>
+    <deployedseed>88301853</deployedseed>
+    <deployedseed>385324214</deployedseed>
+    <deployedseed>873321271</deployedseed>
+    <deployedseed>956540177</deployedseed>
+    <deployedseed>651659419</deployedseed>
+    <deployedseed>1411403108</deployedseed>
+    <deployedseed>1626154533</deployedseed>
+    <deployedseed>44344349</deployedseed>
+    <deployedseed>1543897641</deployedseed>
+    <deployedseed>1548774119</deployedseed>
+    <deployedseed>1681287830</deployedseed>
+    <deployedseed>1196046227</deployedseed>
+    <deployedseed>426684413</deployedseed>
+    <deployedseed>859310658</deployedseed>
+    <deployedseed>606967040</deployedseed>
+  </question>
+</quiz>

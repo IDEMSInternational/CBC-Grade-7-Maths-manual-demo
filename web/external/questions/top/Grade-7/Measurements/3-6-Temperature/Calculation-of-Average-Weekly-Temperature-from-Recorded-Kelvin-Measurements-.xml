@@ -1,0 +1,720 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Calculation of Average Weekly Temperature from Recorded Kelvin Measurements.</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p>Grade 7 learners from Uzima Secondary School recorded the daily temperature for a week in kelvin. Study and complete the table bellow. </p>
+<p><table border="1"  >
+        <tr>
+            <th><p align="center">Day</p></th>
+            <th><p align="center">Temperature in Kelvin</p></th>
+            <th width="50"><p align="center">Temperature in °C \( \text{(Temperature in Kelvin-273)}\)</p></th>
+           
+        </tr>
+        <tr>
+            <td><p align="center">Sunday</p></td>
+            <td><p align="center">{@temp_Kelvin1@}</p></td>
+            <td width="50"><p align="center">[[input:ans1]] [[validation:ans1]][[feedback:prt1]]</p></td>
+            
+        </tr>
+        <tr>
+            <td><p align="center">Monday</p></td>
+            <td><p align="center">{@temp_Kelvin2@}</p></td>
+            <td width="50"><p align="center">[[input:ans2]] [[validation:ans2]][[feedback:prt2]]</p></td>
+            
+        </tr>
+        <tr>
+            <td><p align="center">Tuesday</p></td>
+            <td><p align="center">{@temp_Kelvin3@}</p></td>
+            <td width="50"><p align="center">[[input:ans3]] [[validation:ans3]][[feedback:prt3]]</p></td>
+        </tr>
+        <tr>
+            <td><p align="center">Wednesday</p></td>
+            <td><p align="center">{@temp_Kelvin4@}</p></td>
+            <td width="50"><p align="center">[[input:ans4]] [[validation:ans4]][[feedback:prt4]]</p></td>
+        </tr>
+        <tr>
+            <td><p align="center">Thursday</p></td>
+            <td><p align="center">{@temp_Kelvin5@}</p></td>
+            <td width="50"><p align="center">[[input:ans5]] [[validation:ans5]][[feedback:prt5]]</p></td>
+        </tr>
+        <tr>
+            <td><p align="center">Friday</p></td>
+            <td><p align="center">{@temp_Kelvin6@}</p></td>
+            <td width="50"><p align="center">[[input:ans6]] [[validation:ans6]][[feedback:prt6]]</p></td>
+        </tr>
+        <tr>
+            <td><p align="center">Saturday</p></td>
+            <td><p align="center">{@temp_Kelvin7@}</p></td>
+            <td width="50"><p align="center">[[input:ans7]] [[validation:ans7]][[feedback:prt7]]</p></td>
+        </tr>
+    </table></p>
+<p>Find the average temperature for the whole day in °C</p>
+<p>Average temperature \(=\)[[input:ans8]] °C  [[validation:ans8]][[feedback:prt8]]</p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<h3>Worked solution.</h3>
+<p>To convert kelvins to degrees Celsius, we subtract \(273\) from Kelvin given in the question that is;</p>
+<p>\(\text{Degrees Celsius (°C)}= \text{Kelvin(K)}-273\)</p>
+<p>Check the correct solution below;</p>
+<p><table border="1"  >
+        <tr>
+            <th><p align="center">Day</p></th>
+            <th><p align="center">Temperature in Kelvin</p></th>
+            <th ><p align="center">Temperature in °C \( \text{(Temperature in Kelvin-273)}\)</p></th>
+           
+        </tr>
+        <tr>
+            <td><p align="center">Sunday</p></td>
+            <td><p align="center">{@temp_Kelvin1@}</p></td>
+            <td width="40"><p align="center"> \( {@temp_Kelvin1@}-273 ={@temp_degrees1@} \) </p></td>
+            
+        </tr>
+        <tr>
+            <td><p align="center">Monday</p></td>
+            <td><p align="center">{@temp_Kelvin2@}</p></td>
+            <td width="50"><p align="center">    \( {@temp_Kelvin2@}-273 ={@temp_degrees2@} \)         </p></td>
+            
+        </tr>
+        <tr>
+            <td><p align="center">Tuesday</p></td>
+            <td><p align="center">{@temp_Kelvin3@}</p></td>
+            <td ><p align="center">\( {@temp_Kelvin3@}-273 ={@temp_degrees3@} \)</p></td>
+        </tr>
+        <tr>
+            <td><p align="center">Wednesday</p></td>
+            <td><p align="center">{@temp_Kelvin4@}</p></td>
+            <td ><p align="center">\( {@temp_Kelvin4@}-273 ={@temp_degrees4@} \)</p></td>
+        </tr>
+        <tr>
+            <td><p align="center">Thursday</p></td>
+            <td><p align="center">{@temp_Kelvin5@}</p></td>
+            <td width="50"><p align="center">\( {@temp_Kelvin5@}-273 ={@temp_degrees5@} \)</p></td>
+        </tr>
+        <tr>
+            <td><p align="center">Friday</p></td>
+            <td><p align="center">{@temp_Kelvin6@}</p></td>
+            <td ><p align="center">\( {@temp_Kelvin6@}-273 ={@temp_degrees6@} \)</p></td>
+        </tr>
+        <tr>
+            <td><p align="center">Saturday</p></td>
+            <td><p align="center">{@temp_Kelvin7@}</p></td>
+            <td ><p align="center">\( {@temp_Kelvin7@}-273 ={@temp_degrees7@} \)</p></td>
+        </tr>
+    </table></p>
+<p>To find the average temperature in °C we add all the column of degree Celsius then we decide by 7 as shown;</p>
+<p> \(  \text{Average temperature} = \frac{ \sum \text{Temperatures in °C}}{ \text{Number of Days​}}\). Where \(\sum\) represent the sum or addition.</p>
+<p>\(\begin{align} \text{Sum in degrees} &={@temp_degrees1@}+{@temp_degrees2@}+{@temp_degrees3@}+{@temp_degrees4@}+{@temp_degrees5@}+{@temp_degrees6@}+{@temp_degrees7@} \\ &= {@sum_degrees@} \end{align} \)</p>
+<p>Therefore;</p>
+<p>\( \begin{align} \text{Average temperature} &= \frac{{@sum_degrees@}}{7} \\ & = {@average_temp @}  \text{°C} \end{align}\)</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2025012100</text>
+    </stackversion>
+    <questionvariables>
+      <text>/*Generat random values for kelvin*/
+temp_Kelvin1:rand_with_step(273,3000,7);
+temp_Kelvin2:rand_with_step(273,3000,7);
+temp_Kelvin3:rand_with_step(273,3000,7);
+temp_Kelvin4:rand_with_step(273,3000,7);
+temp_Kelvin5:rand_with_step(273,3000,7);
+temp_Kelvin6:rand_with_step(273,3000,7);
+temp_Kelvin7:rand_with_step(273,3000,7);
+list_temp_kelvin:([temp_Kelvin1,temp_Kelvin2,temp_Kelvin3,temp_Kelvin4,temp_Kelvin5,temp_Kelvin6,temp_Kelvin7]);
+/*Conversion of of temperature of Kelvin to degrees Celsius  */
+temp_degrees1:temp_Kelvin1-273;
+temp_degrees2:temp_Kelvin2-273;
+temp_degrees3:temp_Kelvin3-273;
+temp_degrees4:temp_Kelvin4-273;
+temp_degrees5:temp_Kelvin5-273;
+temp_degrees6:temp_Kelvin6-273;
+temp_degrees7:temp_Kelvin7-273;
+list_temp_degrees:([temp_degrees1,temp_degrees2,temp_degrees3,temp_degrees4,temp_degrees5,temp_degrees6,temp_degrees7]);
+/*Calculating the  average temperature  in degrees */
+sum_degrees:temp_degrees1+temp_degrees2+temp_degrees3+temp_degrees4+temp_degrees5+temp_degrees6+temp_degrees7;
+average_temp:(temp_degrees1+temp_degrees2+temp_degrees3+temp_degrees4+temp_degrees5+temp_degrees6+temp_degrees7)/7;
+average_temp1:decimalplaces(average_temp,1);</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="html">
+      <text><![CDATA[<p>Temperatures in Kelvin from Monday to Saturday  {@list_temp_kelvin@}</p>
+<p>Temperatures in °C from Monday to Saturday  {@list_temp_degrees@} </p>
+<p>The average temperature {@average_temp@}  °C</p>]]></text>
+    </questionnote>
+    <questiondescription format="html">
+      <text><![CDATA[<p id="author">Henry Onyango</p>
+<p id="reviewer"></p>
+<p id="reviewer"></p>
+
+<p id="description"></p>]]></text>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>temp_degrees1</tans>
+      <boxsize>6</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans2</name>
+      <type>algebraic</type>
+      <tans>temp_degrees2</tans>
+      <boxsize>6</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans3</name>
+      <type>algebraic</type>
+      <tans>temp_degrees3</tans>
+      <boxsize>6</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans4</name>
+      <type>algebraic</type>
+      <tans>temp_degrees4</tans>
+      <boxsize>6</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans5</name>
+      <type>algebraic</type>
+      <tans>temp_degrees5</tans>
+      <boxsize>6</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans6</name>
+      <type>algebraic</type>
+      <tans>temp_degrees6</tans>
+      <boxsize>6</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans7</name>
+      <type>algebraic</type>
+      <tans>temp_degrees7</tans>
+      <boxsize>6</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans8</name>
+      <type>algebraic</type>
+      <tans>average_temp</tans>
+      <boxsize>6</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct temperature in °C.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>temp_degrees1</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt2</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct temperature in °C.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans2</sans>
+        <tans>temp_degrees2</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt2-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt2-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt3</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct temperature in °C.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans3</sans>
+        <tans>temp_degrees3</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt3-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt3-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt4</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct temperature in °C.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans4</sans>
+        <tans>temp_degrees4</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt4-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt4-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt5</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct temperature in °C.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans5</sans>
+        <tans>temp_degrees5</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt5-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt5-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt6</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct temperature in °C.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans6</sans>
+        <tans>temp_degrees6</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt6-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt6-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt7</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct temperature in °C.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans7</sans>
+        <tans>temp_degrees7</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt7-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt7-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt8</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the avearage tempereture in  °C.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans8</sans>
+        <tans>average_temp</tans>
+        <testoptions>1</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt8-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt8-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <deployedseed>550531301</deployedseed>
+    <deployedseed>643617675</deployedseed>
+    <deployedseed>814803777</deployedseed>
+    <deployedseed>1437262632</deployedseed>
+    <deployedseed>1097958175</deployedseed>
+    <deployedseed>1470359599</deployedseed>
+    <deployedseed>1237565086</deployedseed>
+    <deployedseed>630527085</deployedseed>
+    <deployedseed>1780167506</deployedseed>
+    <deployedseed>527804397</deployedseed>
+    <deployedseed>1554721139</deployedseed>
+    <deployedseed>465165261</deployedseed>
+    <deployedseed>1523577820</deployedseed>
+    <deployedseed>1178128416</deployedseed>
+    <deployedseed>670659300</deployedseed>
+    <deployedseed>1154485232</deployedseed>
+    <deployedseed>1339549743</deployedseed>
+    <deployedseed>136609990</deployedseed>
+    <deployedseed>692579674</deployedseed>
+    <deployedseed>1228785968</deployedseed>
+    <deployedseed>520184305</deployedseed>
+    <deployedseed>1810906817</deployedseed>
+    <deployedseed>319736001</deployedseed>
+    <deployedseed>641818135</deployedseed>
+    <deployedseed>877740860</deployedseed>
+    <deployedseed>1960835526</deployedseed>
+    <deployedseed>696608690</deployedseed>
+    <deployedseed>1682255296</deployedseed>
+    <deployedseed>815712491</deployedseed>
+    <deployedseed>469946986</deployedseed>
+    <deployedseed>800972018</deployedseed>
+    <deployedseed>1826554736</deployedseed>
+    <deployedseed>1366070833</deployedseed>
+    <deployedseed>942418789</deployedseed>
+    <deployedseed>554184495</deployedseed>
+    <deployedseed>717109681</deployedseed>
+    <deployedseed>125842290</deployedseed>
+    <deployedseed>1545033082</deployedseed>
+    <deployedseed>1908792389</deployedseed>
+    <qtest>
+      <testcase>1</testcase>
+      <description>Test case assuming the teacher's input gets full marks.</description>
+      <testinput>
+        <name>ans1</name>
+        <value>temp_degrees1</value>
+      </testinput>
+      <testinput>
+        <name>ans2</name>
+        <value>temp_degrees2</value>
+      </testinput>
+      <testinput>
+        <name>ans3</name>
+        <value>temp_degrees3</value>
+      </testinput>
+      <testinput>
+        <name>ans4</name>
+        <value>temp_degrees4</value>
+      </testinput>
+      <testinput>
+        <name>ans5</name>
+        <value>temp_degrees5</value>
+      </testinput>
+      <testinput>
+        <name>ans6</name>
+        <value>temp_degrees6</value>
+      </testinput>
+      <testinput>
+        <name>ans7</name>
+        <value>temp_degrees7</value>
+      </testinput>
+      <testinput>
+        <name>ans8</name>
+        <value>average_temp1</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt1-1-T</expectedanswernote>
+      </expected>
+      <expected>
+        <name>prt2</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt2-1-T</expectedanswernote>
+      </expected>
+      <expected>
+        <name>prt3</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt3-1-T</expectedanswernote>
+      </expected>
+      <expected>
+        <name>prt4</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt4-1-T</expectedanswernote>
+      </expected>
+      <expected>
+        <name>prt5</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt5-1-T</expectedanswernote>
+      </expected>
+      <expected>
+        <name>prt6</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt6-1-T</expectedanswernote>
+      </expected>
+      <expected>
+        <name>prt7</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt7-1-T</expectedanswernote>
+      </expected>
+      <expected>
+        <name>prt8</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt8-1-T</expectedanswernote>
+      </expected>
+    </qtest>
+  </question>
+</quiz>

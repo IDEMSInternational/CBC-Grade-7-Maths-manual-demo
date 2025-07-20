@@ -1,0 +1,522 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Tavel graph  showing  Mwasha’s journey from town P to Q and back.</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p> The travel graphs alongside shows Mwasha’s journey from town P to Q and back. </p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Distance-Time Graph</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 50px;
+    }
+    .chart-container {
+      width: 80%;
+      max-width: 1200px;
+      text-align: left; /* Align contents left */
+      margin-left: 0;
+      height:600;
+      margin: auto;
+    }
+    canvas { 
+      width: 800px !important; /* Set graph width to 600px */
+      height: 400px !important; /* Set graph height to 300px */
+      margin: 20px auto;
+      display: block; 
+    }
+  </style>
+</head>
+<body>
+
+  <div class="chart-container">
+    <canvas id="distanceChart"></canvas>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      var ctx = document.getElementById('distanceChart').getContext('2d');
+
+      var distanceChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: ["5:00 PM", "6:00 PM", "7:00 PM", "8:00 PM", "9:00 PM", "10:00 PM", "11:00 PM"],
+          datasets: [{
+            label: "Distance (Km)",
+            data: [('{#dist1#}'), ('{#dist2#}'), ('{#dist3#}'), ('{#dist4#}'), ('{#dist5#}'), ('{#dist6#}'), ('{#dist7#}')], // Adjusted peak value
+            borderColor: "blue",
+            backgroundColor: "rgba(0, 0, 255, 0.2)",
+            borderWidth: 2,
+            tension: 0.2,
+            pointRadius: 5,
+            pointHoverRadius: 7
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: true,
+          scales: {
+            x: {
+              title: { display: true, text: "Time in P.M" }
+            },
+            y: {
+              title: { display: true, text: "Distance (Km)" },
+              ticks: {
+                stepSize: 50,
+                beginAtZero: true,
+                callback: function(value) {
+                  if (value === 0) return "0 Km (Town P)";  
+                  if (value === 450) return "450 Km (Town Q)";
+                  return value + " Km"; 
+                }
+              }
+            }
+          },
+          plugins: {
+            legend: { display: false },
+            tooltip: { enabled: true }
+          }
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
+
+
+<ol>
+<li><p>What is the vertical  scale? 1cm rep[[input:ans1]] [[validation:ans1]]Kms[[feedback:prt1]]</p></li>
+<li><p>What is the horizontal  scale? 1cm rep[[input:ans2]] [[validation:ans2]]Hour[[feedback:prt2]]</p></li>
+<li><p>At what time did he arrive at town Q? [[input:ans3]] [[validation:ans3]]hour[[feedback:prt3]] </p></li>
+<li><p>What distance did he cover before he rested? [[input:ans4]] [[validation:ans4]]Kms[[feedback:prt4]]</p></li>
+<li><p>What is the distance between towns P and Q? [[input:ans5]] [[validation:ans5]]Kms[[feedback:prt5]]</p></li>
+<li><p>What was his speed from 5:00 p.m to 7:00 p.m? [[input:ans6]] [[validation:ans6]]Km/hr[[feedback:prt6]]</p></li>
+</ol>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<ol>
+<li><p>The vertical  scale is 1cm rep \({@tans1@}\) Kms</p></li>
+<li><p>The horizontal  scale is 1cm rep \({@tans2@}\)</p></li>
+<li><p>Time  he arrived at town Q was \({@tans3@}\)hour </p></li>
+<li><p>Distance he covered before he rested was \({@tans4@}\)Kms</p></li>
+<li><p>The distance between towns P and Q is  \({@tans5@}\)Kms</p></li>
+<li><p>His speed from 5:00 p.m to 7:00 p.m was {@tans6@} Kms/hr</p></li>
+</ol>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2025012100</text>
+    </stackversion>
+    <questionvariables>
+      <text>dist1:0;
+dist2: rand (50) + 100;
+dist3:rand (50) + 200;
+dist4: dist3;
+dist5:rand (40) + 300;
+dist6:450;
+dist7:dist1;
+
+tans1:1;
+tans2:50;
+tans3:10;
+tans4:dist3;
+tans5:dist6;
+tans6:decimalplaces(dist3/2,2);</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="html">
+      <text>\({@tans1@}\)
+\({@tans2@}\)
+\({@tans3@}\)
+\({@tans4@}\)
+\({@tans5@}\)
+\({@tans6@}\)</text>
+    </questionnote>
+    <questiondescription format="html">
+      <text><![CDATA[<p id="author">Joseph Baya</p>
+<p id="reviewer"></p>
+<p id="description">This question assesses the interpretation of a distance-time graph depicting Mwasha’s journey between two towns. It involves identifying the graph’s scales, determining travel times, distances covered, and calculating speed over a specific period.</p>]]></text>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>tans1</tans>
+      <boxsize>4</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans2</name>
+      <type>algebraic</type>
+      <tans>tans2</tans>
+      <boxsize>4</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans3</name>
+      <type>algebraic</type>
+      <tans>tans3</tans>
+      <boxsize>4</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans4</name>
+      <type>algebraic</type>
+      <tans>tans4</tans>
+      <boxsize>4</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans5</name>
+      <type>algebraic</type>
+      <tans>tans5</tans>
+      <boxsize>4</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans6</name>
+      <type>algebraic</type>
+      <tans>tans6</tans>
+      <boxsize>4</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for correct answer</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>tans1</tans>
+        <testoptions/>
+        <quiet>1</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt2</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>checks for correct answer</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans2</sans>
+        <tans>tans2</tans>
+        <testoptions/>
+        <quiet>1</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt2-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt2-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt3</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>checks for correct answers</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans3</sans>
+        <tans>tans3</tans>
+        <testoptions/>
+        <quiet>1</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt3-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt3-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt4</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for correct answer</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans4</sans>
+        <tans>tans4</tans>
+        <testoptions/>
+        <quiet>1</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt4-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt4-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt5</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for correct answer</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans5</sans>
+        <tans>tans5</tans>
+        <testoptions/>
+        <quiet>1</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt5-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt5-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt6</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for correct answer</description>
+        <answertest>NumAbsolute</answertest>
+        <sans>ans6</sans>
+        <tans>tans6</tans>
+        <testoptions>2</testoptions>
+        <quiet>1</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt6-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt6-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <deployedseed>1204485925</deployedseed>
+    <deployedseed>206912092</deployedseed>
+    <deployedseed>1442604555</deployedseed>
+    <deployedseed>1597820682</deployedseed>
+    <deployedseed>1301361950</deployedseed>
+    <deployedseed>1418747302</deployedseed>
+    <deployedseed>1537276906</deployedseed>
+    <deployedseed>1994985740</deployedseed>
+    <deployedseed>1934881168</deployedseed>
+    <deployedseed>1757547913</deployedseed>
+    <deployedseed>543669060</deployedseed>
+    <deployedseed>1043229346</deployedseed>
+    <deployedseed>1032660323</deployedseed>
+    <deployedseed>1663889174</deployedseed>
+    <deployedseed>548321422</deployedseed>
+    <deployedseed>1776872696</deployedseed>
+    <deployedseed>204903652</deployedseed>
+    <deployedseed>1134635619</deployedseed>
+    <deployedseed>286715475</deployedseed>
+    <deployedseed>1683464072</deployedseed>
+    <deployedseed>1386462875</deployedseed>
+    <deployedseed>386917460</deployedseed>
+    <deployedseed>789053804</deployedseed>
+    <deployedseed>833954348</deployedseed>
+    <deployedseed>797194197</deployedseed>
+    <deployedseed>1364839694</deployedseed>
+    <deployedseed>515459573</deployedseed>
+    <deployedseed>1686979075</deployedseed>
+    <deployedseed>697646955</deployedseed>
+    <deployedseed>2124109767</deployedseed>
+    <deployedseed>1510355011</deployedseed>
+    <deployedseed>110576562</deployedseed>
+    <deployedseed>1844400029</deployedseed>
+    <deployedseed>1022715563</deployedseed>
+  </question>
+</quiz>

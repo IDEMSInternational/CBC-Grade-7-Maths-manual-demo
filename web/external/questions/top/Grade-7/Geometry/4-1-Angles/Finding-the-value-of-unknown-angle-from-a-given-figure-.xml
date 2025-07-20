@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Finding the value of unknown angle from a given figure.</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p>Find the value of the angle marked \({@angle_EBD@}\)</p>. 
+<p>[[input:ans1]] [[validation:ans1]][[feedback:prt1]]</p>
+{#D#}
+{#E#}
+
+[[jsxgraph]]
+var board = JXG.JSXGraph.initBoard('jxgbox', {boundingbox: [-5, 5, 5, -5],
+                keepAspectRatio:true, showCopyright:false, showNavigation:true ,axis:false});
+        var A = board.create('point', [-4,-4], { name: 'A', visible: true});
+        var B = board.create('point', [0,-4], { name: 'B', visible: true });
+        var C = board.create('point', [4,-4], { name: 'C', visible: true});  
+        var D = board.create('point', {#D#}, { name: 'D', visible: true});
+        var E = board.create('point', {#E#}, { name: 'E', visible: true});
+    
+
+        var line1 = board.create('line',[A,C],
+            {straightFirst:false,
+            straightLast:false,
+            strokeWidth:2,
+            strokeColor:'black'
+            });
+
+            var line2 = board.create('line',[B,D],
+            {straightFirst:false,
+            straightLast:false,
+            strokeWidth:2,
+            strokeColor:'black'
+            });
+
+            var line3 = board.create('line',[B,E],
+            {straightFirst:false,
+            straightLast:false,
+            strokeWidth:2,
+            strokeColor:'black'
+            });   
+            
+            var X = board.create('angle', [E,B,D], {type:'sector', orthoSensitivity:2, radius:0.5,name:'{#angle_EBD#}'});
+            var Y = board.create('angle', [D,B,A], {type:'sector',  orthoSensitivity:2, radius:0.4,name:('{#angle_DBA#}&deg')});
+            var Z = board.create('angle', [C,B,E], {type:'sector',  orthoSensitivity:2, radius:0.6,name:('{#angle_CBE#}&deg')});
+ 
+[[/jsxgraph]]]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<h3>Worked solution</h3>.
+<p>Angles on a straight line add up to \(180^\circ\)</p>.
+<p>Taking the sum of the given angles and equating them to the sum of angles on a straight line we get;;</p>
+<p>\({@angle_CBE@}^\circ+{@angle_EBD@}^\circ+{@angle_DBA@}^\circ=180^\circ\) </p>.
+<p>\({@angle_EBD@}^\circ=180^\circ-{@angle_CBE@}^\circ-{@angle_DBA@}^\circ\)</p>.
+<p>\({@angle_EBD@}^\circ={@ta@}^\circ\)</p>.]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2023060500</text>
+    </stackversion>
+    <questionvariables>
+      <text>/*angles on a straight line*/
+angle_EBD:rand([q,w,r,t,y,p,s,d,f,g,h,j,k,l,z,x,c,v,b,n,m]);/*generates random letters for the unKnown angle */
+angle_CBE:rand(40)+20;/*generates random numbers for angle CBE */
+angle_DBA:rand_with_prohib(30,70,[val_angle_1]);/*generates random numbers for angle DBA */
+summation_liketerms:angle_CBE+angle_DBA;/*Addtion for the like terms for the angles with numerical values*/
+equation_sum:summation_liketerms+angle_EBD=180;/*an equation representing the sum of angles on a straight line*/
+ta_angle:180-summation_liketerms;/*teacher's answer*/
+
+dtr(d) := d*%pi/180; /* Convert degrees to radians */
+angle_to_point(r, d) := [float(r*cos(dtr(d))), float(r*sin(dtr(d)))];
+C: angle_to_point(4, 0);
+B:angle_to_point(0,0);
+E: angle_to_point(3, angle_CBE);
+D: angle_to_point(3, angle_DBA);
+A: angle_to_point(4,0) ;
+
+/*mistake 1*/
+ta_1:360-(angle_CBE+angle_DBA);/*student may confuse to take angles on a straight line to be equal to 180 degrees*/</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="moodle_auto_format">
+      <text><![CDATA[<p>unknown angle {@angle_EBD@}</p>
+<p>first known angle{@angle_CBE@}</p>
+<p>second known angle {@angle_DBA@}</p>]]></text>
+    </questionnote>
+    <questiondescription format="html">
+      <text><![CDATA[<p id="author">Eric Morara </p>
+<p id="concept">https://ecampus.idems.international/question/bank/history/history.php?entryid=126523&returnurl=%2Fquestion%2Fedit.php%3Fcourseid%3D430%26cat%3D18812%252C121817&courseid=430</p>
+<p id="reviewer"></p>
+<p id="reviewer"></p>
+
+<p id="description">The question requires the learner to find the unknown angle in a straight line</p>]]></text>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>ta_angle</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>checks for correct angle</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>ta_angle</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <description>you might have used the incorrect value for the sum of angles on a straight line.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>ta_1</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-2-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>Your attempt at solving the problem was a good start. However, it appears you may have made an error in your calculations. Specifically, you might have used the incorrect value for the sum of angles on a straight line. The sum of angles on a straight line is \(180^\circ\) , not \(360^\circ\) .</p>
+<p>Please carefully review your step-by-step solution and correct any instances where you used \(360^\circ\)  instead of \(180^\circ\). Then, try solving the problem again using the correct value</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-2-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <deployedseed>358856795</deployedseed>
+    <deployedseed>1258610517</deployedseed>
+    <deployedseed>1190163221</deployedseed>
+    <deployedseed>1767321724</deployedseed>
+    <deployedseed>1496496255</deployedseed>
+    <deployedseed>1844888635</deployedseed>
+    <deployedseed>1571950987</deployedseed>
+    <deployedseed>290303888</deployedseed>
+    <deployedseed>1214437064</deployedseed>
+    <deployedseed>147483493</deployedseed>
+    <deployedseed>910150466</deployedseed>
+    <deployedseed>1202027148</deployedseed>
+    <deployedseed>850911835</deployedseed>
+    <deployedseed>55493099</deployedseed>
+    <deployedseed>1393298939</deployedseed>
+    <deployedseed>878086585</deployedseed>
+    <deployedseed>1419000181</deployedseed>
+    <deployedseed>555739493</deployedseed>
+    <deployedseed>623684718</deployedseed>
+    <deployedseed>1616225010</deployedseed>
+    <deployedseed>15977850</deployedseed>
+    <deployedseed>960846599</deployedseed>
+    <deployedseed>250097137</deployedseed>
+    <deployedseed>745143149</deployedseed>
+    <deployedseed>191488347</deployedseed>
+    <deployedseed>631101537</deployedseed>
+    <deployedseed>1261208516</deployedseed>
+    <deployedseed>1205030796</deployedseed>
+    <deployedseed>386657485</deployedseed>
+    <deployedseed>1491238311</deployedseed>
+    <deployedseed>1871097615</deployedseed>
+    <deployedseed>1909056612</deployedseed>
+    <deployedseed>230784663</deployedseed>
+    <deployedseed>1950908168</deployedseed>
+    <deployedseed>359374816</deployedseed>
+    <deployedseed>385641157</deployedseed>
+    <deployedseed>573658982</deployedseed>
+    <deployedseed>1889133631</deployedseed>
+    <deployedseed>81078343</deployedseed>
+    <deployedseed>341658203</deployedseed>
+    <deployedseed>1284509989</deployedseed>
+    <deployedseed>1250002889</deployedseed>
+    <deployedseed>1168465192</deployedseed>
+    <deployedseed>972941142</deployedseed>
+    <deployedseed>2020444705</deployedseed>
+    <deployedseed>233992200</deployedseed>
+    <deployedseed>1127568249</deployedseed>
+    <deployedseed>202715222</deployedseed>
+    <deployedseed>1609704807</deployedseed>
+    <deployedseed>405406814</deployedseed>
+    <deployedseed>873106415</deployedseed>
+    <deployedseed>2124338644</deployedseed>
+    <deployedseed>295120373</deployedseed>
+    <deployedseed>380188713</deployedseed>
+    <deployedseed>206102559</deployedseed>
+    <deployedseed>550397598</deployedseed>
+    <deployedseed>30297383</deployedseed>
+    <deployedseed>1944799149</deployedseed>
+    <deployedseed>875839140</deployedseed>
+    <deployedseed>582883509</deployedseed>
+    <deployedseed>2068738177</deployedseed>
+    <deployedseed>226692893</deployedseed>
+    <deployedseed>1761621695</deployedseed>
+    <deployedseed>2079525448</deployedseed>
+    <deployedseed>1010408996</deployedseed>
+    <deployedseed>254077501</deployedseed>
+    <deployedseed>1522642241</deployedseed>
+    <deployedseed>1772294904</deployedseed>
+    <deployedseed>845480136</deployedseed>
+    <deployedseed>1193664799</deployedseed>
+    <deployedseed>222710665</deployedseed>
+    <deployedseed>1796467497</deployedseed>
+    <deployedseed>1756059169</deployedseed>
+    <deployedseed>251963107</deployedseed>
+    <deployedseed>109993007</deployedseed>
+    <deployedseed>1754387166</deployedseed>
+    <deployedseed>1399439604</deployedseed>
+    <deployedseed>1442199377</deployedseed>
+    <deployedseed>11761999</deployedseed>
+    <deployedseed>1518159415</deployedseed>
+    <deployedseed>1470470987</deployedseed>
+    <deployedseed>1068952501</deployedseed>
+    <deployedseed>774817455</deployedseed>
+    <deployedseed>1760749892</deployedseed>
+    <deployedseed>2046800256</deployedseed>
+    <deployedseed>1061417581</deployedseed>
+    <deployedseed>77665773</deployedseed>
+    <deployedseed>1343384281</deployedseed>
+    <deployedseed>1673793868</deployedseed>
+    <deployedseed>994729806</deployedseed>
+    <deployedseed>1746709920</deployedseed>
+    <deployedseed>1194089523</deployedseed>
+    <deployedseed>171830514</deployedseed>
+    <deployedseed>693355367</deployedseed>
+    <deployedseed>2034269948</deployedseed>
+    <deployedseed>2096281232</deployedseed>
+    <deployedseed>2113419706</deployedseed>
+    <deployedseed>102185732</deployedseed>
+    <deployedseed>2043354558</deployedseed>
+    <deployedseed>1111559530</deployedseed>
+    <qtest>
+      <testcase>1</testcase>
+      <description>Test case assuming the teacher's input gets full marks.</description>
+      <testinput>
+        <name>ans1</name>
+        <value>ta</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt1-1-T</expectedanswernote>
+      </expected>
+    </qtest>
+    <qtest>
+      <testcase>2</testcase>
+      <description>you might have used the incorrect value for the sum of angles on a straight line.</description>
+      <testinput>
+        <name>ans1</name>
+        <value>ta_1</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>0.0000000</expectedscore>
+        <expectedpenalty/>
+        <expectedanswernote>prt1-2-T</expectedanswernote>
+      </expected>
+    </qtest>
+  </question>
+</quiz>

@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Finding the area of the shaded region of a rectangle</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p>Find the area of the shaded region in the rectangle below.</p>
+[[jsxgraph]]
+var board = JXG.JSXGraph.initBoard('jxgbox',{
+            boundingbox:[-5,15,10,-5], 
+            axis: false
+
+        });
+        var point1 = board.create('point',{#A#},{name:'A', visible:false});
+        var point2 = board.create('point',{#B#},{name:'B', visible:false});
+        var point3 = board.create('point',{#C#},{name:'C', visible:false});
+        var point4 = board.create('point',{#D#},{name:'D', visible:false});
+
+        var rectangle = board.create('polygon',[point1,point2,point3,point4],{fillcolor:'blue',fillOpacity:0.8, borders:{strokeColor:'blue', strokeWidth:2}});
+
+        var label1 = board.create('text',[1.8,0.8,'{#Length#} cm'],{fontsize:15});
+        var label2 = board.create('text',[4.2,2.5,'{#Width#}cm'],{fontsize:15});
+        
+        var point1a = board.create('point',{#A1#},{name:'A1', visible:false});
+        var point2b = board.create('point',{#B1#},{name:'B1', visible:false});
+        var point3c = board.create('point',{#C1#},{name:'C1', visible:false});
+        var point4d = board.create('point',{#D1#},{name:'D1', visible:false});
+
+        var rectangle = board.create('polygon',[point1a,point2b,point3c,point4d],{fillcolor:'white',fillOpacity:1, borders:{strokeColor:'blue', strokeWidth:2}});
+
+        var label3 = board.create('text',{#Length_text#},'{#length#}cm',{fontsize:15});
+        var label4 = board.create('text',{#Width_text#},'{#width#}cm',{fontsize:15});
+[[/jsxgraph]]
+
+<p>Area of shaded region = [[input:ans1]] [[validation:ans1]][[feedback:prt1]]</p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<h3>Worked solution</h3>
+<p>First we find the area of the outer rectangle</p>
+<p>\(A = L \times W \)</p>
+<p>\(\qquad = {@Length@} \times {@Width@}\)</p>
+<p>\(\qquad = {{@Length*Width@}} \)</p>
+<p>Then we find the area of the inner rectangle.</p>
+<p>\(A = L \times W \)</p>
+<p>\(\qquad = {@length@}\times{@width@} \)</p>
+<p>\(\qquad = {{{@length*width@}}} \)</p>
+<p>Then we subtract the area of the inner rectangle from the area of the outer rectangle to find the area of the shaded region</p>
+<p>\(\qquad = {@Length*Width@}\) -  \({@length*width@}\)</p>
+<p>\(\qquad = {@Length*Width - length*width@}\)</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2023060500</text>
+    </stackversion>
+    <questionvariables>
+      <text>/*randomization for inner rectangle*/ 
+width:4;
+length:6;
+
+/*margins  seperating the rectangles*/
+margin_rectangle:2;
+
+/*randomization for the outer rectangle*/
+Length:length+2*margin_rectangle;
+Width:width+2*margin_rectangle;
+
+/*coordinates for the outer recatngles for JSX graph*/
+A:[0,1];
+B:[Length,1];
+C:[Length,Width+1];
+D:[0,Width+1];
+/*coordinates for labels of outer rectangle*/
+Length_text:[Length/2,1];
+Width_text:[Length,Width/2];
+
+
+
+/*coordinates for the inner rectangle in JSX graph */
+
+A1:[0+margin_rectangle,1+margin_rectangle]
+
+B1:[Length-margin_rectangle,1+margin_rectangle];
+
+
+C1:[Length-margin_rectangle,Width+1-margin_rectangle];
+
+D1:[0+margin_rectangle,Width+1-margin_rectangle];
+
+/*coordinates for labels of inner rectangle*/
+length_text:[length/2+margin_rectangle,1.2];
+width_text:[Length-margin_rectangle,Width+1-margin_rectangle+0.2];
+
+ta:(Length*Width)-(length*width);</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="moodle_auto_format">
+      <text><![CDATA[<p>\({@Length@}\)</p>
+<p>\({@Width@}\)</p>
+<p>\({@length@}\)</p>
+<p>\({@width@}\)</p>
+<p>\({@margin_rectangle@}\)</p>
+<p>\({@A@},{@B@},{@C@},{@D@}\)</p>
+<p>\({@A1@},{@B1@},{@C1@},{@D1@}\)</p>
+<p>\({@ta@}\)</p>
+]]></text>
+    </questionnote>
+    <questiondescription format="html">
+      <text/>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>ta</tans>
+      <boxsize>6</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct answer of the area of the shaded region in the rectangle</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>ta</tans>
+        <testoptions>1</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+  </question>
+</quiz>

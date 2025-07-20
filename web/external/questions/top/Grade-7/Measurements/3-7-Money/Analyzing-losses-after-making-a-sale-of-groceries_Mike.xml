@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Analyzing losses after making a sale of groceries_Mike</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p>Ateya bought oranges for \(KSh.{@buy_p@}\). She later sold them at \(KSh.{@sel_p@}\).</p>
+<p>Calculate: </p>
+<p>(a) Loss made.  \(KSh.\)[[input:ans1]] [[validation:ans1]] [[feedback:prt1]]</p>
+<p>(b) Percentage loss.[[input:ans2]] [[validation:ans2]]% [[feedback:prt2]]</p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<h3>Worked solution</h3>
+<p>(a) Loss made.</p>
+<p>To calculate the loss made, we subtract the selling price from the buying price of the oranges</p>
+<p>Therefore:</p>
+<p>  \(Loss = Buying price - Selling price\)</p>
+<p> \(\qquad=KSh.({@buy_p@}\)- \({@sel_p@})\)</p>
+<p>\(\qquad=KSh.{@los@}\)</p>
+<p>(b) Percentage loss:</p>
+<p>To calculate the percentage loss, we use the formula;</p>
+<p>Percentage loss \(=\frac{Loss}{Buying price} \times 100\) </p>
+<p>\(\qquad \qquad \qquad=\frac{KSh.{@los@}}{KSh.{@buy_p@}} \times 100\)</p>
+<p>\(\qquad \qquad \qquad={{@perc_los@}}\)%</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2023060500</text>
+    </stackversion>
+    <questionvariables>
+      <text>buy_p:rand_with_step(3800,5000,100);/*Buying price*/
+sel_p:rand_with_step(2500,3700,100);/*Selling price*/
+los:buy_p-sel_p;/*Loss made*/
+perc_los:decimalplaces((los/buy_p)*100,2);/*Percentage loss made*/
+
+
+/*Mikstake_1*/
+los_mist:sel_p-buy_p;/*Wrongly calculated Loss*/
+perc_los_mist:decimalplaces((los_mist/buy_p)*100,2);/*Wrongly calculated percentage loss*/
+
+
+/*Mikstake_2*/
+perc_los_mist2:decimalplaces((sel_p/buy_p)*100,2);/*Wrongly calculated percentage loss2*/</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="moodle_auto_format">
+      <text><![CDATA[<p>\(\qquad={@los@}\)</p>
+<p>\(\qquad={@perc_los@}\)</p>]]></text>
+    </questionnote>
+    <questiondescription format="html">
+      <text><![CDATA[<p id="author"> Michael Onyimbo</p>
+<p id="concept">https://docs.google.com/document/d/1asJMgaQPryhkyYkWiPfTvxzEoz6syjgtiB3BA0X4jMQ/edit?tab=t.0</p>
+<p id="reviewer"></p>
+<p id="reviewer"></p>
+
+<p id="description">The question involve calculating the loss and percentage loss made after selling groceries. To find the loss you are required to subtract the selling price from buying price. Percentage loss if calculated by dividing the loss found with the buying price and then multiplying with 100 to get it in percentage form.</p>]]></text>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>los</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans2</name>
+      <type>algebraic</type>
+      <tans>perc_los</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for correct calculation of the loss</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>los</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <description>Checks for wrongly calculated loss</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>los_mist</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-2-T</trueanswernote>
+        <truefeedback format="html">
+          <text>You have subtracted the buying price from the selling price, getting a negative answer. Rather subtract selling price from buying price.</text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-2-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt2</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for correct calculation of the percentage loss</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans2</sans>
+        <tans>perc_los</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt2-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt2-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <description>Checks for wrongly calculated percentage loss</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans2</sans>
+        <tans>perc_los_mist</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt2-2-T</trueanswernote>
+        <truefeedback format="html">
+          <text>You have a wrong percentage loss due to wrong loss calculation.</text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>2</falsenextnode>
+        <falseanswernote>prt2-2-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>2</name>
+        <description>Checks for wrongly calculated percentage loss2</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans2</sans>
+        <tans>perc_los_mist2</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt2-3-T</trueanswernote>
+        <truefeedback format="html">
+          <text>You have used a wrong formula to calculate the percentage loss. Apply the right formula to get a correct answer.</text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt2-3-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <deployedseed>24</deployedseed>
+  </question>
+</quiz>

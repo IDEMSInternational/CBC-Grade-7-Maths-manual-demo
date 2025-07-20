@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Finding the value of an unknown angle at a point from a given figure (copy)(copy)</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p>Find the value of the angle marked \({@EOA@}\)</p>
+
+
+[[jsxgraph]]
+
+  var board = JXG.JSXGraph.initBoard('jxgbox',{
+            boundingbox:[-5,5,5,-5], 
+            axis: false,
+            showCopyright:false,keepAspectRatio:true
+
+        });
+
+        var center = board.create('point',[0,0],{name:'O', size:3,fixed:true,color:'red', visible:false}
+
+        );
+
+        var point1 = board.create('point',{#coordinate_pointA#},{name:'A', size:3, fixed:true, color:'purple', visible:false}
+        );
+
+        var point2 = board.create('point',{#coordinate_pointB#},{name:'B', size:3, fixed:true, color:'orange', visible:false}
+        );
+
+        var point3 = board.create('point',{#coordinate_pointC#},{name:'C', size:3, fixed:true, color:'yellow', visible:false}
+        );
+
+        var point4 = board.create('point',{#coordinate_pointD#},{name:'D', size:3, fixed:true, color:'blue', visible:false}
+        );
+
+        var point5 = board.create('point',{#coordinate_pointE#},{name:'E', size:3, fixed:true,visible:false});
+
+        
+
+        var line1 = board.create('line',[point1,center],
+            {straightFirst:false,
+            straightLast:false,
+            strokeColor:'green',
+            strokeWidth:2,
+            name:'Radius'
+            }
+        );
+
+        var line2 = board.create('line',[center,point2],
+            {straightFirst:false,
+            straightLast:false,
+            strokeColor:'green',
+            strokeWidth:2,
+            name:'Radius'
+            }
+        );
+
+        var line3 = board.create('line',[point3,center],
+            {straightFirst:false,
+            straightLast:false,
+            strokeColor:'green',
+            strokeWidth:2,
+            name:'Radius'
+            }
+        );
+
+        var line4 = board.create('line',[point4,center],
+            {straightFirst:false,
+            straightLast:false,
+            strokeColor:'green',
+            strokeWidth:2,
+            name:'Radius'
+            }
+        );
+
+        var line5 = board.create('line',[point5,center],
+            {straightFirst:false,
+            straightLast:false,
+            strokeColor:'green',
+            strokeWidth:2,
+            name:'Radius'
+            }
+        );
+       var alpha = board.create('angle', [point1,center,point2], {type:'sector', orthoType:'square', orthoSensitivity:2, radius:0.7, name:'{#AOB#}&deg'});
+       var beta = board.create('angle', [point2,center,point3], {type:'sector', orthoType:'square', orthoSensitivity:2, radius:0.7, name:'{#BOC#}&deg'});
+        var gamma = board.create('angle', [point3,center,point4], {type:'sector', orthoType:'square', orthoSensitivity:2, radius:0.7, name:'{#COD#}&deg'});
+       var theta = board.create('angle', [point4,center,point5], {type:'sector', orthoType:'square', orthoSensitivity:2, radius:0.7, name:'{#DOE#}&deg'});
+        var sigma = board.create('angle', [point5,center,point1], {type:'sector', orthoType:'square', orthoSensitivity:2, radius:0.7, name:'{#EOA#}'});
+
+[[/jsxgraph]]
+
+
+<p>\({@EOA@} = \)[[input:ans1]] [[validation:ans1]][[feedback:prt1]]</p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<h3>Worked Solution</h3>
+<p>Angles at a point add up to \(360^\circ.\)</p>
+<p>Therefore:</p>
+<p>\({@AOB@}^\circ+{@BOC@}^\circ+{@COD@}^\circ+{@DOE@}^\circ+{@EOA@}\) = \(360^\circ.\)</p>
+<p>\({@EOA@} + {@sum_angles@}^\circ = 360^\circ \)</p>
+<p>\({@EOA@}\) =  \(360^\circ\) - \({@sum_angles@}^\circ\)</p>
+
+<p>\({@EOA@} = {@ta@}^\circ\)</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2023060500</text>
+    </stackversion>
+    <questionvariables>
+      <text>/*angles at apoint with dynamic image*/
+AOB:rand_with_step(30,60,1);/*generates random numbers for angle AOB */
+BOC:rand_with_prohib(30,90,[angle_AOB]);/*generates random numbers for angle BOC */
+COD:rand_with_prohib(30,90,[angle_AOB,angle_BOC]);/*generates random numbers for angle COD*/
+DOE:AOB+BOC;/*generates angle DOE as a su m of two angles AOB and BOC*/
+sum_angles:AOB+BOC+COD+DOE;/*sum of the generated values for the angles*/
+EOA:rand([q,w,r,t,y,p,s,d,f,g,h,j,k,l,z,x,c,v,b,n,m]);/*generates random letters for the unknown angle */
+ta:360-sum_angles;/*teacher's answer*/
+
+/*coordinates of the points for the generated values for the angles at a point in degrees */
+dtr(d) := d*%pi/180; /* Convert degrees to radians */
+angle_to_point(r, d) := [float(r*cos(dtr(d))), float(r*sin(dtr(d)))];
+coordinate_pointA: angle_to_point(4, 0);
+coordinate_pointB: angle_to_point(4, AOB);
+coordinate_pointC: angle_to_point(4, AOB+BOC);
+coordinate_pointD: angle_to_point(3, AOB+BOC+COD);
+coordinate_pointE: angle_to_point(3, AOB+BOC+COD+DOE);
+
+</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="moodle_auto_format">
+      <text><![CDATA[<p>\({@AOB@}\)</p>
+<p>\({@BOC@}\)</p>
+<p>\{@COD@}\)</p>
+<p>\({@DOE@}\)</p>
+<p>\({@EOA@}\)</p>
+<p>\({@ta@}\)</p>]]></text>
+    </questionnote>
+    <questiondescription format="html">
+      <text/>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>ta</tans>
+      <boxsize>7</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct answer for the uknownn angle value</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>ta</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <deployedseed>1076170053</deployedseed>
+    <deployedseed>634907384</deployedseed>
+    <deployedseed>25497288</deployedseed>
+    <deployedseed>15814372</deployedseed>
+    <deployedseed>1367008085</deployedseed>
+    <deployedseed>2119978172</deployedseed>
+    <deployedseed>1313008148</deployedseed>
+    <deployedseed>2025246371</deployedseed>
+    <deployedseed>488656248</deployedseed>
+    <deployedseed>1328156697</deployedseed>
+    <deployedseed>604372069</deployedseed>
+    <deployedseed>1881779051</deployedseed>
+    <deployedseed>344440710</deployedseed>
+    <deployedseed>377494734</deployedseed>
+    <deployedseed>1138185162</deployedseed>
+    <deployedseed>330116073</deployedseed>
+    <deployedseed>1085038113</deployedseed>
+    <deployedseed>2117124706</deployedseed>
+    <deployedseed>1351070640</deployedseed>
+    <deployedseed>1474856952</deployedseed>
+    <deployedseed>408117828</deployedseed>
+    <deployedseed>1652110321</deployedseed>
+    <deployedseed>1740558191</deployedseed>
+    <deployedseed>800940494</deployedseed>
+    <deployedseed>2144417195</deployedseed>
+    <deployedseed>504553979</deployedseed>
+    <deployedseed>724703980</deployedseed>
+    <deployedseed>710263316</deployedseed>
+    <deployedseed>515508209</deployedseed>
+    <deployedseed>2061988364</deployedseed>
+    <deployedseed>254849926</deployedseed>
+    <deployedseed>1054929060</deployedseed>
+    <deployedseed>1564359687</deployedseed>
+    <deployedseed>1979941558</deployedseed>
+    <deployedseed>307297626</deployedseed>
+    <deployedseed>439146710</deployedseed>
+    <deployedseed>139301663</deployedseed>
+    <deployedseed>2106325623</deployedseed>
+    <deployedseed>935554406</deployedseed>
+    <deployedseed>854665630</deployedseed>
+    <deployedseed>1592897206</deployedseed>
+    <deployedseed>1364016076</deployedseed>
+    <deployedseed>1827690895</deployedseed>
+    <deployedseed>1115189091</deployedseed>
+    <deployedseed>1772424084</deployedseed>
+    <deployedseed>461960271</deployedseed>
+    <deployedseed>1458812853</deployedseed>
+    <deployedseed>881628840</deployedseed>
+    <deployedseed>2090612929</deployedseed>
+    <deployedseed>277201401</deployedseed>
+  </question>
+</quiz>

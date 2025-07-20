@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Performing operations involving division and multiplication of fractions using the given information.</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p>Work out each of the following:</p>
+<p>(a) \({@whole1 @}{@part1@} \times{@ whole2@}{@part2@} \div {@whole3   @}{@part3 @} = \) [[input:ans1]] [[validation:ans1]] [[feedback:prt1]]</p>
+<p>(b) \({@whole_1 @}{@part_1@} \div {@whole_2  @}{@part_2@} \times {@ whole_3 @}{@part_3 @}=\) [[input:ans2]] [[validation:ans2]] [[feedback:prt2]]</p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<h3>Worked solution</h3>
+<p>Part (a)</p>
+<p> To work out,\({@whole1 @}{@part1@} \times{@ whole2@}{@part2@} \div {@whole3   @}{@part3 @} \): </p>
+<p> First, convert the mixed numbers into improper fractions.</p>
+<p>\({@whole1 @}{@part1@} \times{@ whole2@}{@part2@} \div {@whole3   @}{@part3 @} = {@frac1@} \times {@frac2 @} \div {@frac3@}\)</p>
+<p> Now, we perform division : \({@frac2 @} \div {@frac3@}\)</p>
+<p> To perform division, we can multiply \({@frac2@}\) by the reciprocal of \({@frac3@}\).</p>
+<p> \( \begin{align} \text{Therefore, }{@frac2 @} \div {@frac3@} &= {@frac2 @} \times \frac{ {@den3@} } {{@num3@}} \\  \\&= \frac{{@num2@} \times {@den3@}}{{@den2@} \times {@num3@}} \\  \\ &= {@resultA@} \end{align}\)</p>
+<p> Then re-writing \({@resultA@}\) back to the expression, we have : \({@frac1@} \times {@resultA@}\)</p>
+<p> \(\quad\quad = \frac{ {@num1@} \times {@num_division@}   }{{@den1@} \times {@den_division@} }\)</p>
+<p>\(\quad\quad = {@resultA2@}\)</p>
+<p></p>
+<p>Part (b)</p>
+<p> To solve for \({@whole_1 @}{@part_1@} \div {@whole_2  @}{@part_2@} \times {@ whole_3 @}{@part_3 @}\), we convert the mixed numbers to proper fractions.</p>
+<p>\({@whole_1 @}{@part_1@} \div {@whole_2  @}{@part_2@} \times {@ whole_3 @}{@part_3 @}= {@frac_one @} \div {@frac_two@} \times {@frac_three@}\)</p>
+<p>We start by performing division: \({@frac_one @} \div {@frac_two@}\)</p>
+<p>To solve this, we can multiply \({@frac_one@}\) by the reciprocal of \({@frac_two@}\)</p>
+<p>\(\begin{align} &={@frac_one@} \times \frac{{@den_2@}}{{@num_2@}} \\ \\ &= \frac{ {@num_1@} \times {@den_2@} }{{@den_1@}\times {@num_2@}} \\ \\ &= {@resultB@} \end {align}\)</p>
+<p> Re-writing the expression we have: \( {@resultB@} \times {@frac_three@}\)</p>.
+<p> \(\begin{align} &= \frac{{@num2_division@} \times {@num_3@}}{{@den2_division@} \times {@den_3@}}\\ \\ &={@resultB2@}\end{align}\) </p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2025012100</text>
+    </stackversion>
+    <questionvariables>
+      <text><![CDATA[/* -------------------- PART A -------------------- */
+/* First improper fraction */
+done1 : false;
+while not done1 do (
+    num1 : rand_with_step(10, 20, 1),
+    den1 : rand_with_step(1, 9, 1),
+    if num1 > den1 and gcd(num1, den1) = 1 and mod(num1, den1) # 0 then done1 : true
+);
+frac1 : num1 / den1;
+whole1 : floor(frac1);
+part1 : frac1  - whole1;
+
+
+/* Second improper fraction */
+done2 : false;
+while not done2 do (
+    num2 : rand_with_step(10, 20, 1),
+    den2 : rand_with_step(1, 9, 1),
+    if num2 > den2 and gcd(num2, den2) = 1 and mod(num2, den2) # 0 then done2 : true
+);
+frac2 : num2 / den2;
+whole2 : floor(frac2);
+part2 : frac2- whole2;
+
+
+/* Third improper fraction */
+done3 : false;
+while not done3 do (
+    num3 : rand_with_step(10, 20, 1),
+    den3 : rand_with_step(1, 9, 1),
+    if num3 > den3 and gcd(num3, den3) = 1 and mod(num3, den3) # 0 then done3 : true
+);
+frac3 : num3 / den3;
+whole3 : floor(frac3);
+part3 : frac3  - whole3;
+num_division:(num2 *den3);
+den_division:(den2*num3);
+resultA:num_division /den_division;
+num_multiplication:num1 * num_division;
+den_multiplication:den1 * den_division;
+resultA2: num_multiplication/den_multiplication;
+
+
+/* -------------------- PART B -------------------- */
+/* First improper fraction */
+done4 : false;
+while not done4 do (
+    num_1 : rand_with_step(12, 22, 1),
+    den_1 : rand_with_step(2, 8, 1),
+    if num_1 > den_1 and gcd(num_1, den_1) = 1 and mod(num_1, den_1) # 0 then done4 : true
+);
+frac_one : num_1 / den_1;
+whole_1 : floor(frac_one);
+part_1 : frac_one - whole_1;
+ 
+/* Second improper fraction */
+done5 : false;
+while not done5 do (
+    num_2 : rand_with_step(14, 25, 1),
+    den_2 : rand_with_step(2, 7, 1),
+    if num_2 > den_2 and gcd(num_2, den_2) = 1 and mod(num_2, den_2) # 0 then done5 : true
+);
+frac_two : num_2 / den_2;
+whole_2 : floor(frac_two);
+part_2 : frac_two - whole_2;
+
+
+/* Third improper fraction */
+done6 : false;
+while not done6 do (
+    num_3 : rand_with_step(11, 21, 1),
+    den_3 : rand_with_step(2, 6, 1),
+    if num_3 > den_3 and gcd(num_3, den_3) = 1 and mod(num_3, den_3) # 0 then done6 : true
+);
+frac_three : num_3 / den_3;
+whole_3 : floor(frac_three);
+part_3 : frac_three  - whole_3;
+num2_division: num_1 * den_3;
+den2_division: den_1 * num_2;
+resultB:num2_division/den2_division;
+
+num2_multiplication:num2_division* num_3;
+den2_multiplication:den2_division* den_3;
+resultB2:num2_multiplication/den2_multiplication;
+
+
+
+
+]]></text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="html">
+      <text><![CDATA[<p> result after division for a: \({@resultA@}\)</p>
+<p>final result for a: \({@resultA2@}\)</p>
+<p>result after division for b: \({@resultB@}\)</p>
+<p>final result for b: \({@resultB2@}\)</p>]]></text>
+    </questionnote>
+    <questiondescription format="html">
+      <text/>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>resultA2</tans>
+      <boxsize>6</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans2</name>
+      <type>algebraic</type>
+      <tans>resultB2</tans>
+      <boxsize>6</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct order and application of multiplication and division of fractions.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>resultA2</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt2</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct order and application of multiplication and division of fractions</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans2</sans>
+        <tans>resultB2</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt2-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt2-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <deployedseed>723650728</deployedseed>
+    <deployedseed>1044586689</deployedseed>
+    <deployedseed>1048873842</deployedseed>
+    <deployedseed>49103830</deployedseed>
+    <deployedseed>353229092</deployedseed>
+    <deployedseed>1060984251</deployedseed>
+    <deployedseed>2088012153</deployedseed>
+    <deployedseed>2082239230</deployedseed>
+    <deployedseed>1620932068</deployedseed>
+    <deployedseed>1140076534</deployedseed>
+    <deployedseed>987346006</deployedseed>
+    <deployedseed>148394587</deployedseed>
+    <deployedseed>366175274</deployedseed>
+    <deployedseed>1466301578</deployedseed>
+    <deployedseed>1453862759</deployedseed>
+    <deployedseed>2035768716</deployedseed>
+    <deployedseed>1903499133</deployedseed>
+    <deployedseed>1087481563</deployedseed>
+    <deployedseed>831160346</deployedseed>
+    <deployedseed>1719825930</deployedseed>
+    <deployedseed>527450059</deployedseed>
+    <deployedseed>1170952831</deployedseed>
+    <deployedseed>1847976373</deployedseed>
+    <deployedseed>1929050361</deployedseed>
+    <deployedseed>989359442</deployedseed>
+    <deployedseed>924647968</deployedseed>
+    <deployedseed>1668905368</deployedseed>
+    <deployedseed>1798413289</deployedseed>
+    <deployedseed>2098642836</deployedseed>
+    <deployedseed>19402616</deployedseed>
+    <deployedseed>508517627</deployedseed>
+    <deployedseed>648822510</deployedseed>
+    <deployedseed>1462461659</deployedseed>
+    <deployedseed>1696400157</deployedseed>
+    <deployedseed>46009867</deployedseed>
+    <deployedseed>1134451181</deployedseed>
+    <deployedseed>1456723606</deployedseed>
+    <deployedseed>2094518857</deployedseed>
+    <deployedseed>704099245</deployedseed>
+    <deployedseed>2049167674</deployedseed>
+    <deployedseed>1649636838</deployedseed>
+    <deployedseed>694307461</deployedseed>
+    <deployedseed>1890379627</deployedseed>
+    <deployedseed>72037799</deployedseed>
+    <deployedseed>336969896</deployedseed>
+    <deployedseed>168286105</deployedseed>
+    <deployedseed>92114293</deployedseed>
+    <deployedseed>581010924</deployedseed>
+    <deployedseed>579301696</deployedseed>
+    <deployedseed>281857424</deployedseed>
+    <deployedseed>1359488991</deployedseed>
+    <deployedseed>1764787992</deployedseed>
+    <deployedseed>454935050</deployedseed>
+    <deployedseed>1632915119</deployedseed>
+    <deployedseed>1510591936</deployedseed>
+    <deployedseed>1342046398</deployedseed>
+    <deployedseed>1811201942</deployedseed>
+    <deployedseed>1856505675</deployedseed>
+    <deployedseed>505449</deployedseed>
+    <deployedseed>250563637</deployedseed>
+    <deployedseed>1734523502</deployedseed>
+    <deployedseed>2069866881</deployedseed>
+    <deployedseed>583339339</deployedseed>
+    <deployedseed>228011314</deployedseed>
+    <deployedseed>813839719</deployedseed>
+    <deployedseed>1394475707</deployedseed>
+    <deployedseed>431274361</deployedseed>
+    <deployedseed>923455850</deployedseed>
+    <deployedseed>48045427</deployedseed>
+    <deployedseed>386308968</deployedseed>
+    <deployedseed>1779614560</deployedseed>
+    <deployedseed>897736265</deployedseed>
+    <deployedseed>1225872293</deployedseed>
+    <deployedseed>2129505454</deployedseed>
+    <deployedseed>504632742</deployedseed>
+    <deployedseed>77047425</deployedseed>
+    <deployedseed>1905033671</deployedseed>
+    <deployedseed>542102402</deployedseed>
+    <deployedseed>1170233738</deployedseed>
+    <deployedseed>1106508453</deployedseed>
+    <deployedseed>955383888</deployedseed>
+    <deployedseed>384435521</deployedseed>
+    <deployedseed>1630952660</deployedseed>
+    <deployedseed>1663406520</deployedseed>
+    <deployedseed>883934650</deployedseed>
+    <deployedseed>4793206</deployedseed>
+    <deployedseed>1819673020</deployedseed>
+    <deployedseed>1197945202</deployedseed>
+    <deployedseed>1917281682</deployedseed>
+    <deployedseed>820510590</deployedseed>
+    <deployedseed>1218688228</deployedseed>
+    <deployedseed>2029917080</deployedseed>
+    <deployedseed>1607599729</deployedseed>
+    <deployedseed>1097284979</deployedseed>
+    <deployedseed>988418023</deployedseed>
+    <deployedseed>1751825948</deployedseed>
+    <deployedseed>1390935647</deployedseed>
+    <deployedseed>1086175278</deployedseed>
+    <deployedseed>859039675</deployedseed>
+    <deployedseed>980248145</deployedseed>
+  </question>
+</quiz>

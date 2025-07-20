@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Area of a circle</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Given the radius of the circle , </p>
+
+[[jsxgraph width='400px' height='350px']]
+
+var board = JXG.JSXGraph.initBoard('jxgbox', { // STACK: when moving to STACK change 'jxgboard' for divid
+            boundingbox: [-5, 5, 5, -5],
+            keepaspectratio: true,
+            showCopyright: false,
+            axis:false,
+            grid:false,
+            showNavigation: true
+        });
+
+        // Defining the points of the elips
+
+     var t1 = board.create('point', [-0.1, 0], {'visible':false, 'fixed':true});
+     var t2 = board.create('point', [0, 0.1], {'visible':false, 'fixed':true});
+     var t3 = board.create('point', [3, 0], {'visible':false, 'fixed':true});
+     
+    
+        // Drawing the elipse
+
+        var ell_top = board.create('ellipse', [t1, t2, t3,] , {fillColor: 'white', borders: {strokeColor: 'black'}});
+
+        // Defining the points of the the radius
+        var A = board.create('point', [-3.1, 0], {name: 'A',visible:false});
+        var B = board.create('point', [0, 0], {name: 'B',visible:false});
+
+        // Drawing the radius of the cylinder.
+
+        var line1 = board.create('segment', [A, B], { name: 'Line AB', strokeWidth: 2, fixed:true });
+
+        // Labelling the height and the radius of the cylinder.
+
+        var labelA = board.create('text', [1, 1.5, '{#random_radius#}cm'], {fontSize: 12,fixed:true});
+       
+
+ 
+
+[[/jsxgraph]]
+
+
+
+
+
+<p>What is the Area of the Circle [[input:ans1]][[validation:ans1]][[feedback:prt1]]</p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<p>Area of a circle is given by <br> 3.14 * \({@random_radius@}\) * \({@random_radius@}\) </p>
+<p> Thea area of the circle is \({@Area_of_the_circle@}\)</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2023060500</text>
+    </stackversion>
+    <questionvariables>
+      <text>/* Generate a random radius  */
+random_radius:rand(5)+10;
+
+Area_of_the_circle: 3.14 * random_radius * random_radius ;  /* Area of the circle */
+Area_of_the_circle1:decimalplaces(Area_of_the_circle,2)
+</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="moodle_auto_format">
+      <text>\({@Area_of_the_circle@}\)
+\({@random_radius@}\)</text>
+    </questionnote>
+    <questiondescription format="html">
+      <text/>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>Area_of_the_circle1</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Area of a circle</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>Area_of_the_circle1</tans>
+        <testoptions>2</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+  </question>
+</quiz>

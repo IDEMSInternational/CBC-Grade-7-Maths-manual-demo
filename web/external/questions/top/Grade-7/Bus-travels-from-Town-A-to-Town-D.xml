@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Bus travels from Town A to Town D</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>A bus travels from town A to town D, passing through towns B and C. The journey times are:</p>
+<p>The distance from town A to B  is 200km to Town  C is 400km  and to town D 600km. The total distance from Town A to Town D is 600 km.</p>
+<p>Drag the pointer to distances</p>
+
+[[jsxgraph width='500px' height='300px']]
+var distances = [0, 60, 155, 285, 415, 490, 560];
+var timeLabels = ["5:00 PM(Town A)", "8:00 PM", "11:00 PM(Town B)", "2:00 AM", "5:00 AM(Town C)", "8:00 AM", "11:00 AM(Town D)"];
+
+// Create the board with appropriate bounding box and grid intervals
+var board = JXG.JSXGraph.initBoard(divid, {
+  boundingbox: [-0.5, 700, 8, -50],  // x goes from 0 to 6 (timeLabels), y goes from 0 to 600 (distances), with space from both axes and grid
+  axis: true,
+  grid: true,
+  showNavigation: false,
+  showCopyright: false,
+  pan: {enabled: false},
+  zoom: {enabled: false},
+  grid: {
+    gridX: 1,  // Set the x-grid interval to 1
+    gridY: 100 // Set the y-grid interval to 100 (distances in Km)
+  },
+  axis: {
+    x: {
+      name: 'Time',   // Label for the x-axis
+      withLabel: true,
+      label: {offset: [0, -10]} // Position the label slightly above the x-axis
+    },
+    y: {
+      name: 'Distance (Km)',   // Label for the y-axis
+      withLabel: true,
+      label: {offset: [10, 0]} // Position the label slightly to the right
+    }
+  }
+});
+
+// Create initial points and plot them on the board
+var points = [];
+for (let i = 0; i < distances.length; i++) {
+  points.push(board.create('point', [i, distances[i]], {
+    color: '#003399',
+    name: timeLabels[i],
+    showInfobox: false,
+    snapToGrid: true,
+    snapSizeX: 1,
+    snapSizeY: 100
+  }));
+}
+
+// Create line segments connecting the points
+for (let i = 1; i < points.length; i++) {
+  board.create('segment', [points[i - 1], points[i]], {color: '#003399'});
+}
+
+// Function to update coordinates of points if dragged
+var updateCoordinates = function() {
+  var coords = [];
+  points.forEach(function(pt) {
+    coords.push([pt.X().toFixed(1), pt.Y().toFixed(1)]);
+  });
+  console.log(coords);
+};
+
+// Event handler for dragging points
+board.on('update', function () {
+  updateCoordinates();
+});
+
+// Show the axes within the grid
+board.update();
+[[/jsxgraph]]
+
+<ol>
+    <li>
+          <p>Calculate the total distance from Town A to 
+              Town C. [[input:ans1]] [[validation:ans1]] 
+                [[feedback:prt1]]
+           </p>
+    </li>
+    <li>
+         <p>How far is Town D from Town B [[input:ans2]] 
+                [[validation:ans2]][[feedback:prt2]] 
+         </p>
+    </li>
+</ol>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text/>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2023060500</text>
+    </stackversion>
+    <questionvariables>
+      <text>var correctAbDistance = 200
+var correctBcDistance = 150
+var correctCdDistance = 262
+
+var correctTotalDistance = correctAbDistance + correctBcDistance + correctCdDistance
+</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="moodle_auto_format">
+      <text>\(@var correctAbDistance@\)
+\(@var correctBcDistance@\)
+\(@var correctCdDistance@\)
+\(@var correctTotalDistance@\)</text>
+    </questionnote>
+    <questiondescription format="html">
+      <text/>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>correctTotalDistance</tans>
+      <boxsize>7</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans2</name>
+      <type>algebraic</type>
+      <tans>correctBcDistance</tans>
+      <boxsize>7</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description/>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>correctTotalDistance</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt2</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description/>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans2</sans>
+        <tans>correctBcDistance</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt2-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt2-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+  </question>
+</quiz>

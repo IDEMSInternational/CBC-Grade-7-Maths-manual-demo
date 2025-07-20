@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Piecewise linear function C: surjective and not injective</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Drag the points so that the diagram shows the graph of a function \(f:[0,1]\to [0,1]\) that is {@surjective@} and not {@injective@}.</p>
+<p style="display:none">[[input:pwc_ans1]] [[validation:pwc_ans1]]</p>
+[[jsxgraph width='300px' height='300px']]
+// The values from the question text are saved in variable vars.
+// These are needed only if you want to "randomize" the diagram.
+// The random-values should be saved in a maxima-list and printed in a paragraph with the class "stack-variables". 
+// Use the syntax  {#list1#} to  print the list as plain text.
+// You can use the attribute style="display:none;" to hide the list from students.
+//		
+// Example:   <p class="stack-variables" style="display:none">{#list1#}</p>
+//
+var vars = [];
+
+// The answers from the answer-field are saved here. This is neede to save the 'state' of the diagram.
+var ans = [];
+
+// Shortcut for accessing the document. 
+// var doc = window.parent.document;  	// For ILIAS
+var doc = document;  					// For Moodle
+
+
+/************************************************************************************************/
+/*  ONLY EDIT THE CODE BETWEEN THESE TWO STAR-LINES	*/
+
+// Create the board and all elements
+// use vars[0], vars[1], etc. for accessing the values read from the question text.
+//
+// If you want to test the applet offline, you need to uncomment the next line.
+// var divid = "box";
+var ans_input_id = "_pwc_ans1";
+
+JXG.Options.axis.ticks.minorTicks = 0;
+
+var board = JXG.JSXGraph.initBoard(divid, {boundingbox: [-0.1,1.1,1.1,-0.1], axis: true, grid: true, showNavigation: false, showCopyright:false, pan: {enabled: false}, zoom: {enabled: false}});
+
+// The function createWithTimeout should include the elements that depend on values read from the question text.
+// These elements are created with a slight delay, so that the page has time to load.
+// Use vars[0], vars[1], etc. for accessing the values read from the question text.
+var createWithTimeout = function() {
+ // none needed
+};
+
+
+
+var pt_name = ["A", "B", "C", "D"];
+var pt_initial_x = [0, 0.3, 0.7, 1];
+var answer = [];
+var vline = [];
+for(let i of [0,1,2,3]) {
+  answer.push(board.create('point', [pt_initial_x[i], 0], {color:'#003399',name: pt_name[i], showInfobox:false, snapToGrid:true, snapSizeX: 0.1, snapSizeY: 0.1}));
+}
+for(let i of [1,2,3]) {
+  board.create('segment', [answer[i-1], answer[i]], {color:'#003399'});
+}
+
+/************************************************************************************************/
+
+
+// This function writes the x and y coordinates of the points in the array 'answer' to the field ans1 in the STACK-question.
+var defineValues = function() {
+	var coords = [];
+	for (let pts of answer) {
+		coords.push([pts.X().toFixed(1), pts.Y().toFixed(1)]);
+	};
+console.log(coords);
+console.log(JSON.stringify(coords));
+	// since the rounding by toFixed makes the entries into strings, remove the " " now
+	return JSON.stringify(coords).replace(/["]+/g, '');
+};
+
+// This function moves the points defined in array 'answer' to the positions based on the value in the answer field ans1.
+// This is needed for preserving the 'state' of the diagram ans happens after a student clicks "Check"/"Prüfen".
+var moveThingsAround = function() {
+	var i = 0;
+	for (let pts of answer) {
+		pts.moveTo([ ans[2*i] , ans[2*i+1] ]);
+		i++;
+	};
+};
+
+
+// Read the values from the input-field ans1 to the array ans.
+// Then update the positions of the elements accordingly.
+if (doc.querySelector('input[id*='+ans_input_id+']').value!="") {
+	ans = JSON.parse( doc.querySelector('[id*='+ans_input_id+']').value ).flat();
+	moveThingsAround();
+};
+
+// If anything changes on the board, write the values of the array vals to the input-field.
+// The answers are always written as a maxima type 'list'.
+board.on('update', function () {
+	var vals = defineValues();
+	doc.querySelector('[id*='+ans_input_id+']').value = vals;
+});
+[[/jsxgraph]]]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text/>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2020020300</text>
+    </stackversion>
+    <questionvariables>
+      <text><![CDATA[ta1:[[0,0], [0.3,1], [0.7,0.5], [1, 0]];
+injective:"one-to-one";
+surjective:"onto";
+/* helper function for grading - check that a list is (strictly) monotone */
+monotonep:lambda([L],is(cardinality(setify(makelist(signum(L[i+1]-L[i]), i, 1, length(L)-1)))=1));]]></text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text>[[feedback:prt1]]</text>
+    </specificfeedback>
+    <questionnote format="moodle_auto_format">
+      <text/>
+    </questionnote>
+    <questiondescription format="html">
+      <text/>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>dot</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>pwc_ans1</name>
+      <type>algebraic</type>
+      <tans>ta1</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>0</mustverify>
+      <showvalidation>0</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text>xvals: maplist(first, pwc_ans1);
+yvals: maplist(second, pwc_ans1);
+sa_image: [lmin(yvals), lmax(yvals)];
+sa_domain: [lmin(xvals), lmax(xvals)];</text>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description/>
+        <answertest>AlgEquiv</answertest>
+        <sans>monotonep(xvals)</sans>
+        <tans>true</tans>
+        <testoptions/>
+        <quiet>1</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>0.0000000</truescore>
+        <truepenalty/>
+        <truenextnode>1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0.0000000</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text><![CDATA[<p>What you have drawn is not the graph of a function, since there is not a unique value for \(f(x)\) for each \(x\in[0,1]\).</p>]]></text>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <description/>
+        <answertest>AlgEquiv</answertest>
+        <sans>sa_domain</sans>
+        <tans>[0,1]</tans>
+        <testoptions/>
+        <quiet>1</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>0.0000000</truescore>
+        <truepenalty/>
+        <truenextnode>2</truenextnode>
+        <trueanswernote>prt1-2-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0.0000000</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-2-F</falseanswernote>
+        <falsefeedback format="html">
+          <text><![CDATA[<p>The domain of your function is {@sa_domain@}, not \([0,1]\).</p>]]></text>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>2</name>
+        <description/>
+        <answertest>AlgEquiv</answertest>
+        <sans>sa_image</sans>
+        <tans>[0, 1]</tans>
+        <testoptions/>
+        <quiet>1</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>0.5000000</truescore>
+        <truepenalty/>
+        <truenextnode>3</truenextnode>
+        <trueanswernote>prt1-3-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>Your function has image \([0,1]\) so it is {@surjective@}.<br></p>]]></text>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0.0000000</falsescore>
+        <falsepenalty/>
+        <falsenextnode>3</falsenextnode>
+        <falseanswernote>prt1-3-F</falseanswernote>
+        <falsefeedback format="html">
+          <text><![CDATA[<p>Your function has image {@sa_image@}, so it is not {@surjective@}.</p>]]></text>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>3</name>
+        <description/>
+        <answertest>AlgEquiv</answertest>
+        <sans>not(monotonep(yvals))</sans>
+        <tans>true</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0.5000000</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-4-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>Your function is not {@injective@}.</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0.0000000</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-4-F</falseanswernote>
+        <falsefeedback format="html">
+          <text><![CDATA[<p>Your function is {@injective@}, but the question asks for one which is <b>not </b>{@injective@}.</p>]]></text>
+        </falsefeedback>
+      </node>
+    </prt>
+    <qtest>
+      <testcase>1</testcase>
+      <description/>
+      <testinput>
+        <name>pwc_ans1</name>
+        <value>ta1</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt1-4-T</expectedanswernote>
+      </expected>
+    </qtest>
+    <qtest>
+      <testcase>2</testcase>
+      <description/>
+      <testinput>
+        <name>pwc_ans1</name>
+        <value>[[0,0],[0.3,0.1],[0.7,0.4],[1,1]]</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>0.5000000</expectedscore>
+        <expectedpenalty>0.1000000</expectedpenalty>
+        <expectedanswernote>prt1-4-F</expectedanswernote>
+      </expected>
+    </qtest>
+    <qtest>
+      <testcase>3</testcase>
+      <description/>
+      <testinput>
+        <name>pwc_ans1</name>
+        <value>[[0,0],[0.3,0.1],[0.7,0.4],[0.9,0.5]]</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>0.0000000</expectedscore>
+        <expectedpenalty>0.1000000</expectedpenalty>
+        <expectedanswernote>prt1-2-F</expectedanswernote>
+      </expected>
+    </qtest>
+    <qtest>
+      <testcase>4</testcase>
+      <description/>
+      <testinput>
+        <name>pwc_ans1</name>
+        <value>reverse(ta1)</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt1-4-T</expectedanswernote>
+      </expected>
+    </qtest>
+    <qtest>
+      <testcase>5</testcase>
+      <description/>
+      <testinput>
+        <name>pwc_ans1</name>
+        <value>[[0,0],[0.3,0.1],[0.7,0.4],[0,0.5]]</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>0.0000000</expectedscore>
+        <expectedpenalty>0.1000000</expectedpenalty>
+        <expectedanswernote>prt1-1-F</expectedanswernote>
+      </expected>
+    </qtest>
+  </question>
+</quiz>

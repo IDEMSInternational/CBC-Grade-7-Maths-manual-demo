@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Solving Linear Equations: Finding the Value of a given variable</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p>Solve</p>
+
+<p>\({@first_coefficient@}{@letters@} - {@first_constant@} = {@last_coefficient@}\)</p>
+
+<p>\({@letters@}\) in fraction form =  [[input:ans1]] [[validation:ans1]][[feedback:prt1]]</p>
+
+<p><b>Note:</b>Represent your answer in to 2 decimal places</p>
+
+<p>\({@letters@}\) in decimal places = [[input:ans2]] [[validation:ans2]][[feedback:prt2]]</p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<h3>Worked Solution.</h3>
+
+<p>To solve the equation, we add \({@first_constant@}\) on both sides so that we can eliminate it on one side.</p>
+
+<p>\(\qquad \qquad {@first_side_eqn@}-{@first_constant@}\) + \({@first_constant@} = \) \({@last_coefficient@}\)</p>
+
+<p>On the left side of the equation the addition of \({@first_constant@}\) eliminates the number so that we have;</p>
+
+<p>\(\qquad \qquad {@first_side_eqn@} = \) \({@sum_of_coefficients@}\)</p>
+
+<p>Dividing both by \({@first_coefficient@}\) we have;</p>
+
+<p>\(\qquad \qquad \frac{@first_side_eqn@}{@first_coefficient@} = \) \( \frac{@sum_of_coefficients@}{@first_coefficient@}\)</p>
+
+<p>\(\qquad \qquad {@letters@} = {@ta_fractions@}\)</p>
+
+<p>\({\qquad \qquad @letters@} = {@ta_decimal@}\)</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2025012100</text>
+    </stackversion>
+    <questionvariables>
+      <text>/* Question
+                                                    Solve 4x - 9 = 19
+*/
+
+letters: rand([b, c, d, f, g, h, j, k, l, m, n, p, q, r, s, t, v, w, x, y, z]);
+first_coefficient: rand(5)+3;
+first_constant:rand_with_prohib(8,20,[first_coefficient]);
+last_coefficient:rand_with_prohib(10,30,[first_coefficient, first_constant]);
+first_side_eqn:first_coefficient*letters;
+sum_of_coefficients:last_coefficient+first_constant;
+equation:first_coefficient*letters - first_constant = last_coefficient;
+ta_fractions:sum_of_coefficients/first_coefficient;
+ta_decimal:decimalplaces(sum_of_coefficients/first_coefficient,2);
+
+
+/*Potential Mistake*/
+subtrction_of_constatnts:last_coefficient-first_constant;
+ta_wrong:subtrction_of_constatnts/first_coefficient;
+ta_wrong_2:decimalplaces(subtrction_of_constatnts/first_coefficient,2);</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="html">
+      <text>ta</text>
+    </questionnote>
+    <questiondescription format="html">
+      <text><![CDATA[<p id="author">Rodgers Maragia</p>
+<p id="concept">https://docs.google.com/document/d/1nXFCaRAIQZEDe2cuDUQwmxrNBOaD95A_B0D6s2z3py0/edit?usp=sharing</p>
+<p id="reviewer"></p>
+<p id="reviewer"></p>
+<p id="description">In this question, the student is required to determine the value of the unknown variable. To do this, they must first eliminate the constant by adding it to both sides of the equation. Next, they should isolate the variable by dividing both sides by the coefficient of the variable. This step-by-step process helps the student understand how to solve linear equations by applying inverse operations.</p>]]></text>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>ta_fractions</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans2</name>
+      <type>algebraic</type>
+      <tans>ta_decimal</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct answer for \({@letters@}\) in fraction form.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>ta_fractions</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <description>Checks for the wrong answer for \({@letters@}\) in fraction form and gives feedback.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>ta_wrong</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-2-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>You have subtracted instead of adding \({@first_constant@}\) on both sides.
+Please try again by adding it and solve it again.
+</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-2-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt2</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct answer for \({@letters@}\) in decimal places.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans2</sans>
+        <tans>ta_decimal	</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt2-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt2-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <description>Checks for the wrong answer for \({@letters@}\) in decimal form and gives feedback.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans2</sans>
+        <tans>ta_wrong_2</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt2-2-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>You have subtracted instead of adding \({@first_constant@}\) on both sides.
+Please try again by adding it and solve it again.
+</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt2-2-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <deployedseed>816698183</deployedseed>
+    <qtest>
+      <testcase>1</testcase>
+      <description>Test case assuming the teacher's input gets full marks.</description>
+      <testinput>
+        <name>ans1</name>
+        <value>ta_fractions</value>
+      </testinput>
+      <testinput>
+        <name>ans2</name>
+        <value>ta_decimal</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt1-1-T</expectedanswernote>
+      </expected>
+      <expected>
+        <name>prt2</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt2-1-T</expectedanswernote>
+      </expected>
+    </qtest>
+    <qtest>
+      <testcase>2</testcase>
+      <description>Checks for the wrong answer for \({@letters@}\) in fraction form and gives feedback.</description>
+      <testinput>
+        <name>ans1</name>
+        <value>ta_wrong</value>
+      </testinput>
+      <testinput>
+        <name>ans2</name>
+        <value>ta_wrong_2</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>0.0000000</expectedscore>
+        <expectedpenalty/>
+        <expectedanswernote>prt1-2-T</expectedanswernote>
+      </expected>
+      <expected>
+        <name>prt2</name>
+        <expectedscore>0.0000000</expectedscore>
+        <expectedpenalty/>
+        <expectedanswernote>prt2-2-T</expectedanswernote>
+      </expected>
+    </qtest>
+  </question>
+</quiz>

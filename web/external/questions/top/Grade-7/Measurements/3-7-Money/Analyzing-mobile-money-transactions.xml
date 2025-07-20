@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Analyzing mobile money transactions</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p>Use the mobile money transaction table below to answer the question that follows.
+</p>
+
+
+<h2 style="text-align: left;">Mali Mobile Money </h2>
+<table>
+    <thead> 
+       <tr>
+            <th style="border: 1px solid #ccc;">Transaction Range (sh)</th>
+            <th style="border: 1px solid #ccc;">Withdrawal Cost (sh)</th>
+            <th style="border: 1px solid #ccc;">Transfer Cost (sh)</th>
+        </tr>
+    </thead>
+    <tbody style="border: 1px solid #ccc;">
+        <tr style="background-color: #f9f9f9;">
+            <td>1 – 50</td>
+            <td style="border-left: 1px solid #ccc;">5</td>
+            <td style="border-left: 1px solid #ccc;">Free</td>
+        </tr>
+        <tr>
+            <td>51 – 100</td>
+            <td style="border-left: 1px solid #ccc;">10</td>
+            <td style="border-left: 1px solid #ccc;">15</td>
+        </tr>
+        <tr style="background-color: #f9f9f9;">
+            <td>101 – 200</td>
+            <td style="border-left: 1px solid #ccc;">13</td>
+            <td style="border-left: 1px solid #ccc;">17</td>
+        </tr>
+        <tr>
+            <td>201 – 300</td>
+            <td style="border-left: 1px solid #ccc;">17</td>
+            <td style="border-left: 1px solid #ccc;">20</td>
+        </tr>
+        <tr style="background-color: #f9f9f9;">
+            <td>301 – 500</td>
+            <td style="border-left: 1px solid #ccc;">20</td>
+            <td style="border-left: 1px solid #ccc;">25</td>
+        </tr>
+        <tr>
+            <td>501 – 1,000</td>
+            <td style="border-left: 1px solid #ccc;">27</td>
+            <td style="border-left: 1px solid #ccc;">30</td>
+        </tr>
+        <tr style="background-color: #f9f9f9;">
+            <td>1,001 – 2,500</td>
+            <td style="border-left: 1px solid #ccc;">30</td>
+            <td style="border-left: 1px solid #ccc;">33</td>
+        </tr>
+        <tr>
+            <td>2,501 – 3,500</td>
+            <td style="border-left: 1px solid #ccc;">35</td>
+            <td style="border-left: 1px solid #ccc;">40</td>
+        </tr>
+        <tr style="background-color: #f9f9f9;">
+            <td>Above 3,500</td>
+            <td style="border-left: 1px solid #ccc;">40</td>
+            <td style="border-left: 1px solid #ccc;">46</td>
+        </tr>
+    </tbody>
+</table>
+
+
+<p> Wanyonyi needs to send sh \({@transaction_amount1@} \) to his sister and sh \({@transaction_amount2@}\) to his brother. What's the minimum balance he needs in his Mali Mobile account to cover these transfers? sh [[input:ans1]] [[validation:ans1]][[feedback:prt1]]</p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<h3>Worked solution</h3>
+<p>To send sh \({@transaction_amount1@} \) a transaction fee of sh. \({@cost_amount1@} \) is paid.</p>
+<p>To send sh \({@transaction_amount2@} \) a transaction fee of sh. \({@cost_amount2@} \) is paid.</p>
+<p>Total amount of money required \(=\) sh  \({@transaction_amount1@} + \) sh  \({@cost_amount1@} +\)  sh\({@transaction_amount2@} + \) sh \({@cost_amount2@} \) </p>
+<p>\(\qquad \qquad \qquad = \text{sh }{@transaction_amount1+transaction_amount2+cost_amount1+cost_amount2@}\)</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2025012100</text>
+    </stackversion>
+    <questionvariables>
+      <text><![CDATA[/*Generate two transaction amounts.*/
+transaction_amount1:rand_with_step(50,7000,10);
+transaction_amount2:rand_with_step(100,7000,10);
+
+/*Calculate the cost associated with transaction_amount1 based on ranges.*/
+if transaction_amount1 >= 1 and transaction_amount1 <= 50 then cost_amount1: 0
+elseif transaction_amount1 >= 51 and transaction_amount1 <= 100 then cost_amount1: 15
+elseif transaction_amount1 >= 101 and transaction_amount1 <= 200 then cost_amount1: 17
+elseif transaction_amount1 >= 201 and transaction_amount1 <= 300 then cost_amount1: 20
+elseif transaction_amount1 >= 301 and transaction_amount1 <= 500 then cost_amount1: 25
+elseif transaction_amount1 >= 501 and transaction_amount1 <= 1000 then cost_amount1: 30
+elseif transaction_amount1 >= 1001 and transaction_amount1 <= 2500 then cost_amount1: 33
+elseif transaction_amount1 >= 2501 and transaction_amount1 <= 3500 then cost_amount1: 40
+elseif transaction_amount1 > 3500 then cost_amount1: 46;
+
+/*Calculate the cost associated with transaction_amount2 based on the same ranges as transaction_amount1.*/
+if transaction_amount2 >= 1 and transaction_amount2 <= 50 then cost_amount2: 0
+elseif transaction_amount2 >= 51 and transaction_amount2 <= 100 then cost_amount2: 15
+elseif transaction_amount2 >= 101 and transaction_amount2 <= 200 then cost_amount2: 17
+elseif transaction_amount2 >= 201 and transaction_amount2 <= 300 then cost_amount2: 20
+elseif transaction_amount2 >= 301 and transaction_amount2 <= 500 then cost_amount2: 25
+elseif transaction_amount2 >= 501 and transaction_amount2 <= 1000 then cost_amount2: 30
+elseif transaction_amount2 >= 1001 and transaction_amount2 <= 2500 then cost_amount2: 33
+elseif transaction_amount2 >= 2501 and transaction_amount2 <= 3500 then cost_amount2: 40
+elseif transaction_amount2 > 3500 then cost_amount2: 46;
+
+/* Calculate the total amount by summing the costs of both transactions and the transaction amounts.*/
+total_amount:cost_amount1+cost_amount2+transaction_amount1+transaction_amount2;]]></text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="moodle_auto_format">
+      <text><![CDATA[<p>Total amount \({@total_cost@}\)</p>]]></text>
+    </questionnote>
+    <questiondescription format="html">
+      <text><![CDATA[<p id="author">Daniel Murunga</p>
+<p id="concept">https://docs.google.com/document/d/1lOckkZD3WWHLZAebcPFZEM9sEuXsTLxTohCs8e-GLl0/edit?tab=t.0</p>
+<p id="reviewer"></p>
+<p id="reviewer"></p>
+<p id="description">To determine the minimum balance required in his Mali Mobile account, you must first identify the amounts to be transferred. Then, for each amount, check the corresponding transfer cost based on the transaction range. Finally, sum up all the transfer amounts along with their respective transaction fees to get the total minimum balance needed.</p>]]></text>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>total_amount</tans>
+      <boxsize>5</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description/>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>total_amount</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+  </question>
+</quiz>

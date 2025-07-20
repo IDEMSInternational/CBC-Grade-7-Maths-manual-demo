@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Finding the change in Temperature in Degrees Celsius and Kelvin.</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p>The temperature of water in a sufuria was initially at \({@initial_temp@}^\circ \text{C}.\) After being heated, the temperature rose to \({@final_temp@}^\circ \text{C}.\)</p>
+<p>a. Calculate the increase in temperature in degrees Celsius. [[input:ans1]] \({}^\circ \text{C}\) [[validation:ans1]][[feedback:prt1]]</p>
+<p>b. Express  the temperature increase in Kelvin. [[input:ans2]] K [[validation:ans2]][[feedback:prt2]]</p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<h3>Worked solution</h3>
+<p>Part a. </p>
+<p>  Initial temperature \(= {@initial_temp@}^\circ \text{C}\)</p>
+<p>  Final temperature \(= {@final_temp@}^\circ \text{C}\)</p>
+<p>  Temperature increase \(=\) Final temperature \(-\) Initial temperature</p>
+<p>\( \qquad \qquad  = {@final_temp@}^\circ \text{C} - {@initial_temp@}^\circ \text{C}\)</p>
+<p> \( \qquad \qquad = {@temp_increase@}^\circ \text{C}\)</p>
+
+<p>Part b.</p>
+<p>Since one degree Celsius is equivalent to one Kelvin, the temperature increase in Kelvin is equal to temperature increase in Celsius.</p>
+<p> Therefore:</p>
+<p>Temperature increase in Kelvin \( = {@temp_increase_Celsius_to_kelvin@}\)K</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2023060500</text>
+    </stackversion>
+    <questionvariables>
+      <text>initial_temp: rand_with_step(10,50,1);  /*Initial temperature*/
+final_temp: rand_with_step(55,150,1);  /*Final temperature after heating*/
+temp_increase:final_temp - initial_temp;  /*Calculating temperature increase*/
+temp_increase_Celsius_to_kelvin:temp_increase;  /*Converting temperature increase from degrees Celsius to Kelvin*/
+</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="moodle_auto_format">
+      <text><![CDATA[<p>Initial Temperature \({@initial_temp@}\)</p>
+<p>Final Temperature \({@final_temp@}\)</p>
+<p>Temperature Increase \({@temp_increase@}\)</p>]]></text>
+    </questionnote>
+    <questiondescription format="html">
+      <text><![CDATA[<p id="author">Daniel Murunga</p>
+<p id="concept">https://docs.google.com/document/d/1NiTJpgPu0-KJKHTbfxzqODzyBr0RYZFcSsx84173I20/edit?tab=t.0</p>
+<p id="reviewer"></p>
+<p id="reviewer"></p>
+<p id="description">Firstly, calculating the temperature increase in degrees Celsius requires subtracting the initial temperature from the final temperature. Secondly, to express the temperature increase in Kelvin, since the size of one degree Celsius is equivalent to one Kelvin, the temperature increase in Kelvin is the same as in Celsius, meaning no conversion is necessary for the temperature difference.</p>]]></text>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>temp_increase</tans>
+      <boxsize>6</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans2</name>
+      <type>algebraic</type>
+      <tans>temp_increase_Celsius_to_kelvin</tans>
+      <boxsize>6</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text>/*Mistake 1*/
+temp_increase_mistake:final_temp+initial_temp; /* Calculating temperature difference by adding initial temperature and final temperature*/
+</text>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct calculated change in temperatures in degrees celsius.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>temp_increase</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <description>Mistakenly adding the initial and final temperatures instead of subtracting to find the temperature increase.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>temp_increase_mistake</tans>
+        <testoptions/>
+        <quiet>1</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-2-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>It seems you added the temperatures in degrees Celsius while calculating the temperature increase. To find the correct temperature increase, subtract the initial temperature from the final temperature.</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-2-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt2</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text>/*Mistake 2*/
+temp_increase_Celsius_to_kelvin_mistake:temp_increase+273; /*Adding 273 to the Temperature Difference*/
+</text>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct conversion of temperature increase from degrees Celsius to Kelvin.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans2</sans>
+        <tans>temp_increase_Celsius_to_kelvin</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt2-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt2-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <description>Adding 273 to the temperature increase when converting degrees Celsius to Kelvin</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans2</sans>
+        <tans>temp_increase_Celsius_to_kelvin_mistake</tans>
+        <testoptions/>
+        <quiet>1</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt2-2-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>You incorrectly added 273 to the temperature increase when converting from degree Celsius to Kelvin. Please refer to the worked solution for the correct approach.</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt2-2-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <deployedseed>1096501278</deployedseed>
+    <deployedseed>1714226132</deployedseed>
+    <deployedseed>1899853483</deployedseed>
+    <deployedseed>1657235891</deployedseed>
+    <deployedseed>2086238974</deployedseed>
+    <deployedseed>298979426</deployedseed>
+    <deployedseed>1217652737</deployedseed>
+    <deployedseed>580434320</deployedseed>
+    <deployedseed>1511422313</deployedseed>
+    <deployedseed>1767789592</deployedseed>
+    <deployedseed>1950901421</deployedseed>
+    <deployedseed>73194792</deployedseed>
+    <deployedseed>694780740</deployedseed>
+    <deployedseed>912102762</deployedseed>
+    <deployedseed>1051769453</deployedseed>
+    <deployedseed>2136455034</deployedseed>
+    <deployedseed>154719709</deployedseed>
+    <deployedseed>905181922</deployedseed>
+    <deployedseed>641455613</deployedseed>
+    <deployedseed>1789845074</deployedseed>
+    <deployedseed>1036469802</deployedseed>
+    <deployedseed>2080168286</deployedseed>
+    <deployedseed>119940637</deployedseed>
+    <deployedseed>980969309</deployedseed>
+    <deployedseed>727072455</deployedseed>
+    <deployedseed>1727084191</deployedseed>
+    <deployedseed>1597944459</deployedseed>
+    <deployedseed>1823871748</deployedseed>
+    <deployedseed>1206957383</deployedseed>
+    <deployedseed>2005932519</deployedseed>
+    <deployedseed>817776241</deployedseed>
+    <deployedseed>1898574919</deployedseed>
+    <deployedseed>500003919</deployedseed>
+    <deployedseed>129736995</deployedseed>
+    <deployedseed>1702347863</deployedseed>
+    <deployedseed>1850434785</deployedseed>
+    <deployedseed>709300502</deployedseed>
+    <deployedseed>785635104</deployedseed>
+    <deployedseed>123788977</deployedseed>
+    <deployedseed>2055168232</deployedseed>
+    <deployedseed>65079128</deployedseed>
+    <deployedseed>733588876</deployedseed>
+    <deployedseed>1850171580</deployedseed>
+    <deployedseed>1626341262</deployedseed>
+    <deployedseed>1940232738</deployedseed>
+    <deployedseed>1841258774</deployedseed>
+    <deployedseed>44497420</deployedseed>
+    <deployedseed>76744137</deployedseed>
+    <deployedseed>1442954414</deployedseed>
+    <deployedseed>338675728</deployedseed>
+    <deployedseed>1546247894</deployedseed>
+    <deployedseed>1322719501</deployedseed>
+    <deployedseed>587217127</deployedseed>
+    <deployedseed>409254956</deployedseed>
+    <deployedseed>1605570942</deployedseed>
+    <deployedseed>129152811</deployedseed>
+    <deployedseed>417954471</deployedseed>
+    <deployedseed>1227919017</deployedseed>
+    <deployedseed>1124531672</deployedseed>
+    <deployedseed>464367305</deployedseed>
+    <deployedseed>48671519</deployedseed>
+    <deployedseed>1253201030</deployedseed>
+    <deployedseed>2061886552</deployedseed>
+    <deployedseed>1044115194</deployedseed>
+    <deployedseed>1345770286</deployedseed>
+    <deployedseed>426829021</deployedseed>
+    <deployedseed>797030385</deployedseed>
+    <deployedseed>456295455</deployedseed>
+    <deployedseed>1021030983</deployedseed>
+    <deployedseed>1770487708</deployedseed>
+  </question>
+</quiz>

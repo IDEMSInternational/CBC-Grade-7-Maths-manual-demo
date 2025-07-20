@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>FInding perimeter of a</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p> 1.
+a) An arch at the entrance of a park is shaped like a sector with a radius of 6 m and a central angle of 90°. What is the total length of the outer edge of the arch?</p><p>[[input:ans1]] [[validation:ans1]][[feedback:prt1]]</p>
+
+<p>b) You’re decorating a pie chart with ribbon along the edge of a sector that has a radius of 8 cm and represents 45° of the circle. How much ribbon do you need to outline the entire perimeter of that sector?</p>
+
+<p>c) A segment of a circular walking path curves around a garden, forming a sector of radius 15 m and angle 72°. What is the total distance around the sector?</p>
+<p> 2
+a) A gardener wants to create a flower bed in the shape of a sector with a radius of 4.5 m and a central angle of 120°. Calculate the length of fencing required to enclose the flower bed.</p>
+<p>
+b) A circular fan window in a cathedral has a decorative sector piece with a radius of 1.2 m and central angle 150°. What is the length of the framing needed for the outer edge?</p>
+<p> 3
+a) A window decoration drill made from iron rod is in the form of an arc of the circle, radius 8.4 cm. If the angle at the center of the circle is 120 degrees, find its length.</p>
+<p>
+b)a) A sector subtending an angle of 180 degrees at the center of the circle of a radius 35 cm was cut off and folded into 9 sectors to form a paper fan. Calculate the length of one of the small arcs..</p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text/>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2025012100</text>
+    </stackversion>
+    <questionvariables>
+      <text>radius:rand_with_step(0.35,10,0.07);/*generates random values divisible by 7 for the radius of the circle*/
+ta:(22/7)*radius*2;/*calculates the circumference of the circle*/
+
+/*mistake1*/
+ta_1:(22/7)*radius;/* incorrect answer when student fails  to multiply pi by square of the radius*/
+
+/*mistake 2*/
+ta_2:(22/7)*2*radius;/*incorrect solution when the learner calculates the circumference instead of the area of the circle*/</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="html">
+      <text>1</text>
+    </questionnote>
+    <questiondescription format="html">
+      <text/>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>answer</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description/>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>answer</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+  </question>
+</quiz>

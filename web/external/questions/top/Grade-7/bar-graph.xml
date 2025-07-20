@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>bar graph</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p>The table shows monthly expenses of a  household in a certain month. </p>
+<p></p>
+<p></p>
+
+<p><table border="1">
+<caption></caption>
+<thead>
+<tr>
+<th scope="col">Items</th>
+<th scope="col">Expenditure (Ksh.)</th>
+<th scope="col">No. of squares making the height</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>House Rent</td>
+<td>{@3000@} </td>
+<td>[[input:ans1]] [[validation:ans1]][[feedback:prt1]]</td>
+</tr>
+<tr>
+<td>Food</td>
+<td>{@3500@}</td>
+<td>[[input:ans2]] [[validation:ans2]][[feedback:prt2]]</td>
+</tr>
+<tr>
+<td>Education</td>
+<td>{@2000@}</td>
+<td>[[input:ans3]] [[validation:ans3]][[feedback:prt3]]</td>
+</tr>
+<tr>
+<td>Transport</td>
+<td>{@1500@}</td>
+<td>[[input:ans4]] [[validation:ans4]][[feedback:prt4]]</td>
+</tr>
+</tbody>
+</table>
+</p>
+
+<p>Represent the data on a bar graph given that 1cm represent Ksh. 500. Drag the bars to position</p>
+
+
+[[jsxgraph width='400px' height='350px']]
+// Initialize variables for future dynamic customization (unused here).
+var vars = [];
+var ans = [];
+var doc = document;
+
+// Define the ID for saving answers (for Moodle/STACK compatibility).
+var ans_input_id = "_pwc_ans1";
+
+// Configure JSXGraph options
+JXG.Options.axis.ticks.minorTicks = 0;
+
+// Create the board with a bounding box and adjust the y-axis to range from 0 to 3500
+var board = JXG.JSXGraph.initBoard(divid, {
+    boundingbox: [-0.6, 3500, 4.5, -270], // X-axis ranges from -0.5 to 4.5, y-axis ranges from 0 to 3500
+    axis: true,
+    grid: true,
+    showNavigation: false,
+    showCopyright: false,
+    pan: {enabled: false},
+    zoom: {enabled: false}
+});
+
+// Bar names and initial heights
+var bar_labels = ["Rent", "Food", "Education", "Transport"];
+var bar_heights = [1200, 2500, 1500, 3000];
+var bars = [];
+
+// Create bars with only the top-center point draggable
+for (let i = 0; i < bar_labels.length; i++) {
+    // Fixed bar base rectangle (bottom corners and width are fixed)
+    let base = board.create('polygon', [
+        [i, 0], [i + 0.8, 0], [i + 0.8, bar_heights[i]], [i, bar_heights[i]]
+    ], {
+        fillColor: '#88C',
+        highlightFillColor: '#55F',
+        borders: {strokeColor: '#003399'},
+        fixed: true // Prevent dragging of the bar corners
+    });
+    
+    // Create a single draggable control point at the top-center of the bar
+    let controlPoint = board.create('point', [i + 0.4, bar_heights[i]], {
+        color: '#003399', name: '', size: 3,
+        fixed: false, snapToGrid: true, snapSizeY: 50
+    });
+
+    // Update the bar's top edges based on the control point's movement
+    controlPoint.on('drag', function () {
+        base.vertices[2].moveTo([i + 0.8, this.Y()]); // Top-right corner
+        base.vertices[3].moveTo([i, this.Y()]);       // Top-left corner
+    });
+
+    bars.push({base, controlPoint});
+
+    // Add x-axis label below the bar
+    board.create('text', [i + 0.4, -200, bar_labels[i]], {
+        anchorX: 'middle',
+        fontSize: 12
+    });
+}
+
+// Save the state of the bars in the answer field
+var defineValues = function () {
+    let heights = bars.map(bar => bar.controlPoint.Y().toFixed(1));
+    return JSON.stringify(heights).replace(/["]+/g, '');
+};
+
+// Restore bar heights when reloading the diagram
+var moveThingsAround = function () {
+    for (let i = 0; i < bars.length; i++) {
+        let height = ans[i];
+        bars[i].controlPoint.moveTo([i + 0.4, height]);
+        bars[i].base.vertices[2].moveTo([i + 0.8, height]);
+        bars[i].base.vertices[3].moveTo([i, height]);
+    }
+};
+
+// If the input field contains saved values, restore them
+if (doc.querySelector('input[id*='+ans_input_id+']').value != "") {
+    ans = JSON.parse(doc.querySelector('[id*='+ans_input_id+']').value);
+    moveThingsAround();
+}
+
+// Update the answer field whenever the graph changes
+board.on('update', function () {
+    var vals = defineValues();
+    doc.querySelector('[id*='+ans_input_id+']').value = vals;
+});
+[[/jsxgraph]]]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text/>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2023060500</text>
+    </stackversion>
+    <questionvariables>
+      <text>1</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="moodle_auto_format">
+      <text/>
+    </questionnote>
+    <questiondescription format="html">
+      <text/>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>1</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans2</name>
+      <type>algebraic</type>
+      <tans>1</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans3</name>
+      <type>algebraic</type>
+      <tans>1</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans4</name>
+      <type>algebraic</type>
+      <tans>1</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description/>
+        <answertest>AlgEquiv</answertest>
+        <sans>1</sans>
+        <tans>1</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt2</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description/>
+        <answertest>AlgEquiv</answertest>
+        <sans>1</sans>
+        <tans>1</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt2-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt2-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt3</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description/>
+        <answertest>AlgEquiv</answertest>
+        <sans>1</sans>
+        <tans>1</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt3-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt3-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt4</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description/>
+        <answertest>AlgEquiv</answertest>
+        <sans>1</sans>
+        <tans>1</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt4-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt4-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+  </question>
+</quiz>

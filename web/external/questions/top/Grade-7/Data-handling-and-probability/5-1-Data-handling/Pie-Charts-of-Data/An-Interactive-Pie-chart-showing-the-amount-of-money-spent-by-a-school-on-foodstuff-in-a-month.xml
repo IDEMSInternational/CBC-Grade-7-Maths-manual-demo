@@ -1,0 +1,1570 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>An Interactive Pie chart  showing the amount of money spent by a school on foodstuff in a month</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p>The table  below shows the amount of money spent by a school on foodstuff in a month. </p>
+<p>Complete the table by finding their respective angles</p>
+<p><br></p>
+<table border="1">
+    <tr>
+        <th>Food Item</th>
+        <th>Quantity (kg)</th>
+        <th>Degrees</th>
+    </tr>
+    <tr>
+        <td>Rice</td>
+        <td>\({@random_rice@}\)</td>
+        <td>[[input:ans8]][[validation:ans8]] </td>
+    </tr>
+    <tr>
+        <td>Beans</td>
+        <td>\({@random_beans@}\)</td>
+        <td>[[input:ans9]][[validation:ans9]] </td>
+    </tr>
+    <tr>
+        <td>Vegetables</td>
+        <td>\({@random_vegetables@}\)</td>
+        <td>[[input:ans10]][[validation:ans10]] </td>
+    </tr>
+    <tr>
+        <td>Meat</td>
+        <td>\({@random_meat@}\)</td>
+        <td>[[input:ans11]][[validation:ans11]] </td>
+    </tr>
+    <tr>
+        <td>Sugar</td>
+        <td>\({@random_sugar@}\)</td>
+        <td>[[input:ans12]][[validation:ans12]] </td>
+    </tr>
+    <tr>
+        <td>Maize</td>
+        <td>\({@random_maize@}\)</td>
+        <td>[[input:ans13]][[validation:ans13]]</td>
+    </tr>
+</table>
+
+<p><br></p>
+<p>After calculating the angles ,drag the sliders to angles representing the foodstuffs bought by the school</p>
+<p>[[feedback:prt8]]</p>
+
+[[jsxgraph width="750px" height="450px" input-ref-ans17="sR1" input-ref-ans18="sR2" input-ref-ans19="sR3" input-ref-ans20="sR4" input-ref-ans21="sR5" input-ref-ans22="sR6"]]
+
+JXG.Options.text.useMathJax = true;
+var board = JXG.JSXGraph.initBoard(divid, {
+  boundingBox: [-3, 2, 3, -2],
+  showCopyright: false,
+  showNavigation: false,
+  keepAspectRatio: true,
+  grid: false
+});
+
+// Categories and colors for pie chart
+var categories = ["Rice", "Beans", "Vegetables", "Meat", "Sugar", "Maize"];
+var colors = ["red", "blue", "green", "orange", "purple", "cyan"];
+
+// Define sliders for each category (whole numbers only)
+var sliders = [
+  board.create('slider', [[-2.8, 1.5], [-2, 1.5], [10, 60, 180]], {name: "Rice", snapWidth: 1}),
+  board.create('slider', [[-2.8, 1.3], [-2, 1.3], [10, 50, 180]], {name: "Beans", snapWidth: 1}),
+  board.create('slider', [[-2.8, 1.1], [-2, 1.1], [10, 40, 180]], {name: "Vegetables", snapWidth: 1}),
+  board.create('slider', [[-2.8, 0.9], [-2, 0.9], [10, 90, 180]], {name: "Meat", snapWidth: 1}),
+  board.create('slider', [[-2.8, 0.7], [-2, 0.7], [10, 60, 180]], {name: "Sugar", snapWidth: 1}),
+  board.create('slider', [[-2.8, 0.5], [-2, 0.5], [10, 60, 180]], {name: "Maize", snapWidth: 1})
+];
+
+// Define pie chart center and radius
+var center = [1, 0];
+var radius = 1.5;
+var sectors = [];
+var textLabels = [];
+
+// Function to update the pie chart based on slider values
+function updateChart() {
+  var angles = sliders.map(s => Math.round(s.Value())); // Ensure whole numbers
+  var total = angles.reduce((a, b) => a + b, 0);
+  angles = angles.map(a => Math.round((a / total) * 360)); // Ensure whole numbers
+
+  var startAngle = 0;
+  for (let i = 0; i < angles.length; i++) {
+    let angleDegrees = angles[i];
+    let endAngle = startAngle + angleDegrees;
+
+    let startRad = (startAngle * Math.PI) / 180;
+    let endRad = (endAngle * Math.PI) / 180;
+
+    let p1 = board.create('point', [center[0] + radius * Math.cos(startRad), center[1] + radius * Math.sin(startRad)], { visible: false });
+    let p2 = board.create('point', [center[0] + radius * Math.cos(endRad), center[1] + radius * Math.sin(endRad)], { visible: false });
+
+    if (sectors[i]) board.removeObject(sectors[i]);
+    if (textLabels[i]) board.removeObject(textLabels[i]);
+
+    sectors[i] = board.create('sector', [center, p1, p2], {
+      fillColor: colors[i],
+      strokeColor: "black",
+      strokeWidth: 1,
+      fillOpacity: 0.7
+    });
+
+    let midAngle = startAngle + angleDegrees / 2;
+    let midRad = (midAngle * Math.PI) / 180;
+    let labelX = center[0] + radius * 0.8 * Math.cos(midRad);
+    let labelY = center[1] + radius * 0.8 * Math.sin(midRad);
+
+    textLabels[i] = board.create('text', [labelX, labelY, categories[i] + " (" + angleDegrees + "°)"], { // Whole numbers only
+      fontSize: 14,
+      anchorX: 'middle',
+      anchorY: 'middle',
+      fixed: true
+    });
+
+    startAngle = endAngle;
+  }
+}
+
+// Attach event listeners to update the pie chart when sliders are moved
+sliders.forEach(slider => slider.on("drag", updateChart));
+
+// Bind slider values to STACK inputs
+stack_jxg.bind_point(sR1, sliders[0]);
+stack_jxg.bind_point(sR2, sliders[1]);
+stack_jxg.bind_point(sR3, sliders[2]);
+stack_jxg.bind_point(sR4, sliders[3]);
+stack_jxg.bind_point(sR5, sliders[4]);
+stack_jxg.bind_point(sR6, sliders[5]);
+
+// Initialize the chart
+updateChart();
+
+[[/jsxgraph]]
+
+
+<p hidden>[[input:ans17]][[input:ans18]][[input:ans19]][[input:ans20]][[input:ans21]][[input:ans22]]</p>
+<p hidden>[[validation:ans17]][[validation:ans18]][[validation:ans19]][[validation:ans20]][[validation:ans21]][[validation:ans22]]</p>
+<p>[[feedback:prt17]]</p>
+
+
+<p>use the information you provided above to answer the questions below</p>
+
+<ol>
+<li><p>What is the total quantity of food items bought by the school?[[input:ans1]][[validation:ans1]][[feedback:prt1]]</p></li>
+<li><p>Which food item had the highest quantity? [[input:ans2]][[validation:ans2]][[feedback:prt2]]</p></li>
+<li><p>Which food item had the least quantity?[[input:ans3]] [[validation:ans3]][[feedback:prt3]]</p></li>
+<li><p>What is the percentage of the total quantity that is maize? [[input:ans4]] [[validation:ans4]][[feedback:prt4]]</p></li>
+<li><p>What is the sum of the angles for rice and maize? [[input:ans5]] [[validation:ans5]][[feedback:prt5]]</p></li>
+<li><p>What is the difference in degrees between beans and meat? [[input:ans6]] [[validation:ans6]][[feedback:prt6]]</p></li>
+ <li><p>If the school decides to double the quantity of vegetables, what will its new angle be? [[input:ans7]] [[validation:ans7]][[feedback:prt7]]</p></li>
+<li><p>How many more kilograms of meat were bought than beans?  [[input:ans14]] [[validation:ans14]][[feedback:prt14]]</p></li>
+<li><p>What fraction of the total quantity is sugar?  [[input:ans15]] [[validation:ans15]][[feedback:prt15]]</p></li>
+<li><p>What is the total angle sum of meat, vegetables, and sugar?  [[input:ans16]] [[validation:ans16]][[feedback:prt16]]</p></li>
+
+</ol>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<h1>Worked Solution </h1>
+
+<ol>
+<li><p>Total Quantity of Food Items was \({@Total_values@}\)</p></li>
+<li><p>Food Item with the Highest Quantity was \({@max_item@}\)</p></li>
+<li><p>Food Item with the Least Quantity \({@min_item@}\)</p></li>
+<li><p>Percentage of the total quantity that is maize was \({@percentage_rice@}\)</p></li>
+<li><p>The sum of the angles for rice and maize was \({@sum_angles_rice_beans@}\)</p></li>
+<li><p>The difference in degrees between beans and meat was  \({@diff_meat_maize@}\)</p></li>
+ <li><p>The new angle for vegetables if its quantity is doubled was \({@new_angle_vegetables@}\) </p></li>
+<li><p>Difference in Kilograms between meat and beans was \({@diff_meat_beans@}\) </p></li>
+<li><p>Fraction of the total quantity is sugar was \({@fraction_maize@}\)  </p></li>
+<li><p>Total angle sum of meat, vegetables, and sugar was \({@sum_angles_meat_veg_sugar@}\)</p></li>
+</ol>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2025012100</text>
+    </stackversion>
+    <questionvariables>
+      <text>/*Randomize each item individually ensuring integer values*/
+random_rice: floor(rand(500 / 10)) * 10 + 120;
+random_beans: floor(rand(300 / 10)) * 10 + 72;
+random_vegetables: floor(rand(200 / 10)) * 10 + 48;
+random_meat: floor(rand(400 / 10)) * 10 + 96;
+random_sugar: floor(rand(100 / 10)) * 10 + 50;
+random_maize: floor(rand(300 / 10)) * 10 + 72;
+
+/* Compute total */
+Total_values: random_rice + random_beans + random_vegetables + random_meat + random_sugar + random_maize;
+
+/* Adjust angles to ensure whole numbers summing to 360 */
+rice: floor((random_rice / Total_values) * 360);
+beans: floor((random_beans / Total_values) * 360);
+vegetables: floor((random_vegetables / Total_values) * 360);
+meat: floor((random_meat / Total_values) * 360);
+sugar: floor((random_sugar / Total_values) * 360);
+maize: 360 - (rice + beans + vegetables + meat + sugar);
+
+
+max_item: max(random_rice, random_beans, random_vegetables, random_meat, random_sugar, random_maize);
+
+min_item: min(random_rice, random_beans, random_vegetables, random_meat, random_sugar, random_maize);
+
+percentage_rice: decimalplaces((random_rice / Total_values) * 100,2);
+
+sum_angles_rice_beans: rice + beans;
+
+diff_meat_maize: meat - maize;
+
+new_total: Total_values + random_vegetables;
+new_angle_vegetables: decimalplaces((2 * random_vegetables / new_total) * 360,2);
+
+diff_meat_beans: random_meat - random_beans;
+
+fraction_maize: ratsimp(random_maize / Total_values);
+
+sum_angles_meat_veg_sugar: meat + vegetables + sugar;
+
+tans1:Total_values ;
+tans2:max_item ;
+tans3: min_item ;
+tans4:percentage_rice ;
+tans5: sum_angles_rice_beans ;
+tans6:diff_meat_maize ;
+tans7: new_angle_vegetables ;
+tans14:diff_meat_beans ;
+tans15: fraction_maize ;
+tans16: sum_angles_meat_veg_sugar;
+tans17: rice ;
+tans18: beans ;
+tans19: vegetables ;
+tans20: meat ;
+tans21: sugar ;
+tans22: maize ;
+
+
+
+
+
+
+
+
+
+</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="html">
+      <text>\({@random_rice@}\)
+\({@random_beans@}\)
+\({@random_vegetables@}\)
+\({@random_meat@}\)
+\({@random_sugar@}\)
+\({@random_maize@}\)
+
+\({@rice@}\)
+\({@beans@}\)
+\({@vegetables@}\)
+\({@meat@}\)
+\({@sugar@}\)
+\({@maize@}\)
+\({@Total_values@}\)
+
+\({@tans1@}\)
+\({@tans2@}\)
+\({@tans3@}\)
+\({@tans4@}\)
+\({@tans5@}\)
+\({@tans6@}\)
+\({@tans7@}\)
+\({@tans14@}\)
+\({@tans15@}\)
+\({@tans16@}\)
+\({@tans17@}\)
+\({@tans18@}\)
+\({@tans19@}\)
+\({@tans20@}\)
+\({@tans21@}\)
+\({@tans22@}\)</text>
+    </questionnote>
+    <questiondescription format="html">
+      <text><![CDATA[<p id="author">Joseph Baya Karisa</p>
+<p id="reviewer">[ ]</p>
+<p id="reviewer"> [ ]</p>
+<p id="description">The table displays the quantity of various food items bought by a school in a month. Students must calculate the corresponding angles for each food item based on their quantities to complete the table. Afterward, they will use sliders to visually represent these angles on a pie chart and answer related questions about the data.</p>]]></text>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>tans1</tans>
+      <boxsize>4</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans10</name>
+      <type>algebraic</type>
+      <tans>vegetables</tans>
+      <boxsize>4</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans11</name>
+      <type>algebraic</type>
+      <tans>meat</tans>
+      <boxsize>4</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans12</name>
+      <type>algebraic</type>
+      <tans>sugar</tans>
+      <boxsize>4</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans13</name>
+      <type>algebraic</type>
+      <tans>maize</tans>
+      <boxsize>4</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans14</name>
+      <type>algebraic</type>
+      <tans>tans14</tans>
+      <boxsize>4</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans15</name>
+      <type>algebraic</type>
+      <tans>tans15</tans>
+      <boxsize>4</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans16</name>
+      <type>algebraic</type>
+      <tans>tans16</tans>
+      <boxsize>4</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans17</name>
+      <type>algebraic</type>
+      <tans>tans17</tans>
+      <boxsize>3</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>0</mustverify>
+      <showvalidation>0</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans18</name>
+      <type>algebraic</type>
+      <tans>tans18</tans>
+      <boxsize>3</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>0</mustverify>
+      <showvalidation>0</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans19</name>
+      <type>algebraic</type>
+      <tans>tans19</tans>
+      <boxsize>3</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>0</mustverify>
+      <showvalidation>0</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans2</name>
+      <type>algebraic</type>
+      <tans>tans2</tans>
+      <boxsize>4</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans20</name>
+      <type>algebraic</type>
+      <tans>tans20</tans>
+      <boxsize>3</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>0</mustverify>
+      <showvalidation>0</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans21</name>
+      <type>algebraic</type>
+      <tans>tans21</tans>
+      <boxsize>3</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>0</mustverify>
+      <showvalidation>0</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans22</name>
+      <type>algebraic</type>
+      <tans>tans22</tans>
+      <boxsize>3</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>0</mustverify>
+      <showvalidation>0</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans3</name>
+      <type>algebraic</type>
+      <tans>tans3</tans>
+      <boxsize>4</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans4</name>
+      <type>algebraic</type>
+      <tans>tans4</tans>
+      <boxsize>4</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans5</name>
+      <type>algebraic</type>
+      <tans>tans5</tans>
+      <boxsize>4</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans6</name>
+      <type>algebraic</type>
+      <tans>tans6</tans>
+      <boxsize>4</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans7</name>
+      <type>algebraic</type>
+      <tans>tans7</tans>
+      <boxsize>4</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans8</name>
+      <type>algebraic</type>
+      <tans>rice</tans>
+      <boxsize>4</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans9</name>
+      <type>algebraic</type>
+      <tans>beans</tans>
+      <boxsize>4</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks the correct answer</description>
+        <answertest>NumAbsolute</answertest>
+        <sans>ans1</sans>
+        <tans>tans1</tans>
+        <testoptions>6</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>1</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <description>checks</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>is_fraction</sans>
+        <tans>a</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-2-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-2-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt14</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for correct answer</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans14</sans>
+        <tans>tans14</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt14-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt14-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt15</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for correct answer</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans15</sans>
+        <tans>tans15</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt15-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt15-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt16</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks the correct answer</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans16</sans>
+        <tans>tans16</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt16-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt16-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt17</name>
+      <value>6.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text>/* Node 1: Correct answer */
+
+
+node1_test: if ans17=tans17 and ans18=tans18 and ans19=tans19 and ans20=tans20 and ans21=tans21 and ans22=tans22 then 1 else 0;
+
+/* Node 2: Worked solution */
+
+/* Node 3: ans17 correct */
+/* Node 4: ans17 consistent with (a) */
+node4_error: [float(rice), ans1];
+
+/* Node 5: ans18 correct */
+/* Node 6: ans18 consistent with (a) */
+node6_error: [float(beans), ans2];
+
+/* Node 7: ans19 correct */
+/* Node 8: ans19 consistent with (a) */
+node8_error: [float(vegetables), ans3];
+
+/* Node 9: ans20 correct */
+/* Node 10: ans20 consistent with (a) */
+node10_error: [float(meat), ans4];
+
+/* Node 11: ans21 correct */
+/* Node 12: ans21 consistent with (a) */
+node12_error: [float(sugar), ans5];
+
+/* Node 13: ans22 correct */
+/* Node 14: ans22 consistent with (a) */
+node14_error: [float(maize), ans6];</text>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for correct answers</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>node1_test</sans>
+        <tans>1</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>1</truenextnode>
+        <trueanswernote>prt17-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>2</falsenextnode>
+        <falseanswernote>prt17-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <description>Checks for correct answers</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>1</sans>
+        <tans>1</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt17-2-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt17-2-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>10</name>
+        <description>Checks for correct answers</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans21</sans>
+        <tans>tans21</tans>
+        <testoptions/>
+        <quiet>1</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0.167</truescore>
+        <truepenalty/>
+        <truenextnode>12</truenextnode>
+        <trueanswernote>prt17-11-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p><br>Your value for pie chart for the sugar is <b>correct</b>.</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>11</falsenextnode>
+        <falseanswernote>prt17-11-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>11</name>
+        <description>Checks for correct answers</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans21</sans>
+        <tans>node12_error</tans>
+        <testoptions/>
+        <quiet>1</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0.167</truescore>
+        <truepenalty/>
+        <truenextnode>12</truenextnode>
+        <trueanswernote>prt17-12-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p><br>Your value for pie chart for the sugar is <b>incorrect</b>.</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>12</falsenextnode>
+        <falseanswernote>prt17-12-F</falseanswernote>
+        <falsefeedback format="html">
+          <text><![CDATA[<p><br>Your value for pie chart for the sugar is <b>incorrect</b>.</p>]]></text>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>12</name>
+        <description>Checks for correct answers</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans22</sans>
+        <tans>tans22</tans>
+        <testoptions/>
+        <quiet>1</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0.167</truescore>
+        <truepenalty/>
+        <truenextnode>1</truenextnode>
+        <trueanswernote>prt17-13-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p><br>Your value for pie chart for the maize is <b>correct</b>.</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>13</falsenextnode>
+        <falseanswernote>prt17-13-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>13</name>
+        <description>Checks for correct answers</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans22</sans>
+        <tans>node14_error</tans>
+        <testoptions/>
+        <quiet>1</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0.167</truescore>
+        <truepenalty/>
+        <truenextnode>1</truenextnode>
+        <trueanswernote>prt17-14-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p><br>Your value for pie chart for the Maize is <b>incorrect</b>.</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt17-14-F</falseanswernote>
+        <falsefeedback format="html">
+          <text><![CDATA[<p><br>Your value for pie chart for the Maize is <b>incorrect</b>.</p>]]></text>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>2</name>
+        <description>Checks for correct answers for pie chart</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans17</sans>
+        <tans>tans17</tans>
+        <testoptions/>
+        <quiet>1</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0.167</truescore>
+        <truepenalty/>
+        <truenextnode>4</truenextnode>
+        <trueanswernote>prt17-3-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p><br>Your value for pie chart for the rice is correct.</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>3</falsenextnode>
+        <falseanswernote>prt17-3-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>3</name>
+        <description>Checks for correct answers</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans17</sans>
+        <tans>node4_error</tans>
+        <testoptions/>
+        <quiet>1</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0.167</truescore>
+        <truepenalty/>
+        <truenextnode>4</truenextnode>
+        <trueanswernote>prt17-4-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p><br>Your value for pie chart for the rice is <b>incorrect</b>.</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>4</falsenextnode>
+        <falseanswernote>prt17-4-F</falseanswernote>
+        <falsefeedback format="html">
+          <text><![CDATA[<p><br>Your value for pie chart for the rice is <b>incorrect</b>.</p>]]></text>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>4</name>
+        <description>Checks for correct answers</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans18</sans>
+        <tans>tans18</tans>
+        <testoptions/>
+        <quiet>1</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0.167</truescore>
+        <truepenalty/>
+        <truenextnode>6</truenextnode>
+        <trueanswernote>prt17-5-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p><br>Your value for pie chart for the beans is <b>correct</b>.</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>5</falsenextnode>
+        <falseanswernote>prt17-5-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>5</name>
+        <description>Checks for correct answers</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans18</sans>
+        <tans>node6_error</tans>
+        <testoptions/>
+        <quiet>1</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0.167</truescore>
+        <truepenalty/>
+        <truenextnode>6</truenextnode>
+        <trueanswernote>prt17-6-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p><br>Your value for pie chart for the beans is <b>incorrect</b>.</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>6</falsenextnode>
+        <falseanswernote>prt17-6-F</falseanswernote>
+        <falsefeedback format="html">
+          <text><![CDATA[<p><br>Your value for pie chart for the beans is <b>incorrect</b>.</p>]]></text>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>6</name>
+        <description>Checks for correct answers</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans19</sans>
+        <tans>tans19</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0.167</truescore>
+        <truepenalty/>
+        <truenextnode>8</truenextnode>
+        <trueanswernote>prt17-7-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p><br>Your value for pie chart for the Vegetables is <b>correct</b>.</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>7</falsenextnode>
+        <falseanswernote>prt17-7-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>7</name>
+        <description>Checks for correct answers</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans19</sans>
+        <tans>node8_error</tans>
+        <testoptions/>
+        <quiet>1</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0.167</truescore>
+        <truepenalty/>
+        <truenextnode>8</truenextnode>
+        <trueanswernote>prt17-8-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p><br>Your value for pie chart for the Vegetables is <b>incorrect</b>.</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>8</falsenextnode>
+        <falseanswernote>prt17-8-F</falseanswernote>
+        <falsefeedback format="html">
+          <text><![CDATA[<p><br>Your value for pie chart for the Vegetables is <b>incorrect</b>.</p>]]></text>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>8</name>
+        <description>Checks for correct answers</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans20</sans>
+        <tans>tans20</tans>
+        <testoptions/>
+        <quiet>1</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0.167</truescore>
+        <truepenalty/>
+        <truenextnode>10</truenextnode>
+        <trueanswernote>prt17-9-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p><br>Your value for pie chart for the meat is <b>correct</b>.</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>9</falsenextnode>
+        <falseanswernote>prt17-9-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>9</name>
+        <description>Checks for correct answers</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans20</sans>
+        <tans>node10_error</tans>
+        <testoptions/>
+        <quiet>1</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0.167</truescore>
+        <truepenalty/>
+        <truenextnode>10</truenextnode>
+        <trueanswernote>prt17-10-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p><br>Your value for pie chart for the meat is <b>incorrect</b>.</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>10</falsenextnode>
+        <falseanswernote>prt17-10-F</falseanswernote>
+        <falsefeedback format="html">
+          <text><![CDATA[<p><br>Your value for pie chart for the meat is <b>incorrect</b>.</p>]]></text>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt2</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for correct answer</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans2</sans>
+        <tans>tans2</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt2-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt2-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt3</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for correct answer</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans3</sans>
+        <tans>tans3</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt3-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt3-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt4</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for correct answer</description>
+        <answertest>NumDecPlaces</answertest>
+        <sans>ans4</sans>
+        <tans>tans4</tans>
+        <testoptions>2</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt4-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt4-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt5</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for correct answer</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans5</sans>
+        <tans>tans5</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt5-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt5-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt6</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for correct answer</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans6</sans>
+        <tans>tans6</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt6-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt6-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt7</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for correct answer</description>
+        <answertest>NumDecPlaces</answertest>
+        <sans>ans7</sans>
+        <tans>tans7</tans>
+        <testoptions>2</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt7-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt7-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt8</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for correct answers</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans8</sans>
+        <tans>rice</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt8-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt8-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <deployedseed>526232605</deployedseed>
+    <deployedseed>1906234168</deployedseed>
+    <deployedseed>54982954</deployedseed>
+    <deployedseed>1891957219</deployedseed>
+    <deployedseed>57216867</deployedseed>
+    <deployedseed>300016947</deployedseed>
+    <deployedseed>1388261363</deployedseed>
+    <deployedseed>1624244462</deployedseed>
+    <deployedseed>327168442</deployedseed>
+    <deployedseed>1569491103</deployedseed>
+    <deployedseed>959609638</deployedseed>
+    <deployedseed>1891620643</deployedseed>
+    <deployedseed>1327163692</deployedseed>
+    <deployedseed>463784578</deployedseed>
+    <deployedseed>2506968</deployedseed>
+    <deployedseed>1778546959</deployedseed>
+    <deployedseed>630781182</deployedseed>
+    <deployedseed>750353777</deployedseed>
+    <deployedseed>583620635</deployedseed>
+    <deployedseed>1958281737</deployedseed>
+    <deployedseed>1864262315</deployedseed>
+    <deployedseed>1844615445</deployedseed>
+    <deployedseed>888001340</deployedseed>
+    <deployedseed>791988871</deployedseed>
+    <deployedseed>2015342167</deployedseed>
+    <deployedseed>1364429269</deployedseed>
+    <deployedseed>1104310344</deployedseed>
+    <deployedseed>1821018441</deployedseed>
+    <deployedseed>702862302</deployedseed>
+    <deployedseed>1547140087</deployedseed>
+    <deployedseed>1352036778</deployedseed>
+    <deployedseed>659071939</deployedseed>
+    <deployedseed>1587851677</deployedseed>
+    <deployedseed>1152871402</deployedseed>
+    <deployedseed>1424249951</deployedseed>
+    <deployedseed>355020278</deployedseed>
+    <deployedseed>1531200157</deployedseed>
+    <deployedseed>130389759</deployedseed>
+    <deployedseed>1533582936</deployedseed>
+    <deployedseed>1921356404</deployedseed>
+    <deployedseed>795020411</deployedseed>
+    <deployedseed>271216211</deployedseed>
+    <deployedseed>2049675763</deployedseed>
+    <deployedseed>656837349</deployedseed>
+    <deployedseed>114328252</deployedseed>
+    <deployedseed>1217913068</deployedseed>
+    <deployedseed>925127219</deployedseed>
+    <deployedseed>73619291</deployedseed>
+    <deployedseed>1107194402</deployedseed>
+    <deployedseed>510230616</deployedseed>
+    <deployedseed>6296404</deployedseed>
+    <deployedseed>379242816</deployedseed>
+    <deployedseed>1744495675</deployedseed>
+    <deployedseed>166753948</deployedseed>
+    <deployedseed>1531142797</deployedseed>
+    <deployedseed>1316543305</deployedseed>
+    <deployedseed>168559132</deployedseed>
+    <deployedseed>2052482600</deployedseed>
+    <deployedseed>682578180</deployedseed>
+    <deployedseed>298443177</deployedseed>
+    <deployedseed>2013582779</deployedseed>
+    <deployedseed>1679486265</deployedseed>
+    <deployedseed>1246008575</deployedseed>
+    <deployedseed>1733590770</deployedseed>
+    <deployedseed>722771609</deployedseed>
+    <deployedseed>60704790</deployedseed>
+    <deployedseed>1736959122</deployedseed>
+    <deployedseed>537797155</deployedseed>
+  </question>
+</quiz>

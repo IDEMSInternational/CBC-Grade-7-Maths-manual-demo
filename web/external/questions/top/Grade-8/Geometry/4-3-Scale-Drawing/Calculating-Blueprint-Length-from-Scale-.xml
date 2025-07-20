@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Calculating Blueprint Length from Scale.</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p>Kemmy drew a blueprint of her living room using a scale of \(1\,: \,{@scale@}\). If the actual length of the living room is \({@actual_length@}\,\text{meters}\), what is the length of the living room on the blueprint?</p>
+
+
+
+
+
+<p>\(\text{Length of the living room on the blueprint is}\) [[input:ans1]] \(\,\text{cm}\)[[feedback:prt1]] </p>
+<p hidden>[[validation:ans1]]</p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<p><strong>Step 1: Understand the scale</strong></p>
+      <p>The scale \(1\,:\,{@scale@}\) means that 1 unit on the blueprint represents {@scale@} units in real life.</p>
+<p>This means the drawing is much smaller than the real room.</p>
+
+      <p><strong>Step 2: Use the scale to find the blueprint length in meters</strong></p>
+<p>We divide the actual length by the scale:</p>
+<p>\(\text{Blueprint Length}=\frac{\text{Actual Length}}{\text{Scale factor}}\)</p>
+      <p>\(
+      \text{Blueprint Length} = \frac{{@actual_length@}}{{@scale@}} = {@blueprint_length@} \, \text{meters}
+      \)</p>
+
+      <p><strong>Step 3: Convert meters to centimeters</strong></p>
+      <p>Since \(1\, \text{meter} = 100\, \text{centimeters}\):</p>
+      <p>\(
+      {@blueprint_length@} \times 100 = {@Blueprint_length@}\, \text{centimeters}
+      \)</p>
+<p>This means the living room will be \({\color{blue}{@Blueprint_length@}} \,\text{cm} \) long on Kemmy’s blueprint.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2025012100</text>
+    </stackversion>
+    <questionvariables>
+      <text>/* Simple Maxima Code to Randomize Scale and Actual Length */
+
+scale : rand(19) + 2; /* scale from 2 to 10 */
+actual_length : (rand(20) + 1) * scale; /* ensures result is an integer */
+blueprint_length : actual_length / scale;
+Blueprint_length:blueprint_length*100; /*converting to cm*/
+
+
+/*Mistake 1 Multiplying instead of dividing by the scale*/
+
+Blueprint_lenth1:(actual_length*scale)/100;
+
+/*Mistake 2 Forgetting to convert meters to centimeters*/
+blueprint_length : actual_length / scale;</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="html">
+      <text><![CDATA[<p>\(\text{The scale is} = 1\,:\, {@scale@}\)</p>
+<p>\(\text{The actual length of the living room } = {@actual_length@}\, \text{meters}\)</p>
+<p>\(\text{Length of the living room on the blueprint}= {@blueprint_length@}\, \text{cm}\)</p>]]></text>
+    </questionnote>
+    <questiondescription format="html">
+      <text><![CDATA[<p id="author">Henry Onyango</p>
+<p id="reviewer"></p>
+<p id="reviewer"></p>
+<p id="description">The learner was required to use the scale \(1\,:\,{@scale@}\) to calculate the length of the living room on a blueprint by dividing the actual length ({@actual_length@} meters) by {@scale@}, then convert the result from meters to centimeters to get the final answer suitable for a drawing or blueprint. </p>]]></text>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>Blueprint_length</tans>
+      <boxsize>7</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>0</mustverify>
+      <showvalidation>0</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct length of the blueprint.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>Blueprint_length</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <description>Checks for Multiplying instead of dividing by the scale</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>Blueprint_lenth1</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0.2</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-2-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>It looks like you multiplied the actual length by the scale factor instead of dividing.</p>
+<p>Always think: "Am I making the object smaller for a drawing?" If yes, divide!
+
+<p>You’ve got this! Just a small adjustment and you’ll be spot on.</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>2</falsenextnode>
+        <falseanswernote>prt1-2-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>2</name>
+        <description>Checks for Forgetting to convert meters to centimeters</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>blueprint_length</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0.5</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-3-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>Great job getting to the answer in meters! That’s a good start!</p
+<p>But there’s just one more small but important step — changing meters to centimeters.</p>
+<p>Always check what unit the final answer should be in. If you're drawing something small like a room on paper, centimeters make more sense than meters</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-3-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <deployedseed>149663023</deployedseed>
+    <deployedseed>2042770451</deployedseed>
+    <deployedseed>1022042562</deployedseed>
+    <deployedseed>1855291377</deployedseed>
+    <deployedseed>765028087</deployedseed>
+    <deployedseed>204145294</deployedseed>
+    <deployedseed>989693078</deployedseed>
+    <deployedseed>142764684</deployedseed>
+    <deployedseed>829988543</deployedseed>
+    <deployedseed>1003103123</deployedseed>
+    <deployedseed>1893536481</deployedseed>
+    <deployedseed>2029650665</deployedseed>
+    <deployedseed>527451485</deployedseed>
+    <qtest>
+      <testcase>1</testcase>
+      <description>Test case assuming the teacher's input gets full marks.</description>
+      <testinput>
+        <name>ans1</name>
+        <value>Blueprint_length</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt1-1-T</expectedanswernote>
+      </expected>
+    </qtest>
+    <qtest>
+      <testcase>2</testcase>
+      <description>Checks for Multiplying instead of dividing by the scale</description>
+      <testinput>
+        <name>ans1</name>
+        <value>Blueprint_lenth1</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>0.2000000</expectedscore>
+        <expectedpenalty/>
+        <expectedanswernote>prt1-2-T</expectedanswernote>
+      </expected>
+    </qtest>
+    <qtest>
+      <testcase>3</testcase>
+      <description>Checks for Forgetting to convert meters to centimeters</description>
+      <testinput>
+        <name>ans1</name>
+        <value>blueprint_length</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>0.5000000</expectedscore>
+        <expectedpenalty/>
+        <expectedanswernote>prt1-3-T</expectedanswernote>
+      </expected>
+    </qtest>
+  </question>
+</quiz>

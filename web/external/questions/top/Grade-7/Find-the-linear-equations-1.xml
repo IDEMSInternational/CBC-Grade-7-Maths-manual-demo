@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="multichoice">
+    <name>
+      <text>Find the linear equations 1</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Select all the equations below which are linear in the variables \(x_{1}\), \(x_{2}\), and \(x_{3}\),</p><p>where \(h\) and \(k\) are constants.</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p></p><p>A linear equation in the variables&nbsp;\(x_{1}\), \(x_{2}\), and \(x_{3}\) is an equation of the form:</p><p>\(a_{1}x_{1} + a_{2}x_{2} + a_{3}x_{3} = d\)</p><p>where \(a_{1},&nbsp;a_{2},&nbsp;a_{3}\) and \(d\) are real (or complex) numbers i.e. constants.</p><p>Therefore if the equation has any term not in this form e.g. \(\sin(x_{2}), \log(x_{1}), x_{2}x_{3}, x_{3}^2\) etc. then the equation is non linear.</p><p>Remember that if \(a\) is constant then \(a^2\) or \(\sin(a)\) is still a constant and this doesn't necessarily mean the equation is non linear. It is the transformations on the&nbsp;<b>variables</b>&nbsp;which determine if the equation is linear or not.</p><p></p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <single>false</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>1</showstandardinstruction>
+    <correctfeedback format="html">
+      <text>Your answer is correct.</text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text>Your answer is partially correct.</text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text>Your answer is incorrect.</text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="50" format="html">
+      <text><![CDATA[<p>\(5x_{1} - 7x_{2} + 15x_{3} = -8\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Linear. This is the standard form for a linear equation. It contains only constant multiples of the variables&nbsp;and a constant term.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(3(x_{1})^3 + 3(x_{2})^2 + 3x_{3} = 0\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Non linear. This is non linear because of the \((x_{1})^3\) and \((x_{2})^2\) terms. To be linear, we can only have variables multiplied by constants, not powers of the variables.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(ae^{x_{2}} = x_{3}\)<br></p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Non linear. This is non linear because of the \(e^{x_{2}}\) term. \(x_{2}\) terms can only be the form \(ax_{2}\) in a linear equation.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(6x_{1}x_{2} = 0\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Non linear. This is non linear because of the \(x_{1}x_{2}\) term. To be linear, we can only have variables multiplied by constants, not each other.<br></p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(\sqrt{x_{1} + x_{2} + x_{3}}&nbsp;= 15\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Non linear. To be linear, we can only have variables multiplied by constants. Hence taking the square root of the variables makes this non linear.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="50" format="html">
+      <text><![CDATA[<p>\(10 = \sin(a)x_{1} + \sin(b)x_{2}\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Linear. This is still linear since \(\sin(a)\) and&nbsp;\(\sin(b)\) are just constants, hence all the terms are constant multiples of the variables.</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+</quiz>

@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Surface area</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p></p><p>[[input:ans1]] [[validation:ans1]][[feedback:prt1]]</p>
+<!DOCTYPE html>
+<html>
+  <body style="background-color: lightblue;">
+    <svg width="450" height="525" xmlns="http://www.w3.org/2000/svg">
+      <g transform="scale(1.5)">
+        <!-- Shifted left and scaled lateral surface sector -->
+        <g transform="translate(-30, -30) scale(1.56)">
+          <!-- Draw the sector (cone's lateral surface) -->
+          <path d="M 150 50 
+                   L 200 100 
+                   A 100 100 0 0 1 100 100 
+                   Z" 
+                 fill="blue" stroke="black" />
+          
+          <!-- Draw the slant height lines -->
+          <line x1="150" y1="50" x2="200" y2="100" stroke="black" />
+          <line x1="150" y1="50" x2="100" y2="100" stroke="black" />
+          
+          <!-- Arc for lateral surface -->
+          <path d="M 200 100 A 100 100 0 0 1 100 100" fill="none" stroke="black" />
+          
+          <!-- Add angle theta (moved inside at point C) -->
+          <text x="148" y="65" font-size="12" fill="black">θ</text>
+          
+          <!-- Labels for slant height -->
+          <text x="185" y="75" font-size="12" fill="black">r</text>
+          
+          <!-- Label points -->
+          <text x="150" y="45" font-size="12" fill="black">C</text>
+          <text x="90" y="105" font-size="12" fill="black">A</text>
+          <text x="205" y="105" font-size="12" fill="black">B</text>
+        </g>
+
+        <!-- Moved circle (down once, right once) -->
+        <circle cx="200" cy="195" r="50" fill="orange" stroke="black" />
+        <line x1="200" y1="195" x2="250" y2="195" stroke="black" />
+        <text x="205" y="190" font-size="12" fill="black">r = 7 cm</text>
+      </g>
+    </svg>
+  </body>
+</html>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text/>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2025012100</text>
+    </stackversion>
+    <questionvariables>
+      <text>ta:1.5</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="html">
+      <text>ta</text>
+    </questionnote>
+    <questiondescription format="html">
+      <text/>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>ta</tans>
+      <boxsize>8</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description/>
+        <answertest>NumAbsolute</answertest>
+        <sans>ans1</sans>
+        <tans>ta</tans>
+        <testoptions>0.1</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+  </question>
+</quiz>

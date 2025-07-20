@@ -1,0 +1,793 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Scale Drawing and Application of Geometry in Land Measurement</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>A piece of land is in the shape as shown.  \(\text{AB}={@AB@}\, \text{m}\), \(\text{BC}={@BC@}\, \text{m}\), and  \(\text{AD}={@AD@}\, \text{m}\). Use scale \(1\, \text{cm}\) represent \({@scale@} \, \text{m}\) to:</p>
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sector OAB</title>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jsxgraph/distrib/jsxgraphcore.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jsxgraph/distrib/jsxgraph.css" />
+</head>
+<body>
+    <div id="jxgbox" class="jxgbox" style="width: 500px; height: 500px;"></div>
+    <script type="text/javascript">
+        var board = JXG.JSXGraph.initBoard('jxgbox', {
+          boundingbox: [-2, 10, 12, -2],
+          axis: false , showCopyright: false ,showNavigation: false
+           
+        });
+
+        // Define points (invisible)
+        var B = board.create('point', [2, 2], {name: 'B', size: 1, visible: false, label: {visible: false}});
+        var A = board.create('point', [2, 7], {name: 'A', size: 0, visible: false, label: {visible: false}});
+        var C = board.create('point', [7, 2], {name: 'C', size: 0, visible: false, label: {visible: false}});
+        var D = board.create('point', [9, 7], {name: 'D', size: 0, visible: false, label: {visible: false}});
+
+
+        var E = board.create('point', [1.5, 1.5], {name: 'B', size: 1, visible: false, label: {visible: true}});
+        var F = board.create('point', [1.5, 7], {name: 'A', size: 0, visible: false, label: {visible: true}});
+        var G = board.create('point', [7, 1.5], {name: 'C', size: 0, visible: false, label: {visible: true}});
+        var H = board.create('point', [9, 6.8], {name: 'D', size: 0, visible: false, label: {visible: true}});
+
+        // Draw the quadrilateral
+        var quad = board.create('polygon', [A, B, C, D], {
+        borders: {strokeColor: 'blue', strokeWidth: 2},
+        vertices: {visible: false},
+        fillColor: 'none'
+        });
+
+        // Add side labels
+        var labelAB = board.create('text', [0.8, 4.5, '{#AB#} m'], {fontSize: 14,fixed:false});
+        var labelBC = board.create('text', [4.1, 1.6, '{#BC#} m'], {fontSize: 14,fixed:false});
+        var labelAD = board.create('text', [4.1, 7.3, '{#AD#} m'], {fontSize: 14,fixed:false});
+
+        // Add right angle markers (no labels)
+        var angleA = board.create('nonreflexangle', [D, A, B], {
+            radius: 0.5,
+            type: 'square',
+            fillColor: 'white',
+            strokeColor: 'black',
+            name: '',
+            label: {visible: false}
+        });
+
+        var angleB = board.create('nonreflexangle', [A, B, C], {
+            radius: 0.5,
+            type: 'square',
+            fillColor: 'white',
+            strokeColor: 'black',
+            name: '',
+            label: {visible: false}
+        });
+    </script>
+
+    
+
+
+
+
+
+</body>
+</html>
+
+
+<p><ol type="a"><li><p>Calculate the drawing lengths of the sides of the piece of land.</p>
+<p>\(\text{AB}=\)[[input:ans1]] \(\text{cm}\)[[feedback:prt1]]</p>
+<p>\(\text{BC}=\)[[input:ans2]] \(\text{cm}\)[[feedback:prt2]]</p>
+<p>\(\text{AD}=\)[[input:ans3]] \(\text{cm}\)[[feedback:prt3]]</p>
+</li>
+<li><p>Calculate the actual distance between 
+\(\text{C}\) and \(\text{D}\).</p>
+<p>\(\text{Distance CD}=\)[[input:ans4]] \(\text{m}\)[[feedback:prt4]]</p></li>
+<li><p>Find the actual area of the piece of land using the actual lengths.</p>
+<p>\(\text{Area}=\)[[input:ans5]] \(\text{m}^2\)
+[[feedback:prt5]]</p></li></ol></p>
+
+
+<p hidden> [[validation:ans1]][[validation:ans2]][[validation:ans3]][[validation:ans4]][[validation:ans5]]</p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<p><strong>Given Information:</strong></p>
+
+<p>\(\text{AB}\) = {@AB@} m, \(\text{BC}\) = {@BC@} m, \(\text{AD}\) = {@AD@} m</p>
+<p>Scale: 1 cm represents {@scale@} m</p>
+
+<p><strong>a. Calculate the drawing lengths of the sides:</strong></p>
+
+<p>\( \begin{align} \text{AB (drawing)} & = \frac{{@AB@}}{ {@scale@}} \\
+&={\color{blue} {@Drawin_AB@}} \, \text{cm} 
+\end{align}\) </p>
+<p>\( \begin{align} \text{BC (drawing)} & = \frac{{@BC@}}{{@scale@}} \\
+&={\color{blue} {@Drawin_BC@}}\, \text{cm}
+\end{align} \) </p>
+<p>\( \begin{align} \text{AD (drawing)} &= \frac{{@AD@}}{ {@scale@}} \\
+&= {\color{blue}{@Drawin_AD@}} \, \text{cm} \end{align}\) </p>
+
+<p><strong>b. Calculate the actual distance between C and D:</strong></p>
+<p>Drop a perpendicular line from C to meet line AD. label it O</p>
+<p>Identify the distance OD which is given by:</p>
+<p>\(\begin{align}
+\text{Distance OD}&=\text{AD}-\text{BC}\\
+&={@AD@}-{@BC@}\\
+&={@new_base@} \, \text{m}
+
+
+\end{align}\)</p>
+
+
+<p>We use Pythagoras’ theorem in triangle \(\text{DOC}\) to find \(\text{DC}\):</p>
+<p>\( \begin{align} 
+\text{DC}^2&=\text{OD}^2+\text{OC}^2\\
+&={@new_base@}^2+{@AB@}^2\\
+&={@base_square@}+{@height_square@}\\
+&={@sum@}\\
+\text{DC}&=\sqrt{{@sum@}}\\
+&={\color{blue}{@DC@}}\, \text{m}
+
+
+
+\end{align}\)</p>
+
+
+
+<p><strong>c. Calculate the actual area of the land:</strong></p>
+
+<p>Using the trapezium area formula:</p>
+<p>\(\begin{align}\text{Area} &= \frac{1}{2}(\text{BC} + \text{AD}) \times \text{height}\\
+&= \frac{1}{2}({@BC@} + {@AD@}) \times {@AB@}\\
+&= \frac{1}{2}({@sum_BC_AD@}) \times  {@AB@}\\
+& = \frac{ {@sum_BC_AD@}\times {@AB@}}{2} \\
+&={\color{blue} {@Area@}}\, \text{m}^2
+ \end{align}\)</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2025012100</text>
+    </stackversion>
+    <questionvariables>
+      <text>/* Step 1: Load 40 predefined Pythagorean triples */
+triples: [
+  [30,40,50],[50,120,130],[60,80,100],[70,240,250],[80,150,170],
+  [90,120,150],[90,400,410],[100,240,260],[110,600,610],[120,160,200],
+  [120,350,370],[130,840,850],[140,480,500],[150,200,250],[150,360,390],
+  [160,300,340],[160,630,650],[180,240,300],[180,800,820],[200,210,290],
+  [200,480,520],[210,280,350],[210,720,750],[240,320,400],[240,450,510],
+  [270,360,450],[280,450,530],[300,400,500],[300,720,780],[330,440,550],
+  [330,560,650],[350,840,910],[360,480,600],[360,770,850],[390,520,650],
+  [400,750,850],[450,600,750],[480,550,730],[600,630,870],[650,720,970]
+];
+
+/* Step 2: Randomly pick one */
+chosen : triples[rand(40) + 1];
+b : chosen[1]; /* base */
+AB : chosen[2]; /* height */
+Hyp : chosen[3]; /* hypotenuse */
+BC:(rand(30)+1)*100;
+AD:BC+b;
+/*The scal e 1 cm represent */
+scale:rand_with_step(2,20,2)/2;
+
+/*Calculate the drawing lengths of the sides of the piece of land.*/
+Drawin_AB:(AB/scale);
+Drawin_BC:(BC/scale);
+Drawin_AD:(AD/scale);
+
+
+
+/*Calculate the actual distance between C and D.*/
+DC:Hyp;
+/*Actual area of the piece of land using the actual lengths.*/
+new_base:AD - BC;
+base_square:new_base^2;
+height_square:AB^2;
+sum:base_square+height_square;
+sum_BC_AD:BC+AD;
+Area:1/2*(BC+AD)*AB;
+
+
+
+/*Mistake 1   Misapplying the scale*/
+
+Drawin_AB1:(AB*scale);
+Drawin_BC1:(BC*scale);
+Drawin_AD1:(AD*scale);
+
+/*Mistake 2  Using the area of a right angle  instead of area of a trapezium*/
+Area2:1/2*AD*AB;
+
+</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="html">
+      <text><![CDATA[<p>\(\text{The drawing length AB}={@Drawin_AB@}\,\text{m}\) </p>
+<p>\(\text{The drawing length BC}={@Drawin_BC@}\,\text{m}\) </p>
+<p>\(\text{The drawing length AD}={@Drawin_AD@}\,\text{m}\) </p>
+<p>\(\text{The actual length DC}={@DC@}\,\text{m} \) </p>
+<p>\(\text{The area of the land}={@Area@}\,\text{m}^2\) </p>]]></text>
+    </questionnote>
+    <questiondescription format="html">
+      <text><![CDATA[<p id="author">Henry Onyango</p>
+<p id="reviewer"></p>
+<p id="reviewer"></p>
+<p id="description">The student was expected to apply a given scale to convert real-world measurements into drawing lengths accurately. They then needed to use the Pythagorean Theorem to calculate the actual distance between two non-adjacent points. Finally, the student was required to correctly identify the shape of the land as a trapezium and apply the appropriate area formula to calculate its actual area. Clear understanding of geometry, measurement conversions, and formula application was essential to solve the question accurately. </p>]]></text>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>Drawin_AB</tans>
+      <boxsize>9</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>0</mustverify>
+      <showvalidation>0</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans2</name>
+      <type>algebraic</type>
+      <tans>Drawin_BC</tans>
+      <boxsize>9</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>0</mustverify>
+      <showvalidation>0</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans3</name>
+      <type>algebraic</type>
+      <tans> Drawin_AD</tans>
+      <boxsize>9</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>0</mustverify>
+      <showvalidation>0</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans4</name>
+      <type>algebraic</type>
+      <tans>DC</tans>
+      <boxsize>9</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>0</mustverify>
+      <showvalidation>0</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans5</name>
+      <type>algebraic</type>
+      <tans>Area</tans>
+      <boxsize>9</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>0</mustverify>
+      <showvalidation>0</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct actual length of AB.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>Drawin_AB</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <description>Checks for Misapplying the Scale</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>Drawin_AB1</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0.3</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-2-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>Great! You’ve made a small mistake in converting the actual measurements to drawing lengths. It looks like you multiplied by the scale ({@scale@}) instead of dividing. Since the scale is “1 cm represents {@scale@} m,” we divide the actual length by {@scale@} to get the correct drawing length.</p>
+<p>For example:<p>
+<p>\(\text{Correct drawing length for AB} = \frac{{@AB@}}{@scale@} = {@Drawin_AB@}\, \text{ cm} \)</p>
+
+<p>Keep it up , just remember that with this kind of scale, you're shrinking the real size into a small diagram!</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-2-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt2</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct actual length of BC</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans2</sans>
+        <tans>Drawin_BC</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt2-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt2-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <description>Checks for Misapplying the Scale</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans2</sans>
+        <tans>Drawin_BC1</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0.3</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt2-2-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>Great! You’ve made a small mistake in converting the actual measurements to drawing lengths. It looks like you multiplied by the scale ({@scale@}) instead of dividing. Since the scale is “1 cm represents {@scale@} m,” we divide the actual length by {@scale@} to get the correct drawing length.</p>
+<p>For example:<p>
+<p>\(\text{Correct drawing length for AB} = \frac{{@AB@}}{@scale@} = {@Drawin_AB@}\, \text{ cm} \)</p>
+
+<p>Keep it up , just remember that with this kind of scale, you're shrinking the real size into a small diagram!</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt2-2-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt3</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct actual length of AD</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans3</sans>
+        <tans>Drawin_AD</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt3-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt3-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <description>Checks for Misapplying the Scale</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans3</sans>
+        <tans>Drawin_AD1</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0.3</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt3-2-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>Great! You’ve made a small mistake in converting the actual measurements to drawing lengths. It looks like you multiplied by the scale ({@scale@}) instead of dividing. Since the scale is “1 cm represents {@scale@} m,” we divide the actual length by {@scale@} to get the correct drawing length.</p>
+<p>For example:<p>
+<p>\(\text{Correct drawing length for AB} = \frac{{@AB@}}{@scale@} = {@Drawin_AB@}\, \text{ cm} \)</p>
+
+<p>Keep it up , just remember that with this kind of scale, you're shrinking the real size into a small diagram!</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt3-2-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt4</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the actual distance of length CD.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans4</sans>
+        <tans>DC</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt4-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt4-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt5</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the corect actual area of the piece of land.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans5</sans>
+        <tans>Area</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt5-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt5-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <description>Checks for Using Area of a Triangle Instead of a Trapezium</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans5</sans>
+        <tans>Area2</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt5-2-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>Great effort on attempting the area! However, it looks like you used the formula for a right-angled triangle, but the shape here is a trapezium, not a triangle. In a trapezium, only two sides are parallel, and the area formula is a little different:</p>
+<p>\(\text{Area} = \frac{1}{2}(a + b) \times h \)</p>
+<p>where a and b are the lengths of the parallel sides (\(\text{BC and AD})\), and h is the height (\(\text{AB})\).</p.]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt5-2-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <deployedseed>1285522423</deployedseed>
+    <deployedseed>980084601</deployedseed>
+    <deployedseed>2084187178</deployedseed>
+    <deployedseed>1926609351</deployedseed>
+    <deployedseed>686763312</deployedseed>
+    <deployedseed>677811961</deployedseed>
+    <deployedseed>916556764</deployedseed>
+    <deployedseed>319926163</deployedseed>
+    <deployedseed>920799717</deployedseed>
+    <deployedseed>141508948</deployedseed>
+    <qtest>
+      <testcase>1</testcase>
+      <description>Test case assuming the teacher's input gets full marks.</description>
+      <testinput>
+        <name>ans1</name>
+        <value>Drawin_AB</value>
+      </testinput>
+      <testinput>
+        <name>ans2</name>
+        <value>Drawin_BC</value>
+      </testinput>
+      <testinput>
+        <name>ans3</name>
+        <value> Drawin_AD</value>
+      </testinput>
+      <testinput>
+        <name>ans4</name>
+        <value>DC</value>
+      </testinput>
+      <testinput>
+        <name>ans5</name>
+        <value>Area</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt1-1-T</expectedanswernote>
+      </expected>
+      <expected>
+        <name>prt2</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt2-1-T</expectedanswernote>
+      </expected>
+      <expected>
+        <name>prt3</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt3-1-T</expectedanswernote>
+      </expected>
+      <expected>
+        <name>prt4</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt4-1-T</expectedanswernote>
+      </expected>
+      <expected>
+        <name>prt5</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt5-1-T</expectedanswernote>
+      </expected>
+    </qtest>
+    <qtest>
+      <testcase>2</testcase>
+      <description>Checks for Misapplying the Scale</description>
+      <testinput>
+        <name>ans1</name>
+        <value>Drawin_AB1</value>
+      </testinput>
+      <testinput>
+        <name>ans2</name>
+        <value>Drawin_BC1</value>
+      </testinput>
+      <testinput>
+        <name>ans3</name>
+        <value>Drawin_AD1</value>
+      </testinput>
+      <testinput>
+        <name>ans4</name>
+        <value/>
+      </testinput>
+      <testinput>
+        <name>ans5</name>
+        <value/>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>0.3000000</expectedscore>
+        <expectedpenalty/>
+        <expectedanswernote>prt1-2-T</expectedanswernote>
+      </expected>
+      <expected>
+        <name>prt2</name>
+        <expectedscore>0.3000000</expectedscore>
+        <expectedpenalty/>
+        <expectedanswernote>prt2-2-T</expectedanswernote>
+      </expected>
+      <expected>
+        <name>prt3</name>
+        <expectedscore>0.3000000</expectedscore>
+        <expectedpenalty/>
+        <expectedanswernote>prt3-2-T</expectedanswernote>
+      </expected>
+      <expected>
+        <name>prt4</name>
+        <expectedscore/>
+        <expectedpenalty/>
+        <expectedanswernote>NULL</expectedanswernote>
+      </expected>
+      <expected>
+        <name>prt5</name>
+        <expectedscore/>
+        <expectedpenalty/>
+        <expectedanswernote>NULL</expectedanswernote>
+      </expected>
+    </qtest>
+    <qtest>
+      <testcase>3</testcase>
+      <description>Checks for Using Area of a Triangle Instead of a Trapezium</description>
+      <testinput>
+        <name>ans1</name>
+        <value/>
+      </testinput>
+      <testinput>
+        <name>ans2</name>
+        <value/>
+      </testinput>
+      <testinput>
+        <name>ans3</name>
+        <value/>
+      </testinput>
+      <testinput>
+        <name>ans4</name>
+        <value/>
+      </testinput>
+      <testinput>
+        <name>ans5</name>
+        <value>Area2</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore/>
+        <expectedpenalty/>
+        <expectedanswernote>NULL</expectedanswernote>
+      </expected>
+      <expected>
+        <name>prt2</name>
+        <expectedscore/>
+        <expectedpenalty/>
+        <expectedanswernote>NULL</expectedanswernote>
+      </expected>
+      <expected>
+        <name>prt3</name>
+        <expectedscore/>
+        <expectedpenalty/>
+        <expectedanswernote>NULL</expectedanswernote>
+      </expected>
+      <expected>
+        <name>prt4</name>
+        <expectedscore/>
+        <expectedpenalty/>
+        <expectedanswernote>NULL</expectedanswernote>
+      </expected>
+      <expected>
+        <name>prt5</name>
+        <expectedscore>0.0000000</expectedscore>
+        <expectedpenalty/>
+        <expectedanswernote>prt5-2-T</expectedanswernote>
+      </expected>
+    </qtest>
+  </question>
+</quiz>

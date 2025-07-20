@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Rounding off numbers to the nearest hundreds of million</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p> Round off  \({@new_number@}\) to the nearest hundreds of million place value.</p>
+<p>[[input:ans1]] [[validation:ans1]] [[feedback:prt1]]</p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<h3>Worked Solution</h3>
+<p> First, find the place value of the digits in the number \({@new_number@}\) as below.</p>
+
+<p> Digit                                \(\quad\quad\)           Place value  </p> 
+                        
+<p> \({@first_value@}\)          \(\quad\quad\)                      Hundreds of millions</p>
+<p>\({@second_value@}\)         \(\quad\quad\)                  Tens of millions</p>
+<p>\({@third_value@}\)            \(\quad\quad\)                       Millions</p>
+<p>\({@forth_value@}\)                       \(\quad\quad\)             Hundred thousands</p>
+<p>\({@fifth_value@}\)                         \(\quad\quad\)                 Ten thousands</p>
+<p> \({@sixth_value@}\)                                \(\quad\quad\)        Thousands </p>
+<p> \({@seventh_value@}\)                                \(\quad\quad\)        Hundreds </p>
+<p> \({@eighth_value@}\)                                \(\quad\quad\)        Tens </p>
+<p> \({@ninth_value@}\)                                \(\quad\quad\)        Ones </p>
+
+
+  <p>The digit in the tens of million place value is \({@second_value@}\).</p>
+<p>  {@ if second_value < 5 then message1:"Since the digit in the tens of millions place value is less than 5, maintain the digit in hundreds of million place value.
+Then, replace the digits in the ten million, millions, hundreds of thousands, ten thousands, thousands,hundreds,tens and ones place value with zero.
+" elseif second_value=5 then  message1:"
+	Therefore, add 1 to the digit in hundreds of millions place value and replace the remaining values with zero."
+else messsage1:"Since the digit in the tens of million place value is greater than 5,
+	add 1 to the digit in hundreds of million place value and replace the remaining values with zero."@} </p>
+<p>Hence \({@new_number@}\)  rounded off to the nearest hundreds of million  is \({@first_value_1@}\)]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2025012100</text>
+    </stackversion>
+    <questionvariables>
+      <text><![CDATA[first_value:rand(8)+1;  /*first digit in the number from left*/
+second_value:rand_with_prohib(1,9,[first_value]); /*second digit in the number from left*/
+third_value:rand_with_prohib(1,9,[first_value,second_value]); /*third digit in the number from left*/
+forth_value:rand_with_prohib(1,9,[first_value,second_value,third_value]); /*fourth digit in the number from left*/
+fifth_value:rand_with_prohib(1,9,[first_value,second_value,third_value,forth_value]); /*fifth digit in the number from left*/
+sixth_value:rand_with_prohib(1,9,[first_value,second_value,third_value,forth_value,fifth_value]); /*sixth digit in the number from left*/
+seventh_value:rand_with_prohib(1,9,[first_value,second_value,third_value,forth_value,fifth_value,sixth_value]); /*seventh digit in the number from left*/
+eighth_value:rand_with_prohib(1,9,[first_value,second_value,third_value,forth_value,fifth_value,sixth_value,seventh_value]); /*eighth digit in the number from left*/
+ninth_value:rand_with_prohib(1,9,[first_value,second_value,third_value,forth_value,fifth_value,sixth_value,seventh_value,eighth_value]); /*ninth digit in the number from left*/
+
+new_number:(first_value*100000000)+(second_value*10000000)+(third_value*1000000)+(forth_value*100000)+(fifth_value*10000)+(sixth_value*1000)+ (seventh_value*100)+(eighth_value*10)+(ninth_value*1); /*the number itself*/
+
+if second_value >= 5 then f1:first_value+1 else f1: first_value;/*identifies if the digit in the ten million place value is less than 5, equal to 5 or greater than 5 and rounds off the given number*/
+first_value_1:f1*100000000;/*round off the given number and replaces the remaining digits with zero*/
+if second_value < 5 then message1:"Since the digit in the tens of million place value is less than 5, maintain the digit in hundred million place value.
+Then, replace the digits in the ten million, millions, hundreds of thousands, ten thousands, thousands,hundreds,tens and ones place value with zero.
+" elseif second_value=5 then  message1:"The digit in the tens of million place value is 5.
+	Therefore, add 1 to the digit in hundreds of million place value and replace the remaining values with zero."
+else messsage1:"Since the digit in the tens of millions place value is greater than 5,
+	add 1 to the digit in hundred million place value and replace the remaining values with zero.";/*gives feedback*/
+
+]]></text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="html">
+      <text><![CDATA[<p> number : \({@new_number@}\)</p>
+<p>\({@if second_value >= 5 then f1:first_value+1 else f1: first_value@}\)</p>
+<p>\({@first_value_1@}\)</p>]]></text>
+    </questionnote>
+    <questiondescription format="html">
+      <text><![CDATA[<p id="author">Sheila Cherotich</p>
+<p id="concept"></p>
+<p id="reviewer"></p>
+<p id="reviewer"></p>
+<p id="description">The question focuses on numbers between 100 000 000 -999 999 999 and requires the student to assign each digit its correct place value and be able to round off the number to the hundreds of million place value .</p>]]></text>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>first_value_1</tans>
+      <boxsize>6</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text>/*mistake1*/
+remaining_digits: new_number - (first_value * 100000000); /* Extract digits below the hundreds of millions place value*/
+number_value: (f1 * 100000000) + remaining_digits;
+
+/*mistake2*/
+f1_mistake:first_value;/*fails to add 1 to the first digit when the digit at the tens of millions place value is 5 or greater*/
+ta_mistake2:f1_mistake*100000000;/*fails to add 1 to the first digit when the digit at the tens of million place value is 5 or greater but replaces the remaining digits with zero*/
+
+
+</text>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct number rounded off to the nearest hundreds of million place value</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>first_value_1</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <description>Checks for digits that are replaced incorrectly.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>number_value</tans>
+        <testoptions/>
+        <quiet>1</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-2-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>You have failed to replace the digits in the tens of millions, millions, hundreds of thousands, ten thousands, thousands, hundreds, tens and ones place value with zero.Kindly ensure you replace the digits after hundreds of millions place value with zero.</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>2</falsenextnode>
+        <falseanswernote>prt1-2-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>2</name>
+        <description>Checks for the digit at the hundreds of millions place value if it is replaced correctly.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>ta_mistake2</tans>
+        <testoptions/>
+        <quiet>1</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-3-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>It seems you have not added 1 to the digit in the hundreds of million place value. Please refer to the step by step worked solution below.</p>
+</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-3-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <deployedseed>1623313751</deployedseed>
+    <deployedseed>1631582573</deployedseed>
+    <deployedseed>1737805365</deployedseed>
+    <deployedseed>919752883</deployedseed>
+    <deployedseed>1843806113</deployedseed>
+    <deployedseed>1511072248</deployedseed>
+    <deployedseed>31472491</deployedseed>
+    <deployedseed>337097285</deployedseed>
+    <deployedseed>1381097059</deployedseed>
+    <deployedseed>463561139</deployedseed>
+    <deployedseed>1440509176</deployedseed>
+    <deployedseed>313544260</deployedseed>
+    <deployedseed>1330143290</deployedseed>
+    <deployedseed>2083647919</deployedseed>
+    <deployedseed>831449173</deployedseed>
+    <deployedseed>277374651</deployedseed>
+    <deployedseed>758319605</deployedseed>
+    <deployedseed>780621209</deployedseed>
+    <deployedseed>868930697</deployedseed>
+    <deployedseed>944060987</deployedseed>
+    <deployedseed>674589678</deployedseed>
+    <deployedseed>1710939171</deployedseed>
+    <deployedseed>2031382122</deployedseed>
+    <deployedseed>1556435701</deployedseed>
+    <deployedseed>786529618</deployedseed>
+    <deployedseed>792068535</deployedseed>
+    <deployedseed>875485696</deployedseed>
+    <deployedseed>1254325691</deployedseed>
+    <deployedseed>1682860411</deployedseed>
+    <deployedseed>131650816</deployedseed>
+    <deployedseed>1221306342</deployedseed>
+    <deployedseed>881966541</deployedseed>
+    <deployedseed>597756813</deployedseed>
+    <deployedseed>1586053972</deployedseed>
+    <deployedseed>230501117</deployedseed>
+    <deployedseed>558316200</deployedseed>
+    <deployedseed>1591438954</deployedseed>
+    <deployedseed>484530456</deployedseed>
+    <deployedseed>1338338085</deployedseed>
+    <deployedseed>106402890</deployedseed>
+    <deployedseed>1558768375</deployedseed>
+    <deployedseed>1314846399</deployedseed>
+    <deployedseed>382476228</deployedseed>
+    <deployedseed>451872000</deployedseed>
+    <deployedseed>2042030009</deployedseed>
+    <deployedseed>80564092</deployedseed>
+    <deployedseed>819324569</deployedseed>
+    <deployedseed>127860962</deployedseed>
+    <deployedseed>1420994230</deployedseed>
+    <deployedseed>601348900</deployedseed>
+    <deployedseed>1995604953</deployedseed>
+    <deployedseed>765583703</deployedseed>
+    <deployedseed>950777877</deployedseed>
+    <deployedseed>173956209</deployedseed>
+    <deployedseed>1378407371</deployedseed>
+    <deployedseed>495625805</deployedseed>
+    <deployedseed>2084862103</deployedseed>
+    <deployedseed>825613318</deployedseed>
+    <deployedseed>1709838172</deployedseed>
+    <deployedseed>400389046</deployedseed>
+    <deployedseed>1618124828</deployedseed>
+    <deployedseed>1665497437</deployedseed>
+    <deployedseed>1115733052</deployedseed>
+    <deployedseed>1065849913</deployedseed>
+    <deployedseed>564360829</deployedseed>
+    <deployedseed>1185413020</deployedseed>
+    <deployedseed>1968574550</deployedseed>
+    <deployedseed>1227045047</deployedseed>
+    <deployedseed>1994626933</deployedseed>
+    <deployedseed>495033665</deployedseed>
+    <deployedseed>2075561295</deployedseed>
+    <deployedseed>538856585</deployedseed>
+    <deployedseed>1613828112</deployedseed>
+    <deployedseed>157166044</deployedseed>
+    <deployedseed>1501609787</deployedseed>
+    <deployedseed>53204663</deployedseed>
+    <deployedseed>698859973</deployedseed>
+    <deployedseed>1063512698</deployedseed>
+    <deployedseed>1849997139</deployedseed>
+    <deployedseed>1200783239</deployedseed>
+    <deployedseed>900139323</deployedseed>
+    <deployedseed>193340721</deployedseed>
+    <deployedseed>2028277053</deployedseed>
+    <deployedseed>1301253817</deployedseed>
+    <deployedseed>2071947639</deployedseed>
+    <deployedseed>1023555984</deployedseed>
+    <deployedseed>1216608848</deployedseed>
+    <deployedseed>1600317502</deployedseed>
+    <deployedseed>224603393</deployedseed>
+    <deployedseed>1128713177</deployedseed>
+    <deployedseed>1955621320</deployedseed>
+    <deployedseed>539172097</deployedseed>
+    <deployedseed>1711032926</deployedseed>
+    <deployedseed>1946145336</deployedseed>
+    <deployedseed>2048158470</deployedseed>
+    <deployedseed>1254806530</deployedseed>
+    <deployedseed>1846954266</deployedseed>
+    <deployedseed>189068109</deployedseed>
+    <deployedseed>1997698724</deployedseed>
+    <deployedseed>555823329</deployedseed>
+    <qtest>
+      <testcase>1</testcase>
+      <description>Test case assuming the teacher's input gets full marks.</description>
+      <testinput>
+        <name>ans1</name>
+        <value>first_value_1</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt1-1-T</expectedanswernote>
+      </expected>
+    </qtest>
+  </question>
+</quiz>

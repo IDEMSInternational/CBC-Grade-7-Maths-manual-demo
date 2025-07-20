@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Finding the perimeter of a given figure</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p>Find the perimeter of the figure drawn below.</p>
+[[jsxgraph]]
+var board = JXG.JSXGraph.initBoard('jxgbox',{
+            boundingbox:[-5,5,5,-5], 
+            axis: false,
+            showCopyright:false,keepAspectRatio:true
+
+        });
+        var point1 = board.create('point',[-3,-4],{name:'A', visible:true});
+        var point2 = board.create('point',[-3,4],{name:'B', visible:true});
+        var point3 = board.create('point',[0,4],{name:'C', visible:true});
+        var point4 = board.create('point',[0,0],{name:'D', visible:true});
+        var point5 = board.create('point',[3,0],{name:'E', visible:true});
+        var point6 = board.create('point',[3,-4],{name:'F', visible:true});
+
+        var shape1 = board.create('polygon',[point1,point2,point3,point4,point5,point6],{fillcolor:'white',borders:{strokeColor:'black', strokeWidth:2}});
+
+        var labelA = board.create('text',[-3.5,0,'{#line1#} cm'],{fontsize:15});
+        var labelB = board.create('text',[-1.5,4.3,'{#line2#} cm'],{fontsize:15});
+        var labelC = board.create('text',[0.3,2.5,'{#line3#} cm'],{fontsize:15});
+        var labelD = board.create('text',[1.5,0.4,'{#line4#} cm'],{fontsize:15});
+        var labelE = board.create('text',[3.5,-2,'{#line5#} cm'],{fontsize:15});
+        var labelF = board.create('text',[0,-4.5,'{#line6#} cm'],{fontsize:15});
+        
+[[/jsxgraph]]
+<p>Perimeter = [[input:ans1]] [[validation:ans1]]\(cm\)[[feedback:prt1]]</p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<h3>Worked Solution</h3>
+<p>Perimeter = \({@line1@}\) + \({@line2@}\) + \({@line3@}\) + \({@line4@}\) + \({@line5@}\) + \({@line6@}\)</p>
+<p>\(\qquad\qquad = {@perimeter@}\)</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2023060500</text>
+    </stackversion>
+    <questionvariables>
+      <text>line1:rand_with_step(8,20,2);/*generates random numbers for length of one side of the figure*/
+line2:rand(9)+3;/*generates random numbers for length of one side of the figure*/
+line3:(1/2)*line1;/*generates random numbers for length of one side of the figure*/
+line4:line2;/*generates random numbers for length of one side of the figure*/
+line5:(1/2)*line1;/*generates random numbers for length of one side of the figure*/
+line6:line2+line4;/*generates random numbers for length of one side of the figure*/
+perimeter:line1+line2+line3+line4+line5+line6;/*perimeter*/
+
+/*mistake*/
+perimeter_1:line1*line2*line3*line4*line5*line6;/*incorrect answer for the perimeter when length of the lines are multiplied instead of being added*/</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="moodle_auto_format">
+      <text><![CDATA[<p>\({@line1@}\)</p>
+<p>\({@line2@}\)</p>
+<p>\({@line3@}\)</p>
+<p>\({@line4@}\)</p>
+<p>\({@line5@}\)</p>
+<p>\({@line6@}\)</p>
+<p>\({@perimeter@}\)</p>]]></text>
+    </questionnote>
+    <questiondescription format="html">
+      <text><![CDATA[<p id="author"> Isdora Ochieng</p>
+<p id="concept">https://docs.google.com/document/d/1lbTMRS63_4bt9ZvCNc6RdFBzmtPk0jsjFNE2WiJ9Kh0/edit?tab=t.0#heading=h.vy8x1tbmoha9</p>
+<p id="reviewer"></p>
+<p id="reviewer"></p>
+
+<p id="description">The question requires the learner to calculate the perimeter of the given polygon.</p>]]></text>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>perimeter</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct answer for the perimeter of the given figure</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>perimeter</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <description>Checks for the  incorrect answer for the perimeter </description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>perimeter_1</tans>
+        <testoptions>0</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-2-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>You have multiplied instead of adding the lengths when finding the perimeter.</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>0</falsenextnode>
+        <falseanswernote>prt1-2-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <deployedseed>1064763965</deployedseed>
+    <deployedseed>1167468919</deployedseed>
+    <deployedseed>448328895</deployedseed>
+    <deployedseed>1914293264</deployedseed>
+    <deployedseed>1880605824</deployedseed>
+    <deployedseed>1281686551</deployedseed>
+    <deployedseed>1315493783</deployedseed>
+    <deployedseed>1602152758</deployedseed>
+    <deployedseed>703815131</deployedseed>
+    <deployedseed>1505834549</deployedseed>
+    <deployedseed>1124941659</deployedseed>
+    <deployedseed>992182051</deployedseed>
+    <deployedseed>182099727</deployedseed>
+    <deployedseed>1726953991</deployedseed>
+    <deployedseed>1804521756</deployedseed>
+    <deployedseed>1731755060</deployedseed>
+    <deployedseed>262912873</deployedseed>
+    <deployedseed>778852808</deployedseed>
+    <deployedseed>1688948208</deployedseed>
+    <deployedseed>1556461909</deployedseed>
+  </question>
+</quiz>

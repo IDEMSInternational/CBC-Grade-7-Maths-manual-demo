@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Forming expressions and performing combined addition and subtraction operations using given information.</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p>Cherotich had \({@whole_total@}\)\({@numer_total@}\) litres of \(\text{@beverage@}\). She sold \({@whole_sold @}\)\({@numer_sold @}\) litres to a customer. Realizing that the remaining juice would not be enough for the rest of her customers, she brought in an additional \({@whole_extra@}\)\({@numer_extra  @}\) litres.How much \(\text{@beverage@}\) did Cherotich have for the remaining customers?</p>
+<p>\(\text{@beverage@} =\)  [[input:ans1]] [[validation:ans1]] [[feedback:prt1]] litres</p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<h3> Worked solution</h3>
+<p> First, write an expression using the given information.</p>
+<p>\({@whole_total@}\)\({@numer_total@}\) - \({@whole_sold @}\)\({@numer_sold @}\)  + \({@whole_extra@}\)\({@numer_extra  @}\) </p>
+<p>Then convert mixed numbers to improper fractions and perform addition:</p>
+<p>\({@whole_total@}\)\({@numer_total@}\) + \({@whole_extra@}\)\({@numer_extra  @}\) - \({@whole_sold @}\)\({@numer_sold @}\)    \( = {@frac_total@}\) + \({@frac_extra@}\)- \({@frac_sold@}\)</p>
+<p> Now, to add \( {@frac_total@}\) + \({@frac_extra@}\), find the LCM of \({@den_first_frac @}\) and \({@den_third_frac @}\).</p>
+<p>The LCM is \({@lcm_addition@}\)</p>
+<p> Therefore, \( {@frac_total@}+ {@frac_extra@}=  \frac{   {@num@}  +     {@num2@}       }{{@lcm_addition@}}=     {@ans@}               \)</p>
+<p>Rewriting the expression we have: \({@ans@} -{@frac_sold @} \)</p>
+<p>Next, perform subtraction by first finding the LCM of \({@lcm_addition@}\) and \({@den_second_frac@}\)</p>
+<p> \(\begin{align}{@ans@} -{@frac_sold @} &= \frac{{@num_subtraction@} - {@num2_subtraction@} } {{@lcm_subtraction@}}\\\\ &= {@result@} \end{align}\)</p> 
+<p> Therefore, Cherotich had \({@result@}\) litres of \({@beverage@}\)]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2025012100</text>
+    </stackversion>
+    <questionvariables>
+      <text><![CDATA[beverage:rand(["juice","milk","lemonade","fruit smoothie"]);
+num_first_frac : rand_with_step(23, 34, 3);   /* Numerator of total beverage */
+den_first_frac : rand_with_step(3, 9, 2);     /* Denominator of total beverage */
+while not (num_first_frac > den_first_frac and gcd(num_first_frac, den_first_frac) = 1) do (
+    num_first_frac : rand_with_step(23, 34, 3),
+    den_first_frac : rand_with_step(3, 9, 2));
+
+num_second_frac : rand_with_step(5, 13, 1);  /* Numerator of beverage sold */
+den_second_frac : rand_with_step(2, 7, 1);   /* Denominator of beverage sold */
+done : false;
+while not done do (
+    num_second_frac : rand_with_step(5, 13, 1),
+    den_second_frac : rand_with_step(2, 7, 1),  /* Slightly increased upper limit for variety */
+    
+    if num_second_frac > den_second_frac and gcd(num_second_frac, den_second_frac) = 1 then
+        done : true);
+
+num_third_frac : rand_with_step(13, 25, 2);     /* Numerator of extra beverage */
+den_third_frac : rand_with_step(2, 12, 1);     /* Denominator of extra beverage */
+while not (num_third_frac > den_third_frac and gcd(num_third_frac, den_third_frac) = 1) do (
+    num_third_frac : rand_with_step(13, 25, 2),
+    den_third_frac : rand_with_step(2, 12, 1));
+
+
+/* Define the fractions */
+frac_total : num_first_frac / den_first_frac;  /*initial litres of the beverage */
+frac_sold : num_second_frac / den_second_frac;  /* amount of litres sold to one customer */
+frac_extra : num_third_frac / den_third_frac; /*extra amount of litres of the beverage*/
+
+
+/* Final expression: total - sold + extra */
+expression : ratsimp(frac_total - frac_sold + frac_extra);
+
+/* Convert each to mixed numbers */
+whole_total : floor(frac_total);
+numer_total : (frac_total - whole_total);
+whole_sold : floor(frac_sold);
+numer_sold : (frac_sold - whole_sold);
+whole_extra : floor(frac_extra);
+numer_extra : (frac_extra - whole_extra);
+
+
+/* Find LCM of denominators for addition */
+lcm_addition : lcm(den_first_frac,den_third_frac);
+num: lcm_addition/den_first_frac*num_first_frac;
+num2: lcm_addition/den_third_frac*num_third_frac;
+ans: (num+num2)/lcm_addition ;
+
+/*Finding lcm of denominators for subtraction*/
+lcm_subtraction:lcm(lcm_addition,den_second_frac);
+num_subtraction: lcm_subtraction/lcm_addition*(num + num2);
+num2_subtraction: lcm_subtraction/den_second_frac*num_second_frac;
+/* Compute the result of subtraction as a fraction */
+result : (num_subtraction - num2_subtraction) / lcm_subtraction;
+
+/*mistake 1*/
+
+/* Define the fractions */
+frac_total_mistake : num_first_frac / den_first_frac;  /* initial litres of the beverage */
+frac_sold_mistake : num_second_frac / den_second_frac;  /* amount of litres sold to one customer */
+frac_extra_mistake : num_third_frac / den_third_frac; /* extra amount of litres of the beverage */
+
+/* Calculate the sum of frac_sold and frac_extra */
+lcm_sum_mistake : lcm(den_second_frac, den_third_frac);
+num_sum_mistake : lcm_sum/den_second_frac*num_second_frac + lcm_sum/den_third_frac*num_third_frac;
+frac_sum_mistake : num_sum / lcm_sum;
+
+/* Subtract the sum from frac_total */
+lcm_subtraction_mistake : lcm(den_first_frac, lcm_sum);
+num_subtraction_mistake : lcm_subtraction/den_first_frac*num_first_frac - lcm_subtraction/lcm_sum*num_sum;
+result_mistake : num_subtraction / lcm_subtraction;
+
+/* Convert the result to a mixed number if necessary */
+whole_result_mistake : floor(result);
+numer_result_mistake : result - whole_result;]]></text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="html">
+      <text><![CDATA[<p>result of addition- {@ans@}</p>
+<p> result of subtraction-{@result@}</p>]]></text>
+    </questionnote>
+    <questiondescription format="html">
+      <text/>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>result</tans>
+      <boxsize>6</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct performance of operations in addition and subtraction.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>result</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <description>Checks for incorrect calculations in expressions involving addition and subtraction.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>result_mistake</tans>
+        <testoptions/>
+        <quiet>1</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-2-T</trueanswernote>
+        <truefeedback format="html">
+          <text>You incorrectly grouped the terms by adding the last two fractions first, then subtracting their sum from the first. Remember, the sign before each fraction determines how it should be combined. Ignoring these signs and changing the grouping altered the meaning of the expression. Please check the step-by-step worked solution below to understand the order of operations.</text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-2-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <deployedseed>568246566</deployedseed>
+    <deployedseed>1754363662</deployedseed>
+    <deployedseed>736343353</deployedseed>
+    <deployedseed>331033513</deployedseed>
+    <deployedseed>1975069871</deployedseed>
+    <deployedseed>706161567</deployedseed>
+    <deployedseed>64837404</deployedseed>
+    <deployedseed>945568345</deployedseed>
+    <deployedseed>1261417017</deployedseed>
+    <deployedseed>645214328</deployedseed>
+    <deployedseed>1739548264</deployedseed>
+    <deployedseed>529289782</deployedseed>
+    <deployedseed>1176187014</deployedseed>
+    <deployedseed>224510779</deployedseed>
+    <deployedseed>458847262</deployedseed>
+    <deployedseed>485220661</deployedseed>
+    <deployedseed>1326810179</deployedseed>
+    <deployedseed>2031308601</deployedseed>
+    <deployedseed>641253624</deployedseed>
+    <deployedseed>68649062</deployedseed>
+    <deployedseed>453831105</deployedseed>
+    <deployedseed>1741673706</deployedseed>
+    <deployedseed>1692431759</deployedseed>
+    <deployedseed>375180172</deployedseed>
+    <deployedseed>1646689393</deployedseed>
+    <deployedseed>357750266</deployedseed>
+    <deployedseed>733666835</deployedseed>
+    <deployedseed>802362862</deployedseed>
+    <deployedseed>784849107</deployedseed>
+    <deployedseed>832362812</deployedseed>
+    <deployedseed>255818320</deployedseed>
+    <deployedseed>463115840</deployedseed>
+    <deployedseed>296299958</deployedseed>
+    <deployedseed>796191364</deployedseed>
+    <deployedseed>168459462</deployedseed>
+    <deployedseed>1241087146</deployedseed>
+    <deployedseed>2048521902</deployedseed>
+    <deployedseed>757809630</deployedseed>
+    <deployedseed>291211050</deployedseed>
+    <deployedseed>889276769</deployedseed>
+    <deployedseed>1155381351</deployedseed>
+    <deployedseed>755808967</deployedseed>
+    <deployedseed>8505003</deployedseed>
+    <deployedseed>1503447170</deployedseed>
+    <deployedseed>121450366</deployedseed>
+    <deployedseed>2004045826</deployedseed>
+    <deployedseed>1252269743</deployedseed>
+    <deployedseed>1635271707</deployedseed>
+    <deployedseed>161765301</deployedseed>
+    <deployedseed>536641514</deployedseed>
+    <deployedseed>1021062002</deployedseed>
+    <deployedseed>348678460</deployedseed>
+    <deployedseed>1460011165</deployedseed>
+    <deployedseed>1221680421</deployedseed>
+    <deployedseed>457453372</deployedseed>
+    <deployedseed>1646692953</deployedseed>
+    <deployedseed>1702442238</deployedseed>
+    <deployedseed>1045678932</deployedseed>
+    <deployedseed>941900718</deployedseed>
+    <deployedseed>435229306</deployedseed>
+    <deployedseed>2093294287</deployedseed>
+    <deployedseed>579450202</deployedseed>
+    <deployedseed>900059501</deployedseed>
+    <deployedseed>239157363</deployedseed>
+    <deployedseed>1697724080</deployedseed>
+    <deployedseed>1529772460</deployedseed>
+    <deployedseed>2100982140</deployedseed>
+    <deployedseed>210414062</deployedseed>
+    <deployedseed>677709110</deployedseed>
+    <deployedseed>1618657496</deployedseed>
+    <deployedseed>597869329</deployedseed>
+    <deployedseed>456516691</deployedseed>
+    <deployedseed>1686559277</deployedseed>
+    <deployedseed>2107518149</deployedseed>
+    <deployedseed>948822706</deployedseed>
+    <deployedseed>1030960532</deployedseed>
+    <deployedseed>1292351838</deployedseed>
+    <deployedseed>2069695484</deployedseed>
+    <deployedseed>1281314676</deployedseed>
+    <deployedseed>1965483129</deployedseed>
+    <deployedseed>1953227822</deployedseed>
+    <deployedseed>2005790458</deployedseed>
+    <deployedseed>474413446</deployedseed>
+    <deployedseed>645115950</deployedseed>
+    <deployedseed>297690504</deployedseed>
+    <deployedseed>192853729</deployedseed>
+    <deployedseed>1528266080</deployedseed>
+    <deployedseed>791910697</deployedseed>
+    <deployedseed>521440665</deployedseed>
+    <deployedseed>1619813403</deployedseed>
+    <deployedseed>2143110393</deployedseed>
+    <deployedseed>499184003</deployedseed>
+    <deployedseed>75379432</deployedseed>
+    <deployedseed>290582661</deployedseed>
+    <deployedseed>1183819556</deployedseed>
+    <deployedseed>1568843242</deployedseed>
+    <deployedseed>2097807359</deployedseed>
+    <deployedseed>1513619102</deployedseed>
+    <deployedseed>1900173116</deployedseed>
+    <deployedseed>485732787</deployedseed>
+    <qtest>
+      <testcase>1</testcase>
+      <description>Test case assuming the teacher's input gets full marks.</description>
+      <testinput>
+        <name>ans1</name>
+        <value>result</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt1-1-T</expectedanswernote>
+      </expected>
+    </qtest>
+  </question>
+</quiz>

@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Construction of a trapezium given the length of sides</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p>Construct a trapezium \(ABCD\) whereby \(AB = {@AB@}\,cm,\,BC = {@BC@}\,cm,\,CD = {@OB@}\,cm\) and \(AB\) is perpendicular to \(CB.\) Measure the length \(AD\) and write your answer correct to 1 d.p.</p>
+<p>\(AD = \)[[input:ans1]]\(\,cm\) [[validation:ans1]][[feedback:prt1]]</p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<h3>Worked Solution</h3>
+<p>Here is the constructed image of the trapezium.</p>
+[[jsxgraph]]
+var board = JXG.JSXGraph.initBoard('jxgbox',{
+                boundingbox:[-5,12,12,-4], 
+                axis: false,
+                showCopyright:false,keepAspectRatio:true
+    
+            });
+
+           var p1 = board.create('point', [0.0, 0.0],{name:'O',visible:false});
+            var p2 = board.create('point', {#coordinate_pointB#},{name:'B',visible:true});
+            var p3 = board.create('point', {#coordinate_pointD#},{name:'D',visible:true});
+            var p4 = board.create('point', {#coordinate_pointA#},{name:'A',visible:true});
+
+            var pp1 = board.create('parallelpoint', [p1, p2, p3],{name:'C',visible:true});
+            
+
+            var b1 = board.create('segment',['O','A'],{name:'', visible:false});
+            var b2 = board.create('segment',['O','B'],{name:'', visible:false});
+            var b3 = board.create('segment',['O','C'],{name:'', visible:false});
+            var b4 = board.create('segment',['O','D'],{name:'', visible:false});
+
+            var rhombus = board.create('polygon', ['A','B','C','D']);
+
+            var angle1 = board.create('angle', ['C','B','A'], {type:'sector', orthoType:'square', orthoSensitivity:2, radius:0.4, name:' ', visible:true});
+[[/jsxgraph]]
+
+<p>To calculate the length \(AD\) of the trapezium:</p>
+<p>Drop a perpendicular line from point \(D\) to the line \(AB.\) Label that point of intersection of the two lines as \(O.\)  \(OD\) is the height of the trapezium.</p>
+[[jsxgraph]]
+var board = JXG.JSXGraph.initBoard('jxgbox',{
+                boundingbox:[-5,12,12,-4], 
+                axis: false,
+                showCopyright:false,keepAspectRatio:true
+    
+            });
+
+           var p1 = board.create('point', [0.0, 0.0],{name:'O',visible:true});
+            var p2 = board.create('point', {#coordinate_pointB#},{name:'B',visible:true});
+            var p3 = board.create('point', {#coordinate_pointD#},{name:'D',visible:true});
+            var p4 = board.create('point', {#coordinate_pointA#},{name:'A',visible:true});
+
+            var pp1 = board.create('parallelpoint', [p1, p2, p3],{name:'C',visible:true});
+            
+
+            var b1 = board.create('segment',['O','A'],{name:'', visible:false});
+            var b2 = board.create('segment',['O','B'],{name:'', visible:false});
+            var b3 = board.create('segment',['O','C'],{name:'', visible:false});
+            var b4 = board.create('segment',['O','D'],{name:'', visible:false});
+            var b5 = board.create('segment',['O','D'],{name:'', visible:true});
+
+            var rhombus = board.create('polygon', ['A','B','C','D']);
+
+            var angle1 = board.create('angle', ['C','B','A'], {type:'sector', orthoType:'square', orthoSensitivity:2, radius:0.4, name:' ', visible:true});
+            var angle2 = board.create('angle', ['D','O','A'], {type:'sector', orthoType:'square', orthoSensitivity:2, radius:0.4, name:' ', visible:true});
+[[/jsxgraph]]
+<p>\(OD\) divides the trapezium into a rectangle, \(OBCD\) and a right-angle triangle, \(OAD\). </p>
+<p>Therefore: \(OB = CD = {@CD@}\,cm\) and \(OD = BC = {@BC@}\,cm\)</p>
+<p>From the right-angle triangle \(OAD\) we can use Pythagoras theorem to compute the length of the hypotenuse \(AD.\)  </p>
+<p>Find \(OA\) the base of the triangle;</p>
+<p>\(OA = AB - OB = {@AB@}\,cm - {@OB @}\,cm = {@OA@}\,cm\)</p>
+<p>The height \(OD\) of the triangle = \({@BC@}\,cm\)</p>
+<p>Therefore:</p>
+<p>\(AD^2 = OA^2 + OD^2\)</p>
+<p>\(AD^2 = {@OA@}^2 + {@OD@}^2\)</p>
+<p>\(AD = \sqrt{{@OA@}^2 + {@OD@}^2}\)</p>
+<p>\(AD = {@ta@}\,cm.\)</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2025012100</text>
+    </stackversion>
+    <questionvariables>
+      <text>/*Trapezium*/
+OB:rand_with_step(4,9,.1);
+OD:rand_with_step(2.5,4.5,.1);
+OC:decimalplaces(sqrt(OB^2+OD^2),1);
+OA:rand_with_step(2.5,4,.1);
+AB:OA+OB;
+BC:OD;
+
+/*coordinates of the trapezium */
+dtr(d) := d*%pi/180; /* Convert degrees to radians */
+angle_to_point(r, d) := [float(r*cos(dtr(d))), float(r*sin(dtr(d)))];
+coordinate_pointB: angle_to_point(OB, 0);
+coordinate_pointD: angle_to_point(OD, 90);
+coordinate_pointA: angle_to_point(OA, 180);
+AD_sq:(OA)^2+(OD)^2;
+AD:sqrt((OA)^2+(OD)^2);
+ta:decimalplaces(AD,1);</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="html">
+      <text><![CDATA[<p>{@coordinate_pointB@}</p>
+<p>{@coordinate_pointD@}</p>
+<p>{@coordinate_pointA@}</p>
+<p>{@OA@}</p>
+<p>{@OB@}</p>
+<p>{@OC@}</p>
+<p>{@OD@}</p>
+<p>{@AB@}</p>
+<p>{@BC@}</p>
+<p>{@AD@}</p>
+<p>{@ta@}</p>]]></text>
+    </questionnote>
+    <questiondescription format="html">
+      <text/>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>ta</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct measure of the length AD correct to 1 d.p</description>
+        <answertest>NumDecPlaces</answertest>
+        <sans>ans1</sans>
+        <tans>ta</tans>
+        <testoptions>1</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <deployedseed>1662252610</deployedseed>
+    <deployedseed>835708862</deployedseed>
+    <deployedseed>1282513033</deployedseed>
+    <deployedseed>1543907224</deployedseed>
+    <deployedseed>1535311387</deployedseed>
+    <deployedseed>801272980</deployedseed>
+    <deployedseed>780030987</deployedseed>
+    <deployedseed>871856990</deployedseed>
+    <deployedseed>207554057</deployedseed>
+    <deployedseed>1434214013</deployedseed>
+    <deployedseed>1870605216</deployedseed>
+    <deployedseed>2137703443</deployedseed>
+    <deployedseed>1492560430</deployedseed>
+    <deployedseed>1021082959</deployedseed>
+    <deployedseed>314231775</deployedseed>
+    <deployedseed>289536850</deployedseed>
+    <deployedseed>1063251943</deployedseed>
+    <deployedseed>897361893</deployedseed>
+    <deployedseed>889669887</deployedseed>
+    <deployedseed>888020020</deployedseed>
+    <deployedseed>61288204</deployedseed>
+    <deployedseed>1241870735</deployedseed>
+    <deployedseed>1501719910</deployedseed>
+    <deployedseed>917930648</deployedseed>
+    <deployedseed>959477990</deployedseed>
+    <deployedseed>1431570386</deployedseed>
+    <deployedseed>411940623</deployedseed>
+    <deployedseed>758522036</deployedseed>
+    <deployedseed>755465605</deployedseed>
+    <deployedseed>91270968</deployedseed>
+    <deployedseed>1151722890</deployedseed>
+    <deployedseed>2109249814</deployedseed>
+    <deployedseed>2050321280</deployedseed>
+    <deployedseed>543741735</deployedseed>
+    <deployedseed>1944306734</deployedseed>
+    <deployedseed>1529340050</deployedseed>
+    <deployedseed>1764260917</deployedseed>
+    <deployedseed>2132467149</deployedseed>
+    <deployedseed>2111768168</deployedseed>
+    <deployedseed>1694411285</deployedseed>
+    <deployedseed>1260884649</deployedseed>
+    <deployedseed>148093301</deployedseed>
+    <deployedseed>1669354527</deployedseed>
+    <deployedseed>1518813524</deployedseed>
+    <deployedseed>267701665</deployedseed>
+    <deployedseed>233752817</deployedseed>
+    <deployedseed>1512608077</deployedseed>
+    <deployedseed>604525292</deployedseed>
+    <deployedseed>862551649</deployedseed>
+    <deployedseed>2045928883</deployedseed>
+  </question>
+</quiz>

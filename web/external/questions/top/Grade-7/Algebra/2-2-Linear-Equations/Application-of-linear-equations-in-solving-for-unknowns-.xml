@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Application of linear equations in solving for unknowns.</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p>In one Week, \({@person_1_name@}\) spend \({@minutes_letters@}\) minutes on internet. \({@person_2_name@}\) spend twice
+the amount of time spend by \({@person_1_name@}\) while \({@person_3_name@}\) spend \({@extra_minutes_by_person3@}\) minutes
+more than \({@person_2_name@}\). If the total time they spend was \({@total_minutes_spend@}\) minutes, how
+many minutes were spend by \({@person_1_name@}\) on internet.
+</p>
+<p>[[input:ans1]] minutes [[validation:ans1]] [[feedback:prt1]]</p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<h3>Worked solution</h3>
+<p>First we define the variables;</p>
+<p>\({@person_1_name@}\) spends = \({@minutes_letters@}\) minutes</p>
+<p>\({@person_2_name@}\) spends = \({@person_2_minutes@}\) minutes</p>
+<p>\({@person_3_name@}\) spends = \({@person_3_minutes@}\) minutes</p>
+<p>Total minutes spent by all individuals is = \({@total_minutes_spend@}\)</p>
+<p>Now we represent the information in a linear equation;</p>
+<p>By representing the information in a linear equation, we add all the minutes each individual spent on the internet and then equate it to the total minutes they spent, as shown below:</p>
+<p>\({@name_equations@}\)</p>
+<p>Replacing each individual’s minutes in the equation above, we form:</p>
+<p>\({@person_1_minutes@}\) + \({@person_2_minutes@}\) + \({@person_3_minutes@}\) = \({@total_minutes_spend@}\)</p>
+<p>Simplifying the equation by opening the brackets and then collecting like terms together, we have:</p>
+<p>\({@equation@}\)</p>
+<p>Now we collect like terms and take {@extra_minutes_by_person3@}  to the other side so that we subtract it from {@total_minutes_spend@}, we form;</p>
+<p>\({@RH_simplified_eqn@}\)= \({@total_minutes_spend@}\) - \({@extra_minutes_by_person3@}\)</p>
+<p>\({@RH_simplified_eqn@}\) = \({@LH_simplified_eqn@}\)</p>
+<p>Therefore, the minutes {@person_1_name@}  spent is;</p>
+<p>\({@ta@}\) minutes</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2025012100</text>
+    </stackversion>
+    <questionvariables>
+      <text><![CDATA[/*     Question                                       
+                                    In one Week, Kimari spend x minutes on internet. Kyalo spend twice
+                                    the amount of time spend by Kimari while Wafula spend 10 minutes
+                                    more than Kyalo. If the total time they spend was 120 minutes, how
+                                        many minutes were spend by Kimari on internet.
+*/
+
+minutes_letters:rand(["b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "n", "p", "q", "r", "s", "t", "v", "w", "x", "y", "z"]);    /*Minutes*/
+/*Names of individuals*/
+person_1_name:rand(["Achieng", "Adero", "Akoko", "Apiyo", "Asego", "Awino", "Jaramogi", "Jatani", "Kepha", "Kwamboka", "Maranga", "Mokeira", "Moraa", "Moriasi", "Mose", "Motari", "Mugendi", "Mumbi", "Nyang'au", "Akinyi", "Amara", "Baraka", "Bilha", "Biko", "Chipo", "Desta", "Ekene", "Eshe", "Faraji", "Habiba", "Halima", "Imani", "Jabari", "Jalia", "Juma", "Kamau", "Kato", "Kwame", "Laila", "Mosi", "Mugisha", "Mwangi", "Nia", "Nyasha", "Omari", "Tinashe", "Zuberi", "Zuri"]);
+person_2_name:rand(["Abarik", "Aketch", "Anyango", "Ayub", "Bahati", "Bwire", "Choge", "Ephantus", "Gakuru", "Gathoni", "Ishmael", "Jelagat", "Kadzo", "Kalonzo", "Karani", "Kasim", "Kasyoka", "Khamisi", "Kimathi", "Lusweti", "Makena", "Mbithi", "Mose", "Mule", "Muthoni", "Ndeto", "Nyambura", "Nyatichi", "Simiyu", "Wekesa", "Nyandia", "Nyanchama", "Nyatichi", "Nyatigo", "Ochieng", "Odhiambo", "Ogada", "Ogola", "Okeyo", "Onyango", "Orina", "Osewe"]);
+person_3_name:rand(["Abdi", "Amina", "Bashir", "Chebet", "Danjuma", "Eunoto", "Fatuma", "Githinji", "Hassan", "Ismail", "Jebet", "Kibet", "Lemayian", "Mwangangi", "Naserian", "Omondi", "Pius", "Saida", "Talaso", "Zainab"]);
+
+/* Randomized Minutes*/
+number_of_times:2;
+coeff_y:5;
+total_minutes_spend:rand_with_step(80,200,10);
+extra_minutes_by_person3:rand_with_step(5,60,10);
+
+/*Define variables*/
+person_1_minutes:minutes_letters;
+person_2_minutes:number_of_times*minutes_letters;
+person_3_minutes:number_of_times*minutes_letters+extra_minutes_by_person3;
+
+/*Working*/
+name_equations:person_1_name  +person_2_name  +person_3_name =  total_minutes_spend;
+equation:person_1_minutes+person_2_minutes+person_3_minutes = total_minutes_spend;
+
+/*Simplifying*/
+simplified_eqn:person_1_minutes+person_2_minutes +number_of_times*minutes_letters = total_minutes_spend-extra_minutes_by_person3;
+
+/*Sides of the eqaution*/
+LH_simplified_eqn:minutes_letters+number_of_times*minutes_letters+number_of_times*minutes_letters;
+RH_simplified_eqn:total_minutes_spend-extra_minutes_by_person3;
+
+/*Correct answer*/
+ta:RH_simplified_eqn/coeff_y;
+
+/*Mistakes*/
+/*Forgetting to include the added extra minutes in the third person.*/
+person_3_minutes_wrong:number_of_times*minutes_letters;
+wrong_eqn_1:person_1_minutes+person_2_minutes+person_3_minutes_wrong = total_minutes_spend;
+
+ta_wrong:total_minutes_spend/coeff_y;
+
+/*Forgetting that Wafula’s time is Kyalo’s minutes plus extra added minutes.*/
+var_coeff_num:3;
+wrong_eqn_2:person_1_minutes+person_2_minutes+extra_minutes_by_person3 = total_minutes_spend;
+/*Sides of the eqaution*/
+RH_simplified_eqn:total_minutes_spend-extra_minutes_by_person3;
+
+ta_wrong_2:decimalplaces(RH_simplified_eqn/var_coeff_num,2);]]></text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="html">
+      <text><![CDATA[<p>Number of minutes spent by {@person_1_name@} {@ta@}</p>]]></text>
+    </questionnote>
+    <questiondescription format="html">
+      <text><![CDATA[<p id="author">Rodgers Maragia</p>
+<p id="concept">https://docs.google.com/document/d/1nc17PX49W8AO_19AiuJpBcMrGLsOX1b32ezERZfvsHw/edit?usp=sharing</p>
+<p id="reviewer"></p>
+<p id="reviewer"></p>
+<p id="description">In this question, the student is required to determine the number of minutes K spent on the internet. The problem provides the total time spent online by K, Y, and W, with Y spending twice the time K spent, and W spending 10 minutes more than Y. The student is expected to form an algebraic equation representing the total time spent and solve for x, which represents K's time on the internet.</p>]]></text>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>ta</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct answer for x.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>ta</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>Correct answer.</p>]]></text>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <description>Checks for the wrong answer for x.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>ta_wrong</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-2-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>When forming your equation you did not include the extra added minutes for \({@person_3_name@}\).</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>2</falsenextnode>
+        <falseanswernote>prt1-2-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>2</name>
+        <description>Checks for the wrong answer for x.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>ta_wrong_2</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-3-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>Your equation is missing some information of one of the individual’s minutes they spent on the internet.</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-3-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <deployedseed>140161001</deployedseed>
+    <deployedseed>544427114</deployedseed>
+    <deployedseed>201970962</deployedseed>
+    <deployedseed>369275108</deployedseed>
+    <deployedseed>1095550585</deployedseed>
+    <deployedseed>231306036</deployedseed>
+    <deployedseed>1549698244</deployedseed>
+    <deployedseed>579326780</deployedseed>
+    <deployedseed>2133018327</deployedseed>
+    <deployedseed>1109895272</deployedseed>
+    <deployedseed>145625201</deployedseed>
+    <deployedseed>1565202854</deployedseed>
+    <deployedseed>267406156</deployedseed>
+    <deployedseed>1579003348</deployedseed>
+    <deployedseed>887640743</deployedseed>
+    <deployedseed>1196453776</deployedseed>
+    <deployedseed>1906537177</deployedseed>
+    <deployedseed>1454009665</deployedseed>
+    <deployedseed>587224620</deployedseed>
+    <deployedseed>1577484301</deployedseed>
+    <deployedseed>1910634033</deployedseed>
+    <deployedseed>428117460</deployedseed>
+    <deployedseed>1132447719</deployedseed>
+    <deployedseed>1069880052</deployedseed>
+    <deployedseed>2125929572</deployedseed>
+    <deployedseed>215323987</deployedseed>
+    <deployedseed>337707487</deployedseed>
+    <deployedseed>1190201660</deployedseed>
+    <deployedseed>503090791</deployedseed>
+    <deployedseed>1185781119</deployedseed>
+    <deployedseed>1491929429</deployedseed>
+    <deployedseed>1281770550</deployedseed>
+    <deployedseed>984907672</deployedseed>
+    <deployedseed>1852329938</deployedseed>
+    <deployedseed>615560625</deployedseed>
+    <deployedseed>2020371976</deployedseed>
+    <deployedseed>362508780</deployedseed>
+    <deployedseed>1624423405</deployedseed>
+    <deployedseed>1929693019</deployedseed>
+    <deployedseed>144170763</deployedseed>
+    <deployedseed>1077176402</deployedseed>
+    <deployedseed>1286355558</deployedseed>
+    <deployedseed>1668463237</deployedseed>
+    <deployedseed>881360616</deployedseed>
+    <deployedseed>1367714227</deployedseed>
+    <deployedseed>416239898</deployedseed>
+    <deployedseed>937672747</deployedseed>
+    <deployedseed>298819370</deployedseed>
+    <deployedseed>1997603784</deployedseed>
+    <deployedseed>1533621212</deployedseed>
+    <qtest>
+      <testcase>1</testcase>
+      <description>Test case assuming the teacher's input gets full marks.</description>
+      <testinput>
+        <name>ans1</name>
+        <value>ta</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt1-1-T</expectedanswernote>
+      </expected>
+    </qtest>
+    <qtest>
+      <testcase>2</testcase>
+      <description>Checks for the wrong answer for x.</description>
+      <testinput>
+        <name>ans1</name>
+        <value>ta_wrong</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>0.0000000</expectedscore>
+        <expectedpenalty/>
+        <expectedanswernote>prt1-2-T</expectedanswernote>
+      </expected>
+    </qtest>
+    <qtest>
+      <testcase>3</testcase>
+      <description>Checks for the wrong answer for x.</description>
+      <testinput>
+        <name>ans1</name>
+        <value>ta_wrong_2</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>0.0000000</expectedscore>
+        <expectedpenalty/>
+        <expectedanswernote>prt1-3-T</expectedanswernote>
+      </expected>
+    </qtest>
+  </question>
+</quiz>

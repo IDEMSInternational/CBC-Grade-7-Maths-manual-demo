@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Identifying numbers that are divisible by 9 from a given list</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p>Which of the following numbers are divisible by \(9\)?</p>
+<p>[[input:ans1]] [[validation:ans1]][[feedback:prt1]]</p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<h3>Worked solution</h3>
+<p>A number is divisible by \(9\) if the sum of the digits in the number is divisible by \(9\).</p>
+<p>
+<ul>
+<li>
+<p>\( {@num1_div_by_9@} \) is divisible by \(9\) since the sum of it's digit is divisible by \(8\).</p>
+<p>\( \begin{align} {@num1_div_by_9@} = {@digit1_num1_div_by_9@} + {@digit2_num1_div_by_9@} + {@digit3_num1_div_by_9@} +{@digit4_num1_div_by_9@} 
+     & ={@addition_of_digits_num1_div_by_9@}  \\ \\&= \frac{{@addition_of_digits_num1_div_by_9@}}{9} = {@addition_of_digits_num1_div_by_9/9@} \end{align}\)</p>
+</li>
+</ul>
+</p>
+
+<p><ul><li>
+<p>\({@num2_div_by_9@}\) is divisible by \(9\) since the sum of it's digit is divisible by \(9\).</p>
+<p>\( \begin{align}  {@num2_div_by_9@} = {@digit1_num2_div_by_9@} + {@digit2_num2_div_by_9@} + {@digit3_num2_div_by_9@} +{@digit4_num2_div_by_9@} &={@addition_of_digits_num2_div_by_9@}\\ \\ &=\frac{{@addition_of_digits_num2_div_by_9@}}{9} ={@addition_of_digits_num2_div_by_9/9@} \end{align}\)</p>
+</li></ul></p>
+
+<p><ul><li>
+<p>\({@num1_not_div_by_9@}\) is not divisible by \(9\) since the sum of it's digits is not divisible by \(9\). </p>
+<p>\(\begin{align}{@num1_not_div_by_9@} = {@digit1_num1_not_div_by_9@} +{@digit2_num1_not_div_by_9@}+{@digit3_num1_not_div_by_9@}+{@digit4_num1_not_div_by_9@} &= {@addition_of_digits_num1_not_div_by_9@} \\ \\&=\frac{{@addition_of_digits_num1_not_div_by_9@}}{9} = {@floor(addition_of_digits_num1_not_div_by_9/9)@} \text{ remainder  } {@mod(addition_of_digits_num1_not_div_by_9,9)@} \end{align} \) </p>
+</li></ul></p>
+
+<p><ul><li>
+<p>\({@num2_not_div_by_9@}\) is not divisible by \(9\) since the sum of it's digits is not divisible by \(9\).</p>
+<p>\( \begin{align} {@num2_not_div_by_9@} = {@digit1_num2_not_div_by_9@} + {@digit2_num2_not_div_by_9@} + {@digit3_num2_not_div_by_9@} + {@digit4_num2_not_div_by_9@} &= {@addition_of_digits_num2_not_div_by_9@}\\ \\&= \frac{{@addition_of_digits_num2_not_div_by_9@}}{9}  = {@floor(addition_of_digits_num2_not_div_by_9/9)@}  \text{  remainder  } {@mod(addition_of_digits_num2_not_div_by_9,9)@}\end{align}\)</p>
+</li></ul></p>
+
+<p><ul><li>
+<p>\({@num3_not_div_by_9@}\) is not divisible by \(9\) since the sum of it's digits is not divisible by \(9\).</p>
+<p>\( \begin{align} {@num3_not_div_by_9@} = {@digit1_num3_not_div_by_9@} + {@digit2_num3_not_div_by_9@} + {@digit3_num3_not_div_by_9@} +{@digit4_num3_not_div_by_9@} &= {@addition_of_digits_num3_not_div_by_9@} \\  \\&= \frac{{@addition_of_digits_num3_not_div_by_9@}}{9} = {@floor(addition_of_digits_num3_not_div_by_9/9)@} \text{ remainder  } {@mod(addition_of_digits_num3_not_div_by_9,9)@} \end{align}\)</p>
+</li></ul></p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2025012100</text>
+    </stackversion>
+    <questionvariables>
+      <text>/*Divisibility test for 9*/
+
+/*numbers divisible by nine*/
+num1_div_by_9:rand_with_step(3771,8000,9);
+num2_div_by_9:rand_with_step(8154,9999,9);
+
+/* Define a function to check if a number is NOT divisible by 9 */
+is_not_divisible_by_9(n) := mod(n,9) # 0;
+/* Generate a list of 20 random numbers between 100 and 1000 */
+random_list : makelist(rand(4000) + 4000, i, 1, 40);
+/* Filter the numbers that are NOT divisible by 9 */
+filtered_list : sublist(random_list, lambda([n], is_not_divisible_by_9(n)));
+
+/*numbers not divisible by nine*/
+num1_not_div_by_9:filtered_list[1];
+num2_not_div_by_9:filtered_list[2];
+num3_not_div_by_9:filtered_list[3];
+
+
+/* Extracting digits for num1_div_by_9*/
+digit1_num1_div_by_9:floor(num1_div_by_9/1000);
+digit2_num1_div_by_9:floor(mod(num1_div_by_9 / 100,10));
+digit3_num1_div_by_9:floor(mod(num1_div_by_9 / 10,10));
+digit4_num1_div_by_9:floor(mod(num1_div_by_9,10));
+addition_of_digits_num1_div_by_9:digit1_num1_div_by_9+digit2_num1_div_by_9+digit3_num1_div_by_9+digit4_num1_div_by_9;
+
+
+/* Extracting digits for num2_div_by_9*/
+digit1_num2_div_by_9:floor(num2_div_by_9/1000);
+digit2_num2_div_by_9:floor(mod(num2_div_by_9 / 100,10));
+digit3_num2_div_by_9:floor(mod(num2_div_by_9 / 10,10));
+digit4_num2_div_by_9:floor(mod(num2_div_by_9,10));
+addition_of_digits_num2_div_by_9:digit1_num2_div_by_9+digit2_num2_div_by_9+digit3_num2_div_by_9+digit4_num2_div_by_9;
+
+/* Extracting digits for num1_not_div_by_9*/
+digit1_num1_not_div_by_9:floor(num1_not_div_by_9/1000);
+digit2_num1_not_div_by_9:floor(mod(num1_not_div_by_9 / 100,10));
+digit3_num1_not_div_by_9:floor(mod(num1_not_div_by_9 / 10,10));
+digit4_num1_not_div_by_9:floor(mod(num1_not_div_by_9,10));
+addition_of_digits_num1_not_div_by_9:digit1_num1_not_div_by_9+digit2_num1_not_div_by_9+digit3_num1_not_div_by_9+digit4_num1_not_div_by_9;
+
+/* Extracting digits for num2_not_div_by_9*/
+digit1_num2_not_div_by_9:floor(num2_not_div_by_9/1000);
+digit2_num2_not_div_by_9:floor(mod(num2_not_div_by_9 / 100,10));
+digit3_num2_not_div_by_9:floor(mod(num2_not_div_by_9 / 10,10));
+digit4_num2_not_div_by_9:floor(mod(num2_not_div_by_9,10));
+addition_of_digits_num2_not_div_by_9:digit1_num2_not_div_by_9+digit2_num2_not_div_by_9+digit3_num2_not_div_by_9+digit4_num2_not_div_by_9;
+
+/* Extracting digits for num3_not_div_by_9*/
+digit1_num3_not_div_by_9:floor(num3_not_div_by_9/1000);
+digit2_num3_not_div_by_9:floor(mod(num3_not_div_by_9 / 100,10));
+digit3_num3_not_div_by_9:floor(mod(num3_not_div_by_9 / 10,10));
+digit4_num3_not_div_by_9:floor(mod(num3_not_div_by_9,10));
+addition_of_digits_num3_not_div_by_9:digit1_num3_not_div_by_9+digit2_num3_not_div_by_9+digit3_num3_not_div_by_9+digit4_num3_not_div_by_9;
+
+
+/*correct answer*/
+correct_answers:rand_selection([
+[1, true, num1_div_by_9],[2,true,num2_div_by_9]], 2);
+
+/*incorrect answers*/
+incorrect_answers:rand_selection([
+[3, false, num1_not_div_by_9],
+[4, false, num2_not_div_by_9],
+[5, false, num3_not_div_by_9]
+], 3);
+
+ta: random_permutation(append(correct_answers,incorrect_answers));
+ta_index: sort(makelist(x[1], x, ta));
+ta_largest: last(ta_index); 
+
+
+
+</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="html">
+      <text><![CDATA[<p> Divisible by 9: \({@num1_div_by_9@}\)</p>
+<p>Divisible by 9:  \({@num2_div_by_9@}\)</p>
+<p>Not divisible by 9:  \({@num1_not_div_by_9@}\)</p>
+<p>Not divisible by 9:  \({@num2_not_div_by_9@}\)</p>
+<p>Not divisible by 9:  \({@num3_not_div_by_9@}\)</p>]]></text>
+    </questionnote>
+    <questiondescription format="html">
+      <text><![CDATA[<p id="author">Daniel Murunga</p>
+<p id="concept"></p>
+<p id="reviewer"></p>
+<p id="reviewer"></p>
+<p id="description">The question requires the student to first sum all the digits in the number. Then, the number will be divisible by 9 if the sum of the digits in the number is divisible by 9.</p>]]></text>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>checkbox</type>
+      <tans>ta</tans>
+      <boxsize>5</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>0</mustverify>
+      <showvalidation>0</showvalidation>
+      <options>nonotanswered</options>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct numbers which are divisible by 9</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>mcq_correct(ta)</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <deployedseed>1347177757</deployedseed>
+    <deployedseed>1471956593</deployedseed>
+    <deployedseed>2049135946</deployedseed>
+    <deployedseed>1355492000</deployedseed>
+    <deployedseed>1685062117</deployedseed>
+    <deployedseed>1335893931</deployedseed>
+    <deployedseed>1270712703</deployedseed>
+    <deployedseed>38333658</deployedseed>
+    <deployedseed>427402860</deployedseed>
+    <deployedseed>2118556874</deployedseed>
+    <deployedseed>2040628558</deployedseed>
+    <deployedseed>877562093</deployedseed>
+    <deployedseed>1655114256</deployedseed>
+    <deployedseed>2058581618</deployedseed>
+    <deployedseed>1600835834</deployedseed>
+    <deployedseed>1113927183</deployedseed>
+    <deployedseed>589937386</deployedseed>
+    <deployedseed>419327439</deployedseed>
+    <deployedseed>1855443343</deployedseed>
+    <deployedseed>1899903670</deployedseed>
+    <deployedseed>1925996017</deployedseed>
+    <deployedseed>1260172141</deployedseed>
+    <deployedseed>1866984894</deployedseed>
+    <deployedseed>958427942</deployedseed>
+    <deployedseed>1475204597</deployedseed>
+    <deployedseed>332375794</deployedseed>
+    <deployedseed>340736705</deployedseed>
+    <deployedseed>353861860</deployedseed>
+    <deployedseed>316556423</deployedseed>
+    <deployedseed>1081303960</deployedseed>
+    <deployedseed>1135673813</deployedseed>
+    <deployedseed>20380657</deployedseed>
+    <deployedseed>1154221911</deployedseed>
+    <deployedseed>1894193069</deployedseed>
+    <deployedseed>341137460</deployedseed>
+    <deployedseed>144232863</deployedseed>
+    <deployedseed>1598066392</deployedseed>
+    <deployedseed>1358758137</deployedseed>
+    <deployedseed>72623862</deployedseed>
+    <deployedseed>413756154</deployedseed>
+    <deployedseed>838749500</deployedseed>
+    <deployedseed>329311980</deployedseed>
+    <deployedseed>1279911600</deployedseed>
+    <deployedseed>959577986</deployedseed>
+    <deployedseed>25321330</deployedseed>
+    <deployedseed>189622152</deployedseed>
+    <deployedseed>191504140</deployedseed>
+    <deployedseed>1324056274</deployedseed>
+    <deployedseed>967936776</deployedseed>
+    <deployedseed>1342305524</deployedseed>
+    <deployedseed>1405676640</deployedseed>
+  </question>
+</quiz>

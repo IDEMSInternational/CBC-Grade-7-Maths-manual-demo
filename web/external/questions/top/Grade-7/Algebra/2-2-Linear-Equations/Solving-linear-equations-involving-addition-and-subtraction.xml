@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Solving linear equations involving addition and subtraction</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p>Solve for \({@var_letter@}\) in \({@eq@}\)</p>
+<p> \({@var_letter@} = \) [[input:ans1]] [[validation:ans1]][[feedback:prt1]]</p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<h3>Worked solution</h3>
+<p>To solve for \({@var_letter@}\) in this equation \({@eq@}\), we start by isolating the term containing  \({@var_letter@}\) on one side of the equation.</p>
+<p>This is done by adding \({@second_1@} \) to both sides of the equation:</p>
+<p>\(\qquad \qquad {@first_num_var*var_letter@} - {@second_1@} + {@second_1@}  = {@third_num@} + {@second_1@}  \)</p>
+<p>Simplify to obtain:</p>
+<p>\(\qquad \qquad {@first_num_var*var_letter@} = {@second_num_var@}\)</p>
+<p>Next, divide both sides of the equation by \({@first_num_var@}\) to solve for \({@var_letter@}\): </p>
+<p>\( \qquad \qquad \frac{@first_num_var*var_letter@}{@first_num_var@} = \frac{@second_num_var@}{@first_num_var@}\)</p>
+<p>Simplify to find:</p>
+<p>\(\qquad \qquad {@var_letter@} = {@num_var@}\)</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2023060500</text>
+    </stackversion>
+    <questionvariables>
+      <text>/*backward randomization*/
+num_var:rand(10)+2;
+first_num_var:rand(10)+10;
+var_letter:rand([w,r,h,d,k,p,n,m]);
+second_num_var: num_var*first_num_var;
+second_1:rand_with_step(3,second_num_var-4,1);
+third_num:second_num_var - second_1 ;
+eq:first_num_var*var_letter - second_1 = third_num;
+</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="moodle_auto_format">
+      <text><![CDATA[<p>Linear equation \({@eq@}\)</p>
+<p>Solution for our variable in the equation \({@num_var@}\)</p>]]></text>
+    </questionnote>
+    <questiondescription format="html">
+      <text><![CDATA[<p id="author">Daniel Murunga</p>
+<p id="concept">https://docs.google.com/document/d/1gSEfTgVK-p_fI1hSOeCnsQnGZd1vxgEK4753J_hjiuY/edit?tab=t.0</p>
+<p id="reviewer"></p>
+<p id="reviewer"></p>
+<p id="description">To solve for the variable in the given equation, start by isolating the term containing the variable by eliminating any constants on the same side. Once the term is isolated, divide both sides of the equation by the coefficient of the variable. Simplify the result to determine the value of the variable. ​</p>]]></text>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>num_var</tans>
+      <boxsize>5</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct value of w in the equation.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>num_var</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+  </question>
+</quiz>

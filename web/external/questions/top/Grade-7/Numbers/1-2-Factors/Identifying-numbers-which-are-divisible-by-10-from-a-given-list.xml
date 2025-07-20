@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Identifying numbers which are divisible by 10 from a given list</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Which of the following numbers are divisible by \(10\) ?</p>
+<p>[[input:ans1]] [[validation:ans1]][[feedback:prt1]]</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<h3>Worked solution</h3>
+<p>A number is divisible by \(10\) if the digit in the ones place value is zero.</p>
+<p>The numbers \({@correct_answers[1][3]@},{@correct_answers[2][3]@},{@correct_answers[3][3]@} \) are divisible by \(10\) because their digits in the ones place value is zero.</p>
+<p>The numbers \({@incorrect_answers[1][3]@},{@incorrect_answers[2][3]@},{@incorrect_answers[3][3]@} \) are not divisible by \(10\) because their digits in the ones place value is not zero. </p>
+<p></p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2025012100</text>
+    </stackversion>
+    <questionvariables>
+      <text>/*Numbers divisible by 10*/
+num1_div_by_10:rand_with_step(8000,10000,100);
+num2_div_by_10:rand_with_step(100000,599999,10);
+num3_div_by_10:rand_with_step(600000,999999,10);
+
+/*Numbers not divisible by 10*/
+num1_not_div_by_10:rand_with_step(111,10000,10);
+num2_not_div_by_10:rand_with_step(999,9999,10);
+num3_not_div_by_10:rand_with_step(55001,90000,10);
+
+/*Correct answers*/
+correct_answers:rand_selection([[1, true, num1_div_by_10],[2, true, num2_div_by_10],[3, true, num3_div_by_10]], 3);
+
+/*Incorrect answers*/
+incorrect_answers:rand_selection([[4, false, num1_not_div_by_10],[5, false, num2_not_div_by_10],[6, false, num3_not_div_by_10]], 3);
+
+ta: random_permutation(append(correct_answers,incorrect_answers));
+ta_index: sort(makelist(x[1], x, ta));
+ta_largest: last(ta_index);
+</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="moodle_auto_format">
+      <text><![CDATA[<p>Number divisible by 10: \({@num1_div_by_10@}\)</p>
+<p>Number divisible by 10:  \({@num2_div_by_10@}\)</p>
+<p>Number divisible by 10:  \({@num3_div_by_10@}\)</p>
+<p>Number not divisible by 10:  \({@num1_not_div_by_10@}\)</p>
+<p>Number not divisible by 10:  \({@num2_not_div_by_10@}\)</p>
+<p>Number not divisible by 10:  \({@num3_not_div_by_10@}\)</p>]]></text>
+    </questionnote>
+    <questiondescription format="html">
+      <text><![CDATA[<p id="author">Daniel Murunga</p>
+<p id="concept"></p>
+<p id="reviewer"></p>
+<p id="reviewer"></p>
+<p id="description">The question requires the learner to determine if a number is divisible by 10, we check if the last digit is zero then that number is divisible by 10</p>]]></text>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>checkbox</type>
+      <tans>ta</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>0</mustverify>
+      <showvalidation>0</showvalidation>
+      <options>nonotanswered</options>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>checks the numbers divisible by 10</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>mcq_correct(ta)</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <qtest>
+      <testcase>1</testcase>
+      <description>Test case assuming the teacher's input gets full marks.</description>
+      <testinput>
+        <name>ans1</name>
+        <value>mcq_correct(ans)</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>0</expectedanswernote>
+      </expected>
+    </qtest>
+  </question>
+</quiz>

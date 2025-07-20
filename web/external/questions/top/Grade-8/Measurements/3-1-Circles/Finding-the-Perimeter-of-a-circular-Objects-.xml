@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Finding the Perimeter of a circular Objects.</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p>A circular \(\text{@circular_objects@}\) has a radius of of \({@circle_radius@}\) cm</p>
+<p>a) Calculate the perimeter (circumference) of the wheel.</p>
+<p>[[input:ans1]] [[validation:ans1]]cm[[feedback:prt1]]</p>
+<p>
+b) If the wheel makes \({@Wheel_notations@}\) full rotations, how far will the bicycle have travelled?</p>
+<p>[[input:ans2]] [[validation:ans2]]cm[[feedback:prt2]]</p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<h3>Worked Solution</h3>
+<p>(a) To find the circumfrence of any circular object we use the formula:</p>
+<p> C = 2 \(\ \pi \) r</p>
+<p>     = 2 \(\times {@constant@} \times {@circle_radius@} \) cm</p>
+<p>      = \({@perimeter_circumfrennce@}\) cm </p>
+<p> = \({@answer@}\) cm</p>
+
+<p>(b) Distance for  \({@Wheel_notations@}\)  Rotations
+
+<p>Each full rotation covers a equal distance to the circumference:</p>
+<p>Distance =   \({@Wheel_notations@}   \times {@answer@}\)  cm</p>
+<p> = \({@answer2@}\)</p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2025012100</text>
+    </stackversion>
+    <questionvariables>
+      <text><![CDATA[/*Question 1*/
+circle_radius: rand_with_step(7,994,7);
+circular_objects:rand(["Clock face","Plate","Coin","Wheel","Compact Disc","Button","Ring","Pizza","Cup rim","Frisbee","Bangle","Traffic sign (Speed Limit)","Steering wheel","Glasses lens","Dartboard","Magnifying glass","Hula hoop","Clock dial","Compact mirror","Camera lens"]);
+constant: 22/7 ;
+Wheel_notations:rand(50)+2;
+perimeter_circumfrennce: constant* 2 *( circle_radius);
+answer:perimeter_circumfrennce;
+answer_1:Wheel_notations*answer;
+answer2:answer_1;]]></text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="html">
+      <text>\({@circle-radius@}\)
+\({@circular_objects@}\)
+\({@circle-radius@}\)
+\({@Wheel_notations@}\)
+\({@answer@}\)
+\({@answer2@}\)</text>
+    </questionnote>
+    <questiondescription format="html">
+      <text><![CDATA[<p id="author">Harriet Mogaka</p>
+<p id="reviewer"></p>
+<p id="reviewer"></p>
+
+<p id="description">This question tests the learner's ability to calculate the perimeter (circumference) of a circle using the radius. the learner will also use this calculation to find the total distance a bicycle travels based on the number of wheel rotation.</p>]]></text>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>answer</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans2</name>
+      <type>algebraic</type>
+      <tans>answer2</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Circumference</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>answer</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt2</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Total Distance of rotations.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans2</sans>
+        <tans>answer2</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt2-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt2-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+  </question>
+</quiz>

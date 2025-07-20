@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Indirect Proportions in real life</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p>A \({@vehicle@}\) traveling at the speed of \({@speed_taken@}\) \({@units@}\) per hour takes \({@time_taken@}\) hours to reach its destination. Find out the time the \({@vehicle@}\) traveling at the speed of \({@speed_expected@}\) \({@units@}\) per hour takes to reach the same destination.</p>
+
+<p><b>Note</b> Write your answer in 2 decimal place.</p>
+
+<p>Time = [[input:ans1]] hours [[validation:ans1]] [[feedback:prt1]]</p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<h3>Worked Solution</h3>
+<p>The speeds of the car changes in the ratio \({@speed_expected@}\) : \({@speed_taken@}\).</p>
+<p>To find the time of the second \({@vehicle@}\) takes, first we need to find the distance between the start and destination, using the formula below;</p>
+
+<p>\(Distance = Speed * Time Taken\)</p>
+<p>\(Distance = {@speed_taken@} * {@time_taken@}\)</p>
+<p>Distance \(= {@distance@}\)
+
+<p>Now that we have the distance, we can find the time taken by the second \({@vehicle@}\) since we it takes same time as the initial \({@vehicle@}\)  and speed of \({@speed_expected@}\) \({@units@}\) per hour</p>
+
+<p>To find the time taken we us the formula;</p>
+<p>Time taken = \(\frac{Distance \, traveled}{Speed \, traveled}\)</p>
+<p>Replacing the value and solving it we have;</p>
+<p>Time = \(frac{@distance@}{@speed_taken@}\)</p>
+<p>\(= {@time_taken2@}\)</p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2025012100</text>
+    </stackversion>
+    <questionvariables>
+      <text><![CDATA[units:rand(["km", "miles"]);
+vehicle:rand(["lorry", "car", "motorcycle", "bus"]);
+
+time_taken:rand_with_step(1,8,1);
+
+speed_taken:rand_with_step(50,100,5);
+speed_expected:rand_with_prohib(30,120, ["speed_taken"]);
+
+/*Solution*/
+distance:(speed_taken*time_taken);
+time_taken2:(distance/speed_expected);]]></text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="html">
+      <text><![CDATA[<p>\({@time_taken2@}\)</p>]]></text>
+    </questionnote>
+    <questiondescription format="html">
+      <text><![CDATA[<p id="author">Rodgers Maragia</p>
+<p id="concept"></p>
+<p id="reviewer"></p>
+<p id="reviewer"></p>
+<p id="description"></p>]]></text>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>time_taken2</tans>
+      <boxsize>8</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct value of the time taken</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>time_taken2</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+  </question>
+</quiz>

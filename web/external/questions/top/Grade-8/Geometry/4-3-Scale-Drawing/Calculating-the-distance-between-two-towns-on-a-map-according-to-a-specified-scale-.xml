@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Calculating the distance between two towns on a map according to a specified scale.</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p>A road map is drawn to a scale of 1 cm = \({@scale_ratio_km_per_cm@}\) km.</p>
+<p>Two towns, A and B, are \({@actual_distance_km@}\) km apart.</p>
+<p>What is their distance apart on the map?</p> 
+<p>Map Distance = [[input:ans1]][[validation:ans1]]cm[[feedback:prt1]]</p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<h3>Worked solution</h3>
+<p>To find how far apart the towns will appear on the map (in centimeters), we use the formula:</p>
+<p><em>Map Distance = Actual Distance ÷ Scale Ratio</em></p>
+<p>Given;</p>
+<ul>
+     <li>Scale ratio = 1 cm : \({@scale_ratio_km_per_cm@}\) km</li>
+<p>This means that every 1 cm on the map stands for \({@scale_ratio_km_per_cm@}\) km in the real world.</p>
+     <li>Actual distance between the towns (in real life) = \({@actual_distance_km@}\) km</li>
+</ul>
+<p>Substitute the values into the formula:</p>
+<p>Map Distance = \({@actual_distance_km@}\) ÷ \({@scale_ratio_km_per_cm@}\) = \({@scale_length_cm@}\)</p>
+<p>Therefore, the distance between the two towns on the map is \({@scale_length_cm@}\) cm.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2025012100</text>
+    </stackversion>
+    <questionvariables>
+      <text>scale_ratio_km_per_cm : rand(9) + 2;  /* Scale cm per km */
+actual_distance_km : rand(91) + 10;  /*Actual distance in km */
+map_distance_cm : decimalplaces(actual_distance_km / scale_ratio_km_per_cm , 2);/*the map distance*/
+</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="html">
+      <text><![CDATA[<p>\({@scale_ratio_km_per_cm@}\)</p>
+<p>\({@actual_distance_km@}\)</p>
+<p>\({@scale_length_cm@}\)</p>]]></text>
+    </questionnote>
+    <questiondescription format="html">
+      <text><![CDATA[<p id="author">Purity Ekadeli</p>
+<p id="reviewer"></p>
+<p id="reviewer"></p>
+<p id="description">The question requires the learner to use the given scale to calculate and state the map distance between two towns. </p]]></text>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>map_distance_cm</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text>/*mistake1*/
+map_distance_mistake1: decimalplaces(actual_distance_km * scale_ratio_km_per_cm , 2);/*the map distance*/</text>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>checks for the correct answer</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>map_distance_cm</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <description>checks for the wrong answer.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>map_distance_mistake1</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-2-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>You have multiplied actual distance and scale ratio instead of dividing to get the map distance between the two towns.</p>
+<p>You have to divide actual distance by the scale given to get the map distances between two towns.</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-2-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <deployedseed>1017513867</deployedseed>
+    <deployedseed>1483309058</deployedseed>
+    <deployedseed>1954234685</deployedseed>
+    <deployedseed>1916588808</deployedseed>
+    <deployedseed>664603022</deployedseed>
+    <deployedseed>2144898368</deployedseed>
+    <deployedseed>471515857</deployedseed>
+    <deployedseed>348389532</deployedseed>
+    <deployedseed>267381956</deployedseed>
+    <deployedseed>1981772663</deployedseed>
+    <deployedseed>199431223</deployedseed>
+    <deployedseed>639492691</deployedseed>
+    <deployedseed>719942401</deployedseed>
+    <deployedseed>1619554215</deployedseed>
+    <deployedseed>1065767695</deployedseed>
+    <deployedseed>775582654</deployedseed>
+    <deployedseed>1469157642</deployedseed>
+    <deployedseed>1420864444</deployedseed>
+    <deployedseed>420430956</deployedseed>
+    <deployedseed>1885723229</deployedseed>
+    <deployedseed>1957869541</deployedseed>
+    <deployedseed>1620452831</deployedseed>
+    <deployedseed>2099344851</deployedseed>
+    <deployedseed>23574951</deployedseed>
+    <deployedseed>18196516</deployedseed>
+    <deployedseed>2069325320</deployedseed>
+    <deployedseed>676888860</deployedseed>
+    <deployedseed>1420185802</deployedseed>
+    <deployedseed>819917509</deployedseed>
+    <deployedseed>1566095796</deployedseed>
+    <qtest>
+      <testcase>1</testcase>
+      <description>Test case assuming the teacher's input gets full marks.</description>
+      <testinput>
+        <name>ans1</name>
+        <value>scale_length_cm</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt1-1-T</expectedanswernote>
+      </expected>
+    </qtest>
+  </question>
+</quiz>

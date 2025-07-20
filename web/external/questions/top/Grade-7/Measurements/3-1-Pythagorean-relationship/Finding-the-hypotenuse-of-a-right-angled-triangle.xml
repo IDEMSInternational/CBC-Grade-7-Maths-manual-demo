@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Finding the hypotenuse of a right-angled triangle</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p>Find the length of the hypotenuse \({@var_letter_hypotenuse@}\) in the right angled triangle drawn below. Write your answer correct to two decimal places.</p>
+[[jsxgraph]]
+  /* boundingbox:[left, top, right, bottom] */
+ var board = JXG.JSXGraph.initBoard('jxgbox',{
+            boundingbox:[-5,5,5,-5], 
+            axis: false,showCopyright: false
+
+        });
+        var A = board.create('point',[-2,-1], {name:'A', visible:false});
+        var C = board.create('point',[2,-1], {name:'C', visible:false});
+        var B = board.create('point',[-2,4], {name:'B', visible:false});
+
+    
+       var a = board.create('point',[-2,-1], {name:'a', visible:false});
+        var b = board.create('point',[-2,-0.5], {name:'b', visible:false});
+        var c= board.create('point',[-1.5,-0.5], {name:'c', visible:false});
+        var d = board.create('point',[-1.5,-1], {name:'d', visible:false});
+
+
+
+        var triangle = board.create('polygon',[A,B,C],{fillcolor:'white',borders:{strokeColor:'blue'}});
+
+var rectangle = board.create('polygon',[a,b,c,d],{fillcolor:'white',borders:{strokeColor:'blue'}});
+
+
+
+        var labelA = board.create('text',[0,-1.5,'{#base#} cm' ],{fontsize:12});
+        var labelC = board.create('text',[-2.8,2,'{#height#} cm' ],{fontsize:12});
+        var labelB = board.create('text',[0,2,'{#var_letter_hypotenuse#} cm' ],{fontsize:12});
+
+[[/jsxgraph]]
+
+
+<p>\({@var_letter_hypotenuse@} = \)[[input:ans1]] [[validation:ans1]][[feedback:prt1]] cm </p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<h3>Worked solution</h3>
+<p>To find the hypotenuse of a right-angled triangle when given the height and base, we use the Pythagorean Theorem. That states;</p>
+<p>\(a^2+b^2=c^2\) where; \(a\) is the base,\(b\) is the height and \(c\) is the longest side (hypotenuse).</p>
+<p>Given;</p>
+<p>Height\(a= {@height@}cm\)</p>
+<p>Base\(b= {@base@}cm\) </p>
+<p>Hypotenuse\(c\) (we need to find it and is represented by {@var_letter_hypotenuse@}). </p>
+<p>We apply the Pythagorean relationship;</p>
+<p>\({@base@}^2+{@height@}^2={@var_letter_hypotenuse@}^2\)</p>
+<p>\({@base_squre@}+{@height_squre@}={@var_letter_hypotenuse@}^2\)</p>
+<p>\({@sum_of_height_and_base@}={@var_letter_hypotenuse@}^2\)</p>
+<p>To get {@var_letter_hypotenuse@} we take the square root of {@sum_of_height_and_base@}:</p>
+<p>{@var_letter_hypotenuse@}\(= \sqrt{{@sum_of_height_and_base@}cm}\)</p>
+<p>\({@var_letter_hypotenuse@}={@ta@}\)</p>
+<p>Therefore,  \({@var_letter_hypotenuse@}={@ta@}cm\)</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2025012100</text>
+    </stackversion>
+    <questionvariables>
+      <text>/*pythagorean relationship*/
+var_letter_hypotenuse:rand([x,y,z,r,t,y,u,p,f,d,s,q,m,n,k,a,b,c]);
+base:rand_with_step(4,40,2);/*generates random digits for the base length of the triangle*/
+base_squre:base^2; /*The square of the base*/
+height:rand_with_prohib(8,80,[base]);/*generates random digits for the height length of the triangle*/
+height_squre:height^2; /*The square of the  height*/
+
+sum_of_height_and_base:base_squre+height_squre; /*The sum of  the two squres of the base and the height*/
+
+hypotenuse:sqrt(sum_of_height_and_base);/*calculates the length of the hypotenuse*/
+ta:decimalplaces(hypotenuse,2);/*gives the length of the hypotenuse correct to 2 decimal places*/
+
+/*mistake 1*/
+hypotenuse_1:base+height;/*Adding base and height directly when finding the length of the hypotenuse*/
+
+/*mistake 2*/
+hypotenuse_2:sum_of_height_and_base;/*Failing to find the square root after adding the squares of base and height*/</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text><![CDATA[<h3>Worked solution</h3>
+<p>To find the hypotenuse of a right-angled triangle when given the height and base, we use the Pythagorean Theorem. That states;</p>
+<p>\(a^2+b^2=c^2\) where; \(a\) is the base,\(b\) is the height and \(c\) is the longest side (hypotenuse).</p>
+<p>Given;</p>
+<p>Height \(a= {@height@}cm\)</p>
+<p>Base \(b= {@base@}cm\) </p>
+<p>Hypotenuse \(c\) (we need to find it and is represented by {@var_letter_hypotenuse@}). </p>
+<p>We apply the Pythagorean relationship;</p>
+<p>\({@base@}^2+{@height@}^2={@var_letter_hypotenuse@}^2\)</p>
+<p>\({@base_squre@}+{@height_squre@}={@var_letter_hypotenuse@}^2\)</p>
+<p>\({@sum_of_height_and_base@}={@var_letter_hypotenuse@}^2\)</p>
+<p>To get {@var_letter_hypotenuse@} we take the square root of {@sum_of_height_and_base@}:</p>
+<p>{@var_letter_hypotenuse@}\(= \sqrt({@sum_of_height_and_base@}cm)\)</p>
+<p>\({@var_letter_hypotenuse@}={@ta@}\)</p>
+<p>Therefore,  \({@var_letter_hypotenuse@}={@ta@}cm\)</p>]]></text>
+    </specificfeedback>
+    <questionnote format="moodle_auto_format">
+      <text>\({@var_letter_hypotenuse@}\)
+\({@ta@}\)</text>
+    </questionnote>
+    <questiondescription format="html">
+      <text><![CDATA[<p id="author">Isdora Ochieng</p>
+<p id="concept">https://docs.google.com/document/d/18f1snnR6wR0oRQsWiVNgv7rSnzQGHLoInV6PvbN4j9E/edit?tab=t.0#heading=h.vy8x1tbmoha9</p>
+<p id="reviewer"></p>
+<p id="reviewer"></p>
+<p id="description">The question requires the learner to compute the length of the hypotenuse for a right-angled triangle giving their answer correct to two decimal places</p>]]></text>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>ta</tans>
+      <boxsize>8</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct answer for the hypotenuse of a triangle correct to 2 decimal places.</description>
+        <answertest>NumDecPlaces</answertest>
+        <sans>ans1</sans>
+        <tans>ta</tans>
+        <testoptions>2</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <description>Checks for the incorrect answer when height and base is added to find hypotenuse</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>hypotenuse_1</tans>
+        <testoptions>2</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>0</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-2-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>Might you have added directly instead of finding the square root for the sum of squares of both base and height</p>]]></text>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>2</falsenextnode>
+        <falseanswernote>prt1-2-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>2</name>
+        <description>Checks for the incorrect answer when squareroot is not computed</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>hypotenuse_2</tans>
+        <testoptions>2</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>0</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-3-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>You have not computed for the square root of your answer.</p>]]></text>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-3-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <deployedseed>1923714361</deployedseed>
+    <deployedseed>599251006</deployedseed>
+    <deployedseed>2143998885</deployedseed>
+    <deployedseed>1479642161</deployedseed>
+    <deployedseed>556924491</deployedseed>
+    <deployedseed>1933748884</deployedseed>
+    <deployedseed>576473979</deployedseed>
+    <qtest>
+      <testcase>1</testcase>
+      <description>Checks for the correct answer for the hypotenuse of a triangle correct to 2 decimal places.</description>
+      <testinput>
+        <name>ans1</name>
+        <value>ta</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt1-1-T</expectedanswernote>
+      </expected>
+    </qtest>
+    <qtest>
+      <testcase>2</testcase>
+      <description>Checks for the incorrect answer when height and base is added to find hypotenuse</description>
+      <testinput>
+        <name>ans1</name>
+        <value>hypotenuse_1</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>0.0000000</expectedscore>
+        <expectedpenalty/>
+        <expectedanswernote>prt1-2-T</expectedanswernote>
+      </expected>
+    </qtest>
+    <qtest>
+      <testcase>3</testcase>
+      <description>Checks for the incorrect answer when squareroot is not computed</description>
+      <testinput>
+        <name>ans1</name>
+        <value>hypotenuse_2</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>0.0000000</expectedscore>
+        <expectedpenalty/>
+        <expectedanswernote>prt1-3-T</expectedanswernote>
+      </expected>
+    </qtest>
+  </question>
+</quiz>

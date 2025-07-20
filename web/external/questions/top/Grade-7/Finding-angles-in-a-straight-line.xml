@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Finding angles in a straight line</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p>Find the value of the angle marked \({@angle_variable_COD@} \) in the figure below</p>
+
+[[jsxgraph]]
+var board = JXG.JSXGraph.initBoard('jxgbox',{
+            boundingbox:[-5,5,5,-5], 
+            axis: false,
+            showCopyright:false,keepAspectRatio:true
+
+        });
+
+        var center = board.create('point',[0,0],{name:'O', size:3,fixed:true,color:'blue', visible:false}
+
+        );
+
+        var point1 = board.create('point',{#coordinate_pointA#},{name:'A', size:3, fixed:true, color:'blue', visible:false}
+        );
+
+        var point2 = board.create('point',{#coordinate_pointB#},{name:'B', size:3, fixed:true, color:'blue', visible:false});
+
+
+        var point3 = board.create('point',{#coordinate_pointC#},{name:'C', size:3, fixed:true, color:'blue', visible:false}
+        );
+
+        var point4 = board.create('point',{#coordinate_pointD#},{name:'D', size:3, fixed:true, color:'blue', visible:false}
+        );
+
+        var line1 = board.create('line',[point1,center],
+            {straightFirst:false,
+            straightLast:false,
+            strokeColor:'green',
+            strokeWidth:3,
+            name:'line1'
+            }
+        );
+
+        var line2 = board.create('line',[center,point2],
+            {straightFirst:false,
+            straightLast:false,
+            strokeColor:'green',
+            strokeWidth:3,
+            name:'line2'
+            }
+        );
+
+        var line3 = board.create('line',[point3,center],
+            {straightFirst:false,
+            straightLast:false,
+            strokeColor:'green',
+            strokeWidth:3,
+            name:'line3'
+            }
+        );
+
+        var line4 = board.create('line',[point4,center],
+            {straightFirst:false,
+            straightLast:false,
+            strokeColor:'green',
+            strokeWidth:3,
+            name:'line4'
+            }
+        );
+        var angle1 = board.create('angle', [point1,center,point2], {type:'sector', orthoType:'square', orthoSensitivity:2, radius:0.8, name:'{#angle_AOB#}&deg'});
+        var angle2 = board.create('angle', [point2,center,point3], {type:'sector', orthoType:'square', orthoSensitivity:2, radius:1.0,name:'{#angle_BOC#}&deg'});
+        var angle3 = board.create('angle', [point3,center,point4], {type:'sector', orthoType:'square', orthoSensitivity:2, radius:0.8, name:'{#angle_variable_COD#}'});
+
+
+
+
+[[/jsxgraph]]
+
+
+
+<p>\({@angle_variable_COD@} = \)[[input:ans1]] [[validation:ans1]][[feedback:prt1]]</p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<Worked Solution>
+<p>Angles in a straight line add up to \(180^\circ\).</p>
+<p>\({@angle_AOB@}^\circ + {@angle_BOC@}^\circ+{@angle_variable_COD@} = 180^\circ\)</p>
+<p>\({@angle_variable_COD@} = 180^\circ -  {@sum_known_angles@}^\circ \)</p>
+<p>\({@angle_variable_COD@} = {@angle_COD@}^\circ\)</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2025012100</text>
+    </stackversion>
+    <questionvariables>
+      <text>/*Angles in a straight line*/
+angle_AOB:rand_with_step(20,90,5);/*Value for angle AOB*/
+angle_BOC:rand_with_step(35,60,1);/*Value for angle BOC*/
+sum_known_angles:(angle_AOB+angle_BOC);/*sum of angles AOB and BOC*/
+angle_variable_COD:rand([u,v,w,y,x,z,q,r,t,p,l,k,j,h,g,f,s,d,b,m,n]);/*variable letter for angle COD*/
+angle_COD:180-sum_known_angles;/*Value for angle COD*/
+
+/*coordinates of the points for the generated values for the angles at a point in degrees */
+dtr(d) := d*%pi/180; /* Convert degrees to radians */
+angle_to_point(r, d) := [float(r*cos(dtr(d))), float(r*sin(dtr(d)))];
+coordinate_pointA: angle_to_point(4, 0);
+coordinate_pointB: angle_to_point(4, angle_AOB);
+coordinate_pointC: angle_to_point(4, angle_AOB+angle_BOC);
+coordinate_pointD: angle_to_point(4, angle_AOB+angle_BOC+angle_COD);</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="html">
+      <text><![CDATA[<p>\({@angle_AOB@}\)</p>
+<p>\({@angle_BOC@}\)</p>
+<p>\({@angle_COD@}\)</p>
+<p>\({@angle_variable_COD@}\)</p>
+<p>\({@coordinate_pointA@}\)</p>
+<p>\({@coordinate_pointB@}\)</p>
+<p>\({@coordinate_pointC@}\)</p>
+<p>\({@coordinate_pointD@}\)</p>]]></text>
+    </questionnote>
+    <questiondescription format="html">
+      <text/>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>angle_COD</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct answer of the unknown angle.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>angle_COD</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <deployedseed>665932249</deployedseed>
+    <deployedseed>1031128593</deployedseed>
+    <deployedseed>300896317</deployedseed>
+    <deployedseed>1626577034</deployedseed>
+    <deployedseed>893083180</deployedseed>
+    <deployedseed>821603165</deployedseed>
+    <deployedseed>1223925768</deployedseed>
+    <deployedseed>1545508385</deployedseed>
+    <deployedseed>240191019</deployedseed>
+    <deployedseed>187355381</deployedseed>
+    <deployedseed>845132990</deployedseed>
+    <deployedseed>2099189187</deployedseed>
+    <deployedseed>1983945843</deployedseed>
+    <deployedseed>1075221901</deployedseed>
+    <deployedseed>618557102</deployedseed>
+    <deployedseed>546760849</deployedseed>
+    <deployedseed>1441402154</deployedseed>
+    <deployedseed>427750059</deployedseed>
+    <deployedseed>199745610</deployedseed>
+    <deployedseed>1643110148</deployedseed>
+    <deployedseed>1101826590</deployedseed>
+    <deployedseed>585679227</deployedseed>
+    <deployedseed>545700677</deployedseed>
+    <deployedseed>1352023486</deployedseed>
+    <deployedseed>1167004114</deployedseed>
+    <deployedseed>607023047</deployedseed>
+    <deployedseed>31737228</deployedseed>
+    <deployedseed>1971836610</deployedseed>
+    <deployedseed>372355458</deployedseed>
+    <deployedseed>802321424</deployedseed>
+    <deployedseed>281172682</deployedseed>
+    <deployedseed>116500068</deployedseed>
+    <deployedseed>500257718</deployedseed>
+    <deployedseed>803240298</deployedseed>
+    <deployedseed>570134836</deployedseed>
+    <deployedseed>891247277</deployedseed>
+    <deployedseed>597961349</deployedseed>
+    <deployedseed>1012327146</deployedseed>
+    <deployedseed>387579729</deployedseed>
+    <deployedseed>480935908</deployedseed>
+    <deployedseed>914360251</deployedseed>
+    <deployedseed>1259681107</deployedseed>
+    <deployedseed>1904203158</deployedseed>
+    <deployedseed>353839005</deployedseed>
+    <deployedseed>1387234092</deployedseed>
+    <deployedseed>1709810349</deployedseed>
+    <deployedseed>1535529960</deployedseed>
+    <deployedseed>1700430254</deployedseed>
+    <deployedseed>980029978</deployedseed>
+    <deployedseed>562337293</deployedseed>
+  </question>
+</quiz>

@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Finding the distance covered between two places in Kilometers</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p>Steve lives \({@ fraction_1@}\) km from school. John lives  \({@ fraction_2@}\) km from school. By how many kilometers is John's home closer to the school compared to Steve's?</p>
+<p> Distance \(=\)[[input:ans1]] [[validation:ans1]] km [[feedback:prt1]]</p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<h3>Worked solution</h3>
+<p>The distance between Steve’s home and the school \(= \)\({@ fraction_1@}\) km </p>
+<p>The distance between John’s home and the school \(=\) \({@ fraction_2@}\) km </p>
+<p>To find how closer John is from the school than Steve, we subtract the distance between John’s home and the school from the distance between Steve’s home and the school as follows:</p>
+<p>\(\quad = \)\({@ fraction_1@}\) km - \({@ fraction_2@}\) km<p>
+<p>\(\quad = {@ta@}\) km </p>
+<p>Therefore, John is \({@ta@}\) km closer to school than Steve.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2023060500</text>
+    </stackversion>
+    <questionvariables>
+      <text>num_1:rand(4)+4;/*numerator of the first fraction*/
+den_1:rand(4)+9;/*denominator of the second fraction*/
+fraction_1:(num_1/den_1);/*represents the distance between Steve's home and the school*/
+num_2:rand(3)+1;/*numerator of the second fraction*/
+den_2:rand(4)+12;/*denominator of the second fraction*/
+fraction_2:(num_2/den_2);/*represents the distance between John's home and the school*/
+ta:fraction_1 -fraction_2;/*subtracts the first fraction from the second fraction*/</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="moodle_auto_format">
+      <text><![CDATA[<p>\({@ fraction_1@}\)</p>
+<p>\({@ fraction_2@}\)</p>
+<p> \({@ta@}\)</p>]]></text>
+    </questionnote>
+    <questiondescription format="html">
+      <text><![CDATA[<p id="author">Sheila Cherotich</p>
+<p id="concept">https://docs.google.com/document/d/11_e0Fu8E8rdFcpjK1lYP-ZHJzzIO104IFqShVNvCA9s/edit?tab=t.0</p>
+<p id="reviewer"></p>
+<p id="reviewer"></p>
+<p id="description">The question requires the student to determine the distance from John’s home to school, then also to determine distance from Steve's home to school. Secondly, find how closer John is from school than Steve which involves taking the difference of John’s distance covered from Steve’s distance covered. </p>]]></text>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>ta</tans>
+      <boxsize>5</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct distance to determine how closer John is to school than Steve.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>ta</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <deployedseed>849194945</deployedseed>
+    <deployedseed>975862657</deployedseed>
+    <deployedseed>1280267967</deployedseed>
+    <deployedseed>1306285815</deployedseed>
+    <deployedseed>1033536559</deployedseed>
+    <deployedseed>1101774181</deployedseed>
+    <deployedseed>286306734</deployedseed>
+    <deployedseed>1710259834</deployedseed>
+    <deployedseed>218406214</deployedseed>
+    <deployedseed>1846792139</deployedseed>
+    <deployedseed>2062098073</deployedseed>
+    <deployedseed>1124165188</deployedseed>
+    <deployedseed>886710762</deployedseed>
+    <deployedseed>494062168</deployedseed>
+    <deployedseed>314943523</deployedseed>
+    <deployedseed>1980630244</deployedseed>
+    <deployedseed>229575492</deployedseed>
+    <deployedseed>586290430</deployedseed>
+    <deployedseed>845447672</deployedseed>
+    <deployedseed>492750431</deployedseed>
+    <deployedseed>120833008</deployedseed>
+    <deployedseed>1349670724</deployedseed>
+    <deployedseed>476993050</deployedseed>
+    <deployedseed>1183841887</deployedseed>
+    <deployedseed>1708818451</deployedseed>
+    <deployedseed>426142811</deployedseed>
+    <deployedseed>1159289749</deployedseed>
+    <deployedseed>1712947138</deployedseed>
+    <deployedseed>1015958351</deployedseed>
+    <deployedseed>50607486</deployedseed>
+    <deployedseed>991749909</deployedseed>
+    <deployedseed>812082964</deployedseed>
+    <deployedseed>1602968311</deployedseed>
+    <deployedseed>1310208968</deployedseed>
+    <deployedseed>134171986</deployedseed>
+    <deployedseed>1961872597</deployedseed>
+    <deployedseed>1766342064</deployedseed>
+    <deployedseed>441218277</deployedseed>
+    <deployedseed>759048537</deployedseed>
+    <deployedseed>570570762</deployedseed>
+    <deployedseed>829787525</deployedseed>
+    <deployedseed>1764676480</deployedseed>
+    <deployedseed>2104442027</deployedseed>
+    <deployedseed>150096532</deployedseed>
+    <deployedseed>1133966663</deployedseed>
+  </question>
+</quiz>

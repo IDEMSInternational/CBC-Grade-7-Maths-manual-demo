@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Finding the Number of Sides and the Size of the Interior Angle of a Regular Polygon</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p>The interior angle of a regular polygon  and the exterior angle are equal.find the:</p>
+<ul> <li>Number of sides of the polygon.<br>Number of side \(=\)[[input:ans1]] [[validation:ans1]][[feedback:prt1]]
+</li>
+<li>Size of interior angle. Note \(\textit{ (write your answer in 1 decimal place)}\) <br>Angle \(=\)[[input:ans2]] [[validation:ans2]]\(^\circ\)[[feedback:prt2]]</li>
+</ul>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<h3>Worked solution</h3
+<p>Note:</p>
+<p>1. Each interior and the exterior angle of a regular polygon are equal, so we let the size of both Interior and exterior be \(x\).</p>
+<p>2. The sum of the interior and exterior angle of any polygon add up to \({@total_int_and_ext@}^\circ\).</p>
+<p>Therefore,</p>
+<p>Interior+exterior \({@total_int_and_ext@}^\circ\) that is:</p>
+<p>\(x+x={@total_int_and_ext@}^\circ\)</p>
+<p>\(2x={@total_int_and_ext@}^\circ\)</p>
+<p>\(x= \frac{({@total_int_and_ext@}^\circ)}{2}\)<p>
+<p>\(x=90^\circ\)</p>
+<p>This implies that;</p>
+<p>The Size of interior angle is \(90^\circ\) and Size of exterior angle is \(90^\circ\).
+We proceed that:</p>
+<p>For any regular polygon with n sides,</p>
+<p>Exterior angle \(=\frac{({@total_ext@}^\circ)}{n}\)</p>
+<p>Since the size of the exterior angle \(={@each_ext1@}^\circ\),</p>
+<p>We substitute in the above formula and we simplify to get the number of sides of the polygon.<p>
+<p>\({@each_ext1@}^\circ=\frac{({@total_ext@}^\circ)}{n}\)</p>
+<p>\({@each_ext1@}^\circ \times n= \frac{({@total_ext@}^\circ) \times n}{n}\)</p>
+<p>\({@each_ext1@}^\circ n={@total_ext@}^\circ\)</p>
+<p>\(n=\frac{({@total_ext@}^\circ)}{{@each_ext1@}^\circ}\)</p>
+<p>n\(={@ta_1_numberpol@}\)</p>
+<p>Therefore;</p>
+<p>Number of sides of the polygon is \({@ta_1_numberpol@}\)and Size of interior angle is \({@ta_2_int2@}^\circ\)</p>
+<p>The required solution for the above question is;
+</p>
+<p>a. Number of sides of the polygon is \({@ta_1_numberpol@}\)</p>
+<p>b. Size of interior angle is  \({@ta_2_int2@}^\circ\)</p>
+
+
+
+
+/*Potential mistake 1*/
+
+total_ext:180;/*total exterior angle of a polygon*/
+total_int_and_ext:360;/*tatal interior and exterior angle of a regular  polygon*/
+each_int:(((ta_1_numberpol-2)*total_int_and_ext)/ta_1_numberpol);/*Each interior angle  */
+ta_2_int2_mistake1:decimalplaces(each_int,1);/*Each interior angle  given in decimal places*/
+each_ext:total_ext/ta_1_numberpol;/*Each exterior angle*/
+each_ext1:decimalplaces(each_ext,1);/*Each exterior angle  given in decimal places*/]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2023060500</text>
+    </stackversion>
+    <questionvariables>
+      <text>ta_1_numberpol:rand_with_step(3,12,1);/*total number of side of the polygon*/
+total_ext:360;/*total exterior angle of a polygon*/
+total_int_and_ext:180;/*tatal interior and exterior angle of a regular  polygon*/
+each_int:(((ta_1_numberpol-2)*total_int_and_ext)/ta_1_numberpol);/*Each interior angle  */
+ta_2_int2:decimalplaces(each_int,1);/*Each interior angle  given in decimal places*/
+each_ext:total_ext/ta_1_numberpol;/*Each exteriorangle*/
+each_ext1:decimalplaces(each_ext,1);/*Each exterior angle  given in decimal places*/
+
+</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="moodle_auto_format">
+      <text><![CDATA[<p>\({@ta_1_numberpol@}\)</p>
+<p>\({@each_ext1@}\)</p>
+<p>\({@ta_2_int2}\)</p>]]></text>
+    </questionnote>
+    <questiondescription format="html">
+      <text><![CDATA[<p id="author">Henry Onyango</p>
+<p id="concept">https://docs.google.com/document/d/1nzFV6kLfVWqxaOqXmP4ovk_PuXbHI34ug2NhYE-Zrxo/edit?tab=t.0#heading=h.n5r3i2135ssa</p>
+<p id="reviewer"></p>
+<p id="reviewer"></p>
+
+<p id="description"></p>]]></text>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>ta_1_numberpol</tans>
+      <boxsize>8</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans2</name>
+      <type>algebraic</type>
+      <tans>ta_2_int2</tans>
+      <boxsize>8</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks the corect number sides of the polygon</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>ta_1_numberpol</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt2</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks the correct angle of the polygon</description>
+        <answertest>NumDecPlaces</answertest>
+        <sans>ans2</sans>
+        <tans>ta_2_int2</tans>
+        <testoptions>1</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>1</truenextnode>
+        <trueanswernote>prt2-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt2-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <description>Using of the wrong formula.</description>
+        <answertest>NumDecPlaces</answertest>
+        <sans>ans1</sans>
+        <tans>ta_2_int2_mistake1</tans>
+        <testoptions>1</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>0</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt2-2-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>You have used a wrong formula for each exterior angle of a polygon.</p>
+<p>Kindly each each exterior \(\frac{@total_ext@}{n}\) So when computing the number of sides,look at the formular well for correct calculation.</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt2-2-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+  </question>
+</quiz>

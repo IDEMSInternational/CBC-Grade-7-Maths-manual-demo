@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Finding circumference of a circle.</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p>Work our the circumfrence of the circles below using \(\pi\)=\(\frac{22}{7}\) .</p>
+[[jsxgraph]]
+
+            const board = JXG.JSXGraph.initBoard('jxgbox',
+        { boundingbox: [-15, 15, 15, -15], axis:false,keepAspectRatio:true,ShowCopyright:false});
+
+        const center = board.create('point', [0, 0], 
+        {name: '',
+        size: 2, fixed: true ,color: 'blue' });
+    
+        const point1 = board.create('point', [8, 0], 
+        { name: 'A', size: 2, fixed: true,visible:false ,color: 'red' });
+
+        const point2 = board.create('point', [-8, 0], 
+        { name: 'B', size: 2, fixed: true,visible:false ,color: 'red' });
+
+        const circle = board.create('circle', [center, point1], 
+        { strokeColor: 'blue', strokeWidth: 4 });
+    
+        const diameter = board.create('line', [point2, point1], 
+        {straightFirst: false,
+            straightLast: false,
+            strokeColor: 'purple',
+            strokeWidth: 2,
+        name: 'Diameter'});
+
+        board.create('text', [0, 1, '{#diameter#} {#units_of_circle#} '], 
+        { fontSize: 14, color: 'black',anchorX: 'center', fixed: true, anchorY: 'bottom'});
+[[/jsxgraph]]
+
+<p>Area \( =\) [[input:ans1]]\({@units_of_circle@}\) [[validation:ans1]] [[feedback:prt1]]</p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<p>To get the circumference (C) of a circle given the diameter (d);</p>
+<p>C =\(\pi\)d</p>
+ <p>  =  \(\frac{22}{7} \times {@diameter_units@}\)</p>
+         =  \({@Area_of_Circle@}\)
+                    OR
+<p>Circumference = \(\pi \times \)d, since d = 2r </p>
+<p>                           = \(\pi\)d = \(\pi\)2r </p>
+<p>                           = \(2 \times \frac{22}{7}  \times \){@radius_of_circle@}</p>
+                                 =  \({@Area_of_Circle@}\)]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2025012100</text>
+    </stackversion>
+    <questionvariables>
+      <text>/*Area of Circle*/
+
+/*Coordinates of the circle*/
+units_of_circle:rand([cm,m,mm,Dm,Hm]);
+diameter:rand_with_step(7,350,7);
+
+/*Diameter with units*/
+diameter_unts:diameter*units_of_circle;
+diameter_units:diameter_unts;
+
+/*units squared*/
+units_of_circle_sqr:units_of_circle^2;
+/*Radius*/
+radius_of_circle_num:1/2*diameter;
+radius_of_circle:1/2*diameter units_of_circle;
+
+/*Area*/
+Area_of_Circle:(2*22/7 * radius_of_circle_num);
+
+
+/*Mistake_1 finding the area of a circle instead of circumference*/
+circumference_1:22/7 * radius_of_circle_num^2;
+
+/*Mistake_2 using diameter as radius*/
+circumference_2:2*22/7 * diameter;
+
+
+
+
+
+
+</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="moodle_auto_format">
+      <text><![CDATA[<p>The diameter of a circle \(=\)\({@diameter@}\)</p>
+<p>The radius of a circle \(=\)\({@radius_of_circle@}\)</p>
+<p>The circumference  \(=\) \({@Area_of_Circle@}\)</p>]]></text>
+    </questionnote>
+    <questiondescription format="html">
+      <text><![CDATA[<p id="author">Henry Onyango</p>
+<p id="reviewer"></p>
+<p id="reviewer"></p>
+<p id="description">This question involves finding the circumference of a circle. The learner is required to use the formula: \(\text{Circumference}= 2  \pi r \) or use \(\text{Circumference}= \pi D\)  where \(\pi=\frac{22}{7}\) to arrive at the correct answer​.</p>]]></text>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>Area_of_Circle</tans>
+      <boxsize>4</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the circumfrence of the circle.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>Area_of_Circle</tans>
+        <testoptions>2</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <description>Checks the area of a circle instead of the circumference.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>circumference_1</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0.2</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-2-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>Oops! It looks like you may have calculated the area of the circle instead of its circumference.</p>
+<p>When calculating the circumference of a circle, always use the formula  \(\pi D\) or \(2 \pi r\), where  \(D\) is the diameter and \(r\) is the radius.</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>2</falsenextnode>
+        <falseanswernote>prt1-2-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>2</name>
+        <description>Checks for wrong  use of diameter and radius.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>circumference_2</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-3-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>It seems you have used the correct formula but applied the wrong values from the given figure. </p>
+<p>Specifically, you used the diameter as the radius, forgetting to divide the diameter by \(2\) to obtain \(r\).</p>
+<p>To avoid this error, always check whether the given value is the radius or diameter and apply the appropriate formula accordingly.</p>
+
+<p>Hint: Use \(\pi D\) or \(2 \pi r\),</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-3-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <deployedseed>1283621220</deployedseed>
+    <deployedseed>1819237694</deployedseed>
+    <deployedseed>575174785</deployedseed>
+    <deployedseed>1422179860</deployedseed>
+    <deployedseed>360425332</deployedseed>
+    <deployedseed>1435855221</deployedseed>
+    <deployedseed>177945261</deployedseed>
+    <deployedseed>718863390</deployedseed>
+    <deployedseed>5674572</deployedseed>
+    <deployedseed>1182991507</deployedseed>
+    <deployedseed>1328730247</deployedseed>
+    <deployedseed>236805354</deployedseed>
+    <deployedseed>2062883405</deployedseed>
+    <deployedseed>647578289</deployedseed>
+    <deployedseed>1262200163</deployedseed>
+    <deployedseed>2015291888</deployedseed>
+    <deployedseed>1299639528</deployedseed>
+    <deployedseed>1762044304</deployedseed>
+    <deployedseed>2000667751</deployedseed>
+    <deployedseed>2030020212</deployedseed>
+    <deployedseed>1294005290</deployedseed>
+    <deployedseed>1137987107</deployedseed>
+    <deployedseed>1069328757</deployedseed>
+    <deployedseed>2025633153</deployedseed>
+    <deployedseed>915091418</deployedseed>
+    <deployedseed>360766597</deployedseed>
+    <deployedseed>189090321</deployedseed>
+    <deployedseed>37328200</deployedseed>
+    <deployedseed>646961773</deployedseed>
+    <deployedseed>583989494</deployedseed>
+    <deployedseed>1869474095</deployedseed>
+    <deployedseed>2027886868</deployedseed>
+    <qtest>
+      <testcase>1</testcase>
+      <description>Test case assuming the teacher's input gets full marks.</description>
+      <testinput>
+        <name>ans1</name>
+        <value>Area_of_Circle</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt1-1-T</expectedanswernote>
+      </expected>
+    </qtest>
+    <qtest>
+      <testcase>2</testcase>
+      <description>Checks the area of a circle instead of the circumference.</description>
+      <testinput>
+        <name>ans1</name>
+        <value>circumference_1</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>0.2000000</expectedscore>
+        <expectedpenalty/>
+        <expectedanswernote>prt1-2-T</expectedanswernote>
+      </expected>
+    </qtest>
+  </question>
+</quiz>

@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Finding the inland postal charges of a given information.</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<h2 style="text-align: center;">Inland postal charges</h2>
+    <table border: 1px solid #ddd;>
+        <thead>
+            <tr>
+                <th style="border: 1px solid #ccc;">Type of article and minimum weight</th>
+                <th style="border: 1px solid #ccc;">Weight step</th>
+                <th style="border: 1px solid #ccc;">Ksh.</th>
+            </tr>
+        </thead>
+        <tbody style="border: 1px solid #ccc;">
+            <tr style="background-color: #f9f9f9;">
+                <td style="border: 1px solid #ccc;" rowspan="7">LETTERS   (Limit of weight 2 kgs)</td>
+                <td> Up to 20 g</td>
+                <td style="border-left: 1px solid #ccc;">35</td>
+            </tr>
+            <tr style="background-color: #f9f9f9;">
+                <td>Over 20 g up to 50 g</td>
+                <td style="border-left: 1px solid #ccc;">50</td>
+            </tr>
+            <tr  style="background-color: #f9f9f9;">
+                <td>Over 50 g up to 100 g</td>
+                <td style="border-left: 1px solid #ccc;">55</td>
+            </tr>
+            <tr style="background-color: #f9f9f9;">
+                <td>Over 100 g up to 250 g</td>
+                <td style="border-left: 1px solid #ccc;">65</td>
+            </tr>
+            <tr style="background-color: #f9f9f9;">
+                <td>Over 250 g up to 500 g</td>
+                <td style="border-left: 1px solid #ccc;">110</td>
+            </tr>
+            <tr style="background-color: #f9f9f9;">
+                <td>Over 500 g up to 1 kg</td>
+                <td style="border-left: 1px solid #ccc;">165</td>
+            </tr>
+            <tr style="background-color: #f9f9f9; border-bottom:1px solid #ccc;">
+                <td>Over 1 kg up to 2 kg</td>
+                <td style="border-left: 1px solid #ccc;">230</td>
+            </tr>
+
+           <tr style="background-color: #f9f9f9;">
+                <td style="border: 1px solid #ccc;" rowspan="3"> POSTCARDS</td>
+                <td>Up to 20 g</td>
+                <td style="border-left: 1px solid #ccc;">30</td>
+           </tr>
+           <tr style="background-color: #f9f9f9;">
+                <td>Over 20 g up to 50 g</td>
+                <td style="border-left: 1px solid #ccc;">35</td>
+           </tr>
+           <tr style="background-color: #f9f9f9;">
+                <td>Over 50 g up to 100 g</td>
+                <td style="border-left: 1px solid #ccc;">50</td>
+           </tr>
+        </tbody>
+    </table>
+
+<p> Use the table above to answer the following question.</p>
+<p>Orina sent the following items by post: two letters weighing \({@letter_weight1@}\) g and  \({@letter_weight2@}\) g a postcard weighing  \({@postcard_weight@}\) g.  Evaluate the postal charges.</p>
+<p>postal charge = sh. [[input:ans1]] [[validation:ans1]][[feedback:prt1]]</p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<h3>Worked Solution</h3>
+<p>To find the cost of letters and postcards refer to the table above.</p>
+<p>A letter weighing \({@letter_weight1@}\) g  \(= \) sh. \({@cost_letter_weight1@}\)</p>
+<p>A letter weighing \({@letter_weight2@}\) g  \(= \) sh.\( {@cost_letter_weight2@}\)</p>
+<p>A postcard weighing \({@postcard_weight@}\) g \(= \) sh. \({@cost_postcard_weight@}\)</p>
+<p>The total postal charges =sh. \({@cost_letter_weight1@}\)+ sh.\( {@cost_letter_weight2@}\)+sh. \({@cost_postcard_weight@}\)</p>
+<p>\(\quad\quad =\) sh.\({@cost_letter_weight1+cost_letter_weight2+cost_postcard_weight @}\) </p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2023060500</text>
+    </stackversion>
+    <questionvariables>
+      <text><![CDATA[letter_weight1:rand(500)+5;
+letter_weight2:rand_with_prohib(5,1500,[letter_weight1]);
+postcard_weight:rand(96)+5;
+
+if letter_weight1 <= 20 then  cost_letter_weight1:35
+elseif letter_weight1 > 20 and letter_weight1 <= 50 then cost_letter_weight1:50
+elseif letter_weight1 > 50 and letter_weight1 <= 100 then cost_letter_weight1:55
+elseif letter_weight1 > 100 and letter_weight1 <= 250 then cost_letter_weight1:65
+elseif letter_weight1 > 250 and letter_weight1 <= 500 then cost_letter_weight1:110
+elseif letter_weight1 > 500 and letter_weight1 <= 1000 then cost_letter_weight1:165
+elseif letter_weight1 > 1000 and letter_weight1 <= 2000 then cost_letter_weight1:230;
+
+if letter_weight2 <= 20 then  cost_letter_weight2:35
+elseif letter_weight2 > 20 and letter_weight2 <= 50 then cost_letter_weight2:50
+elseif letter_weight2 > 50 and letter_weight2 <= 100 then cost_letter_weight2:55
+elseif letter_weight2 > 100 and letter_weight2 <= 250 then cost_letter_weight2:65
+elseif letter_weight2 > 250 and letter_weight2 <= 500 then cost_letter_weight2:110
+elseif letter_weight2 > 500 and letter_weight2 <= 1000 then cost_letter_weight2:165
+elseif letter_weight2 > 1000 and letter_weight2 <= 2000 then cost_letter_weight2:230;
+
+
+if postcard_weight <= 20 then  cost_postcard_weight:35
+elseif postcard_weight > 20 and postcard_weight <= 50 then cost_postcard_weight:30
+elseif postcard_weight > 50 and postcard_weight <= 100 then cost_postcard_weight:50;
+
+final_charges:cost_letter_weight1+cost_letter_weight2+cost_postcard_weight;
+]]></text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="moodle_auto_format">
+      <text><![CDATA[<p>\({@cost_letter_weight1@}\)</p>
+<p>\( {@cost_letter_weight2@}\)</p>
+<p>\({@cost_postcard_weight@}\)</p>
+<p>\({@final_charges@}\)</p>]]></text>
+    </questionnote>
+    <questiondescription format="html">
+      <text/>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>final_charges</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text><![CDATA[total_letters_weight:(letter_weight1+letter_weight2);
+if total_letters_weight <= 20 then  total_letters_cost:35
+elseif total_letters_weight > 20 and total_letters_weight <= 50 then total_letters_cost:50
+elseif total_letters_weight > 50 and total_letters_weight <= 100 then total_letters_cost:55
+elseif total_letters_weight > 100 and total_letters_weight <= 250 then total_letters_cost:65
+elseif total_letters_weight > 250 and total_letters_weight <= 500 then total_letters_cost:110
+elseif total_letters_weight > 500 and total_letters_weight <= 1000 then total_letters_cost:165
+elseif total_letters_weight > 1000 and total_letters_weight <= 2000 then total_letters_cost:230;
+total_cost:total_letters_cost+ cost_postcard_weight;
+]]></text>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct addition of postal charges.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>final_charges</tans>
+        <testoptions/>
+        <quiet>1</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <description> Checks for use of total letter weights to find postal charges </description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>total_cost</tans>
+        <testoptions/>
+        <quiet>1</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-2-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>You have added the letter weights before checking for their individual charges. First check for the individual letter charge then add the charges to get total postal charge.</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-2-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+  </question>
+</quiz>

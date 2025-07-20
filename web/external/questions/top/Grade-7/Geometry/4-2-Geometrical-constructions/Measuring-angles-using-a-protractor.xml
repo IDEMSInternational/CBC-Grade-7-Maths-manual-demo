@@ -1,0 +1,466 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Measuring angles using a protractor</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Use the protractor to measure angle {@val_letter_1@}{@val_letter_2@}{@val_letter_3@}</p>
+<p><b>Hint: </b>Use the sliders to move the protractor horrizontally,vertically and also to rotate it </p>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> </title>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jsxgraph/1.4.5/jsxgraphcore.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .container {
+            position: relative;
+            width: 500px;
+            height: 550px;
+            margin: auto;
+            border: 2px solid black;
+            padding-bottom: 50px;
+        }
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        #protractor {
+            position: absolute;
+            width: 350px;
+            opacity: 0.5;
+            cursor: grab;
+            transform-origin: center;
+            left: 150px;
+            top: 50px;
+        }
+        #controls {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.8);
+            padding: 10px;
+            border-radius: 5px;
+            width: 70%;
+        }
+        label {
+            font-size: 14px;
+        }
+        input[type="range"] {
+            width: 56%;
+            margin: 3px 0;
+        }
+    </style>
+</head>
+<body>
+    <h2></h2>
+    <div class="container">
+        <canvas id="angleCanvas" width="600" height="600"></canvas>
+        <img id="protractor" src="https://i.imgur.com/PylIXU6.jpeg" alt="Protractor">
+        <div id="controls">
+            <label>Rotate:</label>
+            <input id="rotation-slider" type="range" min="0" max="360" value="0">
+            <label>Move Horizontally:</label>
+            <input id="position-sliderX" type="range" min="0" max="300" value="150">
+            <label>Move Vertically:</label>
+            <input id="position-sliderY" type="range" min="0" max="300" value="50">
+        </div>
+    </div>
+
+    <script>
+        function drawLines() {
+            var canvas = document.getElementById("angleCanvas");
+            var ctx = canvas.getContext("2d");
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.beginPath();
+            ctx.strokeStyle = "blue";
+            ctx.lineWidth = 2;
+            ctx.moveTo(300, 300);
+            ctx.lineTo(500, 300);
+            ctx.stroke();
+            ctx.font = "18px Arial";
+            ctx.fillText("{#val_letter_2#}", 290, 320);
+            ctx.fillText("{#val_letter_1#}", 490, 320);
+            var radians = ('{#angle#}') * Math.PI / 180;
+            var x = 300 + 200 * Math.cos(radians);
+            var y = 300 - 200 * Math.sin(radians);
+            ctx.beginPath();
+            ctx.moveTo(300, 300);
+            ctx.lineTo(x, y);
+            ctx.stroke();
+            ctx.fillText("{#val_letter_3#}", x, y - 10);
+        }
+        drawLines();
+
+        const protractor = document.getElementById("protractor");
+        const rotationSlider = document.getElementById("rotation-slider");
+        const positionSliderX = document.getElementById("position-sliderX");
+        const positionSliderY = document.getElementById("position-sliderY");
+
+        function updateProtractor() {
+            const rotation = rotationSlider.value;
+            const posX = positionSliderX.value;
+            const posY = positionSliderY.value;
+            protractor.style.transform = `rotate(${rotation}deg)`;
+            protractor.style.left = `${posX}px`;
+            protractor.style.top = `${posY}px`;
+        }
+        rotationSlider.addEventListener("input", updateProtractor);
+        positionSliderX.addEventListener("input", updateProtractor);
+        positionSliderY.addEventListener("input", updateProtractor);
+    </script>
+</body>
+</html>
+
+<p>\(\qquad\qquad\)Measured angle is [[input:ans1]]\(^\circ\) [[validation:ans1]][[feedback:prt1]]</p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text/>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2025012100</text>
+    </stackversion>
+    <questionvariables>
+      <text>val_letter_2:rand([A,B,C,D,N,R,U,X]);/*generating random letters for the base line*/
+val_letter_1:rand([E,F,G,H,P,S,V,Y]);/*generating random letters for the point where the base line and angle line bisect*/
+val_letter_3:rand([J,K,L,M,Q,T,W,Z]);/*generating random letters for the angle line*/
+angle:rand(165)+15;/*generating random angles*/
+ta:angle;/*teacher's answer*/
+/*possible mistakes*/
+ta_1:angle+2;/*mistake 1*/
+ta_2:angle-2;/*mistake 2*/
+ta_3:180-angle;/*mistake 3*/</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="html">
+      <text><![CDATA[<p>Angle {@val_letter_1@}{@val_letter_2@}{@val_letter_3@} is {@ta@}]]></text>
+    </questionnote>
+    <questiondescription format="html">
+      <text><![CDATA[<p id="author">Eric Morara </p>
+<p id="concept"></p>
+<p id="reviewer"></p>
+<p id="reviewer"></p>
+
+<p id="description">The question requires the learner to measure a given angle using a protractor.</p>]]></text>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>ta</tans>
+      <boxsize>8</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>check for correct measure of angle</description>
+        <answertest>NumAbsolute</answertest>
+        <sans>ans1</sans>
+        <tans>ta</tans>
+        <testoptions>1</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <description>check for incorrect angle</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>ta_3</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-2-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>It seems you're applying the scale in the reverse direction of the angle.The direction of the angle dictates the correct scale,To correct the issue, apply the scale in the direction indicated by the angle</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>2</falsenextnode>
+        <falseanswernote>prt1-2-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>2</name>
+        <description>check for incorrect angle</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>ta_1</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-3-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>t looks like there might be an issue with how the protractor is positioned, or you may be reading it from an angle. To get an accurate measurement, make sure the protractor is perfectly aligned and look directly down at the scale.</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>3</falsenextnode>
+        <falseanswernote>prt1-3-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>3</name>
+        <description>check for incorrect anlgle</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>ta_2</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-4-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>t looks like there might be an issue with how the protractor is positioned, or you may be reading it from an angle. To get an accurate measurement, make sure the protractor is perfectly aligned and look directly down at the scale.<p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-4-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <deployedseed>667433702</deployedseed>
+    <deployedseed>604211625</deployedseed>
+    <deployedseed>1151665718</deployedseed>
+    <deployedseed>231016517</deployedseed>
+    <deployedseed>1974396914</deployedseed>
+    <deployedseed>207642148</deployedseed>
+    <deployedseed>1853777082</deployedseed>
+    <deployedseed>87994276</deployedseed>
+    <deployedseed>1896879041</deployedseed>
+    <deployedseed>1757003181</deployedseed>
+    <deployedseed>31141474</deployedseed>
+    <deployedseed>346266269</deployedseed>
+    <deployedseed>1058080586</deployedseed>
+    <deployedseed>1416062026</deployedseed>
+    <deployedseed>1909703138</deployedseed>
+    <deployedseed>2789521</deployedseed>
+    <deployedseed>768797295</deployedseed>
+    <deployedseed>1291446997</deployedseed>
+    <deployedseed>32663161</deployedseed>
+    <deployedseed>1957410434</deployedseed>
+    <deployedseed>1497128659</deployedseed>
+    <deployedseed>1720504509</deployedseed>
+    <deployedseed>1693279197</deployedseed>
+    <deployedseed>917580805</deployedseed>
+    <deployedseed>1193539203</deployedseed>
+    <deployedseed>959966700</deployedseed>
+    <deployedseed>897848891</deployedseed>
+    <deployedseed>474315044</deployedseed>
+    <deployedseed>2033532039</deployedseed>
+    <deployedseed>1592369065</deployedseed>
+    <deployedseed>1321785489</deployedseed>
+    <deployedseed>1344070653</deployedseed>
+    <deployedseed>1185015208</deployedseed>
+    <deployedseed>1450950823</deployedseed>
+    <deployedseed>2136622380</deployedseed>
+    <deployedseed>1261598546</deployedseed>
+    <deployedseed>1485336932</deployedseed>
+    <deployedseed>1949204953</deployedseed>
+    <deployedseed>1495127807</deployedseed>
+    <deployedseed>2112458538</deployedseed>
+    <deployedseed>1976187430</deployedseed>
+    <deployedseed>203435845</deployedseed>
+    <deployedseed>73057889</deployedseed>
+    <deployedseed>1592782691</deployedseed>
+    <deployedseed>1851031846</deployedseed>
+    <deployedseed>2126100517</deployedseed>
+    <deployedseed>807243707</deployedseed>
+    <deployedseed>2107181643</deployedseed>
+    <deployedseed>1668419099</deployedseed>
+    <deployedseed>1042219786</deployedseed>
+    <deployedseed>1044223218</deployedseed>
+    <deployedseed>1323503536</deployedseed>
+    <deployedseed>274313925</deployedseed>
+    <deployedseed>1617736286</deployedseed>
+    <deployedseed>457981033</deployedseed>
+    <deployedseed>1710197958</deployedseed>
+    <deployedseed>582844672</deployedseed>
+    <deployedseed>821746659</deployedseed>
+    <deployedseed>1667905573</deployedseed>
+    <deployedseed>842315298</deployedseed>
+    <deployedseed>1435214827</deployedseed>
+    <deployedseed>999101428</deployedseed>
+    <deployedseed>1373314641</deployedseed>
+    <deployedseed>29609246</deployedseed>
+    <deployedseed>1621722770</deployedseed>
+    <deployedseed>1554306201</deployedseed>
+    <deployedseed>1900361202</deployedseed>
+    <deployedseed>2137784853</deployedseed>
+    <deployedseed>1457859689</deployedseed>
+    <deployedseed>78422363</deployedseed>
+    <deployedseed>1387945184</deployedseed>
+    <deployedseed>759503105</deployedseed>
+    <deployedseed>11850422</deployedseed>
+    <deployedseed>97193320</deployedseed>
+    <deployedseed>834338471</deployedseed>
+    <deployedseed>356309575</deployedseed>
+    <deployedseed>1996230404</deployedseed>
+    <deployedseed>1835118164</deployedseed>
+    <deployedseed>1775602675</deployedseed>
+    <deployedseed>1485441923</deployedseed>
+    <deployedseed>839954272</deployedseed>
+    <deployedseed>1962298955</deployedseed>
+    <deployedseed>1447163348</deployedseed>
+    <deployedseed>1598245142</deployedseed>
+    <deployedseed>1120640490</deployedseed>
+    <deployedseed>330537048</deployedseed>
+    <deployedseed>152053140</deployedseed>
+    <deployedseed>1395976138</deployedseed>
+    <deployedseed>334548834</deployedseed>
+    <deployedseed>2051762620</deployedseed>
+    <deployedseed>853512503</deployedseed>
+    <deployedseed>1568631236</deployedseed>
+    <deployedseed>314195852</deployedseed>
+    <deployedseed>1394920032</deployedseed>
+    <deployedseed>607983308</deployedseed>
+    <deployedseed>43279346</deployedseed>
+    <deployedseed>89233480</deployedseed>
+    <deployedseed>1813473977</deployedseed>
+    <deployedseed>1528661167</deployedseed>
+    <deployedseed>261777881</deployedseed>
+    <qtest>
+      <testcase>1</testcase>
+      <description>check for incorrect angle measure</description>
+      <testinput>
+        <name>ans1</name>
+        <value>ta_3</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>0.0000000</expectedscore>
+        <expectedpenalty/>
+        <expectedanswernote>prt1-2-T</expectedanswernote>
+      </expected>
+    </qtest>
+    <qtest>
+      <testcase>2</testcase>
+      <description>check for incorrect measure of the angle</description>
+      <testinput>
+        <name>ans1</name>
+        <value>ta_1</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>0.0000000</expectedscore>
+        <expectedpenalty/>
+        <expectedanswernote>prt1-3-T</expectedanswernote>
+      </expected>
+    </qtest>
+    <qtest>
+      <testcase>3</testcase>
+      <description>check for incorrect measure of the angle</description>
+      <testinput>
+        <name>ans1</name>
+        <value>ta_3</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>0.0000000</expectedscore>
+        <expectedpenalty/>
+        <expectedanswernote>prt1-2-T</expectedanswernote>
+      </expected>
+    </qtest>
+    <qtest>
+      <testcase>4</testcase>
+      <description>check for incorrect measure of the angle</description>
+      <testinput>
+        <name>ans1</name>
+        <value>ta_2</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>0.0000000</expectedscore>
+        <expectedpenalty/>
+        <expectedanswernote>prt1-4-T</expectedanswernote>
+      </expected>
+    </qtest>
+  </question>
+</quiz>

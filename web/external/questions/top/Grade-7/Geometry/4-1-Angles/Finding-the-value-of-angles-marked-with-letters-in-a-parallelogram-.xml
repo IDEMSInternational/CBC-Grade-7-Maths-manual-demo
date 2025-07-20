@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Finding the value of angles marked with letters in a parallelogram.</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p>Find the value of the angles marked by letters in the parallelogram below.</</p>
+[[jsxgraph]]
+var board = JXG.JSXGraph.initBoard('jxgbox',{
+            boundingbox:[-4,5,8,-4], 
+            axis:false,
+            showCopyright:false,keepAspectRatio:true
+
+
+        });
+
+        var p1 = board.create('point', {#coordinate_p1#},{name:'A',visible:false,fixed:true});
+        var p2 = board.create('point', [0.0, 0.0],{name:'B',visible:false,fixed:true});
+        var p3 = board.create('point', [3.0, 3.0],{name:'C',visible:false,fixed:true});
+
+        var pp1 = board.create('parallelpoint', [p1, p2, p3],{name:'D',visible:false,fixed:true});
+        
+        var Parallelogram = board.create('polygon',[p1,p2,pp1,p3]);
+        
+        
+
+        var angle1 = board.create('angle', [p1,p3,pp1], {type:'sector', orthoType:'square', orthoSensitivity:2, radius:0.4, name:'y'});
+        var angle2 = board.create('angle', [pp1,p2,p1], {type:'sector', orthoType:'square', orthoSensitivity:2, radius:0.4, name:'{#angle_2#}&deg'});
+        var angle3 = board.create('angle', [p3,pp1,p2], {type:'sector', orthoType:'square', orthoSensitivity:2, radius:0.4, name:'x'});
+        var angle4 = board.create('angle', [p2,p1,p3], {type:'sector', orthoType:'square', orthoSensitivity:2, radius:0.4, name:'z'});
+
+[[/jsxgraph]]
+
+<p>\(x = \)[[input:ans1]]\(^\circ\) [[validation:ans1]][[feedback:prt1]]</p>
+<p>\(y = \)[[input:ans2]]\(^\circ\) [[validation:ans2]][[feedback:prt2]]</p>
+<p>\(z = \)[[input:ans3]]\(^\circ\) [[validation:ans3]][[feedback:prt3]]</p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<h3>Worked Solution</h3>
+<p>You can solve for the angles labelled \(x, y ,z \) using the following properties of parallelograms.</p>
+
+<p>Property 1: Any two adjacent angles of a parallelogram add up to \(180^\circ\), to get;</p>
+<p>(i) Solution for \(x\):</p>
+<p>\({@angle_2@} ^\circ+ x = 180^\circ\)</p>
+<p>\(x = 180^\circ - {@angle_2@}^\circ \)</p>
+<p>\(x = {@ta_x@}^\circ\)</p>
+
+<p>(ii) Solution for \(z\):</p>
+<p>\({@angle_2@} ^\circ+ z = 180^\circ\)</p>
+<p>\(z = 180^\circ - {@angle_2@}^\circ \)</p>
+<p>\(z = {@ta_z@}^\circ\)</p>
+
+<p>Property 2: The opposite angles are equal to each other. Hence, using this property,we can solve for \(y\)</p>
+<p>Solution for \(y\):</p>
+<p>\({@angle_2@} ^\circ\) is opposite to angle \(y,\) therefore;</p>
+<p>\(y = {@angle_2@}^\circ\)</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2025012100</text>
+    </stackversion>
+    <questionvariables>
+      <text>diff_angle:rand_with_step(20,45,1);
+angle_2:180-diff_angle;
+
+/*coordinates of the points of the parallelogram*/
+dtr(d) := d*%pi/180; /* Convert degrees to radians */
+angle_to_point(r, d) := [float(r*cos(dtr(d))), float(r*sin(dtr(d)))];
+coordinate_p1: angle_to_point(4, angle_2);
+/*teacher's answer*/
+ta_x:180-angle_2;
+ta_y:angle_2;
+ta_z:180-angle_2;
+</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="html">
+      <text><![CDATA[<p>{@diff_angle@}</p>
+<p>{@angle_2@}</p>
+<p>{@ta_x@}</p>
+<p>{@ta_y@}</p>
+<p>{@ta_z@}</p>
+<p>{@coordinate_p1@}</p>]]></text>
+    </questionnote>
+    <questiondescription format="html">
+      <text/>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>ta_x</tans>
+      <boxsize>6</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans2</name>
+      <type>algebraic</type>
+      <tans>ta_y</tans>
+      <boxsize>6</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans3</name>
+      <type>algebraic</type>
+      <tans>ta_z</tans>
+      <boxsize>6</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct value of angle x.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>ta_x</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt2</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct value of angle y.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans2</sans>
+        <tans>ta_y</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt2-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt2-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt3</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct value for angle z</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans3</sans>
+        <tans>ta_z</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt3-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt3-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+  </question>
+</quiz>

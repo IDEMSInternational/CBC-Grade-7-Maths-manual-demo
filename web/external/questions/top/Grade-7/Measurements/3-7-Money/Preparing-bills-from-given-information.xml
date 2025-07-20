@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Preparing bills from given information</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p>The table below shows part of price list in Mwajuma’s kiosk.</p>
+
+
+ <table>
+        <thead>
+            
+            <tr>
+                <th >Item</th>
+                <th>Sh</th>
+                <th>Ct</th>
+            </tr>
+
+        </thead>
+        <tbody>
+            <tr>
+                <td>1 kg packet of sugar</td>
+                <td> 125 </td>
+                <td>00</td>
+            </tr>
+           <tr>
+                <td> 2 kg packet of maize flour</td>
+                <td>137</td>
+                <td>00</td>
+           </tr>
+           <tr>
+                <td> Loaf of bread</td>
+                <td>70</td>
+                <td>00</td>
+           </tr>
+           <tr>
+                    <td> Bar soap</td>
+                    <td>152</td>
+                    <td>00</td>
+           </tr>
+           <tr>
+                        <td> Pen</td>
+                        <td>85</td>
+                        <td>00</td>
+               </tr>
+               <tr>
+                <td> Tin of shoe polish</td>
+                <td>102</td>
+                <td>00</td>
+       </tr>
+       <tr>
+        <td> Exercise kook</td>
+        <td>96</td>
+        <td>00</td>
+</tr>
+<tr>
+    <td> Electric bulb</td>
+    <td>96</td>
+    <td>00</td>
+</tr>
+<tr>
+    <td> 1 kg of beans</td>
+    <td>162</td>
+    <td>00</td>
+</tr>
+           
+        </tbody>
+    </table>
+
+a).<p>Mwamba bought the following items from the kiosk: \({@num_kg_sugar@}\) packets of sugar,\({@num_loaves@}\) loaves of bread,\({@num_bars@}\) bars of soap, \({@num_exercise_book@}\) exercise books and \({@num_electric_bulb@}\) electric bulbs.prepare Mwamba’s bill.
+</p>
+<p>[[input:ans1]] [[validation:ans1]][[feedback:prt1]]</p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<h3>Worked solution</h3>
+<p>\({@num_kg_sugar@}\) packets of sugar @ \(125\) = \({@num_kg_sugar@}\) &times \(125\) = \({@total_cost_sugar@}\)</p>
+<p>\({@num_loaves@}\)loaves of bread @ \(70\) = \({@num_loaves@}\) &times \(70\) =\({@total_cost_loaves@}\)</p>
+<p>\({@num_bars@}\) bars of soap @ \(152\) = \({@num_bars@}\) &times \(152\)= \({@total_cost_bars@}\)</p>
+<p>\({@num_exercise_book@}\) exercise books @ \(96\) = \({@num_exercise_book@}\) &times \(96\)= \({@total_cost_book@}\)</p>
+<p>\({@num_electric_bulb@}\) electric bulbs @ \(58\) = \({@num_electric_bulb@}\) &times \(58\)= \({@total_cost_bulb@}\)</p>
+<p>now to find the total cost, we take the sum of all items bought<\p>
+<p>\({@total_cost_sugar@}\)+\({@total_cost_loaves@}\)+\({@total_cost_bars@}\)+\({@total_cost_book@}\)+\({@total_cost_bulb@}\)</p>
+<p>\quad\quad \=({@total_cost_of_items@}\)</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2023060500</text>
+    </stackversion>
+    <questionvariables>
+      <text>cost_of_1kg_sugar:125;/*cost of 1 kg of sugar*/
+cost_loaf:70;/*cost of a loaf of bread*/
+cost_bar:152;/*cost of 1 bar of soap*/
+cost_exercise_book:96;/*cost of 1 exercise book*/
+cost_electric_bulb:58;/*cost of 1 electric bulb*/
+num_kg_sugar:rand_with_step(1,9,1);/*number of kg of sugars*/
+num_loaves:rand_with_prohib(1,9,[num_kg_sugar]);/*number of loaves of bread*/
+num_bars:rand_with_prohib(1,9,[num_loaves,num_kg_sugar]);/*number of bars of soap*/
+num_exercise_book:rand_with_prohib(1,9,[num_loaves,num_kg_sugar,num_bars]);/*number of exercise books*/
+num_electric_bulb:rand_with_prohib(1,9,[num_loaves,num_kg_sugar,num_bars,num_exercise_book]);/*number of electric bulbs*/
+total_cost_sugar:num_kg_sugar*cost_of_1kg_sugar;/*total cost of sugar*/
+total_cost_loaves:num_loaves*cost_loaf;/*total cost of bread*/
+total_cost_bars:num_bars*cost_bar;/*total cost of soap*/
+total_cost_book:num_exercise_book*cost_exercise_book;/*total cost of exercise books*/
+total_cost_bulb:num_electric_bulb*cost_electric_bulb;/*total cost of electric bulbs*/
+total_cost_of_items:total_cost_sugar+total_cost_loaves+total_cost_bars+total_cost_book+total_cost_bulb;/*total cost of items*/
+ta:total_cost_of_items;</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="moodle_auto_format">
+      <text>({@ta@})</text>
+    </questionnote>
+    <questiondescription format="html">
+      <text/>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>ta</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>check for correct bill</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>ta</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <deployedseed>1509335033</deployedseed>
+    <deployedseed>2030980652</deployedseed>
+    <deployedseed>227063425</deployedseed>
+    <deployedseed>552381126</deployedseed>
+    <deployedseed>1726676919</deployedseed>
+    <deployedseed>822169905</deployedseed>
+    <deployedseed>722932482</deployedseed>
+    <deployedseed>1561508764</deployedseed>
+    <deployedseed>1600812560</deployedseed>
+    <deployedseed>1398910842</deployedseed>
+    <deployedseed>1321686675</deployedseed>
+    <deployedseed>2072105389</deployedseed>
+    <deployedseed>2109895365</deployedseed>
+    <deployedseed>616272357</deployedseed>
+    <deployedseed>1055179372</deployedseed>
+    <deployedseed>1176124223</deployedseed>
+    <deployedseed>1443757200</deployedseed>
+    <deployedseed>1212443440</deployedseed>
+    <deployedseed>32257830</deployedseed>
+    <deployedseed>1192673334</deployedseed>
+    <deployedseed>707710808</deployedseed>
+    <deployedseed>1174742913</deployedseed>
+    <deployedseed>584116081</deployedseed>
+    <deployedseed>1165294363</deployedseed>
+    <deployedseed>1941562116</deployedseed>
+    <deployedseed>468609132</deployedseed>
+    <deployedseed>16351985</deployedseed>
+    <deployedseed>1374649589</deployedseed>
+    <deployedseed>1332243028</deployedseed>
+    <deployedseed>1021483137</deployedseed>
+    <deployedseed>91265522</deployedseed>
+    <deployedseed>1934237154</deployedseed>
+    <deployedseed>1206584822</deployedseed>
+    <deployedseed>321671075</deployedseed>
+    <deployedseed>1317111419</deployedseed>
+    <deployedseed>1614030291</deployedseed>
+    <deployedseed>769234846</deployedseed>
+    <deployedseed>940337174</deployedseed>
+    <deployedseed>1156236132</deployedseed>
+    <deployedseed>1539815350</deployedseed>
+    <qtest>
+      <testcase>1</testcase>
+      <description>Test case assuming the teacher's input gets full marks.</description>
+      <testinput>
+        <name>ans1</name>
+        <value>ta</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt1-1-T</expectedanswernote>
+      </expected>
+    </qtest>
+  </question>
+</quiz>

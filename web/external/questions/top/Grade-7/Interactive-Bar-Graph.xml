@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Interactive Bar Graph</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<div id="graph-container" style="width: 100%; text-align: center;"></div>
+    <script>
+      const container = document.getElementById('graph-container');
+      container.innerHTML = '<svg width="800" height="400" style="border: 1px solid black;"></svg>';
+
+      const svg = container.querySelector('svg');
+      const data = [
+        { month: 'Jan', expenditure: 50 },
+        { month: 'Feb', expenditure: 50 },
+        { month: 'Mar', expenditure: 50 },
+        { month: 'Apr', expenditure: 50 },
+        { month: 'May', expenditure: 50 }
+      ];
+
+      const barWidth = 50;
+      const barSpacing = 20;
+      const height = 400;
+      const maxExpenditure = 300;
+
+      data.forEach((item, index) => {
+        const x = index * (barWidth + barSpacing);
+        const y = height - item.expenditure;
+        const bar = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+        bar.setAttribute('x', x);
+        bar.setAttribute('y', y);
+        bar.setAttribute('width', barWidth);
+        bar.setAttribute('height', item.expenditure);
+        bar.setAttribute('fill', 'teal');
+        svg.appendChild(bar);
+      });
+    </script>
+    <p>This is an interactive bar graph where students can adjust expenditures.</p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text/>
+    </generalfeedback>
+    <defaultgrade>0</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2023060500</text>
+    </stackversion>
+    <questionvariables>
+      <text><![CDATA[ta1:[[0,0], [0.3,0.5], [0.7,0.5], [1, 0]];
+injective:"one-to-one";
+/* helper function for grading - check that a list is (strictly) monotone */
+monotonep:lambda([L],is(cardinality(setify(makelist(signum(L[i+1]-L[i]), i, 1, length(L)-1)))=1));]]></text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="moodle_auto_format">
+      <text>\(@ const svg@\)</text>
+    </questionnote>
+    <questiondescription format="html">
+      <text/>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+  </question>
+</quiz>

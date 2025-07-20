@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Interactivity: Drag points to be increasing</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Drag the points \(u_1,\ldots, u_8\) so that they show the first 8 terms of an increasing sequence.</p>
+<p style="display:none">[[input:da_ans1]] [[validation:da_ans1]]</p>
+[[jsxgraph width='360px' height='360px']]
+// The values from the question text are saved in variable vars.
+// These are needed only if you want to "randomize" the diagram.
+// The random-values should be saved in a maxima-list and printed in a paragraph with the class "stack-variables". 
+// Use the syntax  {#list1#} to  print the list as plain text.
+// You can use the attribute style="display:none;" to hide the list from students.
+//		
+// Example:   <p class="stack-variables" style="display:none">{#list1#}</p>
+//
+var vars = [];
+
+// The answers from the answer-field are saved here. This is neede to save the 'state' of the diagram.
+var ans = [];
+
+// Shortcut for accessing the document. 
+// var doc = window.parent.document;  	// For ILIAS
+var doc = document;  					// For Moodle
+
+
+/************************************************************************************************/
+/*  ONLY EDIT THE CODE BETWEEN THESE TWO STAR-LINES	*/
+
+// Create the board and all elements
+// use vars[0], vars[1], etc. for accessing the values read from the question text.
+//
+// If you want to test the applet offline, you need to uncomment the next line.
+// var divid = "box";
+
+JXG.Options.axis.ticks.minorTicks = 0;
+
+var board = JXG.JSXGraph.initBoard(divid, {boundingbox: [-1,10,9,-10], axis: true, grid: true, showNavigation: false, showCopyright:false});
+
+// The function createWithTimeout should include the elements that depend on values read from the question text.
+// These elements are created with a slight delay, so that the page has time to load.
+// Use vars[0], vars[1], etc. for accessing the values read from the question text.
+var createWithTimeout = function() {
+ // none needed
+};
+
+
+
+var answer = [];
+var vline = [];
+for(let i of [1,2,3,4,5,6,7,8]) {
+  // create a group of vertical lines x=i
+  vline.push(board.create('line', [i, -1, 0], {visible: false})); // given [c,a,b] plot ax+by+c=0
+  // create the draggable points, each constrained to lie on one of the vertical lines
+  answer.push(board.create('glider', [i,1, vline[i-1]], {color:'#003399',name: "u"+i, showInfobox:false}));
+//  answer.push(board.create('point', [i,1], {color:'#003399',name: "pt"+i, showInfobox:false, snapToGrid:true}));
+//  answer.push(board.create('slider',[[i,-10],[i,10],[-10,10,1]], {snapwidth:1, highline: {strokeWidth:5} }) );
+}
+
+/************************************************************************************************/
+
+
+// This function writes the x and y coordinates of the points in the array 'answer' to the field ans1 in the STACK-question.
+var defineValues = function() {
+	var coords = [];
+	for (let pts of answer) {
+		coords.push(pts.Y());
+	};
+	return coords;
+};
+
+// This function moves the points defined in array 'answer' to the positions based on the value in the answer field ans1.
+// This is needed for preserving the 'state' of the diagram ans happens after a student clicks "Check"/"Prüfen".
+var moveThingsAround = function() {
+	var i = 1;
+	for (let pts of answer) {
+		pts.moveTo([ i , ans[i-1] ]);
+		i++;
+	};
+};
+
+
+// Read the values from the input-field ans1 to the array ans.
+// Then update the positions of the elements accordingly.
+if (doc.querySelector('input[id*="_da_ans1"]').value!="") {
+	ans = JSON.parse( doc.querySelector('[id*="_da_ans1"]').value );
+	moveThingsAround();
+};
+
+// If anything changes on the board, write the values of the array vals to the input-field.
+// The answers are always written as a maxima type 'list'.
+board.on('update', function () {
+	var vals = defineValues();
+	doc.querySelector('[id*="_da_ans1"]').value = "[" + vals + "]";
+});
+[[/jsxgraph]]]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text/>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2020061000</text>
+    </stackversion>
+    <questionvariables>
+      <text>ta1:[1,2,3,4,5,6,7,8]</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text>[[feedback:prt1]]</text>
+    </specificfeedback>
+    <questionnote format="moodle_auto_format">
+      <text/>
+    </questionnote>
+    <questiondescription format="html">
+      <text/>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>dot</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>da_ans1</name>
+      <type>algebraic</type>
+      <tans>ta1</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>0</mustverify>
+      <showvalidation>0</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text><![CDATA[termdiffs:makelist(da_ans1[i+1]-da_ans1[i],i,1,7);
+increased:map(lambda([x],is(x>0)),termdiffs);
+feedback:delete(null,makelist(if increased[i] then null else u[i+1]<=u[i], i, 1, 7));]]></text>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description/>
+        <answertest>AlgEquiv</answertest>
+        <sans>setify(increased)</sans>
+        <tans>{true}</tans>
+        <testoptions/>
+        <quiet>1</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1.0000000</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0.0000000</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text>It looks like your sequence is not increasing, since {@first(feedback)@}.</text>
+        </falsefeedback>
+      </node>
+    </prt>
+    <qtest>
+      <testcase>1</testcase>
+      <description/>
+      <testinput>
+        <name>da_ans1</name>
+        <value>ta1</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt1-1-T</expectedanswernote>
+      </expected>
+    </qtest>
+    <qtest>
+      <testcase>2</testcase>
+      <description/>
+      <testinput>
+        <name>da_ans1</name>
+        <value>reverse(ta1)</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>0.0000000</expectedscore>
+        <expectedpenalty>0.1000000</expectedpenalty>
+        <expectedanswernote>prt1-1-F</expectedanswernote>
+      </expected>
+    </qtest>
+  </question>
+</quiz>

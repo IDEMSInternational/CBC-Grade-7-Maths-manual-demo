@@ -1,0 +1,933 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Rainfall in Nairobi - Bar Graph</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p>The table below shows the average monthly rainfall (in millimeters) for Nairobi over six months.</p>
+
+<table border="1" cellpadding="5">
+<tr><th>Month</th><th>Rainfall (mm)</th></tr>
+<tr><td>January</td><td>\({@Jan@}\)</td></tr>
+<tr><td>February</td><td>\({@Feb@}\)</td></tr>
+<tr><td>March</td><td>\({@Mar@}\)</td></tr>
+<tr><td>April</td><td>\({@Apr@}\)</td></tr>
+<tr><td>May</td><td>\({@May@}\)</td></tr>
+<tr><td>June</td><td>\({@Jun@}\)</td></tr>
+</table>
+
+<p>Complete the bar graph by  By dragging the red points, complete the bar graph below to represent the monthly rainfall (mm) for the corresponding month.</p>
+
+
+<p><br></p>
+[[jsxgraph width="750px" height="450px" input-ref-ans1="sR1" input-ref-ans2="sR2" input-ref-ans3="sR3" input-ref-ans4="sR4" input-ref-ans5="sR5" input-ref-ans6="sR6"]]
+
+var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun"];
+var temps = [{#t1#}, {#t2#}, {#t3#}, {#t4#}, {#t5#}, {#t6#}];
+
+JXG.Options.text.useMathJax = true;
+
+var board = JXG.JSXGraph.initBoard(divid, {
+  boundingBox: [-2, 200, 7, -15],
+  showCopyright: false,
+  showNavigation: false,
+  keepAspectRatio: false,
+  grid: true
+});
+
+// X-axis labels
+for (var i = 0; i < months.length; i++) {
+  board.create("text", [i + 0.5, -6, months[i]], {
+    fixed: true,
+    fontSize: 14,
+    anchorX: "middle"
+  });
+}
+
+// Y-axis
+board.create("axis", [[0, 0], [0, 200]], {
+  highlight: false,
+  name: "\\(Rainfall (mm)\\)",
+  withLabel: true,
+  label: {
+    fixed: true,
+    highlight: false,
+    fontSize: 15,
+    position: "rt",
+    offset: [-30, -20],
+    anchorX: "right",
+    useMathJax: true,
+    parse: false
+  },
+  ticks: {
+    label: {
+      highlight: false,
+      anchorX: "right",
+      offset: [-10, 0]
+    }
+  }
+});
+
+// X-axis
+board.create("axis", [[0, 0], [10, 0]], {
+  highlight: false,
+  withLabel: false,
+  ticks: {
+    drawZero: false,
+    insertTicks: false,
+    drawLabels: false
+  }
+});
+
+// Gliders and bars
+var segList = [];
+var pointList = [];
+for (var i = 0; i < months.length; i++) {
+  let x = i + 0.5;
+
+  segList.push(board.create("segment", [[x, 0], [x, 200]], {
+    fixed: true,
+    visible: false
+  }));
+
+  let p = board.create("glider", [x, temps[i], segList[i]], {
+    showInfoBox: false,
+    size: 4,
+    snapToGrid: false,
+    withLabel: false
+  });
+
+  pointList.push(p);
+
+  board.create("polygon", [
+    [x - 0.3, 0],
+    [x + 0.3, 0],
+    function () { return [x + 0.3, p.Y()]; },
+    function () { return [x - 0.3, p.Y()]; }
+  ], {
+    fillColor: "#ADD8E6",
+    fillOpacity: 0.8,
+    fixed: true,
+    highlight: false,
+    borders: {
+      strokeColor: "#ADD8E6",
+      strokeWidth: 2
+    },
+    vertices: { visible: false },
+    layer: 10
+  });
+}
+
+// Bind to STACK inputs
+stack_jxg.bind_point(sR1, pointList[0]);
+stack_jxg.bind_point(sR2, pointList[1]);
+stack_jxg.bind_point(sR3, pointList[2]);
+stack_jxg.bind_point(sR4, pointList[3]);
+stack_jxg.bind_point(sR5, pointList[4]);
+stack_jxg.bind_point(sR6, pointList[5]);
+
+
+board.unsuspendUpdate();
+
+
+
+[[/jsxgraph]]
+
+
+
+<p></p><p hidden>[[input:ans1]][[input:ans2]][[input:ans3]] [[input:ans4]][[input:ans5]][[input:ans6]]</p>
+<p hidden> [[validation:ans1]][[validation:ans2]][[validation:ans3]] [[validation:ans4]][[validation:ans5]][[validation:ans6]]</p>
+<p >[[feedback:prt1]] </p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<p>The correct bar graph is given as below</p>
+<p></p>
+[[jsxgraph width="750px" height="450px"]]
+
+var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun"];
+var temps = [{#Jan#}, {#Feb#}, {#Mar#}, {#Apr#}, {#May#}, {#Jun#}];
+
+JXG.Options.text.useMathJax = true;
+
+var board = JXG.JSXGraph.initBoard(divid, {
+  boundingBox: [-2, 200, 7, -15],
+  showCopyright: false,
+  showNavigation: false,
+  keepAspectRatio: false,
+  grid: true
+});
+
+// X-axis labels
+for (var i = 0; i < months.length; i++) {
+  board.create("text", [i + 0.5, -6, months[i]], {
+    fixed: true,
+    fontSize: 14,
+    anchorX: "middle"
+  });
+}
+
+// Y-axis
+board.create("axis", [[0, 0], [0, 200]], {
+  highlight: false,
+  name: "\\(Rainfall (mm)\\)",
+  withLabel: true,
+  label: {
+    fixed: true,
+    highlight: false,
+    fontSize: 15,
+    position: "rt",
+    offset: [-30, -20],
+    anchorX: "right",
+    useMathJax: true,
+    parse: false
+  },
+  ticks: {
+    label: {
+      highlight: false,
+      anchorX: "right",
+      offset: [-10, 0]
+    }
+  }
+});
+
+// X-axis
+board.create("axis", [[0, 0], [10, 0]], {
+  highlight: false,
+  withLabel: false,
+  ticks: {
+    drawZero: false,
+    insertTicks: false,
+    drawLabels: false
+  }
+});
+
+// Gliders and bars
+var segList = [];
+var pointList = [];
+for (var i = 0; i < months.length; i++) {
+  let x = i + 0.5;
+
+  segList.push(board.create("segment", [[x, 0], [x, 200]], {
+    fixed: true,
+    visible: false
+  }));
+
+  let p = board.create("glider", [x, temps[i], segList[i]], {
+    showInfoBox: false,
+    size: 4,
+    snapToGrid: false,
+    withLabel: false,
+   visible: false ,
+    fixed: true // Make the glider fixed
+  });
+
+  pointList.push(p);
+
+  board.create("polygon", [
+    [x - 0.3, 0],
+    [x + 0.3, 0],
+    function () { return [x + 0.3, p.Y()]; },
+    function () { return [x - 0.3, p.Y()]; }
+  ], {
+    fillColor: "#ADD8E6",
+    fillOpacity: 0.8,
+    fixed: true,
+    highlight: false,
+    borders: {
+      strokeColor: "#ADD8E6",
+      strokeWidth: 2
+    },
+    vertices: { visible: false },
+    layer: 10
+  });
+}
+
+
+[[/jsxgraph]]]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2025012100</text>
+    </stackversion>
+    <questionvariables>
+      <text>Jan: rand_with_step(60, 180, 20);
+Feb: rand_with_step(60, 140, 20);
+Mar: rand_with_step(60, 160, 20);
+Apr: rand_with_step(60, 180, 20);
+May: rand_with_step(60, 180, 20);
+Jun: rand_with_step(60, 80, 20);
+
+ta1: (0.5, Jan);
+ta2: (1.5, Feb);
+ta3: (2.5, Mar);
+ta4: (3.5, Apr);
+ta5: (4.5, May);
+ta6: (5.5, Jun);
+
+t1: rand(100)+50;
+t2: rand(100)+50;
+t3: rand(100)+50;
+t4: rand(100)+50;
+t5: rand(100)+50;
+t6: rand(100)+50;</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="html">
+      <text>\({@ta1@}\)
+\({@ta2@}\)
+\({@ta3@}\)
+\({@ta4@}\)
+\({@ta5@}\)
+\({@ta6@}\)
+
+\({@Jan@}\)
+\({@Feb@}\)\
+\({@Mar@}\)
+\({@Apr@}\)
+\({@May@}\)
+\({@Jun@}\)</text>
+    </questionnote>
+    <questiondescription format="html">
+      <text><![CDATA[<p id="author">Joseph BAYA</p>
+<p id="reviewer"></p>
+<p id="reviewer"> </p>
+<p id="description">This question presents a table of average monthly rainfall (in millimeters) for Nairobi over a six-month period. Students are required to complete a bar graph by dragging red points to visually represent the rainfall values for each month. </p>]]></text>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>ta1</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>0</mustverify>
+      <showvalidation>0</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans2</name>
+      <type>algebraic</type>
+      <tans>ta2</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>0</mustverify>
+      <showvalidation>0</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans3</name>
+      <type>algebraic</type>
+      <tans>ta3</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>0</mustverify>
+      <showvalidation>0</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans4</name>
+      <type>algebraic</type>
+      <tans>ta4</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>0</mustverify>
+      <showvalidation>0</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans5</name>
+      <type>algebraic</type>
+      <tans>ta5</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>0</mustverify>
+      <showvalidation>0</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans6</name>
+      <type>algebraic</type>
+      <tans>ta6</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>0</mustverify>
+      <showvalidation>0</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text>/* Node 1: Correct answer */
+node1_test: if ans1=ta1 and ans2=ta2 and ans3=ta3 and ans4=ta4 and ans5=ta5 and ans6=ta6 then 1 else 0;
+
+/* Node 2: Worked solution */
+
+/* Node 3: ans1 correct */
+/* Node 4: ans1 consistent with (a) */
+node4_error: [float(ta1), ans1];
+
+/* Node 5: ans2 correct */
+/* Node 6: ans2 consistent with (a) */
+node6_error: [float(ta2), ans2];
+
+/* Node 7: ans3 correct */
+/* Node 8: ans3 consistent with (a) */
+node8_error: [float(ta3), ans3];
+
+/* Node 9: ans4 correct */
+/* Node 10: ans4 consistent with (a) */
+node10_error: [float(ta4), ans4];
+
+/* Node 11: ans5 correct */
+/* Node 12: ans5 consistent with (a) */
+node12_error: [float(ta5), ans5];
+
+/* Node 13: ans6 correct */
+/* Node 14: ans6 consistent with (a) */
+node14_error: [float(ta6), ans6];</text>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for correct answer</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>node1_test</sans>
+        <tans>1</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>2</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <description>Checks for correct answer</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>1</sans>
+        <tans>1</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-2-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-2-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>10</name>
+        <description>Checks for correct bar </description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans5</sans>
+        <tans>ta5</tans>
+        <testoptions/>
+        <quiet>1</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0.167</truescore>
+        <truepenalty/>
+        <truenextnode>12</truenextnode>
+        <trueanswernote>prt1-11-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>Your bar for  is correct.</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>11</falsenextnode>
+        <falseanswernote>prt1-11-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>11</name>
+        <description>Checks for correct bar </description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans5</sans>
+        <tans>node12_error</tans>
+        <testoptions/>
+        <quiet>1</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0.167</truescore>
+        <truepenalty/>
+        <truenextnode>12</truenextnode>
+        <trueanswernote>prt1-12-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p><br>Your  bar for  is <b>incorrect</b>.
+<br>However, it is consistent with the answer that you gave to part (a).</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>12</falsenextnode>
+        <falseanswernote>prt1-12-F</falseanswernote>
+        <falsefeedback format="html">
+          <text><![CDATA[<p><br>Your bar  is <b>incorrect</b>.</p>]]></text>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>12</name>
+        <description>Checks for correct bar </description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans6</sans>
+        <tans>ta6</tans>
+        <testoptions/>
+        <quiet>1</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0.167</truescore>
+        <truepenalty/>
+        <truenextnode>1</truenextnode>
+        <trueanswernote>prt1-13-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>Your bar for  is correct.</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>13</falsenextnode>
+        <falseanswernote>prt1-13-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>13</name>
+        <description>Checks for correct bar </description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans6</sans>
+        <tans>node14_error</tans>
+        <testoptions/>
+        <quiet>1</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0.167</truescore>
+        <truepenalty/>
+        <truenextnode>1</truenextnode>
+        <trueanswernote>prt1-14-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>Your bar for  is correct.</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt1-14-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>2</name>
+        <description>Checks for correct dragged  bar </description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>ta1</tans>
+        <testoptions/>
+        <quiet>1</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0.167</truescore>
+        <truepenalty/>
+        <truenextnode>4</truenextnode>
+        <trueanswernote>prt1-3-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>3</falsenextnode>
+        <falseanswernote>prt1-3-F</falseanswernote>
+        <falsefeedback format="html">
+          <text><![CDATA[<p><br>Your  bar   is correct.</p>]]></text>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>3</name>
+        <description>Checks for correct dragged bar </description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>node4_error</tans>
+        <testoptions/>
+        <quiet>1</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0.167</truescore>
+        <truepenalty/>
+        <truenextnode>4</truenextnode>
+        <trueanswernote>prt1-4-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p><br>Your  bar for  is <b>incorrect</b>.
+<br>However, it is consistent with the answer that you gave to part (a).</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>4</falsenextnode>
+        <falseanswernote>prt1-4-F</falseanswernote>
+        <falsefeedback format="html">
+          <text><![CDATA[<p><br>Your bar  is <b>incorrect</b>.</p>]]></text>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>4</name>
+        <description>Checks for correct bar </description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans2</sans>
+        <tans>ta2</tans>
+        <testoptions/>
+        <quiet>1</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0.167</truescore>
+        <truepenalty/>
+        <truenextnode>6</truenextnode>
+        <trueanswernote>prt1-5-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>Your bar for  is correct.</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>5</falsenextnode>
+        <falseanswernote>prt1-5-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>5</name>
+        <description>Checks for correct bar </description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans2</sans>
+        <tans>node6_error</tans>
+        <testoptions/>
+        <quiet>1</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0.167</truescore>
+        <truepenalty/>
+        <truenextnode>6</truenextnode>
+        <trueanswernote>prt1-6-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p><br>Your  bar for  is <b>incorrect</b>.
+<br>However, it is consistent with the answer that you gave to part (a).</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>6</falsenextnode>
+        <falseanswernote>prt1-6-F</falseanswernote>
+        <falsefeedback format="html">
+          <text><![CDATA[<p><br>Your bar  is <b>incorrect</b>.</p>]]></text>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>6</name>
+        <description>Checks for correct bar </description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans3</sans>
+        <tans>ta3</tans>
+        <testoptions/>
+        <quiet>1</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0.167</truescore>
+        <truepenalty/>
+        <truenextnode>8</truenextnode>
+        <trueanswernote>prt1-7-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>Your bar for  is correct.</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>7</falsenextnode>
+        <falseanswernote>prt1-7-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>7</name>
+        <description>Checks for correct bar </description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans3</sans>
+        <tans>node8_error</tans>
+        <testoptions/>
+        <quiet>1</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0.167</truescore>
+        <truepenalty/>
+        <truenextnode>8</truenextnode>
+        <trueanswernote>prt1-8-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p><br>Your  bar for  is <b>incorrect</b>.
+<br>However, it is consistent with the answer that you gave to part (a).</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>8</falsenextnode>
+        <falseanswernote>prt1-8-F</falseanswernote>
+        <falsefeedback format="html">
+          <text><![CDATA[<p><br>Your bar  is <b>incorrect</b>.</p>]]></text>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>8</name>
+        <description>Checks for correct bar </description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans4</sans>
+        <tans>ta4</tans>
+        <testoptions/>
+        <quiet>1</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0.167</truescore>
+        <truepenalty/>
+        <truenextnode>10</truenextnode>
+        <trueanswernote>prt1-9-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>Your bar for  is correct.</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>9</falsenextnode>
+        <falseanswernote>prt1-9-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>9</name>
+        <description>Checks for correct bar </description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans4</sans>
+        <tans>node10_error</tans>
+        <testoptions/>
+        <quiet>1</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0.167</truescore>
+        <truepenalty/>
+        <truenextnode>10</truenextnode>
+        <trueanswernote>prt1-10-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p><br>Your  bar for  is <b>incorrect</b>.
+<br>However, it is consistent with the answer that you gave to part (a).</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>10</falsenextnode>
+        <falseanswernote>prt1-10-F</falseanswernote>
+        <falsefeedback format="html">
+          <text><![CDATA[<p><br>Your bar  is <b>incorrect</b>.</p>]]></text>
+        </falsefeedback>
+      </node>
+    </prt>
+    <deployedseed>1959422957</deployedseed>
+    <deployedseed>668283358</deployedseed>
+    <deployedseed>999735025</deployedseed>
+    <deployedseed>912930497</deployedseed>
+    <deployedseed>1941200725</deployedseed>
+    <deployedseed>34619138</deployedseed>
+    <deployedseed>2128928780</deployedseed>
+    <deployedseed>449456807</deployedseed>
+    <deployedseed>241063249</deployedseed>
+    <deployedseed>646873756</deployedseed>
+    <deployedseed>2049509653</deployedseed>
+    <deployedseed>1825694924</deployedseed>
+    <deployedseed>855053450</deployedseed>
+    <deployedseed>438156566</deployedseed>
+    <deployedseed>1793233220</deployedseed>
+    <deployedseed>1238163393</deployedseed>
+    <deployedseed>766497463</deployedseed>
+    <deployedseed>709710451</deployedseed>
+    <deployedseed>298011063</deployedseed>
+    <deployedseed>1805244227</deployedseed>
+    <deployedseed>673070053</deployedseed>
+    <deployedseed>1940265347</deployedseed>
+    <deployedseed>584192775</deployedseed>
+    <deployedseed>1439221249</deployedseed>
+    <deployedseed>2010186429</deployedseed>
+    <deployedseed>311297634</deployedseed>
+    <deployedseed>431328391</deployedseed>
+    <deployedseed>937722008</deployedseed>
+    <deployedseed>895616825</deployedseed>
+    <deployedseed>1818210498</deployedseed>
+    <deployedseed>478485388</deployedseed>
+    <deployedseed>2039544012</deployedseed>
+    <deployedseed>608589599</deployedseed>
+    <deployedseed>2097724506</deployedseed>
+    <deployedseed>99316900</deployedseed>
+    <deployedseed>1097784874</deployedseed>
+    <deployedseed>371013935</deployedseed>
+    <deployedseed>927434597</deployedseed>
+    <deployedseed>771391246</deployedseed>
+    <deployedseed>1494206957</deployedseed>
+    <deployedseed>342469274</deployedseed>
+    <deployedseed>1669196144</deployedseed>
+    <deployedseed>185764323</deployedseed>
+    <deployedseed>2017568584</deployedseed>
+    <deployedseed>1606379761</deployedseed>
+    <deployedseed>910968887</deployedseed>
+    <deployedseed>1050026125</deployedseed>
+    <deployedseed>889293776</deployedseed>
+    <deployedseed>1626808818</deployedseed>
+    <deployedseed>2132326813</deployedseed>
+    <deployedseed>664988260</deployedseed>
+    <deployedseed>1386241923</deployedseed>
+    <deployedseed>155816928</deployedseed>
+    <deployedseed>1305162587</deployedseed>
+    <deployedseed>1664856394</deployedseed>
+    <deployedseed>202048930</deployedseed>
+    <deployedseed>1149544442</deployedseed>
+    <deployedseed>221832786</deployedseed>
+    <deployedseed>1595549708</deployedseed>
+    <deployedseed>153130093</deployedseed>
+    <deployedseed>2049121870</deployedseed>
+    <deployedseed>1398748474</deployedseed>
+    <deployedseed>173643778</deployedseed>
+    <deployedseed>1416035479</deployedseed>
+    <deployedseed>1508837541</deployedseed>
+    <deployedseed>2062404787</deployedseed>
+    <deployedseed>338301758</deployedseed>
+    <deployedseed>574844783</deployedseed>
+    <deployedseed>1891769644</deployedseed>
+    <deployedseed>1221690995</deployedseed>
+    <deployedseed>671108496</deployedseed>
+    <deployedseed>949050152</deployedseed>
+    <deployedseed>1256147923</deployedseed>
+    <deployedseed>827105573</deployedseed>
+    <deployedseed>1924618827</deployedseed>
+    <deployedseed>1077043875</deployedseed>
+    <deployedseed>1673153383</deployedseed>
+    <deployedseed>1166437587</deployedseed>
+    <deployedseed>1917083277</deployedseed>
+    <deployedseed>329584647</deployedseed>
+    <deployedseed>387534043</deployedseed>
+    <deployedseed>833629268</deployedseed>
+    <deployedseed>843193825</deployedseed>
+    <deployedseed>693170867</deployedseed>
+    <deployedseed>1010158883</deployedseed>
+    <deployedseed>1557848738</deployedseed>
+    <deployedseed>676409950</deployedseed>
+    <deployedseed>1373616273</deployedseed>
+    <deployedseed>1284159948</deployedseed>
+    <deployedseed>1516154565</deployedseed>
+    <deployedseed>873622254</deployedseed>
+    <deployedseed>714560475</deployedseed>
+    <deployedseed>1277380407</deployedseed>
+    <deployedseed>2074535912</deployedseed>
+    <deployedseed>1416637993</deployedseed>
+    <deployedseed>1132328993</deployedseed>
+    <deployedseed>462908957</deployedseed>
+    <deployedseed>369006228</deployedseed>
+    <deployedseed>823644902</deployedseed>
+    <deployedseed>23113600</deployedseed>
+    <deployedseed>1896069020</deployedseed>
+    <deployedseed>1085494928</deployedseed>
+    <deployedseed>39133747</deployedseed>
+    <deployedseed>277177227</deployedseed>
+    <deployedseed>1115332800</deployedseed>
+    <deployedseed>257845219</deployedseed>
+    <deployedseed>1140430877</deployedseed>
+    <deployedseed>525050511</deployedseed>
+    <deployedseed>723780067</deployedseed>
+    <deployedseed>1243260051</deployedseed>
+  </question>
+</quiz>

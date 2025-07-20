@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Calculating the area of the shaded region between two nested rectangles</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p>What is the area of the unshaded region in the figure below?</p>
+
+[[jsxgraph]]
+   // Create JSXGraph board
+    var board = JXG.JSXGraph.initBoard('jxgbox', {boundingbox:[-5,8,8,-5],axis: false, showCopyright: false,keepAspectRatio:true});
+           // Define the vertices for the outer and inner rectangles
+    var p1 = board.create('point', [-2, -2], { name: 'A',visible:false });  // Bottom-left corner of outer rectangle
+    var p2 = board.create('point', [4, -2], { name: 'B',visible:false });   // Bottom-right corner of outer rectangle
+    var p3 = board.create('point', [4, 3], { name: 'C' ,visible:false});    // Top-right corner of outer rectangle
+    var p4 = board.create('point', [-2, 3], { name: 'D',visible:false });   // Top-left corner of outer rectangle
+
+    var p5 = board.create('point', [-1,-1], { name: 'E',visible:false });   // Bottom-left corner of inner rectangle
+    var p6 = board.create('point', [3,-1], { name: 'F' ,visible:false});   // Bottom-right corner of inner rectangle
+    var p7 = board.create('point', [3, 2], { name: 'G',visible:false });   // Top-right corner of inner rectangle
+    var p8 = board.create('point', [-1,2], { name: 'H',visible:false });   // Top-left corner of inner rectangle
+
+    // Draw the outer rectangle
+    var outerRectangle = board.create('polygon', [p1, p2, p3, p4], {fillColor: 'white', borders: {strokeColor: 'red'}}); // Border color of the outer rectangle
+      
+
+    // Draw the inner rectangle
+    var innerRectangle = board.create('polygon', [p5, p6,p7, p8], {fillColor: 'blue', borders: {strokeColor: 'black'}}); // Border color of the inner rectangle
+    
+
+    // Add measurement labels for the sides of the  inner rectangle
+    board.create('text', [1, -0.8, '{#smaller_L#}cm'], { fontSize: 14 });
+    board.create('text', [2.5, 1, '{#smaller_W#}cm'], { fontSize: 14 });
+
+    // Add measurement labels for the sides of the outer rectangle
+    board.create('text', [1, -2.2, '{#larger_L#}cm'], { fontSize:14});
+    board.create('text', [4.1, 1, '{#larger_W#}cm'], { fontSize: 14 });
+
+[[/jsxgraph]]
+<p>Area = [[input:ans1]]\(cm^2\)[[validation:ans1]] [[feedback:prt1]]</p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<h3>Worked solution</h3>
+<p>Note:</p>
+<p>For calculating the area of a triangle, the formula used is;</p>
+<p>Area \(=l \times w\) where \(l\) is the length of the rectangle and \(w\) is the width of the rectangle.</p>
+<p>To calculate the area between the shaded region in a two nested rectangle, the following steps are followed;</p>
+<p>Step 1: indicating the formula of the shaded part that is:</p>
+<p>Area of the shaded part \(=\) area of the larger rectangle \(-\) area of the smaller rectangle</p>
+<p>For the larger rectangle,</p>
+<p>\(l= {@larger_L@}cm \)</p>
+<p>\(w= {@larger_W@}cm \)</p>
+<p>For the smaller rectangle,</p>
+<p>\(w= {@smaller_L@}cm \)</p>
+<p>\(w= {@smaller_W@}cm \)</p>
+<p>Step 2: calculating the area of the larger rectangle and the smaller rectangle;</p>
+<p>Area of the larger rectangle \(= {@larger_L@}cm \times  {@larger_W@}cm \)</p>
+<p>\(\qquad \qquad \qquad  \qquad   \qquad={@area_larger@}cm^{2}\)</p>
+<p>Area of the smaller rectangle \(= {@smaller_L@}cm \times   {@smaller_W@}cm \)</p>
+<p>\(\qquad \qquad \qquad  \qquad   \qquad \quad={@area_smaller@}cm^{2}\)</p>
+<p>Finally; </p>
+<p>Area of the shaded part \(= {@area_larger@}cm^{2} -{@area_smaller@}cm^{2} \)</p>
+<p>\(\qquad \qquad \qquad  \qquad  \quad={@shaded_part@}cm^{2}\)</p>
+<p>Therefore;</p>
+<p>The area of the shaded region  \( ={@shaded_part@}cm^{2}\)</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2023060500</text>
+    </stackversion>
+    <questionvariables>
+      <text>smaller_L:rand_with_step(10,20,1);/*The  width of the smaller rectangle */
+smaller_W:rand(9)+1;/*The length of the smaller rectangle */
+larger_L:rand_with_step(15,40,1);/*The length of the  larger rectangle */
+larger_W:rand_with_step(7,20,2);/*The  width of the  larger rectangle */
+area_larger:larger_L*larger_W;/*The area the smaller rectangle */
+area_smaller:smaller_L*smaller_W;/*tThe area the  larger rectangle */
+shaded_part:area_larger-area_smaller;/*the  the shaded part of the  rectangle */
+
+</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="moodle_auto_format">
+      <text><![CDATA[<p>\({@area_larger@}\)</p>
+<p>\({@area_smaller@}\)</p>
+<p>\({@shaded_part@}\)</p>
+
+]]></text>
+    </questionnote>
+    <questiondescription format="html">
+      <text><![CDATA[Question Description tags:
+<p id="author">Henry Onyango </p>
+<p id="concept">https://docs.google.com/document/d/1m2lWmjCzvm5EaJ7-O9rT3Eq53ixBET9PgfUo9W3flRQ/edit?tab=t.0</p>
+<p id="reviewer"></p>
+<p id="reviewer"></p>
+
+<p id="description">This question is for finding the shaded region of a two nested rectangle. The learner is required to calculate the area of the region shaded in the figure provided there.</p>]]></text>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>shaded_part</tans>
+      <boxsize>9</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text>/*mistake 1*/
+
+area_larger_mistake1:2*(larger_L+larger_W);/*The area the smaller rectangle */
+area_smaller_mistake1:2*(smaller_L+smaller_W);/*tThe area the  larger rectangle */
+shaded_part_mistake1:area_larger_mistake1-area_smaller_mistake1;/*the  the shaded part of the  rectangle */
+
+/*mistake 2*/
+shaded_part_mistake2:area_smaller;/*the  the shaded part of the  rectangle */</text>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct area of the shaded region.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>shaded_part</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <description>Working out the perimeter instead area by the use of wrong formula that is; Area 2(l \times w)</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>shaded_part_mistake1</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>0</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-2-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>You have calculated the perimeter of the shaded region instead of area which has resulted in a wrong answer.</p>
+<p>When calculating the area of a rectangle use the formula Area \(=l \times w\)</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>2</falsenextnode>
+        <falseanswernote>prt1-2-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>2</name>
+        <description>Finding the area of the smaller rectangle forgetting the shaded region.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>shaded_part_mistake2</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>0.3</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-3-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>Good trial</p>
+<p>You have only calculated the area of the smaller rectangle which has resulted in a wrong answer.</p>
+<p>Kindly check on the step by step solution in order to do the correct calculation of this figure.</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-3-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <deployedseed>1529182997</deployedseed>
+    <deployedseed>17112213</deployedseed>
+    <deployedseed>1834367444</deployedseed>
+    <deployedseed>1842091353</deployedseed>
+    <deployedseed>1882624828</deployedseed>
+    <deployedseed>121808451</deployedseed>
+    <deployedseed>1867356717</deployedseed>
+    <deployedseed>1664549395</deployedseed>
+    <deployedseed>276851131</deployedseed>
+    <deployedseed>914509274</deployedseed>
+    <deployedseed>1177026501</deployedseed>
+    <deployedseed>1086147515</deployedseed>
+    <deployedseed>923285988</deployedseed>
+    <deployedseed>2028180592</deployedseed>
+    <deployedseed>573247100</deployedseed>
+    <deployedseed>1213110462</deployedseed>
+    <deployedseed>1233276618</deployedseed>
+    <deployedseed>1140638430</deployedseed>
+    <deployedseed>1568340193</deployedseed>
+    <deployedseed>1555887224</deployedseed>
+    <qtest>
+      <testcase>1</testcase>
+      <description>Test case assuming the teacher's input gets full marks.</description>
+      <testinput>
+        <name>ans1</name>
+        <value>shaded_part</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt1-1-T</expectedanswernote>
+      </expected>
+    </qtest>
+    <qtest>
+      <testcase>2</testcase>
+      <description>Working out the perimeter instead area by the use of wrong formula that is; Area 2(l \times w)</description>
+      <testinput>
+        <name>ans1</name>
+        <value>shaded_part_mistake1</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>0.0000000</expectedscore>
+        <expectedpenalty/>
+        <expectedanswernote>prt1-2-T</expectedanswernote>
+      </expected>
+    </qtest>
+    <qtest>
+      <testcase>3</testcase>
+      <description>Finding the area of the smaller rectangle forgetting the shaded region.</description>
+      <testinput>
+        <name>ans1</name>
+        <value>shaded_part_mistake2</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>0.3000000</expectedscore>
+        <expectedpenalty/>
+        <expectedanswernote>prt1-3-T</expectedanswernote>
+      </expected>
+    </qtest>
+  </question>
+</quiz>

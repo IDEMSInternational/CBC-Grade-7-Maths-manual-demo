@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Calculating Odd Outcomes in Future Rolls Based on Previous Results</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p>Okoth rolled a fair number cube \({@total_rolls_12@}\) times and got an odd number \({@odd_rolls_12@}\) times. </p>
+<p>Predict how many times he might get an odd number if he rolls the cube \({@total_rolls_24@}\) times.</p>
+<p>[[input:ans1]] [[validation:ans1]][[feedback:prt1]]</p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<h3>Worked solution</h3> 
+<p>Given that;</p>
+<ul> 
+      <li>Sam rolled the cube \({@total_rolls_12@}\) times and got an odd number \({@odd_rolls_12@}\) times.</li> 
+      <li>We need to predict how many times Sam might get an odd number if he rolls the cube \({@total_rolls_24@}\) times.</li>
+ </ul> 
+<p>To begin, we calculate the probability of rolling an odd number using the formula:</p>
+<p>P(odd) = Number of odd rolls ÷ Total number of rolls</p>
+<ul>
+      <li>Number of odd rolls = \({@odd_rolls_12@}\) </li>
+      <li>Total number of rolls = \({@total_rolls_12@}\)</li>
+</ul>
+<p>Substitute in the formula:</p>
+<p>P(odd) = \({@odd_rolls_12@}\) ÷ \({@total_rolls_12@}\) = \({@probability_odd@}\)
+<p>Now that we know the probability of getting an odd number is \({@probability_odd@}\) , we can predict how many odd rolls Okoth might get in \({@total_rolls_24@}\) rolls.</p>
+<p>Predicted number of odd rolls = \({@probability_odd@}\) × \({@total_rolls_24@}\) = \({@predicted_odd_rolls@}\) 
+<p>Therefore, the expected number of odd outcomes is \({@predicted_odd_rolls@}\).</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2025012100</text>
+    </stackversion>
+    <questionvariables>
+      <text>odd_rolls_12: rand(12) + 1;  /* number of odd rolls out of 12 rolls */
+total_rolls_12:rand(20)+1; /* total rolls for the first experiment */
+total_rolls_24: rand(24) + 1;  /* total rolls for the second experiment */
+probability_odd: odd_rolls_12 / total_rolls_12; /*probability of getting an odd number from the first experiment*/
+predicted_odd_rolls: decimalplaces(probability_odd * total_rolls_24 ,2);/*predicted number of odd rolls in 24 rolls*/</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="html">
+      <text><![CDATA[<P>\({@probability_odd@}\)</p>
+<P>\({@total_rolls_24@}\)</p>]]></text>
+    </questionnote>
+    <questiondescription format="html">
+      <text><![CDATA[<p id="author">Purity Ekadeli</p>
+<p id="reviewer"></p>
+<p id="reviewer"></p>
+<p id="description">The question asks the learner to predict the number of times an odd number will appear in future rolls based on the probability from previous rolls.</p]]></text>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>predicted_odd_rolls</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text>/*Mistake1*/
+probability_odd_mistake1: odd_rolls_12 / total_rolls_12; /*probability of getting an odd number from the first experiment*/
+predicted_odd_rolls_mistake1: decimalplaces(probability_odd / total_rolls_24 ,2);/*predicted number of odd rolls in 24 rolls*/</text>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description/>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>predicted_odd_rolls</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <description>checks for the wrong answer</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>predicted_odd_rolls_mistake1</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-2-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>You incorrectly divided the probability of getting an odd number by the total number of rolls, instead of multiplying.</p>
+<p>To find the predicted number of odd rolls, you should multiply the probability of getting an odd number by the total number of future rolls.</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-2-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <deployedseed>1070461502</deployedseed>
+    <deployedseed>1064584562</deployedseed>
+    <deployedseed>1413520361</deployedseed>
+    <deployedseed>1963919593</deployedseed>
+    <deployedseed>423481146</deployedseed>
+    <deployedseed>1157653847</deployedseed>
+    <deployedseed>1414859087</deployedseed>
+    <deployedseed>107382146</deployedseed>
+    <deployedseed>263980719</deployedseed>
+    <deployedseed>831539539</deployedseed>
+    <deployedseed>1719948636</deployedseed>
+    <deployedseed>60217267</deployedseed>
+    <deployedseed>703883979</deployedseed>
+    <deployedseed>9437497</deployedseed>
+    <deployedseed>730018790</deployedseed>
+    <deployedseed>220270255</deployedseed>
+    <deployedseed>184904177</deployedseed>
+    <deployedseed>1543659995</deployedseed>
+    <deployedseed>1245535610</deployedseed>
+    <deployedseed>518294275</deployedseed>
+    <deployedseed>1561585919</deployedseed>
+    <deployedseed>277806761</deployedseed>
+    <deployedseed>2141051935</deployedseed>
+    <deployedseed>1299505562</deployedseed>
+    <deployedseed>949150412</deployedseed>
+    <deployedseed>1293210572</deployedseed>
+    <deployedseed>777496572</deployedseed>
+    <deployedseed>907804889</deployedseed>
+    <deployedseed>296639473</deployedseed>
+    <qtest>
+      <testcase>1</testcase>
+      <description>Test case assuming the teacher's input gets full marks.</description>
+      <testinput>
+        <name>ans1</name>
+        <value>predicted_odd_rolls</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt1-1-T</expectedanswernote>
+      </expected>
+    </qtest>
+  </question>
+</quiz>

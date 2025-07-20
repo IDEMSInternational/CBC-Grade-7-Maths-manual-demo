@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Finding the area of a circle</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p>What is the area of the circle drawn below?</p>
+
+[[jsxgraph]]
+var board = JXG.JSXGraph.initBoard('jxgbox', {boundingbox:[-5,5,5,-5],axis: false, showCopyright: false,keepAspectRatio:true});
+
+        var center = board.create('point',[0,0],{name:'O', size:3,fixed:true,color:'red'}
+
+        );
+
+        var point1 = board.create('point',[-2,0],{name:'A', size:3, fixed:true, color:'blue', visible:false}
+        );
+
+        var point2 = board.create('point',[0,2],{name:'B', size:3, fixed:true, color:'blue', visible:false}
+        );
+
+        var point3 = board.create('point',[2,0],{name:'C', size:3, fixed:true, color:'blue', visible:false}
+        );
+
+        var point4 = board.create('point',[0,-2],{name:'D', size:3, fixed:true, color:'blue', visible:false}
+        );
+
+        var circle = board.create('circle',[center,point1],{strokeColor:'orange', strokeWidth:2}
+
+        );
+
+        var radius = board.create('line',[center,point1],
+            {straightFirst:false,
+            straightLast:false,
+            strokeColor:'green',
+            strokeWidth:2,
+            name:'Radius'
+            }
+        );
+
+        board.create('text', [-1,-0.5, '{#radius#} cm'],
+            {fontSize:12, color:'black', anchorX:'center',anchorY:'bottom'}
+        );
+
+[[/jsxgraph]]
+<p>Area = [[input:ans1]] [[validation:ans1]][[feedback:prt1]] \(cm^2\)</p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<h3>Worked solution</h3>
+<p>Area of circle = \(\pi r^2\)</p>
+<p>\(\qquad\qquad\qquad = \frac{22}{7} \times r \times r\)</p>
+<p>\(\qquad\qquad\qquad = \frac{22}{7} \times {@radius@} \times {@radius@}\)</p>
+<p>\(\qquad\qquad\qquad = {@ta@}\)</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2023060500</text>
+    </stackversion>
+    <questionvariables>
+      <text>radius:rand_with_step(7,100,7);/*generates random values divisible by 7 for the radius of the circle*/
+ta:(22/7)*radius^2;/*calculates the area of the circle*/
+
+/*mistake1*/
+ta_1:(22/7)*radius;/* incorrect answer when student fails  to multiply pi by square of the radius*/
+
+/*mistake 2*/
+ta_2:(22/7)*2*radius;/*incorrect solution when the learner calculates the circumference instead of the area of the circle*/
+</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="moodle_auto_format">
+      <text><![CDATA[<p>\({@radius@}\)</p>
+<p>\{@ta@}\)</p>]]></text>
+    </questionnote>
+    <questiondescription format="html">
+      <text><![CDATA[<p id="author"> Isdora Ochieng</p>
+<p id="concept">https://docs.google.com/document/d/17mIR8E-LBVMlg3_taBw7MKLxfaFNsS3ZDhKj-wtn-8U/edit?tab=t.0#heading=h.vy8x1tbmoha9</p>
+<p id="reviewer"></p>
+<p id="reviewer"></p>
+
+<p id="description">The question requires the learner to calculate the area of the circle using the radius of the circle.</p>]]></text>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>ta</tans>
+      <boxsize>7</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct answer for the area of a circle.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>ta</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <description>Checks for the incorrect answer for the area of a circle when student fails to multiply pi by square of the radius.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>ta_1</tans>
+        <testoptions>0</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-2-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>You have failed to multiply pi by square of the radius.
+
+</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>0</falsenextnode>
+        <falseanswernote>prt1-2-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>2</name>
+        <description>Checks for the incorrect answer when student computes circumference instead of the area.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>ta_2</tans>
+        <testoptions>0</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-3-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>You have calculated the circumference instead of the area of the circle
+
+</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt1-3-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <deployedseed>878501131</deployedseed>
+    <deployedseed>358242705</deployedseed>
+    <deployedseed>702682475</deployedseed>
+    <deployedseed>1764105338</deployedseed>
+    <deployedseed>214947359</deployedseed>
+    <deployedseed>1262243769</deployedseed>
+    <deployedseed>43256054</deployedseed>
+    <deployedseed>1662675677</deployedseed>
+    <deployedseed>68417556</deployedseed>
+  </question>
+</quiz>

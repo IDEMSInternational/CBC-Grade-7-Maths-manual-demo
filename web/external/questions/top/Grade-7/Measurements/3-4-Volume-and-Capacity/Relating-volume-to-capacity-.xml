@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Relating volume to capacity.</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p>A cylindrical  pipe has a diameter of \({@cylinder_diameter@}\) cm and a height of \({@cylinder_height@}\) cm. What is the capacity of the tin litres?</p>
+<p>[[input:ans1]] [[validation:ans1]][[feedback:prt1]]Litres.</p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<h3>Worked solution</h3>
+<p>Volume of cylinder = \( \pi r^2  \times h \)</p>
+<p>\( \begin{align} \pi r^2  \times h &= \frac{22}{7} \times{@cylinder_diameter1@}cm \times {@cylinder_diameter1@}cm \times {@cylinder_height@} \\&= {@volume_cylinder@}cm^3 \\  \text{To convert from} \,cm^3  \text{to litres} &= {@volume_cylinder@} \div 1000 \\ &= {@volume_cylinder1@} \end{align}\)</p>
+<p>The volume of the cylindrical pipe =  {@volume_cylinder2@}</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2025012100</text>
+    </stackversion>
+    <questionvariables>
+      <text>/*Capacity of cylindrical pipe*/
+cylinder_diameter:rand_with_step(7,329,7);
+cylinder_diameter1:1/2*(cylinder_diameter);
+cylinder_height:rand(60)+70;
+volume_cylinder: 22/7*cylinder_diameter1^2*cylinder_height;
+volume_cylinder1: volume_cylinder/1000;
+volume_cylinder2:decimalplaces(volume_cylinder1,2);
+
+/*Mistakes 1 Computing using a wrong formula.*/
+Mistakes_1:22/7*cylinder_diameter*cylinder_height;
+
+/*Mistakes calculated volume and din't find the pipe's capacity*/
+volume_cylinder;
+/*Mistakes calculated volume using diamter*/
+Mistake2:(22/7*cylinder_diameter*cylinder_height)/1000;
+Mistakes_2:decimalplaces(Mistake2,2)</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="html">
+      <text><![CDATA[<p>{@cylinder_diameter@}</p>
+<p>{@cylinder_diameter1@}</p>
+
+<p>{@cylinder_height@}</p>
+<p>{@volume_cylinder@}</p>
+<p>{@volume_cylinder1@}</p>
+<p>{@volume_cylinder2@}</p>]]></text>
+    </questionnote>
+    <questiondescription format="html">
+      <text/>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>volume_cylinder2</tans>
+      <boxsize>6</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Volume of a cylinder</description>
+        <answertest>NumDecPlaces</answertest>
+        <sans>ans1</sans>
+        <tans>volume_cylinder2</tans>
+        <testoptions>2</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <description> Computing using a wrong formula</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>Mistake_1</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-2-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>You seem to have the correct computations for your capacity but kindly check on the worked solution to get the correct formula for finding volume and thereafter convert your answer from cubic centimetres to Litres.</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>2</falsenextnode>
+        <falseanswernote>prt1-2-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>2</name>
+        <description>Din't convert to Litres.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>volume_cylinder</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-3-T</trueanswernote>
+        <truefeedback format="html">
+          <text>You have the  correct volume of the cylindrical pipe but it seems that you forgot to convert the volume from cubic centimetres to litres.</text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>3</falsenextnode>
+        <falseanswernote>prt1-3-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>3</name>
+        <description>Calculated volume using the diameter.</description>
+        <answertest>NumDecPlaces</answertest>
+        <sans>ans1</sans>
+        <tans>Mistake_2</tans>
+        <testoptions>2</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-4-T</trueanswernote>
+        <truefeedback format="html">
+          <text>You seem to have the correct computations for your capacity but kindly check on the worked solution to get the correct formula for finding volume.</text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-4-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <deployedseed>1368323373</deployedseed>
+    <deployedseed>689853301</deployedseed>
+    <deployedseed>2131107434</deployedseed>
+    <deployedseed>1938832842</deployedseed>
+    <deployedseed>1789193954</deployedseed>
+    <deployedseed>693970561</deployedseed>
+    <deployedseed>69073507</deployedseed>
+    <deployedseed>758669404</deployedseed>
+    <deployedseed>1463894580</deployedseed>
+    <deployedseed>2038288384</deployedseed>
+    <deployedseed>240295762</deployedseed>
+    <deployedseed>1874348345</deployedseed>
+    <deployedseed>1387684324</deployedseed>
+    <qtest>
+      <testcase>1</testcase>
+      <description>Test case assuming the teacher's input gets full marks.</description>
+      <testinput>
+        <name>ans1</name>
+        <value>volume_cylinder2</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt1-1-T</expectedanswernote>
+      </expected>
+    </qtest>
+  </question>
+</quiz>

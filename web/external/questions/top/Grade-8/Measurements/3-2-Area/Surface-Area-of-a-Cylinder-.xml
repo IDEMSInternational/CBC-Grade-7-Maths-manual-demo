@@ -1,0 +1,390 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Surface Area of a Cylinder.</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>The figure below shows a right circular cylinder. The diameter of the circular base is \({@diameter@}\, \text{cm}\), and the height of the cylinder is \({@height@}\, \text{cm}\). (Use \(\pi=\frac{22}{7}\)​)</p>
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Proper Cylinder - JSXGraph</title>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jsxgraph/distrib/jsxgraphcore.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/jsxgraph/distrib/jsxgraph.css" />
+  <style>
+    #jxgbox {
+      width: 600px;
+      height: 500px;
+    }
+  </style>
+</head>
+<body>
+
+    <div id="jxgbox" class="jxgbox" style="width: 500px; height: 400px;"></div>
+    <script type="text/javascript">
+        var board = JXG.JSXGraph.initBoard('jxgbox', {
+            boundingbox: [-10, 100, 30, -10],
+            axis: false,showCopyright: false
+        });
+
+        var radius = 10.5; // Half of 21 cm diameter
+        var height = 60;
+
+        // Bottom ellipse
+        var bottom = board.create('ellipse', [
+            [0, 0],
+            [radius, 0],
+            [0, 3]
+        ], {strokeColor: '#000', fillColor: '#ccc', fillOpacity: 0.3 ,fixed:true});
+
+        // Top ellipse
+        var top = board.create('ellipse', [
+            [0, height],
+            [radius, height],
+            [0, height + 3]
+        ], {strokeColor: '#000', fillColor: '#ccc', fillOpacity: 0.3,fixed:true});
+
+        // Side lines
+        var leftLine = board.create('line', [[-1.7, -0.1], [-1.7, 60]], {straightFirst: false, straightLast: false,fixed:true});
+        var rightLine = board.create('line', [[12.2, 0], [12.2, 60]], {straightFirst: false, straightLast: false,fixed:true});
+
+        // Labels
+        var heightLabel = board.create('text', [radius + 2, height / 2, '{#height#} cm'],{fixed:true});
+        var diameterLabel = board.create('text', [5, 62, ' {#diameter#} cm'],{fixed:true});
+
+
+        var pointA = board.create('point', [-1.7, 60], {
+        name: 'A',
+        visible: false,fixed:false
+    });
+
+    var pointB = board.create('point', [12.2, 60], {
+        name: 'B',
+        visible: false ,fixed:true
+    });
+
+    var line = board.create('segment', [pointA, pointB], {
+        strokeColor: 'blue',fixed:true
+    });
+    </script>
+
+
+
+
+</body>
+</html>
+
+
+
+<p> Calculate the total surface area of the cylinder above.</p>
+
+<p>\(\text{Surface area}=\)[[input:ans1]]\(\text{cm}^2\)[[feedback:prt1]]</p>
+<p hidden>  [[validation:ans1]]</p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<p> Given:</p>
+<p><ul><li>\(\text{Height (h)} = {@height@}\, \text{cm}\)</li>
+<li>\(\text{Diameter} = {@diameter@}\, \text{cm}\)</li>
+<li><p>\(\text{Radius (r)} = \frac{\text{Diameter}}{2} \)</p>
+<p>\(\qquad \quad \qquad =\frac{{@diameter@}}{2}\)</p>
+<p>\(\qquad \quad \qquad={@radius@}\,\text{cm}\)</p></li></ul></p>
+<p>We are told to use \(\pi=\frac{22}{7}\)</p>
+<p>The Surface Area (SA) of a closed cylinder is given by:</p>
+<p>\(\text{SA}=2\pi r(r+h)\)</p>
+<p>Let’s substitute what we know into the formula:</p>
+<p>\(\begin{align} \text{SA} &= 2 \times {@Pi@} \times {@radius@}({@radius@} + {@height@}) \\
+&= 2 \times {@Pi@} \times {@radius@} \times {@Bracket@} \\
+&= {\color{blue} {@surface_area@}} \, \text{cm}^2
+
+\end{align}\)</p>
+<p>\(\text{Surface area of the cylinder}= {\color{blue} {@surface_area@}} \, \text{cm}^2\)</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2025012100</text>
+    </stackversion>
+    <questionvariables>
+      <text>/* Set π as 22/7 */
+Pi : 22/7;
+
+/* Generate a random diameter divisible by 7 (between 14 and 70) */
+diameterList : makelist(7 * i, i, 1, 15); /* 14, 21, ..., 100 */
+diameter : diameterList[rand(length(diameterList)) + 1];
+
+/* Calculate radius */
+radius : diameter / 2;
+
+
+
+/* Generate a random height between 10 and 100 */
+height : rand(91) + 10;
+
+Bracket:radius+height
+
+/* Surface area formula: 2πr² + 2πrh */
+surface_area : 2 * Pi * radius^2 + 2 * Pi * radius * height;
+
+/*Mistake 1 Using the Diameter Instead of Radius*/
+Surface_1 : 2 * Pi * diameter^2 + 2 * Pi * diameter * height;
+
+/*Mistake 2 finding volume instead of surface area*/
+Surface_2 : Pi *radius^2*height;
+
+/*Mistake 3  Finding the surface area of the open cylinder instead of the closed cylinder.*/
+
+Surface_3 : Pi * radius^2 + 2 * Pi * radius * height;</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="html">
+      <text><![CDATA[<p>\(\text{The diameter of the cylinder}=\){@diameter@}</p>
+<p>\(\text{The radius}=\){@radius@}</p>
+<p>\(\text{The height of the cylinder.}=\){@height@}</p>
+<p>\(\text{The surface area of the cylinder.}=\){@surface_area@}</p>]]></text>
+    </questionnote>
+    <questiondescription format="html">
+      <text><![CDATA[<p id="author">Henry Onyango</p>
+<p id="reviewer"></p>
+<p id="reviewer"></p>
+<p id="description">This is a question about finding the surface area of a closed cylinder.</p>
+<p id="description">The student is required to find the surface area of the cylinder in the given figure using the provided dimensions. They should also understand that the surface area of a closed cylinder is given by the formula:
+\(\text{SA}= 2 \pi r (r+h)\). </p>]]></text>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>surface_area</tans>
+      <boxsize>9</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>0</mustverify>
+      <showvalidation>0</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct surface area of the cylinder.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>surface_area</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <description>Checks for Using the Diameter Instead of Radius</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>Surface_1</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0.3</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-2-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>
+Seems you have used the diameter as radius instead.</p>
+<p>It's great that you’re thinking about the dimensions! Just a quick reminder: the formula uses the radius, not the diameter. If you're given the diameter, simply divide it by \(2\) to get the radius before substituting into the formula.</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>2</falsenextnode>
+        <falseanswernote>prt1-2-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>2</name>
+        <description>Finding Volume Instead of Surface Area</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>Surface_2</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-3-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>Nice effort on applying a formula! However, in this question, we’re looking for the surface area, not the volume. Try using the surface area formula:
+\(\text{SA}=2 \pi r (r+h)\)</p>
+<p>Make sure you read the question carefully to know what’s being asked.</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>3</falsenextnode>
+        <falseanswernote>prt1-3-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>3</name>
+        <description>Checks for Finding the Surface Area of an Open Cylinder Instead of a Closed Cylinder</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>Surface_3 </tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0.5</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-4-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>You're on the right track with surface area! But remember, a closed cylinder has both a top and bottom circle. So be sure to include both circular areas in your calculation. Use the full formula: \(\text{SA}=2 \pi r (r+h)\)
+</p>
+<p>Keep up the good work—attention to detail makes a big difference!</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-4-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <deployedseed>1712331097</deployedseed>
+    <deployedseed>104820315</deployedseed>
+    <deployedseed>320651853</deployedseed>
+    <deployedseed>1212871130</deployedseed>
+    <deployedseed>1270108901</deployedseed>
+    <deployedseed>790563674</deployedseed>
+    <deployedseed>1089373428</deployedseed>
+    <deployedseed>1632863508</deployedseed>
+    <deployedseed>711656362</deployedseed>
+    <deployedseed>2107058873</deployedseed>
+    <deployedseed>1234933062</deployedseed>
+    <deployedseed>1781105984</deployedseed>
+    <deployedseed>700958419</deployedseed>
+    <deployedseed>871979061</deployedseed>
+    <deployedseed>714569104</deployedseed>
+    <deployedseed>1997377864</deployedseed>
+    <deployedseed>476418868</deployedseed>
+    <deployedseed>219191885</deployedseed>
+    <deployedseed>1307957039</deployedseed>
+    <deployedseed>1003061286</deployedseed>
+    <qtest>
+      <testcase>1</testcase>
+      <description>Test case assuming the teacher's input gets full marks.</description>
+      <testinput>
+        <name>ans1</name>
+        <value>surface_area</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt1-1-T</expectedanswernote>
+      </expected>
+    </qtest>
+    <qtest>
+      <testcase>2</testcase>
+      <description>Checks for Using the Diameter Instead of Radius</description>
+      <testinput>
+        <name>ans1</name>
+        <value>Surface_1</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>0.3000000</expectedscore>
+        <expectedpenalty/>
+        <expectedanswernote>prt1-2-T</expectedanswernote>
+      </expected>
+    </qtest>
+    <qtest>
+      <testcase>3</testcase>
+      <description>Finding Volume Instead of Surface Area</description>
+      <testinput>
+        <name>ans1</name>
+        <value>Surface_2</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>0.0000000</expectedscore>
+        <expectedpenalty/>
+        <expectedanswernote>prt1-3-T</expectedanswernote>
+      </expected>
+    </qtest>
+    <qtest>
+      <testcase>4</testcase>
+      <description>Checks for Finding the Surface Area of an Open Cylinder Instead of a Closed Cylinder</description>
+      <testinput>
+        <name>ans1</name>
+        <value>Surface_3 </value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>0.5000000</expectedscore>
+        <expectedpenalty/>
+        <expectedanswernote>prt1-4-T</expectedanswernote>
+      </expected>
+    </qtest>
+  </question>
+</quiz>

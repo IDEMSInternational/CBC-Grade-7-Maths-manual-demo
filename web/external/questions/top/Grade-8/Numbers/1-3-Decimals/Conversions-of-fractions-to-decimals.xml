@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Conversions of fractions to decimals</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p>Convert the following fraction to decimal. </p>
+<p>a.  \(\frac{@numerator1@}{@denominator1@} = \) [[input:ans1]] [[validation:ans1]][[feedback:prt1]]</p>
+<p>b.   \(\frac{@numerator2@}{@denominator2@} = \) [[input:ans2]] [[validation:ans2]][[feedback:prt2]]</p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<h3>Worked Solution</h3>
+<p>Part a: Convert \(\frac{@numerator1@}{@denominator1@}\) to decimals</p>
+<p>Since the denominator is \({@denominator1@}\) (which is  \(10^{@power@}\) ), We can convert the fraction to a decimal by moving the decimal point in the numerator (\({@numerator1@}\)) {@steps@} to the left.</p>
+<p>\(\frac{@numerator1@}{@denominator1@} = {@ta1@} \) </p>
+<p>Part b: Convert \(\frac{@numerator2@}{@denominator2@}\) to decimals</p>
+<p> To convert \(\frac{@numerator2@}{@denominator2@}\) to a decimal, multiply both the numerator and the denominator by \({@multiplier@}\) to make the denominator a power of \( 10 \) .</p>
+<p>\(\frac{@numerator2@}{@denominator2@} = \frac{{@numerator2@} \times {@multiplier@} }{{@denominator2@}  \times {@multiplier@}} = \frac{@numerator2*multiplier@}{@denominator2*multiplier@}  \) </p>
+<p>Since the denominator is \( 1000 \) (which is \(10^3\) ), We can convert the fraction to a decimal by moving the decimal point in the numerator (\({@numerator2*multiplier@}\)) three places to the left.</p>
+<p>\(  \frac{@numerator2*multiplier@}{@denominator2*multiplier@} =  {@ta2@} \)</p>
+<p>Therefore, \(\frac{@numerator2@}{@denominator2@} = {@ta2@} \)</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2025012100</text>
+    </stackversion>
+    <questionvariables>
+      <text><![CDATA[/*A random numerator between 10 and 1009 */
+numerator1: rand(1000)+10;
+numerator2: rand_with_step(1,100,2);
+
+/* If the numerator is a multiple of 10, add a small random value (1–4) to make it non-round */
+if mod(numerator1,10)=0 then numerator1:numerator1+rand(4)+1 else numerator1:numerator1;
+
+/* Randomly select a denominator from the list: 10, 100, or 1000 */
+denominator1:rand([10,100,1000]);
+denominator2:rand([8,40]);
+
+/* making a fraction from the numerator and denominator */
+fraction1:numerator1/denominator1;
+fraction2:numerator2/denominator2;
+
+/* Convert the fraction to a decimal value */
+ta1:float(numerator1/denominator1);
+ta2:float(numerator2/denominator2);
+
+/*Determine the power,steps for the first fraction1*/
+if denominator1=10 then (power:1,steps:"one place")
+elseif denominator1=100 then (power:2,steps:"two places")
+else (power:3,steps:"three places");
+
+if denominator2=8 then multiplier:125
+else multiplier:25;]]></text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="html">
+      <text><![CDATA[<p>Numerator for the first fraction \({@numerator1@}\)</p>
+<p>Denominator for the first fraction \({@denominator1@}\)</p>
+<p>Numerator for the second fraction \({@numerator2@}\)</p>
+<p>Denominator for the second fraction \({@denominator2@}\)</p>]]></text>
+    </questionnote>
+    <questiondescription format="html">
+      <text><![CDATA[<p id="author">Daniel Murunga</p>
+<p id="concept"></p>
+<p id="reviewer"></p>
+<p id="reviewer"></p>
+<p id="description">The question requires the student to convert the fraction into a decimal by dividing the numerator by the denominator.</p>]]></text>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>ta1</tans>
+      <boxsize>6</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans2</name>
+      <type>algebraic</type>
+      <tans>ta2</tans>
+      <boxsize>6</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text>if denominator1=10 then test_option:1
+elseif denominator1=100 then test_option:2
+else test_option:3;
+</text>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the the correct converted decimal value of the fraction.</description>
+        <answertest>NumDecPlaces</answertest>
+        <sans>ans1</sans>
+        <tans>ta1</tans>
+        <testoptions>test_option</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt2</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the the correct converted decimal value of the fraction.</description>
+        <answertest>NumDecPlaces</answertest>
+        <sans>ans2</sans>
+        <tans>ta2</tans>
+        <testoptions>3</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt2-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt2-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+  </question>
+</quiz>

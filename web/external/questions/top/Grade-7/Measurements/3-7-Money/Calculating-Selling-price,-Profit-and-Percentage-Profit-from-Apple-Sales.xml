@@ -1,0 +1,421 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Calculating Selling price, Profit and Percentage Profit from Apple Sales</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>A trader bought \({@apple_number@}\) apples for KSh. \({@cost_price@}\). She sold each apple at Sh \({@apple_price@}\). <br>
+Calculate: </p>
+<p>1. Money got from the sale of apples.  = KSh [[input:ans1]] [[validation:ans1]] [[feedback:prt1]]</p>
+
+<p>2. Profit made from the sales of the apples.  =KSh [[input:ans2]] [[validation:ans2]] [[feedback:prt2]]</p>
+
+<p>3. Percentage profit made from the sales of the apples. =[[input:ans3]] [[validation:ans3]] [[feedback:prt3]]</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<h3>Worked solution</h3>
+
+<p>We first have to get the the money the trader got from the sales of apple.
+we multiply the number of apples by the cost of each apple to get the Cost price </p>
+
+ <p>Money got from the sale = Number of apples × Selling price per apple</p>
+ <p> \({@total_sale_amount@}\)= \({@apple_number@}\) ×  \({@apple_price@}\) </p>
+
+<p>We now have to find profit made from the sales by getting the difference between selling price and cost of buying. We get the profit made by getting the difference between Selling price and cost price. <br>
+Profit = Money from sale - Cost Price</p>
+<p>\({@profit@}\)  = \({@total_sale_amount@}\) -\({@cost_price@}\)
+
+<p>We now get the percentage profit from the sales of the apples, to get percentage profit we divide profit by cost price and multiply by 100<p>
+<p>Percentage profit  = (Profit / Cost Price) × 100</p>
+<p>\({@percentage_profit@}\)  = (\({@profit@}\) /  \({@cost_price@}\)) × 100]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2023060500</text>
+    </stackversion>
+    <questionvariables>
+      <text>cost_price:rand(100)+1500; /*Cost price*/
+apple_price:rand(5)+25; /*price per apple*/
+apple_number:rand(20)+80; /*number of apples*/
+total_sale_amount:apple_number*apple_price;/* Calculating total selling price */
+profit:total_sale_amount - cost_price;/* Calculating profit */
+percentage_prof:(profit/cost_price)*100;/* Calculating percentage profit */
+percentage_profit:decimalplaces(percentage_prof,2);/*percentage profit in decimals*/
+
+
+/*Mistake 1*/
+percentage_profit_mistak2:(profit/total_sale_amount)*100;/* Calculating percentage profit */
+percentage_profit_mistake2:decimalplaces(percentage_profit_mistak2,2);/*percentage profit in decimals*/</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="moodle_auto_format">
+      <text><![CDATA[<p>\({@profit@}\) </p>
+<p>\({@cost_price@}\) </p>
+<p>\({@apple_price@}\) </p>
+<p>\({@total_sale_amount@}\) </p>
+<p>\({@percentage_profit@}\) </p>
+<p>\({@apple_number@}\) </p>
+]]></text>
+    </questionnote>
+    <questiondescription format="html">
+      <text><![CDATA[<p id="author"> Joseph Baya</p>
+<p id="concept">https://docs.google.com/document/d/1jrkBmSh-z-ooGipWzljASVBLJ3x4_xw1uSPYxUwO-tg/edit?tab=t.0#heading=h.vy8x1tbmoha9</p>
+<p id="reviewer"></p>
+<p id="reviewer"></p>
+
+<p id="description">In this question we are going to calculate selling price, profit  and percentage profit  made from the sale of apples. We  are given the number of apples a trader bought and the cost price of the apples . We are also given the cost in which the trader sold each of the apples. The learner is to calculate the selling price of the apples, the profit and percentage profit made from the sell of the apples.</p>]]></text>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>total_sale_amount</tans>
+      <boxsize>5</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans2</name>
+      <type>algebraic</type>
+      <tans>profit</tans>
+      <boxsize>5</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans3</name>
+      <type>algebraic</type>
+      <tans>percentage_profit</tans>
+      <boxsize>5</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for money got from the sale of apples</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>total_sale_amount</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt2</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for profit made from the sale of apples</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans2</sans>
+        <tans>profit</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt2-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt2-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt3</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for Percentage Profit made from the sale of apples</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans3</sans>
+        <tans>percentage_profit</tans>
+        <testoptions/>
+        <quiet>1</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>1</truenextnode>
+        <trueanswernote>prt3-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt3-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <description>Checks for percentage profit mistake</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans3</sans>
+        <tans>percentage_profit_mistake2</tans>
+        <testoptions/>
+        <quiet>1</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>0</truescore>
+        <truepenalty>0</truepenalty>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt3-2-T</trueanswernote>
+        <truefeedback format="html">
+          <text>you have put the incorrect percentage profit. you divided profit by money got from the sales of apples. It should be profit divided by cost price of the apples</text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt3-2-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <deployedseed>1368275439</deployedseed>
+    <deployedseed>1454645104</deployedseed>
+    <deployedseed>360541312</deployedseed>
+    <deployedseed>752043361</deployedseed>
+    <deployedseed>620708482</deployedseed>
+    <deployedseed>727959369</deployedseed>
+    <deployedseed>1752646646</deployedseed>
+    <deployedseed>31144081</deployedseed>
+    <deployedseed>1113225324</deployedseed>
+    <deployedseed>751538430</deployedseed>
+    <deployedseed>1728281131</deployedseed>
+    <deployedseed>1762186831</deployedseed>
+    <deployedseed>1032557300</deployedseed>
+    <deployedseed>1307219478</deployedseed>
+    <deployedseed>1370869768</deployedseed>
+    <deployedseed>414337634</deployedseed>
+    <deployedseed>1613154845</deployedseed>
+    <deployedseed>1054095174</deployedseed>
+    <deployedseed>458122651</deployedseed>
+    <deployedseed>1261541634</deployedseed>
+    <deployedseed>1773748971</deployedseed>
+    <deployedseed>1489939368</deployedseed>
+    <deployedseed>1825165083</deployedseed>
+    <deployedseed>1805368323</deployedseed>
+    <deployedseed>163436003</deployedseed>
+    <deployedseed>199266299</deployedseed>
+    <deployedseed>1244522669</deployedseed>
+    <deployedseed>1350387743</deployedseed>
+    <deployedseed>395202367</deployedseed>
+    <deployedseed>978046627</deployedseed>
+    <deployedseed>939185053</deployedseed>
+    <deployedseed>365791296</deployedseed>
+    <deployedseed>419540924</deployedseed>
+    <deployedseed>735920850</deployedseed>
+    <deployedseed>659627510</deployedseed>
+    <deployedseed>1281831008</deployedseed>
+    <deployedseed>1581921133</deployedseed>
+    <deployedseed>2007815075</deployedseed>
+    <deployedseed>2085753321</deployedseed>
+    <deployedseed>652111629</deployedseed>
+    <deployedseed>1510205228</deployedseed>
+    <deployedseed>1538129330</deployedseed>
+    <deployedseed>366161685</deployedseed>
+    <deployedseed>1721888283</deployedseed>
+    <deployedseed>1972945147</deployedseed>
+    <deployedseed>1432285579</deployedseed>
+    <deployedseed>837364382</deployedseed>
+    <deployedseed>445739503</deployedseed>
+    <deployedseed>1062460398</deployedseed>
+    <deployedseed>77392126</deployedseed>
+    <deployedseed>2118518558</deployedseed>
+    <deployedseed>419043324</deployedseed>
+    <deployedseed>2114029109</deployedseed>
+    <deployedseed>58420171</deployedseed>
+    <deployedseed>379381545</deployedseed>
+    <deployedseed>316088486</deployedseed>
+    <deployedseed>1488896803</deployedseed>
+    <deployedseed>1054199601</deployedseed>
+    <deployedseed>1845023307</deployedseed>
+    <deployedseed>1906443799</deployedseed>
+    <deployedseed>221351826</deployedseed>
+    <deployedseed>147709289</deployedseed>
+    <deployedseed>2039727189</deployedseed>
+    <deployedseed>1050270060</deployedseed>
+    <deployedseed>1699250095</deployedseed>
+    <deployedseed>655556549</deployedseed>
+    <deployedseed>1974151055</deployedseed>
+    <deployedseed>899604304</deployedseed>
+    <deployedseed>1964184623</deployedseed>
+    <deployedseed>1366477620</deployedseed>
+    <deployedseed>1301982134</deployedseed>
+    <deployedseed>498638103</deployedseed>
+    <deployedseed>1362329132</deployedseed>
+    <deployedseed>773869072</deployedseed>
+    <deployedseed>1895467931</deployedseed>
+    <deployedseed>1215582028</deployedseed>
+    <deployedseed>1855677607</deployedseed>
+    <deployedseed>1030709723</deployedseed>
+    <deployedseed>886369432</deployedseed>
+    <deployedseed>1999742991</deployedseed>
+    <deployedseed>346836725</deployedseed>
+    <deployedseed>788520195</deployedseed>
+    <deployedseed>1159088270</deployedseed>
+    <deployedseed>1408185551</deployedseed>
+    <deployedseed>1443308034</deployedseed>
+    <deployedseed>194768343</deployedseed>
+    <deployedseed>856091523</deployedseed>
+    <deployedseed>351306604</deployedseed>
+    <deployedseed>1220240968</deployedseed>
+    <deployedseed>2120438504</deployedseed>
+    <deployedseed>1980154601</deployedseed>
+    <deployedseed>241351264</deployedseed>
+    <deployedseed>526578338</deployedseed>
+    <deployedseed>233009633</deployedseed>
+    <deployedseed>1867253024</deployedseed>
+    <deployedseed>404932888</deployedseed>
+    <deployedseed>187901918</deployedseed>
+    <deployedseed>1637685127</deployedseed>
+    <deployedseed>764077452</deployedseed>
+    <deployedseed>508883051</deployedseed>
+    <deployedseed>22530684</deployedseed>
+    <deployedseed>915250800</deployedseed>
+    <deployedseed>787860907</deployedseed>
+    <deployedseed>198561108</deployedseed>
+    <deployedseed>1087468611</deployedseed>
+    <deployedseed>584408153</deployedseed>
+    <deployedseed>292359478</deployedseed>
+    <deployedseed>1186362798</deployedseed>
+    <deployedseed>1540297171</deployedseed>
+    <deployedseed>780257726</deployedseed>
+    <qtest>
+      <testcase>1</testcase>
+      <description>Test case assuming the teacher's input gets full marks.</description>
+      <testinput>
+        <name>ans1</name>
+        <value>selling_price</value>
+      </testinput>
+      <testinput>
+        <name>ans2</name>
+        <value>profit</value>
+      </testinput>
+      <testinput>
+        <name>ans3</name>
+        <value>percentage_profit</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt1-1-T</expectedanswernote>
+      </expected>
+      <expected>
+        <name>prt2</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt2-1-T</expectedanswernote>
+      </expected>
+      <expected>
+        <name>prt3</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt3-1-T</expectedanswernote>
+      </expected>
+    </qtest>
+  </question>
+</quiz>

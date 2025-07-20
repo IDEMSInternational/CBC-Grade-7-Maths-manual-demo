@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Finding speed of a motorist in both meters per second and kilometer per hour.</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p>A motorist covered \({@distance_covered @}\) meters in \({@time_seconds@}\) seconds. </p>
+
+
+<p><ol type="a"><li ><p>What was the average speed of motorist in \(m/s\)?</p><p>[[input:ans1]]\(m/s\) [[validation:ans1]][[feedback:prt1]]</p></li>
+<li><p>What was the average speed of the motorist in \(km/hr\)?</p><p>[[input:ans2]]\(km/h\) [[validation:ans2]][[feedback:prt2]]</p></li></ol>
+</p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<h3>Worked solution</h3>
+<p>When working out the speed we use the formula;</p>
+<p>\(\textbf{Speed}= \frac{\textbf{Distance} }{\textbf{Time}}\)</p>
+<p>The above question the given values are,</p>
+<p>The distance covered by the motorist \(= {@distance_covered@}\) meters</p>
+<p>The time taken by the motorist \(= {@time_seconds@}\) seconds</p>
+<p>We are required to find speed in; </p>
+<p><ol Type="a"><li><p>\(m/s\)</p></li><li><p>\(km/h\)</p></li></ol></p>
+
+<p>a. Calculating the speed in meters per second \((m/s)\)</p>
+<p>\( \begin{align} \textbf{Speed} &=\frac{{@distance_covered@}\,m}{{@time_seconds@}\,s} \\
+&= {@speed_mps@} \,m/s       \end {align}        \)</p>
+<p>So, the average speed of the motorist is \({@speed_mps@} \,m/s\)</p>
+<p>b. Converting to kilometers per hour \((km/h)\).</p>
+
+<p>We use the conversion:</p>
+<p>\(1\,m/s=3.6\, km/h\)</p>
+<p>So,</p>
+<p>\( \begin{align}   {@speed_mps@} \,m/s &=   {@speed_mps@} \times 3.6  \\
+&= {@speed_kph@} km/h  \end{align}\)</p>
+<p>Thus, the average speed of the motorist is \({@speed_kph@} \,km/h \).</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2025012100</text>
+    </stackversion>
+    <questionvariables>
+      <text>/* Generate a random time between 2 and 10 seconds */
+time_seconds : rand(30) + 2;
+
+/* Generate a random speed in m/s as a multiple of 10 to ensure whole number conversion */
+speed_mps : (rand(40) + 2) * 10; /* Ensures values like 20, 30, 40, 50, etc. */
+
+/* Calculate distance to ensure integer values */
+distance_covered : speed_mps * time_seconds;
+
+/* Convert speed to km/h correctly */
+speed_kph : (speed_mps * 3600) / 1000; /* (m/s * 3600 sec) / 1000 meters = km/h */
+
+</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="html">
+      <text><![CDATA[<p>The time \(= {@time_seconds@} \, s\)</p>
+<p>The Distance covered \(= {@distance_covered@}\, m\)</p>
+<p>The speed in m/s \(= {@speed_mps@}\)</p>
+<p>The speed in km/h \(= {@speed_kph@}\)</p>]]></text>
+    </questionnote>
+    <questiondescription format="html">
+      <text><![CDATA[<p id="author">Henry Onyango</p>
+<p id="reviewer"></p>
+<p id="reviewer"></p>
+
+<p id="description">This question is for finding speed. The student is required to find the speed in \(m/s\) then convert it to \(km/h\).</p>]]></text>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>speed_mps</tans>
+      <boxsize>4</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans2</name>
+      <type>algebraic</type>
+      <tans>speed_kph</tans>
+      <boxsize>4</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct speed in m/s</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>speed_mps</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt2</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct conversion of m/s to km/hr</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans2</sans>
+        <tans>speed_kph</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt2-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt2-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <deployedseed>279281485</deployedseed>
+    <deployedseed>773059080</deployedseed>
+    <deployedseed>2062020178</deployedseed>
+    <deployedseed>976959694</deployedseed>
+    <deployedseed>1021242885</deployedseed>
+    <deployedseed>381584308</deployedseed>
+    <deployedseed>1475251003</deployedseed>
+    <deployedseed>1923694717</deployedseed>
+    <deployedseed>1537249839</deployedseed>
+    <deployedseed>1975046891</deployedseed>
+    <deployedseed>230643967</deployedseed>
+    <deployedseed>1314843586</deployedseed>
+    <deployedseed>184882937</deployedseed>
+    <deployedseed>1125831055</deployedseed>
+    <deployedseed>387476593</deployedseed>
+    <deployedseed>1236034208</deployedseed>
+    <deployedseed>1539409762</deployedseed>
+    <deployedseed>1032314528</deployedseed>
+    <deployedseed>2120098867</deployedseed>
+    <deployedseed>696788652</deployedseed>
+    <qtest>
+      <testcase>1</testcase>
+      <description>Test case assuming the teacher's input gets full marks.</description>
+      <testinput>
+        <name>ans1</name>
+        <value>speed_mps</value>
+      </testinput>
+      <testinput>
+        <name>ans2</name>
+        <value>speed_kph</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt1-1-T</expectedanswernote>
+      </expected>
+      <expected>
+        <name>prt2</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt2-1-T</expectedanswernote>
+      </expected>
+    </qtest>
+  </question>
+</quiz>

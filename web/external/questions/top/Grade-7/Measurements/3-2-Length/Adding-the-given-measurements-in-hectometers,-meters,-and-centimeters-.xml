@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Adding the given measurements in hectometers, meters, and centimeters.</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p>Work out:</p>
+<p><table>
+    <tr>
+        <th></th>
+        <th><p align="left">Hm</p></th>
+        <th><p align="left">m</p></th>
+        <th><p align="left">cm</p></th>
+    </tr>
+    <tr>
+        <td></td>
+        <td><p align="left">{@hm1@}</p></td>
+        <td><p align="left">{@m1@}</p></td>
+        <td><p align="left">{@cm1@}</p></td>
+    </tr>
+    <tr>
+        <td><p align="left">+</p></td>
+        <td><p align="left">{@hm2@}</p></td>
+        <td><p align="left">{@m2@}</p></td>
+        <td><p align="left">{@cm2@}</p></td>
+    </tr>
+    <tr style="border-top:1px solid black; border-bottom:1px solid black;">
+        <td></td>
+        <td><p align="center">[[input:ans1]] [[validation:ans1]][[feedback:prt1]]</p></td>
+        <td><p align="center">[[input:ans2]] [[validation:ans2]][[feedback:prt2]]</p></td>
+        <td><p align="center">[[input:ans3]] [[validation:ans3]][[feedback:prt3]]</p></td>
+    </tr>
+</table></p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<h3>Worked solution.</h3>
+<p>Given the following to solve;</p>
+<p><table>
+    <tr>
+        <th width="40"></th>
+        <th width="40"><p align="center">Hm</p></th>
+        <th width="40"><p align="center">m</p></th>
+        <th width="40"><p align="center">cm</p></th>
+    </tr>
+    <tr>
+        <td ></td>
+        <td ><p align="center">{@hm1@}</p></td>
+        <td ><p align="center">{@m1@}</p></td>
+        <td ><p align="center">{@cm1@}</p></td>
+    </tr>
+    <tr>
+        <td width="20" ><p align="center">+</p></td>
+        <td width="20" ><p align="center">{@hm2@}</p></td>
+        <td width="20"><p align="center">{@m2@}</p></td>
+        <td  width="20"><p align="center">{@cm2@}</p></td>
+    </tr>
+    <tr style="border-top:1px solid black; border-bottom:1px solid black;" >
+        <td 
+</td>
+        <td width="20" ><p ></p></td>
+        <td width="20"><p ></p></td>
+        <td width="20"><p></p></td>
+    </tr>
+</table></p>
+<p>Note that;</p>
+<p>1 meter \(=100\,cm\)</p>
+<p>1 hectometer \(=100\,m\)</p>
+
+<p>The following steps are followed to solve the question above;</p>
+<p>Step 1:Add Centimeters column.</p>
+<p>\({@cm1@}+{@cm2@}={@cm_sum@}\)</p>
+<p>if {@cm_sum@} is \(>\,100\) carry {@carry_m@}  to the \(m\) column to obtain the solution as {@cm_result@}.
+If its \(<\,100\) no carry over hence we remain with the original answer as {@cm_sum@}</p>
+<p>Therefore the correct answer is {@cm_result@}</p>
+<p>Step 2:Add meters column;</p>
+<p>\({@m1@}+{@m2@}={@m_sum@}\)</p>
+<p>if {@m_sum@} is \(>\,100\) carry {@carry_hm@} to the \(Hm\) column to obtain the solution as {@m_result@}.
+If its \(<\,100\) no carry over hence we remain with the original answer as {@m_sum@}</p>
+<p>Therefore the correct answer is {@m_result@}</p>
+<p>Step 3:Add Hectometers column;</p>
+<p>\({@hm1@}+{@hm2@}+{@carry_hm@}={@hm_result @}\)</p>
+<p>Therefore the correct answers for the Hm, m and cm is,</p>
+<p><table>
+    <tr>
+        <th></th>
+        <th width="40"><p align="center">Hm</p></th>
+        <th width="40"><p align="center">m</p></th>
+        <th width="40"><p align="center">cm</p></th>
+    </tr>
+    <tr>
+        <td width="20" ></td>
+        <td width="20"><p align="center">{@hm_result @}</p></td>
+        <td width="20"><p align="center">{@m_result@}</p></td>
+        <td width="20" ><p align="center"> {@cm_result@}</p></td>
+    </tr>
+</table></p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2025012100</text>
+    </stackversion>
+    <questionvariables>
+      <text><![CDATA[/* Generate random values for both hm,m and cm */
+hm1 : rand(100)+10;
+m1  : rand(100)+10;
+cm1 : rand(100)+10;
+
+hm2 : rand(100);
+m2  : rand(100);
+cm2 : rand(100);
+
+/* Perform the addition for the cm */
+cm_sum : cm1 + cm2;
+if  cm_sum>= 100 then (cm_result:cm_sum - 100,carry_m:1)
+else  (cm_result:cm_sum,carry_m:0);
+
+/* Perform the addition for the m */
+m_sum : m1 + m2 + carry_m;
+if  m_sum>= 100 then (m_result:m_sum - 100,carry_hm:1)
+else  (m_result:m_sum,carry_hm:0);
+
+/* Perform the addition for the m */
+hm_result : hm1 + hm2 + carry_hm;
+]]></text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="html">
+      <text><![CDATA[<p>The result for \(Hm= {@hm_result@}\)</p>
+<p>The result for \(m= {@m_result@}\)</p>
+<p>The result for \(cm= {@cm_result@}\)</p>]]></text>
+    </questionnote>
+    <questiondescription format="html">
+      <text><![CDATA[<p id="author">Henry Onyango</p>
+<p id="reviewer"></p>
+<p id="reviewer"></p>
+
+<p id="description">You are given two distance measurements in hectometers \((Hm)\), meters \((m)\), and centimeters \((cm)\). The learner is requred to add them together while ensuring proper unit conversion (i.e., \(100 \,cm = 1 \,m \, and \,  100 \, m = 1\, Hm)\).</p>]]></text>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>hm_result </tans>
+      <boxsize>4</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>0</mustverify>
+      <showvalidation>0</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans2</name>
+      <type>algebraic</type>
+      <tans>m_result</tans>
+      <boxsize>4</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>0</mustverify>
+      <showvalidation>0</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans3</name>
+      <type>algebraic</type>
+      <tans>cm_result</tans>
+      <boxsize>4</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>0</mustverify>
+      <showvalidation>0</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct addition of the given measurements.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>hm_result </tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt2</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct addition of the given measurements.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans2</sans>
+        <tans>m_result</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt2-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt2-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt3</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct addition of the given measurements.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans3</sans>
+        <tans>cm_result</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt3-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt3-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <deployedseed>1520293038</deployedseed>
+    <deployedseed>97227565</deployedseed>
+    <deployedseed>1132969709</deployedseed>
+    <deployedseed>37904645</deployedseed>
+    <deployedseed>1372090421</deployedseed>
+    <deployedseed>139770727</deployedseed>
+    <deployedseed>1893984678</deployedseed>
+    <deployedseed>1789079868</deployedseed>
+    <deployedseed>326520487</deployedseed>
+    <deployedseed>1687975333</deployedseed>
+    <deployedseed>765466162</deployedseed>
+    <deployedseed>101769054</deployedseed>
+    <deployedseed>1130075491</deployedseed>
+    <qtest>
+      <testcase>1</testcase>
+      <description>Test case assuming the teacher's input gets full marks.</description>
+      <testinput>
+        <name>ans1</name>
+        <value>hm_result </value>
+      </testinput>
+      <testinput>
+        <name>ans2</name>
+        <value>m_result</value>
+      </testinput>
+      <testinput>
+        <name>ans3</name>
+        <value>cm_result</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt1-1-T</expectedanswernote>
+      </expected>
+      <expected>
+        <name>prt2</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt2-1-T</expectedanswernote>
+      </expected>
+      <expected>
+        <name>prt3</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt3-1-T</expectedanswernote>
+      </expected>
+    </qtest>
+  </question>
+</quiz>

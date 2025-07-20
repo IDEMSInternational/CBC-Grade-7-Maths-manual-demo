@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>trial triangle</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p><b>Note:write</b>Write your answer to 2d.p</p><p>[[input:ans1]] [[validation:ans1]][[feedback:prt1]</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cone with Height and Radius</title>
+</head>
+<body>
+  
+  <svg width="400" height="400" style="border:1px solid #ccc;">
+    <!-- Scale: 1 cm = 40 pixels -->
+    <!-- Radius in pixels: 4 cm * 40 = 160 pixels -->
+    <!-- Height in pixels: 5 cm * 40 = 200 pixels -->
+
+    <!-- Fill the cone sides (curved surface) with light blue -->
+    <polygon points="40,300 200,100 360,300" fill="lightblue" opacity="1" stroke="black" />
+
+    <!-- Base ellipse filled with orange -->
+    <ellipse cx="200" cy="300" rx="160" ry="30" fill="orange" stroke="black" />
+
+    <!-- Side lines (optional, already defined by polygon stroke) -->
+    <line x1="40" y1="300" x2="200" y2="100" stroke="black" />
+    <line x1="360" y1="300" x2="200" y2="100" stroke="black" />
+
+    <!-- Height line -->
+    <line x1="200" y1="100" x2="200" y2="300" stroke="red" stroke-dasharray="5,5" />
+    <text x="283" y="200" fill="red">5 cm</text>
+
+    <!-- Radius line -->
+    <line x1="200" y1="300" x2="360" y2="300" stroke="blue" stroke-dasharray="5,5" />
+    <text x="270" y="290" fill="blue">4 cm</text>
+  </svg>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Wireframe Cube</title>
+</head>
+<body>
+  <svg width="375" height="375" viewBox="0 0 375 375">
+    <!-- Front face -->
+    <polygon points="90,90 202.5,90 202.5,202.5 90,202.5" stroke="blue" fill="none" />
+    <!-- Back face -->
+    <polygon points="135,45 247.5,45 247.5,157.5 135,157.5" stroke="blue" fill="none" />
+    <!-- Connect corners -->
+    <line x1="90" y1="90" x2="135" y2="45" stroke="blue" />
+    <line x1="202.5" y1="90" x2="247.5" y2="45" stroke="blue" />
+    <line x1="202.5" y1="202.5" x2="247.5" y2="157.5" stroke="blue" />
+    <line x1="90" y1="202.5" x2="135" y2="157.5" stroke="blue" />
+
+    <!-- Vertex labels (invisible) -->
+    <text x="90" y="90" font-family="Arial" font-size="18" fill="none">A</text>
+    <text x="202.5" y="90" font-family="Arial" font-size="18" fill="none">B</text>
+    <text x="202.5" y="202.5" font-family="Arial" font-size="18" fill="none">C</text>
+    <text x="90" y="202.5" font-family="Arial" font-size="18" fill="none">D</text>
+    <text x="135" y="45" font-family="Arial" font-size="18" fill="none">E</text>
+    <text x="247.5" y="45" font-family="Arial" font-size="18" fill="none">F</text>
+    <text x="247.5" y="157.5" font-family="Arial" font-size="18" fill="none">G</text>
+    <text x="135" y="157.5" font-family="Arial" font-size="18" fill="none">H</text>
+
+    <!-- Midpoints (circles hidden), labels visible -->
+
+    <!-- "3cm" for midpoint of DC -->
+    <circle cx="146.25" cy="202.5" r="4.5" fill="none" />
+    <text x="150" y="222" font-family="Arial" font-size="18" fill="black">{#side#} cm</text>
+
+    <!-- "1cm" for midpoint of CG -->
+    <circle cx="225" cy="180" r="4.5" fill="none" />
+    <text x="229" y="198" font-family="Arial" font-size="18" fill="black">{#side#} cm</text>
+
+    <!-- "2cm" for midpoint of GF -->
+    <circle cx="247.5" cy="101.25" r="4.5" fill="none" />
+    <text x="252" y="120" font-family="Arial" font-size="18" fill="black">{#side#} cm</text>
+  </svg>
+</body>
+</html>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text/>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2025012100</text>
+    </stackversion>
+    <questionvariables>
+      <text/>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text><![CDATA[<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cone with Height and Radius</title>
+</head>
+<body>
+  
+  <svg width="400" height="400" style="border:1px solid #ccc;">
+    <!-- Scale: 1 cm = 40 pixels -->
+    <!-- Radius in pixels: 4 cm * 40 = 160 pixels -->
+    <!-- Height in pixels: 5 cm * 40 = 200 pixels -->
+
+    <!-- Fill the cone sides (curved surface) with light blue -->
+    <polygon points="40,300 200,100 360,300" fill="lightblue" opacity="1" stroke="black" />
+
+    <!-- Base ellipse filled with orange -->
+    <ellipse cx="200" cy="300" rx="160" ry="30" fill="orange" stroke="black" />
+
+    <!-- Side lines (optional, already defined by polygon stroke) -->
+    <line x1="40" y1="300" x2="200" y2="100" stroke="black" />
+    <line x1="360" y1="300" x2="200" y2="100" stroke="black" />
+
+    <!-- Height line -->
+    <line x1="200" y1="100" x2="200" y2="300" stroke="red" stroke-dasharray="5,5" />
+    <text x="210" y="200" fill="red">5 cm</text>
+
+    <!-- Radius line -->
+    <line x1="200" y1="300" x2="360" y2="300" stroke="blue" stroke-dasharray="5,5" />
+    <text x="270" y="290" fill="blue">4 cm</text>
+  </svg>
+</body>
+</html>]]></text>
+    </specificfeedback>
+    <questionnote format="html">
+      <text>1</text>
+    </questionnote>
+    <questiondescription format="html">
+      <text/>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>1</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options/>
+    </input>
+  </question>
+</quiz>

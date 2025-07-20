@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Construction of a triangle and its incircle given the three sides of the triangle</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p>Construct a circle touching the edges of a triangle \(ABC\) where \(AB = {@AB@}\,cm, BC = {@BC@}\,cm\) and \(AC = {@AC@}\,cm.\) What is the measure of the radius of the circle? (Write your answer to 1 d.p)</p><p>[[input:ans1]] [[validation:ans1]]</p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<h3>Worked Solution</h3>
+[[jsxgraph]]
+var board = JXG.JSXGraph.initBoard('jxgbox',{
+                boundingbox:[-5,10,10,-1], 
+                axis: false,
+                showCopyright:false,keepAspectRatio:true
+    
+            });
+
+            var p1 = board.create('point', [0,0] , {name:'A',fillColor:'red',strokeColor:'red', point: {visible: false}});
+            var p2 = board.create('point', {#coordinate_pointB#} , {name:'B',fillColor:'red',strokeColor:'red', visible: true});
+            var p3 = board.create('point', {#coordinate_pointC#} , {name:'C',fillColor:'red',strokeColor:'red', visible: true});
+
+            var b1 = board.create('segment',['A','B'],{name:''});
+            var b2 = board.create('segment',['A','C'],{name:''});
+            var b3 = board.create('segment',['C','B'],{name:''});
+
+            // Create the angle bisector
+            var bisector = board.create('bisector', [p1, p2, p3]);
+            var bisector = board.create('bisector', [p2, p3, p1]);
+
+            var incircle = board.create('incircle', [p1, p2, p3]);
+
+            var angle1 = board.create('angle', [p2,p1,p3], {type:'sector', orthoType:'square', orthoSensitivity:2, radius:0.6, name:'{#angle_BAC#}&deg', visible:false});
+[[/jsxgraph]]]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2025012100</text>
+    </stackversion>
+    <questionvariables>
+      <text>/*randomize the lengths of the triangle*/
+AB:rand_with_step(4,9,.1);
+AC:rand_with_step(5,9,.1);
+
+/*angle BAC*/
+angle_BAC:rand_with_step(30,125,1);
+
+/*coordinates of the triangle */
+dtr(d) := d*%pi/180; /* Convert degrees to radians */
+angle_to_point(r, d) := [float(r*cos(dtr(d))), float(r*sin(dtr(d)))];
+coordinate_pointB: angle_to_point(AB, 0);
+coordinate_pointC: angle_to_point(AC, angle_BAC);
+angle_BAC_radians:angle_BAC*%pi/180;
+
+/*compute the side lengths of the traingle*/
+side_AB:AB;
+side_AC:AC;
+side_BC:sqrt(AB^2+AC^2-2*AB*AC*cos(angle_BAC_radians));
+BC:decimalplaces(side_BC,1);
+
+/*compute the semi-perimeter */
+semi_perimeter:(side_AB+side_BC+side_AC)/2;
+
+/*compute the area of using Heron's formular*/
+area:sqrt(semi_perimeter*(semi_perimeter - side_AB)*(semi_perimeter - side_BC)*(semi_perimeter - side_AC));
+
+/*compute the radius of the incircle*/
+radius:area/semi_perimeter;
+ta:decimalplaces(radius,1); </text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text>[[feedback:prt1]]</text>
+    </specificfeedback>
+    <questionnote format="html">
+      <text><![CDATA[<p>{@AB@}</p>
+<p>{@AC@}</p>
+<p>{@angle_BAC@}</p>
+<p>{@ta@}</p>
+<p>{@coordinate_pointB@}</p>
+<p>{@coordinate_pointC@}</p>
+<p>{@area@}</p>
+<p>{@semi_perimeter@}</p>
+<p>{@radius@}</p>
+<p>{@side_AB@}</p>
+<p>{@side_AC@}</p>
+<p>{@side_BC@}</p>]]></text>
+    </questionnote>
+    <questiondescription format="html">
+      <text/>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>ta</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct measure of the radius of the incircle correct to 1 d.p</description>
+        <answertest>NumDecPlaces</answertest>
+        <sans>ans1</sans>
+        <tans>ta</tans>
+        <testoptions>1</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+  </question>
+</quiz>

@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Solving an Application linear equation for age</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p>\({@names_person_1@}\) is \({@persons_1_age@}\) years old. \({@names_person_2@}\) is \({@letters@}\) years younger than \({@names_person_1@}\). The sum of their ages are \({@their_age@}\). Calculate the age of \({@names_person_2@}\).</p>
+
+<p>\({@names_person_2@}\) is [[input:ans1]] years old [[validation:ans1]] [[feedback:prt1]]</p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<h3>Worked Solution.</h3>
+<p>Given that;</p>
+
+<p>\(\qquad \qquad{@names_person_1@}\)'s age = \({@persons_1_age@}\) and</p>
+
+<p>\(\qquad \qquad{@names_person_2@}\)'s age = \({@persons_2_age@}\) (We subtract because \({@names_person_2@}\) is \({@letters@}\) years younger than \({@names_person_1@}\)</p>
+
+<p>To find the age of \({@names_person_2@}\) we form an equation with \({@names_person_1@}\)'s age and \({@names_person_2@}\)'s age.</p>
+
+<p>\(\qquad \qquad {@eqn_names@}\)</p>
+
+<p>Which can be expressed in a linear equation as;</p>
+
+<p>\(\qquad \qquad {@persons_1_age@} +\) (\({@persons_2_age@}\)) = \({@their_age@}\)</p>
+
+<p>Simplifying the Equation by opening the brackets and adding the numbers we have;</p>
+
+<p>\(\qquad \qquad {@persons_1_age@} + {@persons_2_age@} = {@their_age@}\)</p>
+
+<p>\(\qquad \qquad {@eqns@}\)</p>
+
+<p>Now, we solve for \({@letters@}\), by first taking \({@letters@}\) to the other side of the equal side, we have;</p>
+
+<p>\(\qquad \qquad {@letter_eqn_rep@}\)</p>
+
+<p>Now take \({@their_age@}\) back to  the other side so that we have the value of \({@letters@}\),</p>
+
+<p>\(\qquad \qquad {@letters@} =\) \({@twice_persons_1_age@}\) - \({@their_age@}\)</p>
+
+<p>Therefore,</p>
+
+<p>\(\qquad \qquad {@letter_reps@}\)</p>
+
+<p>To get the age of \({@names_person_2@}\), since \({@names_person_2@}\) is \({@letter_reps@}\) years younger than \({@names_person_1@}\), therefore we should subtract it from \({@names_person_1@}\)’s age, we get;</p>
+
+<p>\(\qquad \qquad {@names_person_1@}\) = \({@persons_1_age@}\) - \({@letter_solution@}\)</p>
+
+<p>\(\qquad \qquad {@names_person_2 = ta_age@}\) years old</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2025012100</text>
+    </stackversion>
+    <questionvariables>
+      <text><![CDATA[/* Question
+Fred is 21 years old. Ann is x years younger than Fred. The sum of their ages is 35. Calculate the age of Ann.
+*/
+letters: rand([b, c, d, f, g, h, j, k, l, m, n, p, q, r, s, t, v, w, x, y, z]);
+
+names_person_1:rand(["Achieng", "Adero", "Akoko", "Apiyo", "Asego", "Awino", "Jaramogi", "Jatani", "Kepha", 
+        "Kwamboka", "Maranga", "Mokeira", "Moraa", "Moriasi", "Mose", "Motari", "Mugendi", "Mumbi", "Nyang'au", 
+            "Akinyi", "Amara", "Baraka", "Bilha", "Biko", "Chipo"]);
+
+names_person_2: rand(["Desta", "Ekene", "Eshe", "Faraji", "Habiba", "Halima", "Imani", "Jabari", "Jalia", "Juma", 
+        "Kamau", "Kato", "Kwame", "Laila", "Mosi", "Mugisha", "Mwangi", "Nia", "Nyasha", "Omari", "Tinashe", "Zuberi", "Zuri"]);
+
+/*Random Ages*/
+persons_1_age: rand(10) + 20; /* Random age for Fred between 20 and 30 */
+
+their_age:rand_with_step(31,49,1);
+
+/*Workings*/
+eqn_names:names_person_1 + names_person_2 = their_age;    /*Equation of names*/
+persons_2_age:persons_1_age - letters;/*Persons_2_age:*/
+eqns:persons_1_age + (persons_2_age) = their_age;    /*Simplified Equation */
+
+twice_persons_1_age:2*persons_1_age;
+letter_eqn_rep:twice_persons_1_age = their_age+letters;
+letter_reps:letters = twice_persons_1_age - their_age;
+letter_solution:twice_persons_1_age - their_age;
+
+person_2_age:persons_1_age -letter_solution;
+
+ta_age:persons_1_age-letter_solution;
+
+/*Mistakes*/
+/*Writing the equation incorrectly.Ignoring the ages should sum up; */
+eqn_mistake:persons_1_age -letters;
+/*Forgetting to subtract the value of variable from person 1 age and  assuming the variable is person 2 age.*/
+eqn_mistake_2:letter_solution ;]]></text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="html">
+      <text><![CDATA[<p>\({@names_person_2@}\)'s age is \({@ta_age@}\)</p>]]></text>
+    </questionnote>
+    <questiondescription format="html">
+      <text><![CDATA[<p id="author">Rodgers Maragia</p>
+<p id="concept">https://docs.google.com/document/d/1vcu9EodsZfM2ZEHCGHJ7P2NJrWCwi9-sfvF5IUgrni0/edit?usp=sharing</p>
+<p id="reviewer"></p>
+<p id="reviewer"></p>
+<p id="description">In this question, the student is required to determine the age of person A. The problem states that person F is 21 years old, and A is x years younger than F. Additionally, the sum of their ages is given as 35. The student is expected to form an algebraic equation representing this relationship and solve for x, which represents A's age.
+</p>]]></text>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>ta_age</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct answer of the age.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>ta_age	</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <description>Mistakenly give \({@letters@}\) as the answer instead of computing \({@names_person_2@}\) actual age.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>eqn_mistake</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-2-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>You have computed the equations incorrectly, remember to check that their ages should sum up to \({@their_age@}\) and include each individual's ages.  So that you get the actual number age of \({@names_person_2@}\).</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>2</falsenextnode>
+        <falseanswernote>prt1-2-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>2</name>
+        <description>Forgetting to subtract x from \({@names_person_1@}\)’s age and  assuming \({@letters@}\) is \({@names_person_2@}\)’s age.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>eqn_mistake_2</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-3-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>You have not solved \({@names_person_2@}\)'s age as \({@letters@}\) is supposed to be subtracted from \({@names_person_2@}\)’s age.
+</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-3-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <deployedseed>763706865</deployedseed>
+    <deployedseed>1844520957</deployedseed>
+    <deployedseed>1405325871</deployedseed>
+    <deployedseed>433641507</deployedseed>
+    <deployedseed>47072801</deployedseed>
+    <deployedseed>2014011250</deployedseed>
+    <deployedseed>942279385</deployedseed>
+    <deployedseed>1632151814</deployedseed>
+    <deployedseed>50137309</deployedseed>
+    <deployedseed>940385303</deployedseed>
+    <deployedseed>448758583</deployedseed>
+    <deployedseed>83594196</deployedseed>
+    <deployedseed>1885478201</deployedseed>
+    <deployedseed>1115560085</deployedseed>
+    <deployedseed>935337449</deployedseed>
+    <deployedseed>1504148403</deployedseed>
+    <deployedseed>490797760</deployedseed>
+    <deployedseed>529785693</deployedseed>
+    <deployedseed>1140878901</deployedseed>
+    <deployedseed>1361858691</deployedseed>
+    <deployedseed>691753459</deployedseed>
+    <deployedseed>1266787269</deployedseed>
+    <deployedseed>1132314965</deployedseed>
+    <deployedseed>984699004</deployedseed>
+    <deployedseed>710045189</deployedseed>
+    <deployedseed>1962841065</deployedseed>
+    <deployedseed>757834429</deployedseed>
+    <deployedseed>1229111791</deployedseed>
+    <deployedseed>238537080</deployedseed>
+    <deployedseed>800302719</deployedseed>
+    <deployedseed>1313049472</deployedseed>
+    <deployedseed>1458695049</deployedseed>
+    <deployedseed>1665858041</deployedseed>
+    <deployedseed>417101865</deployedseed>
+    <deployedseed>515436613</deployedseed>
+    <deployedseed>1237120074</deployedseed>
+    <deployedseed>2044765568</deployedseed>
+    <deployedseed>2026939187</deployedseed>
+    <deployedseed>1280618282</deployedseed>
+    <deployedseed>919462391</deployedseed>
+    <deployedseed>2117969245</deployedseed>
+    <deployedseed>1453919206</deployedseed>
+    <deployedseed>1852257417</deployedseed>
+    <deployedseed>701119426</deployedseed>
+    <deployedseed>881301415</deployedseed>
+    <deployedseed>810459258</deployedseed>
+    <deployedseed>1977369695</deployedseed>
+    <deployedseed>1078576550</deployedseed>
+    <deployedseed>1959674370</deployedseed>
+    <deployedseed>1436273872</deployedseed>
+    <deployedseed>657183802</deployedseed>
+    <deployedseed>991527531</deployedseed>
+    <deployedseed>1101834928</deployedseed>
+    <deployedseed>189442964</deployedseed>
+    <deployedseed>1053206533</deployedseed>
+    <deployedseed>1313672233</deployedseed>
+    <deployedseed>2084384854</deployedseed>
+    <deployedseed>249773358</deployedseed>
+    <deployedseed>543631929</deployedseed>
+    <deployedseed>886790038</deployedseed>
+    <deployedseed>365944884</deployedseed>
+    <deployedseed>1738264500</deployedseed>
+    <deployedseed>2013704700</deployedseed>
+    <deployedseed>51818554</deployedseed>
+    <deployedseed>1082681352</deployedseed>
+    <deployedseed>1480127591</deployedseed>
+    <deployedseed>1717240494</deployedseed>
+    <deployedseed>606155366</deployedseed>
+    <deployedseed>750257906</deployedseed>
+    <deployedseed>1314360240</deployedseed>
+    <deployedseed>1125725552</deployedseed>
+    <deployedseed>872074496</deployedseed>
+    <deployedseed>171770744</deployedseed>
+    <deployedseed>359709430</deployedseed>
+    <deployedseed>1684322687</deployedseed>
+    <deployedseed>2053712297</deployedseed>
+    <deployedseed>1770112640</deployedseed>
+    <deployedseed>1585121075</deployedseed>
+    <deployedseed>269003941</deployedseed>
+    <deployedseed>1039479870</deployedseed>
+    <deployedseed>326905021</deployedseed>
+    <deployedseed>726866124</deployedseed>
+    <deployedseed>844898892</deployedseed>
+    <deployedseed>1313269618</deployedseed>
+    <deployedseed>1839496656</deployedseed>
+    <deployedseed>668729033</deployedseed>
+    <deployedseed>735503790</deployedseed>
+    <deployedseed>463866728</deployedseed>
+    <deployedseed>597790255</deployedseed>
+    <deployedseed>1800742911</deployedseed>
+    <deployedseed>1098826104</deployedseed>
+    <deployedseed>2016340838</deployedseed>
+    <deployedseed>1701059480</deployedseed>
+    <deployedseed>900184740</deployedseed>
+    <deployedseed>1725482191</deployedseed>
+    <deployedseed>1821043988</deployedseed>
+    <deployedseed>2130260458</deployedseed>
+    <deployedseed>569104096</deployedseed>
+    <deployedseed>1168348043</deployedseed>
+    <deployedseed>40190378</deployedseed>
+    <qtest>
+      <testcase>1</testcase>
+      <description/>
+      <testinput>
+        <name>ans1</name>
+        <value>eqn_mistake</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>0.0000000</expectedscore>
+        <expectedpenalty/>
+        <expectedanswernote>prt1-2-T</expectedanswernote>
+      </expected>
+    </qtest>
+    <qtest>
+      <testcase>2</testcase>
+      <description/>
+      <testinput>
+        <name>ans1</name>
+        <value>eqn_mistake_2</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>0.0000000</expectedscore>
+        <expectedpenalty/>
+        <expectedanswernote>prt1-3-T</expectedanswernote>
+      </expected>
+    </qtest>
+  </question>
+</quiz>

@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Finding the place value of digits in a given number.</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p> What is the place value of the following digits in \({@new_number@}\)</p>
+<p>a. \({@sixth_val@}\) [[input:ans1]] [[validation:ans1]][[feedback:prt1]]</p>
+<p>b. \({@fifth_val@}\) [[input:ans2]] [[validation:ans2]][[feedback:prt2]]</p>
+<p>c. \({@third_val@}\) [[input:ans3]] [[validation:ans3]][[feedback:prt3]]</p>
+<p>d. \({@first_val@}\) [[input:ans4]] [[validation:ans4]][[feedback:prt4]]</p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<h3>Worked solution</h3>
+<p>The place value of a digit in a number  is the position of that digit in the number.</p>
+<p>For the given number,the place value of the digits are as shown:</p>
+<p>\({@first_val@}\) - Hundreds of Millions</p>
+<p>\({@second_val@}\) - Tens of Millions</p>
+<p>\({@third_val@}\) - Millions</p>
+<p>\({@forth_val@}\) - Hundreds of Thousands</p>
+<p>\({@fifth_val@}\) - Tens of Thousands</p>
+<p>\({@sixth_val@}\) - Thousands</p>
+<p>\({@seventh_val@}\) - Hundreds</p>
+<p>\({@eighth_val@}\) - Tens</p>
+<p>\({@ninth_val@}\) - Ones</p>
+<p>Therefore the place value of digit:</p>
+<p>a. \({@sixth_val@}\) is  {@mcq_correct(ta_1)[1]@}</p>
+<p>b. \({@fifth_val@}\)  is  {@mcq_correct(ta_2)[1]@}</p>
+<p>c. \({@third_val@}\)  is  {@mcq_correct(ta_3)[1]@}</p>
+<p>d. \({@first_val@}\) is  {@mcq_correct(ta_4)[1]@}</p>
+<h3>Table 2</h3>
+<table cellspacing="0" cellpadding="0" border="1">
+  <tbody>
+    <tr>
+      <td width="601" valign="top">
+        <p align="center"><span lang="EN-US">Number</span></p>
+      </td>
+      <td width="601" valign="top">
+        <p align="center"><span lang="EN-US">Hundreds of millions</span></p>
+      </td>
+      <td width="601" valign="top">
+        <p align="center"><span lang="EN-US">Tens of millions</span></p>
+      </td>
+      <td width="601" valign="top">
+        <p align="center"><span lang="EN-US">Millions</span></p>
+      </td>
+      <td width="601" valign="top">
+        <p align="center"><span lang="EN-US">Hundreds of thousands</span></p>
+      </td>
+      <td width="601" valign="top">
+        <p align="center"><span lang="EN-US">Tens of thousands</span></p>
+      </td>
+      <td width="601" valign="top">
+        <p align="center"><span lang="EN-US">Thousands</span></p>
+      </td>
+      <td width="601" valign="top">
+        <p align="center"><span lang="EN-US">Hundreds</span></p>
+      </td>
+      <td width="601" valign="top">
+        <p align="center"><span lang="EN-US">Tens</span></p>
+      </td>
+      <td width="601" valign="top">
+        <p align="center"><span lang="EN-US">Ones</span></p>
+      </td>
+    </tr>
+    <tr>
+        <td width="63" valign="top">
+            <p><span lang="EN-US"> 538 214 976 </span></p>
+          </td>
+      <td width="130" valign="top">5<br></td>
+      <td width="63" valign="top">
+        <p><span lang="EN-US">3</span></p>
+      </td>
+      <td width="63" valign="top">
+        <p><span lang="EN-US">8</span></p>
+      </td>
+      <td width="63" valign="top">
+        <p><span lang="EN-US">2</span></p>
+      </td>
+      <td width="60" valign="top">
+        <p><span lang="EN-US">1</span></p>
+      </td>
+      <td width="60" valign="top">
+        <p><span lang="EN-US">4</span></p>
+      </td>
+      <td width="60" valign="top">
+        <p style="text-align: left;"><span lang="EN-US">9</span>
+        </p>
+      </td>
+      <td width="60" valign="top">
+        <p><span lang="EN-US">7</span></p>
+      </td>
+      <td width="60" valign="top">
+        <p><span lang="EN-US">6</span></p>
+      </td>
+    </tr>
+  </tbody>
+</table>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2023060500</text>
+    </stackversion>
+    <questionvariables>
+      <text><![CDATA[first_val:rand(4)+1;  /*first digit in the number from left*/
+second_val:rand_with_prohib(1,9,[first_val]); /*second digit in the number from left*/
+third_val:rand_with_prohib(1,9,[first_val,second_val]); /*third digit in the number from left*/
+forth_val:rand_with_prohib(1,9,[first_val,second_val,third_val]); /*fourth digit in the number from left*/
+fifth_val:rand_with_prohib(1,9,[first_val,second_val,third_val,forth_val]); /*fifth digit in the number from left*/
+sixth_val:rand_with_prohib(1,9,[first_val,second_val,third_val,forth_val,fifth_val]); /*sixth digit in the number from left*/
+seventh_val:rand_with_prohib(1,9,[first_val,second_val,third_val,forth_val,fifth_val,sixth_val]); /*seventh digit in the number from left*/
+eighth_val:rand_with_prohib(1,9,[first_val,second_val,third_val,forth_val,fifth_val,sixth_val,seventh_val]); /*eighth digit in the number from left*/
+ninth_val:rand_with_prohib(1,9,[first_val,second_val,third_val,forth_val,fifth_val,sixth_val,seventh_val,eighth_val]); /* ninth digit in the number from left*/
+new_number:(first_val*100000000)+(second_val*10000000)+(third_val*1000000)+(forth_val*100000)+(fifth_val*10000)+(sixth_val*1000)+(seventh_val*100)+(eighth_val*10)+(ninth_val*1); /*the number itself*/
+
+sixth_new_num:sixth_val*1000;
+ta_1:random_permutation ([["1000",false],[sixth_new_num,false],[sixth_val,false],["Thousands",true]]);
+
+fifth_new_num:fifth_val*10000;
+ta_2:random_permutation ([["10000",false],[fifth_new_num,false],[fifth_val,false],["Tens of Thousands",true]]);
+
+third_new_num:third_val*1000000;
+ta_3:random_permutation ([["1000000",false],[third_new_num,false],[third_val,false],["Millions",true]]);
+
+first_new_num:first_val*100000000;
+ta_4:random_permutation ([["100000000",false],[first_new_num,false],[first_val,false],["Hundreds of Millions",true]]);]]></text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="moodle_auto_format">
+      <text><![CDATA[<p>\({@new_number@}\)</p>
+<p>\({@ta_1@}\)</p>
+<p>\({@ta_2@}\)</p>
+<p>\({@ta_3@}\)</p>
+<p>\({@ta_4@}\)</p>]]></text>
+    </questionnote>
+    <questiondescription format="html">
+      <text><![CDATA[<p id="author">Daniel Murunga</p>
+<p id="concept">https://docs.google.com/document/d/1zesmvy1-sNmoehYZ-BffK_FCDiNJ6aFtSoqdr6fIM3I/edit?tab=t.0</p>
+<p id="reviewer"></p>
+<p id="reviewer"></p>
+<p id="description">To determine the place value of a digit in a given number, start from the leftmost digit in the number and move toward the right, assigning each digit its corresponding place value, starting from ones, tens, hundreds, thousands, and so on.</p>]]></text>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>dropdown</type>
+      <tans>ta_1</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>0</mustverify>
+      <showvalidation>0</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans2</name>
+      <type>dropdown</type>
+      <tans>ta_2</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>0</mustverify>
+      <showvalidation>0</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans3</name>
+      <type>dropdown</type>
+      <tans>ta_3</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>0</mustverify>
+      <showvalidation>0</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans4</name>
+      <type>dropdown</type>
+      <tans>ta_4</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>0</mustverify>
+      <showvalidation>0</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description/>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>mcq_correct(ta_1)[1]</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt2</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description/>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans2</sans>
+        <tans>mcq_correct(ta_2)[1]</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt2-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt2-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt3</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description/>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans3</sans>
+        <tans>mcq_correct(ta_3)[1]</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt3-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt3-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt4</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description/>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans4</sans>
+        <tans>mcq_correct(ta_4)[1]</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt4-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt4-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <deployedseed>1656428430</deployedseed>
+    <deployedseed>502965138</deployedseed>
+  </question>
+</quiz>

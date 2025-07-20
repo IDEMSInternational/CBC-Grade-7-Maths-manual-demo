@@ -1,0 +1,560 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Calculating Real-World Distance and Travel Time Using a Map Scale</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p>A hiking trail map uses a scale of 1:50,000.</p><p>
+Two campsites, Camp A and Camp B, are \({@distance@}\) cm apart on the map.
+</p><p>
+  1.  Express the scale in statement form.
+</p>
+<p> [[input:ans1]] \(\text{cm}\) [[feedback:prt1]]  represent [[input:ans2]] \(\text{km}\) [[feedback:prt2]]
+</p>
+<p>
+  2.  Calculate the actual distance between Camp A and Camp B in kilometers.
+</p>
+<p>[[input:ans3]] \(\text{km}\) [[feedback:prt3]]</p>
+<p>
+    3. If a hiker walks at an average speed of \({@speed@}\) km/h, how long will it take them to walk from Camp A to Camp B?</p><p>[[input:ans4]] \(\text{km}\) [[feedback:prt4]]</p>
+<phidden>[[validation:ans1]][[validation:ans2]][[validation:ans3]][[validation:ans4]]</p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<h3>Worked Solution</h3>
+<p>1. Express the scale in statement form:</p>
+<p>Scale 1:\({@scale@}\) means:</p>
+<p>1 cm on map=\({@scale@}\) cm in real life</p>
+
+<p>Convert \({@scale@}\) cm to kilometers:</p>
+
+<p>\({@scale@}\)  cm=\({@scale@} \div 100000 \) cm = km</p>
+
+<p>Thus, the statement form is</p>
+
+<p>1 cm represents \({@scale_ratio@}\) kilometers.</p>
+<p>2. Calculate the actual distance between Camp A and Camp B:</p>
+<p>Given distance on map = \({@distance@}\) cm.</p>
+<p>Using the statement form:</p>
+<p> \({@distance@} \times {@speed@}\)</p>
+<p> = \({@answer2@}\) kilometres</p>
+<p></p>
+<p>3. Find the time taken to walk from Camp A to Camp B:</p>
+<p>Speed = \({@speed@}\) km/h</p>
+<p>
+Distance = \({@distance@}\) km</p>
+<p> Time = \( \frac{Distance}{Speed}\) </p>
+<p> =\( \frac{{@distance@}}{{@speed@}}\) </p>
+<p> = \({@time@}\)hours</p>
+<p>Convert hours into minutes:</p>
+<p> = \({@time@} \times \) 60</p>
+<p> = \({@answer3@}\)</p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2025012100</text>
+    </stackversion>
+    <questionvariables>
+      <text>first_ratio:1;
+distance:rand(198)+30;/*randomized  variables of distance*/
+speed:rand(125)+1;/*randomized  variables of speed*/
+time:distance/speed;/*division of distance over speed*/
+answer:time*60;/*conversion of hours to minutes*/
+answer3:round(answer);/*Rounding off */
+scale:rand_with_step(50000,150000,1000);/*scale randomized range from  50000 to 150000*/
+scale_ratio:float(scale/100000);/*scale ratio*/
+answer2: distance*speed;/*average time taken by the hiker to walk from one camp A to camp B*/
+/*mistakes*/
+time_mistake:distance*speed;/*multiplying distance by speed instead of division*/
+ans:time_mistake*60;    /*converting mistaken-ed time calculation to minutes*/
+ta_1:round(ans);/*rounding off*/
+ta_2:speed*scale_ratio;</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="html">
+      <text>{@scale_ratio@}
+{@answer2@}
+{@answer3@}</text>
+    </questionnote>
+    <questiondescription format="html">
+      <text/>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>first_ratio</tans>
+      <boxsize>9</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>0</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans2</name>
+      <type>algebraic</type>
+      <tans>scale_ratio</tans>
+      <boxsize>9</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>0</mustverify>
+      <showvalidation>0</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans3</name>
+      <type>algebraic</type>
+      <tans>answer2</tans>
+      <boxsize>9</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans4</name>
+      <type>algebraic</type>
+      <tans>answer3</tans>
+      <boxsize>9</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>0</mustverify>
+      <showvalidation>0</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>conversion</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>first_ratio</tans>
+        <testoptions>2</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <description>Reversed representation of scale</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>scale_ratio</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-2-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>You seem to have reversed the relationship: saying “\({@scale_ratio@}\)cm represents 1 km.” instead of 1 cm represents \({@scale_ratio@}\) km </p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-2-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt2</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Express the scale in statement form</description>
+        <answertest>NumDecPlaces</answertest>
+        <sans>ans2</sans>
+        <tans>scale_ratio</tans>
+        <testoptions>2</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt2-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt2-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <description>Misinterpreting the scale format</description>
+        <answertest>NumDecPlaces</answertest>
+        <sans>ans2</sans>
+        <tans>first_ratio</tans>
+        <testoptions>2</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt2-2-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>You seem to have reversed the relationship: saying “\({@scale_ratio@}\)cm represents 1 km.”</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt2-2-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt3</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>The answer.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans3</sans>
+        <tans>answer2</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt3-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt3-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <description>Calculating mapped distance instead ofactual distanc</description>
+        <answertest>NumDecPlaces</answertest>
+        <sans>ans3</sans>
+        <tans>ta_2</tans>
+        <testoptions>2</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt3-2-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>You seem to have calculated the actual distance by multiplying the mapped distance i.e  \({@scale_ratio@}\)  by the speed. Kindly confirm the correct formula to use from the worked solution. </p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt3-2-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt4</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>answer</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans4</sans>
+        <tans>answer3</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt4-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt4-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <description>Trying to use time = distance × speed (wrong formula).</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans4</sans>
+        <tans>ta_1</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt4-2-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>You seem to have computed correctly but multiplied  distance by speed to get time instead of dividing distance over speed</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt4-2-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <deployedseed>10046437</deployedseed>
+    <deployedseed>189191243</deployedseed>
+    <deployedseed>528222104</deployedseed>
+    <deployedseed>846835646</deployedseed>
+    <deployedseed>1339797399</deployedseed>
+    <deployedseed>298067593</deployedseed>
+    <deployedseed>2035437184</deployedseed>
+    <deployedseed>824587731</deployedseed>
+    <deployedseed>330801942</deployedseed>
+    <deployedseed>1557120126</deployedseed>
+    <deployedseed>1770547293</deployedseed>
+    <deployedseed>1926138308</deployedseed>
+    <deployedseed>596678815</deployedseed>
+    <deployedseed>1159636959</deployedseed>
+    <deployedseed>993509460</deployedseed>
+    <deployedseed>1634425363</deployedseed>
+    <deployedseed>1456682424</deployedseed>
+    <deployedseed>614646766</deployedseed>
+    <deployedseed>1332235946</deployedseed>
+    <deployedseed>580884242</deployedseed>
+    <deployedseed>450323910</deployedseed>
+    <deployedseed>184963262</deployedseed>
+    <deployedseed>621020026</deployedseed>
+    <deployedseed>432426664</deployedseed>
+    <deployedseed>887064280</deployedseed>
+    <deployedseed>1580511345</deployedseed>
+    <deployedseed>1109856710</deployedseed>
+    <deployedseed>440995386</deployedseed>
+    <deployedseed>1041495895</deployedseed>
+    <deployedseed>1778706369</deployedseed>
+    <deployedseed>1980485318</deployedseed>
+    <deployedseed>1646046454</deployedseed>
+    <deployedseed>1303610271</deployedseed>
+    <deployedseed>1542993546</deployedseed>
+    <deployedseed>1093895958</deployedseed>
+    <deployedseed>160752079</deployedseed>
+    <deployedseed>1913239128</deployedseed>
+    <deployedseed>1565112615</deployedseed>
+    <deployedseed>1903973879</deployedseed>
+    <deployedseed>1350142215</deployedseed>
+    <deployedseed>1635055051</deployedseed>
+    <deployedseed>2056224823</deployedseed>
+    <deployedseed>1208676964</deployedseed>
+    <deployedseed>2042563236</deployedseed>
+    <deployedseed>431265714</deployedseed>
+    <deployedseed>2008002728</deployedseed>
+    <deployedseed>1727095360</deployedseed>
+    <deployedseed>1717200254</deployedseed>
+    <deployedseed>589428559</deployedseed>
+    <deployedseed>907932787</deployedseed>
+    <qtest>
+      <testcase>1</testcase>
+      <description>Checks for the correct answer</description>
+      <testinput>
+        <name>ans1</name>
+        <value>first_ratio</value>
+      </testinput>
+      <testinput>
+        <name>ans2</name>
+        <value>scale_ratio</value>
+      </testinput>
+      <testinput>
+        <name>ans3</name>
+        <value>answer2</value>
+      </testinput>
+      <testinput>
+        <name>ans4</name>
+        <value>answer3</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt1-1-T</expectedanswernote>
+      </expected>
+      <expected>
+        <name>prt2</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt2-1-T</expectedanswernote>
+      </expected>
+      <expected>
+        <name>prt3</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt3-1-T</expectedanswernote>
+      </expected>
+      <expected>
+        <name>prt4</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt4-1-T</expectedanswernote>
+      </expected>
+    </qtest>
+    <qtest>
+      <testcase>2</testcase>
+      <description>Misinterpreting the scale format</description>
+      <testinput>
+        <name>ans1</name>
+        <value>scale_ratio</value>
+      </testinput>
+      <testinput>
+        <name>ans2</name>
+        <value>first_ratio</value>
+      </testinput>
+      <testinput>
+        <name>ans3</name>
+        <value>ta_2</value>
+      </testinput>
+      <testinput>
+        <name>ans4</name>
+        <value>ta_1</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>0.0000000</expectedscore>
+        <expectedpenalty/>
+        <expectedanswernote>prt1-2-T</expectedanswernote>
+      </expected>
+      <expected>
+        <name>prt2</name>
+        <expectedscore>0.0000000</expectedscore>
+        <expectedpenalty>0.1000000</expectedpenalty>
+        <expectedanswernote>prt2-2-T</expectedanswernote>
+      </expected>
+      <expected>
+        <name>prt3</name>
+        <expectedscore>0.0000000</expectedscore>
+        <expectedpenalty/>
+        <expectedanswernote>prt3-2-T</expectedanswernote>
+      </expected>
+      <expected>
+        <name>prt4</name>
+        <expectedscore>0.0000000</expectedscore>
+        <expectedpenalty>0.1000000</expectedpenalty>
+        <expectedanswernote>prt4-2-T</expectedanswernote>
+      </expected>
+    </qtest>
+  </question>
+</quiz>

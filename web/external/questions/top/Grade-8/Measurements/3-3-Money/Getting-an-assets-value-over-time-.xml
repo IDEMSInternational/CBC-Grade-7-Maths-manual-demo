@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Getting an assets value over time.</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p>\(\text{@rams@}\) bought an item costing Ksh. \({@P@}\). Its value goes up by \({@r@}\)% every year. How much will it be worth after \({@n@}\)years?</p><p>Ksh. [[input:ans1]] [[validation:ans1]][[feedback:prt1]]</p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<h3>worked solution</h3>
+
+
+<p>Appreciation means the value is increasing.</p>
+<p>A \({@r@}\)% increase means the item’s value becomes  \({@R@}\)% of what it was the year before.</p>
+<p> \({@R@}\)% as a decimal is:</p>
+<p>= \(\frac{109}{100}\) = \({@rate@}\)</p>
+<p>So, each year, the value is multiplied by \({@rate@}\)</p>
+<p> Multiply the value  times \({@n@}\) (for \({@n@}\) years)</p>
+<p>We multiply first by the cost of the current year \({@P@}\) before it appreciates , and multiply it by \({@rate@}^{{@n@}}\) times:</p>
+<p>Value after 6 years = \({@P@} \times {@rate@}^{{@n@}} \) </p>
+<p>Using a calculator:</p>
+<p>First, calculate \({@rate@}^{{@n@}}\) </p>
+<p>Then multiply by \({@P@}\)</p>
+<p>\({@P@} \times {@rate@}^{{@n@}}\) </p>
+<p> = \({@float(A)@}\)</p>
+<p> =  \({@float@}\) to 2dp</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2025012100</text>
+    </stackversion>
+    <questionvariables>
+      <text><![CDATA[/* Randomly generate the starting value (P), rate (r), and years (n) */
+P : rand(4000) + 1000;   /* P is between 1000 and 4999 */
+
+r : rand(8) + 3;         /* r is between 3% and 10% */
+R:100+r;
+n : rand(8) + 3;         /* n is between 3 and 10 years */
+
+rams:rand(["Alice", "Brian", "Catherine", "Daniel", "Eva",
+"Frank", "Grace", "Henry", "Irene", "James",
+"Karen", "Leonard", "Maria", "Nathan", "Olivia",
+"Peter", "Queenie", "Robert", "Sophia", "Thomas",
+"Ursula", "Victor", "Wendy", "Xavier", "Yvonne",
+"Zach", "Abigail", "Benjamin", "Chloe", "Derrick"]);/* Appreciation formula */
+A : P * (1 + r/100)^n;
+
+/* Show the decimal result */
+float(A);
+float:decimalplaces(A,2);
+rate:float(r/100);
+square:rate ^ n;]]></text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="html">
+      <text>ta</text>
+    </questionnote>
+    <questiondescription format="html">
+      <text/>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>float</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Growing Value: How Much Will It Be Worth in the Future?</description>
+        <answertest>NumDecPlaces</answertest>
+        <sans>ans1</sans>
+        <tans>float</tans>
+        <testoptions>2</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+  </question>
+</quiz>

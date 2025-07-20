@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Finding the inverse of a 2x2 matrix</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Find the inverse of the following matrix \({@matrix_A@}\)</p>
+<p>Inverse of the matrix= [[input:ans1]] [[validation:ans1]][[feedback:prt1]]</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<h3>Worked solution</h3>
+<p>In order to find the inverse of a \( 2\times2 \) matrix;</p>
+<p>\(A={@matrix_A@}\)</p>
+<p>First,we find the determinant of the matrix </p>
+<p>The determinant is given as:</p> 
+<p>\(({@a_11@}\times {@a_22@})-({@a_12@}\times {@a_21@}) = {@a_11*a_22@}-{@a_12*a_21@}\)</p>
+<p>\(\qquad \qquad \qquad \qquad  = {@det_A@}\)</p>
+<p>Secondly,interchange the elements in the top left and the bottom right corner of the matrix and multiply the elements in the top right and the bottom left corner of the matrix by -1.</p>
+<p>We obtain:</p>
+</p>\({@matrix_B@}\)</p>
+<p>Finally, multiplying the newly obtained matrix by \(\displaystyle \frac{1}{\text{determinant}} \) to obtain the desired solution.</p>
+<p>\(\displaystyle\frac{1}{{@det_A@}}{@matrix_B@}\)</p>
+<p>That is simplified as:</p>
+<p>\({@ta@}\)<p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2023060500</text>
+    </stackversion>
+    <questionvariables>
+      <text>a_11:rand(3)+1;/*the first digit in the first row and first column*/
+a_12:rand_with_prohib(1,6,[a_11]);/*The first digit in the first row and second column*/
+a_21:rand_with_prohib(1,9,[a_11,a_12]);/*The second digit in the second row and first column*/
+a_22:rand_with_prohib(1,13,[a_11,a_12,a_21]);/*The second digit in the second row and second column*/
+matrix_A:matrix([a_11,a_12],[a_21,a_22]);/*displays the 2x2 matrix*/
+det_A:determinant(matrix_A);
+b_11:a_22;
+b_12:(-a_12);
+b_21:(-a_21);
+b_22:(a_11);
+matrix_B:matrix([b_11,b_12],[b_21,b_22]);
+ta:invert(matrix_A);/*desired solution*/</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="moodle_auto_format">
+      <text><![CDATA[<p>\({@matrix_A@}\)</p>
+<p>\({@ta@}\)</p>B]]></text>
+    </questionnote>
+    <questiondescription format="html">
+      <text/>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>matrix</type>
+      <tans>ta</tans>
+      <boxsize>9</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks the correct inverse of a 2x2 matrix</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>ta</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <deployedseed>924634512</deployedseed>
+    <deployedseed>67144624</deployedseed>
+    <deployedseed>643113468</deployedseed>
+    <deployedseed>2014399465</deployedseed>
+    <deployedseed>572653676</deployedseed>
+    <deployedseed>126835992</deployedseed>
+    <deployedseed>995071645</deployedseed>
+    <deployedseed>1874862239</deployedseed>
+    <deployedseed>98615856</deployedseed>
+    <deployedseed>1698251624</deployedseed>
+    <qtest>
+      <testcase>1</testcase>
+      <description>Test case assuming the teacher's input gets full marks.</description>
+      <testinput>
+        <name>ans1</name>
+        <value>ta</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt1-1-T</expectedanswernote>
+      </expected>
+    </qtest>
+  </question>
+</quiz>

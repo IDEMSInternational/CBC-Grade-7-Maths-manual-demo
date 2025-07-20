@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Finding total distance covered in kilometers</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p>Oscar rides a bicycle for\({@monday_deci@}\) km on Monday and \({@tuesday_deci@}\) km on Tuesday.</p>
+<p>How many kilometers does he ride in total for the two days?</p>
+<p>Total distance = [[input:ans1]] [[validation:ans1]] km [[feedback:prt1]] </p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<h3>Worked solution</h3>
+<p>Total distance rode \({@monday_deci@}\) km + \({@tuesday_deci@}\) km </p>
+<ul>
+<li>
+<p>Line up the decimal</p>
+</li>
+<li>
+<p>Add the hundredths</p>
+</li>
+<li>
+<p>Add the tenths</p>
+</li>
+<li>
+<p>Add the ones</p>
+</li>
+</ul>
+<p>\(
+\begin{array}{r}
+{@monday_deci@} \\
++ {@tuesday_deci@}\\
+\hline
+{@total_dist@} \\
+\hline
+\end{array}
+\)</p>
+<p> Distance covered is \({@total_dist@}\) km </p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2023060500</text>
+    </stackversion>
+    <questionvariables>
+      <text>monday:rand(100)+99;/*Number of  kilometres covered on monday*/
+monday_frac:monday/100;/*representation of distance in fraction*/
+monday_deci:float(monday_frac);/*representation of distance covered in decimals*/
+tuesday:rand(200)+99;/*Number of  kilometres covered on tuesday*/
+tuesday_frac:tuesday/100;/*representation of distance in fraction*/
+tuesday_deci:float(tuesday_frac);/*representation of distance covered in decimals*/
+/*total_dist:monday_deci+tuesday_deci; Sum of distance covered in two days*/
+total_dist:decimalplaces(monday_deci+tuesday_deci,2); /*Sum of distance covered in two days*/
+</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="moodle_auto_format">
+      <text><![CDATA[<p> \({@monday_deci@}\) </p>
+<p>\({@tuesday_deci@}\)</p>
+<p>\({@total_dist@}\)</p>]]></text>
+    </questionnote>
+    <questiondescription format="html">
+      <text><![CDATA[<p id="author">Sheila Cherotich</p>
+<p id="concept">https://docs.google.com/document/d/14LDuFsoAeujlpfpwZF32Cy-gk7BoALoBV4WQv7Ed5HI/edit?tab=t.0</p>
+<p id="reviewer"></p>
+<p id="reviewer"></p>
+<p id="description"></p>]]></text>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>total_dist</tans>
+      <boxsize>8</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for correct total distance covered</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>total_dist</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <deployedseed>752653967</deployedseed>
+    <deployedseed>209450297</deployedseed>
+    <deployedseed>1193505273</deployedseed>
+    <deployedseed>1282931479</deployedseed>
+    <deployedseed>1744435670</deployedseed>
+    <deployedseed>510258319</deployedseed>
+    <deployedseed>1998885957</deployedseed>
+    <deployedseed>1011891855</deployedseed>
+    <deployedseed>1808154308</deployedseed>
+    <deployedseed>1946279296</deployedseed>
+    <deployedseed>467090002</deployedseed>
+    <deployedseed>1809908983</deployedseed>
+    <deployedseed>1230000161</deployedseed>
+    <deployedseed>1191311328</deployedseed>
+    <deployedseed>831999368</deployedseed>
+    <deployedseed>676822740</deployedseed>
+    <deployedseed>1942654389</deployedseed>
+    <deployedseed>1059102095</deployedseed>
+    <deployedseed>1629641005</deployedseed>
+    <deployedseed>2130234122</deployedseed>
+    <deployedseed>1909000186</deployedseed>
+    <deployedseed>1557307493</deployedseed>
+    <deployedseed>1289534395</deployedseed>
+    <deployedseed>361692213</deployedseed>
+    <deployedseed>1781029367</deployedseed>
+    <deployedseed>86246607</deployedseed>
+    <deployedseed>479271939</deployedseed>
+    <deployedseed>987905249</deployedseed>
+    <deployedseed>2065071140</deployedseed>
+    <deployedseed>1514485565</deployedseed>
+    <deployedseed>391466877</deployedseed>
+    <deployedseed>1318600623</deployedseed>
+    <deployedseed>1613268980</deployedseed>
+    <deployedseed>375273903</deployedseed>
+    <deployedseed>1836562260</deployedseed>
+    <deployedseed>1932983240</deployedseed>
+    <deployedseed>1574258741</deployedseed>
+    <deployedseed>1855525105</deployedseed>
+    <deployedseed>250266768</deployedseed>
+    <deployedseed>1403337254</deployedseed>
+    <deployedseed>1416291521</deployedseed>
+    <deployedseed>614131413</deployedseed>
+    <deployedseed>2008912959</deployedseed>
+    <deployedseed>1897221370</deployedseed>
+    <deployedseed>1356234757</deployedseed>
+    <deployedseed>647452540</deployedseed>
+    <deployedseed>1149397031</deployedseed>
+    <deployedseed>1183444995</deployedseed>
+    <deployedseed>1497874152</deployedseed>
+    <deployedseed>1362478492</deployedseed>
+    <deployedseed>1835535431</deployedseed>
+    <deployedseed>313028725</deployedseed>
+    <deployedseed>524897622</deployedseed>
+    <deployedseed>1761195173</deployedseed>
+    <deployedseed>2084886622</deployedseed>
+    <deployedseed>1797037795</deployedseed>
+    <deployedseed>760018942</deployedseed>
+    <deployedseed>1059564572</deployedseed>
+    <deployedseed>601725866</deployedseed>
+    <deployedseed>1858715978</deployedseed>
+    <deployedseed>1305244537</deployedseed>
+    <deployedseed>1176509042</deployedseed>
+    <deployedseed>1579569956</deployedseed>
+    <deployedseed>451280763</deployedseed>
+    <deployedseed>1049559341</deployedseed>
+    <deployedseed>990384301</deployedseed>
+    <deployedseed>464694197</deployedseed>
+    <deployedseed>1381820110</deployedseed>
+    <deployedseed>1239961499</deployedseed>
+    <deployedseed>1445699374</deployedseed>
+    <deployedseed>596992575</deployedseed>
+    <deployedseed>1060213</deployedseed>
+    <deployedseed>941112155</deployedseed>
+    <deployedseed>1651825762</deployedseed>
+    <deployedseed>1071919399</deployedseed>
+    <deployedseed>1544905983</deployedseed>
+    <deployedseed>627035121</deployedseed>
+    <deployedseed>6819908</deployedseed>
+    <deployedseed>20014879</deployedseed>
+    <deployedseed>24908501</deployedseed>
+    <deployedseed>625589238</deployedseed>
+    <deployedseed>870392942</deployedseed>
+    <deployedseed>1050134417</deployedseed>
+    <deployedseed>621370222</deployedseed>
+    <deployedseed>24201593</deployedseed>
+    <deployedseed>473860780</deployedseed>
+    <deployedseed>558236079</deployedseed>
+    <deployedseed>1115659639</deployedseed>
+    <deployedseed>1989044175</deployedseed>
+    <deployedseed>1665183315</deployedseed>
+    <deployedseed>417311603</deployedseed>
+    <deployedseed>600667007</deployedseed>
+    <deployedseed>2020095927</deployedseed>
+    <deployedseed>125908943</deployedseed>
+    <deployedseed>1103978244</deployedseed>
+    <deployedseed>1452790642</deployedseed>
+    <deployedseed>719449727</deployedseed>
+    <deployedseed>384002779</deployedseed>
+    <deployedseed>1197802655</deployedseed>
+    <deployedseed>212204402</deployedseed>
+  </question>
+</quiz>

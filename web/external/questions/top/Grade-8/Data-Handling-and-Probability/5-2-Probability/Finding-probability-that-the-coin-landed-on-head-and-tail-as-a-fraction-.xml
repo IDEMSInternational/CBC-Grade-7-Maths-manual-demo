@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Finding probability that the coin landed on head and tail as a fraction.</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p>A coin was tossed {@total_tosses@} times. It landed on heads {@heads@} times.</p>
+<p>Find the probability that the coin landed on:</p>
+<p>(a) Heads</p>
+<p>[[input:ans1]] [[validation:ans1]][[feedback:prt1]]</p>
+<p>(b) Tails</p>
+<p>[[input:ans2]] [[validation:ans2]][[feedback:prt2]]</p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<h3>Worked solution</h3>
+<p></strong> Probability is calculated as:</p>
+<p><em>Probability = Number of favourable outcomes ÷ Total outcomes</em></p>
+<p>(a)To calculate the probability of heads:</p>
+<p><em>P(Heads) = Number of Heads ÷ Total tosses</em></p>
+<ul>
+<li>Number of heads = <strong>{@heads@}</strong>
+<li>Total tosses = <strong>{@total_tosses@}</strong></li>
+<li>P(Heads) = {@ heads @} ÷ {@ total_tosses @} = <strong>{@ P_heads_frac @}</strong></li>
+</ul>
+<p>Therefore, Probability of Heads is <strong>{@ P_heads_frac @}</strong></p>
+
+
+<p>(b)To calculate the probability of tails:</p>
+<p><em>P(Tails) = Number of Tails ÷ Total tosses</em></p>
+<p>First we need to find the number of tails</p>
+<p>Number of Tails = Total tosses − Heads = {@ total_tosses @} − {@ heads @} = {@ tails @}</p>
+<ul>
+<li>Number of Tails = <strong>{@tails@}</strong>
+<li>Total tosses = <strong>{@total_tosses@}</strong></li>
+<li>P(Tails) = {@ tails @} ÷ {@ total_tosses @} = <strong>{@ P_tails_frac @}</strong></li>
+</ul>
+<p>Therefore, Probability of Tails is <strong>{@ P_tails_frac @}</strong></p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2025012100</text>
+    </stackversion>
+    <questionvariables>
+      <text>total_tosses: rand(31) + 30;/*total number of tosses*/
+heads: rand(21) + 10;/*number of heads*/
+tails: total_tosses - heads;/*number of tails*/
+P_heads_frac: heads / total_tosses;/*probability of heads*/
+P_tails_frac: tails / total_tosses;/*probability of tails*/
+
+
+</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="html">
+      <text><![CDATA[<p>Total number of tosses = \({@total_tosses@}\)</p>
+<p>Probability of Heads = \({@P_heads_frac@}\)</p>
+<p>Probability of Tails = \({@P_tails_frac@}\)</p>]]></text>
+    </questionnote>
+    <questiondescription format="html">
+      <text><![CDATA[<p id="author">Purity Ekadeli</p>
+<p id="reviewer"></p>
+<p id="reviewer"></p>
+<p id="description">The question requires the learner to calculate the number of tails and the probability of getting heads and tails based on the given coin toss results.</p>]]></text>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>P_heads_frac</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans2</name>
+      <type>algebraic</type>
+      <tans>P_tails_frac</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text>/*mistake1*/
+P_heads_frac_mistake1: total_tosses / heads;/*probability of heads*/
+</text>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct answer</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>P_heads_frac</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <description>Checks for the wrong answer</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>P_heads_frac_mistake1</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-2-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>You have divided total tosses by number of heads while calculating the probability</p>
+<p>This is incorrect because probability of heads is calculated as dividing number of heads by total tosses</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-2-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt2</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text>/*mistake2*/
+P_tails_frac_mistake2: total_tosses / tails;/*probability of tails*/
+</text>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct answer</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans2</sans>
+        <tans>P_tails_frac</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt2-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt2-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <description>checks for the wrong answer</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans2</sans>
+        <tans>P_tails_frac_mistake2</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt2-2-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>You have divided total tosses by number of tails while calculating the probability</p>
+<p>This is incorrect because probability of tails is calculated as dividing number of tails by total tosses</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt2-2-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <deployedseed>1896547618</deployedseed>
+    <deployedseed>809421074</deployedseed>
+    <deployedseed>337505408</deployedseed>
+    <deployedseed>799064793</deployedseed>
+    <deployedseed>190523924</deployedseed>
+    <deployedseed>191762751</deployedseed>
+    <deployedseed>1197993560</deployedseed>
+    <deployedseed>1782051917</deployedseed>
+    <deployedseed>389617279</deployedseed>
+    <deployedseed>1685948585</deployedseed>
+    <deployedseed>1057960962</deployedseed>
+    <deployedseed>1253886378</deployedseed>
+    <deployedseed>1355152454</deployedseed>
+    <deployedseed>430130174</deployedseed>
+    <deployedseed>1646383547</deployedseed>
+    <deployedseed>830519147</deployedseed>
+    <deployedseed>1141379111</deployedseed>
+    <deployedseed>573652555</deployedseed>
+    <deployedseed>323548612</deployedseed>
+    <deployedseed>576103709</deployedseed>
+    <qtest>
+      <testcase>1</testcase>
+      <description>Test case assuming the teacher's input gets full marks.</description>
+      <testinput>
+        <name>ans1</name>
+        <value>P_heads_frac</value>
+      </testinput>
+      <testinput>
+        <name>ans2</name>
+        <value>P_tails_frac</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt1-1-T</expectedanswernote>
+      </expected>
+      <expected>
+        <name>prt2</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt2-1-T</expectedanswernote>
+      </expected>
+    </qtest>
+  </question>
+</quiz>

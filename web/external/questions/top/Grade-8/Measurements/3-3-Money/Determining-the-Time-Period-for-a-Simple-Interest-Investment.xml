@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Determining the Time Period for a Simple Interest Investment</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p>Munyao deposited \(\text{sh.} {@P@}\) in a bank that paid simple interest at a rate of \({@R@}\,\%\) per annum. The deposit earned \(\text{sh.}\, {@Interest@}\) as simple interest. For how long did he deposit the money?</p>
+
+
+
+
+
+<p> \(\text{Munyao deposited the money for}\) [[input:ans1]] \(\text{years}\)[[feedback:prt1]] </p>
+<p hidden>[[validation:ans1]]</p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<p>Recall the Simple Interest Formula</p>
+<p>\(\text{Simple Interest (I)}= \frac{P \times R \times T}{100}\)</p>
+<p>Where:</p>
+<p><ul></li>\(\text{I}\) is the interest earned</li>
+<li>\(\text{P}\) is the principal (initial amount deposited)</li>
+<li>\(\text{R}\)  is the rate of interest per annum</li>
+<li>\(\text{I}\)  is the time in years</li></ul></p>
+<p>We are given:</p>
+
+<p><ul>
+<li>\(\text{P}=\text{sh.}\,{@P@}\)</li>
+<li>\(\text{R}= {@R@}\%\) </li>
+<li>\(\text{I}= \text{sh.}\,{@Interest@}\) </li>
+<li>\(\text{T}= \) ? </li></ul></p>
+<p>Substituting into the formula:</p>
+<p>\(\begin{align}
+   {@Interest@} &=\frac{{@P@} \times {@R@} \times T}{100}\\
+{@Interest@} &=\frac{{@pr_times_rate@} \times T}{100} \\
+{@int_times_hundred@} &={@pr_times_rate@} \times T \\
+T &=\frac{{@int_times_hundred@} }{{@pr_times_rate@} } \\
+&={@Period @}\, \text{years}
+
+
+\end{align}\)</p>
+<p>Munyao deposited the money for {@Period@} \(\text{years.}\)</p>
+<p></p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2025012100</text>
+    </stackversion>
+    <questionvariables>
+      <text>/* Randomize Principal (must have three zeros) */
+P : rand(91)*1000 + 100000; /* Ensures P ranges from 10,000 to 100,000 */
+
+/* Randomize Rate (as a whole number between 1% and 50%) */
+R : rand(50) + 1;
+
+/* Randomize Time (whole number between 1 and 10 years) */
+T : rand(25) + 1;
+
+/* Calculate Simple Interest */
+I : P * R * T / 100;
+pr_times_rate:P*R;
+/* Adjust I to be divisible by 10 */
+Interest : I - mod(I, 10);
+int_times_hundred:Interest*100
+
+/* Recalculate Time using the adjusted interest */
+Period : Interest * 100 / (P * R);
+
+
+
+</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="html">
+      <text><![CDATA[<p>\(\text{Principal}={@P@}\)</p>
+<p>\(\text{Rate}={@R@}\)</p>
+<p>\(\text{Simple interest}={@Interest@}\)</p>
+<p>\(\text{Time}={@Period@}\)</p>]]></text>
+    </questionnote>
+    <questiondescription format="html">
+      <text><![CDATA[<p id="author">Henry Onyango</p>
+<p id="reviewer"></p>
+<p id="reviewer"></p>
+<p id="description">This question is about Simple Interest.
+The student is required to calculate the period (time) for which Munyao deposited the money.
+
+Remember, the formula for calculating Simple Interest is:  \(\text{simple interest}t = \frac{P \times R \times T}{100}\).</p>]]></text>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>Period</tans>
+      <boxsize>5</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>0</mustverify>
+      <showvalidation>0</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct number of years the money took in the bank.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>Period</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <deployedseed>604676550</deployedseed>
+    <deployedseed>1353552252</deployedseed>
+    <deployedseed>1764548256</deployedseed>
+    <deployedseed>1670662239</deployedseed>
+    <deployedseed>1104926802</deployedseed>
+    <deployedseed>1088375122</deployedseed>
+    <deployedseed>1384365191</deployedseed>
+    <deployedseed>696520528</deployedseed>
+    <deployedseed>698047314</deployedseed>
+    <deployedseed>47780519</deployedseed>
+    <deployedseed>1816681757</deployedseed>
+    <deployedseed>690698789</deployedseed>
+    <deployedseed>1772213986</deployedseed>
+    <deployedseed>600685771</deployedseed>
+    <deployedseed>1396442138</deployedseed>
+    <deployedseed>680305302</deployedseed>
+    <qtest>
+      <testcase>1</testcase>
+      <description>Test case assuming the teacher's input gets full marks.</description>
+      <testinput>
+        <name>ans1</name>
+        <value>Period</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt1-1-T</expectedanswernote>
+      </expected>
+    </qtest>
+  </question>
+</quiz>

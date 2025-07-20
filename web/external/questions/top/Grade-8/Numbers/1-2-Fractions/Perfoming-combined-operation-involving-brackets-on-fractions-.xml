@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Perfoming combined operation involving brackets on fractions.</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p>Work out the following:</p>
+<p>  \(({@frac_1 @}  +  {@whole_3 @}{@fracpart3@} -{@frac_2@} ) \div  ( {@whole_4 @}{@fracpart4@} \times {@frac_5@} )= \)[[input:ans1]] [[validation:ans1]] [[feedback:prt1]]</p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<h3>Worked solution</h3>
+<p> To work out  \(({@frac_1 @}  +{@whole_3 @}{@fracpart3@} - {@frac_2@}  ) \div  ( {@whole_4 @}{@fracpart4@} \times {@frac_5@} )\), we start by solving what is in the bracket. </p>
+<p> Working out brackets:</p>
+<p>  \( \begin{align}({@frac_1 @}  + {@whole_3 @}{@fracpart3@}-  {@frac_2@} ) &=({@frac_1 @}  + {@frac_3@}-  {@frac_2@} )  \\\\ &= \frac{{@num1@}+{@num3@} -{@num2@}}{ {@lcm_1@}} =  \frac{{@result1@}   } { {@lcm_1@}}\\\\  &= {@result_1@} \end{align}\)</p>
+<p> For \(( {@whole_4 @}{@fracpart4@} \times {@frac_5@} )\), we convert the mixed fraction into improper fraction first before multiplying.</p>
+<p>\(( {@whole_4 @}{@fracpart4@} \times {@frac_5@} ) = ({@frac_4@} \times {@frac_5@} )\) </p>
+<p> Now , we work out the bracket:</p>
+<p> \(\begin{align} {@frac_4@} \times {@frac_5@} &= {@result2@} \end{align}\)</p>
+<p>Re-writing the expression, we have: \({@result_1@} \div {@result2@}\)</p>
+<p> To perform division, multiply \({@result_1@}\) by the reciprocal of  \({@result2@}\)</p>
+<p> \(\begin{align}{@result_1@} \div {@result2@} &=  {@result_1@} \times {@result_2@} \\\\&= {@frac_formed@} \end{align}\)   </p>
+<p>Hence, \(({@frac_1 @}  + {@whole_3 @}{@fracpart3@} - {@frac_2@} ) \div  ( {@whole_4 @}{@fracpart4@} \times {@frac_5@} ) = {@final_result@}\)</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2025012100</text>
+    </stackversion>
+    <questionvariables>
+      <text><![CDATA[/*first fraction*/
+
+numerator_1: rand_with_step(3, 18, 4); /* numerator of the first fraction */
+denominator_1: rand_with_step(20, 35, 2); /* denominator of the first fraction */
+frac_1: numerator_1 / denominator_1;
+
+/*second fraction*/
+numerator_2: rand_with_step(5, 25, 3); /* numerator of the second fraction */
+denominator_2: rand_with_step(28, 37, 2); /* denominator of the second fraction */
+frac_2: numerator_2 / denominator_2;
+
+/* generating the third fraction which is a mixed number */
+done1 : false;
+while not done1 do (
+    numerator_3 : rand_with_step(31, 41, 1),
+    denominator_3 : rand_with_step(7, 27, 2),
+    if numerator_3 > denominator_3 and gcd(numerator_3, denominator_3) = 1 and mod(numerator_3, denominator_3) # 0 then done1 : true
+);
+frac_3 : numerator_3 / denominator_3;
+whole_3 : floor(frac_3);
+fracpart3 : frac_3 - whole_3;
+
+/* generating the fourth fraction which is also a mixed number */
+done2: false;
+while not done2 do (
+    numerator_4: rand_with_step(23, 55, 2),
+    denominator_4: rand_with_step(6,19 , 3),
+    if numerator_4 > denominator_4 and gcd(numerator_4, denominator_4) = 1 and mod(numerator_4, denominator_4) # 0 then done2: true
+);
+frac_4: numerator_4 / denominator_4;
+whole_4: floor(frac_4);
+fracpart4: frac_4 - whole_4;
+
+/* generating the fifth fraction */
+numerator_5: rand_with_step(15, 23, 2);
+denominator_5: rand_with_step(26, 36, 2);
+frac_5: numerator_5 / denominator_5;
+
+/*performing addition and subtraction*/
+lcm_1:lcm(denominator_1,denominator_2,denominator_3 );
+num1:(lcm_1/denominator_1)*numerator_1;
+num2:(lcm_1/denominator_2)*numerator_2;
+num3:(lcm_1/denominator_3)*numerator_3;
+result1: num1+num3-num2;
+result_1:result1/lcm_1;/*result of the addition and subtraction operations inside the bracket*/
+
+/*performing multiplication*/
+num4:(numerator_4*numerator_5);
+den4:(denominator_4*denominator_5);
+result2: num4/den4;/* result of multiplication inside the brackets*/
+result_2: den4/num4;/*reciprocal of the fraction formed in result2*/
+
+/*performing division*/
+final_num:(result1*den4);
+final_den:(lcm_1*num4);
+frac_formed: final_num / final_den;/*result after performing division */
+final_result:result_1 * result_2;/*simplifies the result if possible*/
+
+
+
+
+
+]]></text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="html">
+      <text><![CDATA[<p>result after performing operations inside the first bracket-\({@result_1@}\)</p>
+<p> result after performing operation inside the second bracket-\({@result2@}\)</p>
+<p> final result-\({@final_result@}\)</p>]]></text>
+    </questionnote>
+    <questiondescription format="html">
+      <text/>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>final_result</tans>
+      <boxsize>6</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description/>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>final_result</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <deployedseed>576864815</deployedseed>
+    <deployedseed>747322714</deployedseed>
+    <deployedseed>714781903</deployedseed>
+    <deployedseed>176757900</deployedseed>
+    <deployedseed>241292312</deployedseed>
+    <deployedseed>1795544758</deployedseed>
+    <deployedseed>631448730</deployedseed>
+    <deployedseed>2079356693</deployedseed>
+    <deployedseed>2123424778</deployedseed>
+    <deployedseed>1588355704</deployedseed>
+    <deployedseed>1467196263</deployedseed>
+    <deployedseed>178485696</deployedseed>
+    <deployedseed>2118812789</deployedseed>
+    <deployedseed>920709000</deployedseed>
+    <deployedseed>1035812343</deployedseed>
+    <deployedseed>1127543141</deployedseed>
+    <deployedseed>328345256</deployedseed>
+    <deployedseed>942234702</deployedseed>
+    <deployedseed>1519550796</deployedseed>
+    <deployedseed>188735311</deployedseed>
+    <deployedseed>972878281</deployedseed>
+    <deployedseed>2076524846</deployedseed>
+    <deployedseed>1249283872</deployedseed>
+    <deployedseed>1210216169</deployedseed>
+    <deployedseed>1778924244</deployedseed>
+    <deployedseed>1216055353</deployedseed>
+    <deployedseed>23585129</deployedseed>
+    <deployedseed>1452597196</deployedseed>
+    <deployedseed>104206749</deployedseed>
+    <deployedseed>1873964519</deployedseed>
+    <deployedseed>94707806</deployedseed>
+    <deployedseed>1506683321</deployedseed>
+    <deployedseed>1951617386</deployedseed>
+    <deployedseed>1784613215</deployedseed>
+    <deployedseed>1582519</deployedseed>
+    <deployedseed>338179963</deployedseed>
+    <deployedseed>1768822963</deployedseed>
+    <deployedseed>1432285463</deployedseed>
+    <deployedseed>339760919</deployedseed>
+    <deployedseed>1376234975</deployedseed>
+    <deployedseed>552823490</deployedseed>
+    <deployedseed>13652389</deployedseed>
+    <deployedseed>736685827</deployedseed>
+    <deployedseed>1121496591</deployedseed>
+    <deployedseed>1180247635</deployedseed>
+    <deployedseed>864946530</deployedseed>
+    <deployedseed>1068982736</deployedseed>
+    <deployedseed>1594081827</deployedseed>
+    <deployedseed>2097067665</deployedseed>
+    <deployedseed>1221700276</deployedseed>
+    <deployedseed>1848995297</deployedseed>
+    <deployedseed>1033089978</deployedseed>
+    <deployedseed>1389533324</deployedseed>
+    <deployedseed>2033753708</deployedseed>
+    <deployedseed>2142051838</deployedseed>
+    <deployedseed>909874139</deployedseed>
+    <deployedseed>1734643165</deployedseed>
+    <deployedseed>903569771</deployedseed>
+    <deployedseed>772155688</deployedseed>
+    <deployedseed>868487815</deployedseed>
+    <deployedseed>1467537106</deployedseed>
+    <deployedseed>1846683097</deployedseed>
+    <deployedseed>544263547</deployedseed>
+    <deployedseed>1725096265</deployedseed>
+    <deployedseed>361849131</deployedseed>
+    <deployedseed>1314676265</deployedseed>
+    <deployedseed>804311372</deployedseed>
+    <deployedseed>1925869773</deployedseed>
+    <deployedseed>1231282439</deployedseed>
+    <deployedseed>217505168</deployedseed>
+    <deployedseed>783084919</deployedseed>
+    <deployedseed>1234658788</deployedseed>
+    <deployedseed>581289863</deployedseed>
+    <deployedseed>488056059</deployedseed>
+    <deployedseed>1827762578</deployedseed>
+    <deployedseed>548368921</deployedseed>
+    <deployedseed>1988746282</deployedseed>
+    <deployedseed>1780852663</deployedseed>
+    <deployedseed>285339096</deployedseed>
+    <deployedseed>896533432</deployedseed>
+    <deployedseed>735573638</deployedseed>
+    <deployedseed>1705018128</deployedseed>
+    <deployedseed>1071246300</deployedseed>
+    <deployedseed>2037192683</deployedseed>
+    <deployedseed>532174166</deployedseed>
+    <deployedseed>536349742</deployedseed>
+    <deployedseed>708248716</deployedseed>
+    <deployedseed>1932168061</deployedseed>
+    <deployedseed>1507599189</deployedseed>
+    <deployedseed>802055447</deployedseed>
+    <deployedseed>1816997987</deployedseed>
+    <deployedseed>1608102403</deployedseed>
+    <deployedseed>884540029</deployedseed>
+    <deployedseed>1244820098</deployedseed>
+    <deployedseed>2025920825</deployedseed>
+    <deployedseed>1381847360</deployedseed>
+    <deployedseed>1506715573</deployedseed>
+    <deployedseed>730313229</deployedseed>
+    <deployedseed>655672170</deployedseed>
+    <deployedseed>1238771484</deployedseed>
+    <qtest>
+      <testcase>1</testcase>
+      <description>Test case assuming the teacher's input gets full marks.</description>
+      <testinput>
+        <name>ans1</name>
+        <value>final_result</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt1-1-T</expectedanswernote>
+      </expected>
+    </qtest>
+  </question>
+</quiz>

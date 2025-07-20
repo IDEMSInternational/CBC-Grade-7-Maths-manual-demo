@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Identifying Simple Interest on a Savings Investment.</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p>Franny invests \(\text{Ksh}\, {@amount@}\) in a savings account. She earns a simple interest rate of \({@rate@}\,\%\), paid annually on her investment. She intends to hold the investment for {@time_years@} years. How much simple interest did the investment earn?</p>
+
+
+
+
+
+
+<p>\(\text{Simple interest}=\text{Ksh}\)[[input:ans1]][[feedback:prt1]] </p>
+<p hidden>[[validation:ans1]]</p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<p><strong>Step-by-step Solution:</strong></p>
+
+<p>We use the formula for simple interest:</p>
+
+<p>\(\text{Simple Interest (SI)} = \frac{P \times R \times T}{100}\)</p>
+
+<p>Where:</p>
+<p>\(P\) is the Principal (initial amount invested)</p>
+<p>\(R\) is the Rate of interest per year (in \%)</p>
+<p>\(T\) is the Time (in years)</p>
+
+<p><strong>Step 1: Identify the values</strong></p>
+
+<p>\(P = {@amount@}\), \(R = {@rate@}\,\%\), \(\text{T} = {@time_years@}\)</p>
+
+<p><strong>Step 2: Plug the values into the formula</strong></p>
+
+<p>\(\text{SI} = \frac{{@amount@} \times {@rate@} \times {@time_years@}}{100}\)</p>
+
+<p><strong>Step 3: Multiply the numbers</strong></p>
+
+<p>\( {@amount@}\times {@rate@} = {@First1@}\)</p>
+<p>\({@First1@} \times {@time_years@} ={@First2@}\)</p>
+
+<p><strong>Step 4: Divide by 100</strong></p>
+
+<p>\(\frac{{@First2@}}{100} = {@interest@}\)</p>
+
+<p><strong>Final Answer:</strong></p>
+
+<p>Franny will earn \(\boxed{\text{Ksh}\,{\color{blue}{@interest@}}}\) in simple interest after {@time_years@} years.</p>
+.]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2025012100</text>
+    </stackversion>
+    <questionvariables>
+      <text>/* Randomized values */
+amount: (rand(91) + 10)*10000; /* 100000 to 1000000 with three zeros */
+rate: rand_with_step(2,100,5);            /* 3% to 100% */
+months: 3 * (rand(24) + 1)*2; /* 3, 6, 9, or 12 months for cleaner fractions */
+/*time in years*/
+time_years: months / 12;
+First1:amount*rate;
+First2:First1*time_years;
+
+/* Simple Interest formula */
+interest: (amount * rate * time_years) / 100;
+
+/*Mistake 1 Forgetting to divide by 100*/
+interest_1: (amount * rate * time_years) ;</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="html">
+      <text><![CDATA[<p>\(\text{The amount invested }=\text{Ksh}\,{@amount@}\)</p>
+<p>\(\text{Rate }={@rate@}\,\%\)</p>
+<p>\(\text{Time  }={@time_years@}\,\text{years}\)</p>
+<p>\(\text{The simple interest  }=\text{Ksh.}{@interest@}\)</p>]]></text>
+    </questionnote>
+    <questiondescription format="html">
+      <text><![CDATA[<p id="author">Henry Onyango</p>
+<p id="reviewer"></p>
+<p id="reviewer"></p>
+
+<p id="description">This is a question on money under simple interest. The student is required to find the interest earned on the amount invested. The formula for simple interest is given by: \(\text{Simple Interest (SI)} = \frac{P \times R \times T}{100}\).
+</p]]></text>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>interest</tans>
+      <boxsize>9</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>0</mustverify>
+      <showvalidation>0</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct calculation of simple interest.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>interest</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <description>Checks for Forgetting to divide by 100</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>interest_1</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0.5</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-2-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>Great effort!  You correctly used the formula, but you forgot to divide by 100, which is very important in simple interest problems.</p>
+<p>Next time, remember: <br>
+\(\text{Simple Interest (SI)} = \frac{P \times R \times T}{100}\)</p>
+<p>Keep it up—you’re really close!</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-2-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <deployedseed>526649055</deployedseed>
+    <deployedseed>588843088</deployedseed>
+    <deployedseed>1144610864</deployedseed>
+    <deployedseed>1967033021</deployedseed>
+    <deployedseed>61831040</deployedseed>
+    <deployedseed>1101126725</deployedseed>
+    <deployedseed>172972639</deployedseed>
+    <deployedseed>618581895</deployedseed>
+    <deployedseed>429362243</deployedseed>
+    <deployedseed>806688930</deployedseed>
+    <deployedseed>1815845228</deployedseed>
+    <deployedseed>792484866</deployedseed>
+    <deployedseed>1858067661</deployedseed>
+    <deployedseed>389107436</deployedseed>
+    <deployedseed>758139119</deployedseed>
+    <qtest>
+      <testcase>1</testcase>
+      <description>Test case assuming the teacher's input gets full marks.</description>
+      <testinput>
+        <name>ans1</name>
+        <value>interest</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt1-1-T</expectedanswernote>
+      </expected>
+    </qtest>
+    <qtest>
+      <testcase>2</testcase>
+      <description>Checks for Forgetting to divide by 100</description>
+      <testinput>
+        <name>ans1</name>
+        <value>interest_1</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>0.5000000</expectedscore>
+        <expectedpenalty/>
+        <expectedanswernote>prt1-2-T</expectedanswernote>
+      </expected>
+    </qtest>
+  </question>
+</quiz>

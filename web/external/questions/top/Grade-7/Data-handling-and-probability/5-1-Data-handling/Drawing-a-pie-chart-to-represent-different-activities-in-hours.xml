@@ -1,0 +1,518 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Drawing a pie chart to represent different activities in hours</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p>A person spends his time on different activities daily (in hours). </p>
+<p>(a) Calculate the degrees of each activity and represent it in the table below</p>
+<p><table border="1">
+<caption></caption>
+<thead>
+<tr>
+<th scope="col">Activity</th>
+<th scope="col">Number of hours</th>
+<th scope="col">Fraction</th>
+<th scope="col">Fraction of  360 \(^{\circ}\)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Office work</td>
+<td>\({@Office_work@}\)</td>
+<td>\({@frac_Office_work@}\)</td>
+<td>[[input:ans1]] [[validation:ans1]] \(^{\circ}\) [[feedback:prt1]]</td>
+</tr>
+<tr>
+<td>Exercise</td>
+<td>{@Exercise@} </td>
+<td>\({@frac_Exercise@}\)</td>
+<td>[[input:ans2]] [[validation:ans2]] \(^{\circ}\) [[feedback:prt2]]</td>
+</tr>
+<tr>
+<td>Travelling</td>
+<td>{@Travelling@}</td>
+<td>\({@frac_Travelling@}\)</td>
+<td>[[input:ans3]] [[validation:ans3]] \(^{\circ}\)[[feedback:prt3]]</td>
+</tr>
+<tr>
+<td>Watching shows</td>
+<td>{@Watching_shows@}</td>
+<td>\({@frac_Watching_shows@}\)</td>
+<td>[[input:ans4]] [[validation:ans4]] \(^{\circ}\)[[feedback:prt4]]</td>
+</tr>
+<tr>
+<td>Sleeping</td>
+<td>{@Sleeping@}</td>
+<td>\({@frac_Sleeping@}\)</td>
+<td>[[input:ans5]] [[validation:ans5]] \(^{\circ}\)[[feedback:prt5]]</td>
+</tr>
+<tr>
+<td>Total</td>
+<td>{@total_activity@}</td>
+</tr>
+</tbody>
+</table>
+</p>
+
+<p>(b) Draw a pie chart to represent the information given in the table above.</p>
+
+[[jsxgraph width='400px' height='350px']]
+const board = JXG.JSXGraph.initBoard('jxgbox', {
+    boundingbox: [-2, 2, 2, -2],
+    axis: false,
+    showNavigation: false,
+    showCopyright: false,
+});
+
+const data = [{#Office_work#}, {#Exercise #}, {#Travelling #}, {# Watching_shows #}, {#Sleeping #}]; 
+const labels = ['Office work', 'Exercise', 'Travelling', ' Watching shows', 'Sleeping'];
+const colors = ['Red', 'Green', 'Blue', 'Yellow', 'Purple'];
+
+let total = data.reduce((a, b) => a + b, 0);
+let startAngle = 0;
+let points = [];
+
+// Draw a circle
+const circle = board.create('circle', [[0, 0], 1], { strokeColor: '#000000', highlight: false });
+
+// Create draggable points constrained to the circle
+for (let i = 0; i < data.length; i++) {
+    let angle = (data[i] / {#total_activity #}
+) * 2 * Math.PI;
+    let endAngle = startAngle + angle;
+
+    let p = board.create('glider', [Math.cos(startAngle), Math.sin(startAngle), circle], {
+        name: labels[i],
+        size: 3,
+        strokeColor: colors[i],
+        fillColor: colors[i],
+    });
+    points.push(p);
+
+    startAngle = endAngle;
+}
+
+// Draw sectors dynamically using the points and display the angles in degrees
+for (let i = 0; i < points.length; i++) {
+    // Draw the sector
+    board.create('sector', [
+        [0, 0],
+        () => [points[i].X(), points[i].Y()],
+        () => [points[(i + 1) % points.length].X(), points[(i + 1) % points.length].Y()],
+    ], {
+        fillColor: colors[i],
+        strokeColor: 'black',
+        highlight: false,
+        opacity: 0.7,
+    });
+
+    // Create text to display the angle
+    board.create('text', [
+        () => (points[i].X() + points[(i + 1) % points.length].X()) / 2,
+        () => (points[i].Y() + points[(i + 1) % points.length].Y()) / 2,
+        () => {
+            let x1 = points[i].X(), y1 = points[i].Y();
+            let x2 = points[(i + 1) % points.length].X(), y2 = points[(i + 1) % points.length].Y();
+            let angle = Math.atan2(y2, x2) - Math.atan2(y1, x1);
+            if (angle < 0) angle += 2 * Math.PI;
+            return `${(angle * (180 / Math.PI)).toFixed(1)}°`; // Convert to degrees
+        }
+    ], {
+        fontSize: 12,
+        strokeColor: 'black',
+        anchorX: 'middle',
+        anchorY: 'middle',
+    });
+}
+[[/jsxgraph]]]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[[[jsxgraph width='400px' height='350px']]
+const board = JXG.JSXGraph.initBoard('jxgbox', {
+    boundingbox: [-2, 2, 2, -2],
+    axis: false,
+    showNavigation: false,
+    showCopyright: false,
+});
+
+const data = [{#Office_work#}, {#Exercise #}, {#Travelling #}, {# Watching_shows #}, {#Sleeping #}]; 
+const labels = ['Office work', 'Exercise', 'Travelling', ' Watching shows', 'Sleeping'];
+const colors = ['Red', 'Green', 'Blue', 'Yellow', 'Purple'];
+
+let total = data.reduce((a, b) => a + b, 0);
+let startAngle = 0;
+let points = [];
+
+// Draw a circle
+const circle = board.create('circle', [[0, 0], 1], { strokeColor: '#000000', highlight: false });
+
+// Create draggable points constrained to the circle
+for (let i = 0; i < data.length; i++) {
+    let angle = (data[i] / {#total_activity #}
+) * 2 * Math.PI;
+    let endAngle = startAngle + angle;
+
+    let p = board.create('glider', [Math.cos(startAngle), Math.sin(startAngle), circle], {
+        name: labels[i],
+        size: 3,
+        strokeColor: colors[i],
+        fillColor: colors[i],
+    });
+    points.push(p);
+
+    startAngle = endAngle;
+}
+
+// Draw sectors dynamically using the points and display the angles in degrees
+for (let i = 0; i < points.length; i++) {
+    // Draw the sector
+    board.create('sector', [
+        [0, 0],
+        () => [points[i].X(), points[i].Y()],
+        () => [points[(i + 1) % points.length].X(), points[(i + 1) % points.length].Y()],
+    ], {
+        fillColor: colors[i],
+        strokeColor: 'black',
+        highlight: false,
+        opacity: 0.7,
+    });
+
+    // Create text to display the angle
+    board.create('text', [
+        () => (points[i].X() + points[(i + 1) % points.length].X()) / 2,
+        () => (points[i].Y() + points[(i + 1) % points.length].Y()) / 2,
+        () => {
+            let x1 = points[i].X(), y1 = points[i].Y();
+            let x2 = points[(i + 1) % points.length].X(), y2 = points[(i + 1) % points.length].Y();
+            let angle = Math.atan2(y2, x2) - Math.atan2(y1, x1);
+            if (angle < 0) angle += 2 * Math.PI;
+            return `${(angle * (180 / Math.PI)).toFixed(1)}°`; // Convert to degrees
+        }
+    ], {
+        fontSize: 12,
+        strokeColor: 'black',
+        anchorX: 'middle',
+        anchorY: 'middle',
+    });
+}
+[[/jsxgraph]]]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2025012100</text>
+    </stackversion>
+    <questionvariables>
+      <text>Office_work:rand(7)+2;/*Number of hours a person does office work*/
+Exercise:rand(7)+2;/*Number of hours a person exercises*/
+Travelling:rand(7)+2;/*Number of hours a person travells*/
+Watching_shows:rand(7)+2;/*Number of hours a person watches shows*/
+Sleeping:rand(7)+2;/*Number of hours a person sleeps*/
+total_activity:Office_work+Exercise+Travelling+Watching_shows+Sleeping;/*total activities a person does in a day*/
+frac_Office_work:Office_work/total_activity;/*total office work in fraction*/
+frac_Exercise:Exercise/total_activity;/*total exercise in fraction*/
+frac_Travelling:Travelling/total_activity;/*total travelling in fraction*/
+frac_Watching_shows:Watching_shows/total_activity;/* watching shows in fraction*/
+frac_Sleeping:Sleeping/total_activity;/*sleeping in fraction*/
+degree_of_Office_work:decimalplaces((frac_Office_work)*360,2);/*degree of the number of hours a person does office work*/
+degree_of_Exercise:decimalplaces((frac_Exercise)*360,2);/*degree of the number of hours a person exercises*/
+degree_of_Travelling:decimalplaces((frac_Travelling)*360,2);/*degree of the number of hours a person travells*/
+degree_of_Watching_shows:decimalplaces((frac_Watching_shows)*360,2);/*degree of the number of hours a person watches shows*/
+degree_of_Sleeping:decimalplaces((frac_Sleeping)*360,2);/*degree of the number of hours a person sleeps*/</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="html">
+      <text>1</text>
+    </questionnote>
+    <questiondescription format="html">
+      <text>1</text>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>degree_of_Office_work</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans2</name>
+      <type>algebraic</type>
+      <tans>degree_of_Sleeping</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans3</name>
+      <type>algebraic</type>
+      <tans>degree_of_Exercise</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans4</name>
+      <type>algebraic</type>
+      <tans>degree_of_Travelling</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans5</name>
+      <type>algebraic</type>
+      <tans>degree_of_Watching_shows</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description/>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>degree_of_Office_work</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt2</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description/>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans2</sans>
+        <tans>degree_of_Sleeping</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt2-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt2-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt3</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description/>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans3</sans>
+        <tans>degree_of_Exercise</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt3-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt3-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt4</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description/>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans4</sans>
+        <tans>degree_of_Travelling</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt4-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt4-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt5</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description/>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans5</sans>
+        <tans>degree_of_Watching_shows</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt5-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt5-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+  </question>
+</quiz>

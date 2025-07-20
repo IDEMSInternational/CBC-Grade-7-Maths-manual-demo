@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Identifying numbers divisible by 5 from a given list</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>From the numbers below, identify the number that is divisible by \(5\)?</p>
+<p>[[input:ans1]] [[validation:ans1]][[feedback:prt1]]</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<h3>Worked solution</h3>
+<p>To identify if a number is divisible by \(5\), we check if the last digit of the number is either \(0\) or \(5\). </p>
+<p>The number \({@num_div_by_5@}\) is divisible by \(5\) because the last digit in the number is \({@last_digit@}\).<p>
+<p>The numbers \({@incorrect_answers[1][3]@} ,{@incorrect_answers[2][3]@}, {@incorrect_answers[3][3]@}\) are not divisible by \(5\) since their last digits are not  \(5\) or \(0\).</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2025012100</text>
+    </stackversion>
+    <questionvariables>
+      <text>/*Divisibility test*/
+
+/*numbers divisible by five*/
+num_div_by_5:rand_with_step(5000,15000,5);
+last_digit: mod(num_div_by_5, 10);
+
+/*numbers not divisible by five*/
+num_not_div_by_5_a:rand_with_step(111,10000,5);/*numbers not divisible by five*/
+num_not_div_by_5_b:rand_with_step(999,9999,5);/*numbers not divisible by five*/
+num_not_div_by_5_c:rand_with_step(55001,90000,5);/*numbers not divisible by five*/
+num_not_div_by_5_d:rand_with_step(9999,99999,10);/*numbers not divisible by five*/
+num_not_div_by_5_e:rand_with_step(200001,499999,5);/*numbers not divisible by five*/
+
+/*correct answer*/
+correct_answer:rand_selection([
+[1, true, num_div_by_5]], 1);
+
+/*incorrect answers*/
+incorrect_answers:rand_selection([
+[2, false, num_not_div_by_5_a],
+[3, false, num_not_div_by_5_b],
+[4, false, num_not_div_by_5_c],[5, false, num_not_div_by_5_d],[6, false, num_not_div_by_5_e]
+], 4);
+
+ta: random_permutation(append(correct_answer,incorrect_answers));
+ta_index: sort(makelist(x[1], x, ta));
+ta_largest: last(ta_index); 
+</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="moodle_auto_format">
+      <text><![CDATA[<p>\({@ta@}\)</p>
+<p>\({@incorrect_answers@}\)</p>
+<p>\({@num_div1@}\)</p>
+<p>\({@num_div2@}\)</p>
+<p>\({@num_div1@}\)</p>
+<p>\({@num_div1@}\)</p>
+<p>\({@num_div2@}\)</p>
+<p>\({@num_div3@}\)</p>
+<p>\({@num_div4@}\)</p>
+<p>\({@num_div5@}\)</p>
+<p>\({@num_div5@}\)</p>
+<p>\({@num_div6@}\)</p>
+<p>\({@num_div7@}\)</p>
+<p>\({@num_div8@}\)</p>
+<p>\({@num_div9@}\)</p>
+<p>\({@num_div10@}\)</p>]]></text>
+    </questionnote>
+    <questiondescription format="html">
+      <text><![CDATA[<p id="author">Daniel Murunga</p>
+<p id="concept"></p>
+<p id="reviewer"></p>
+<p id="reviewer"></p>
+<p id="description">In this question, you are required to identify which numbers from a given list are divisible by 5. A number is divisible by 5 if its last digit is 0 or 5</p>]]></text>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>radio</type>
+      <tans>ta</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>0</mustverify>
+      <showvalidation>0</showvalidation>
+      <options>nonotanswered</options>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for all the numbers divisible by 5</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>mcq_correct(ta)[1]</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <deployedseed>587425987</deployedseed>
+    <deployedseed>730349296</deployedseed>
+    <deployedseed>929866184</deployedseed>
+    <deployedseed>1100976131</deployedseed>
+    <deployedseed>401904401</deployedseed>
+    <deployedseed>1372619726</deployedseed>
+    <deployedseed>1163608342</deployedseed>
+    <deployedseed>577869025</deployedseed>
+    <deployedseed>667531046</deployedseed>
+    <deployedseed>325458470</deployedseed>
+    <deployedseed>1261550113</deployedseed>
+    <deployedseed>205140023</deployedseed>
+    <deployedseed>1211030474</deployedseed>
+    <deployedseed>274302816</deployedseed>
+    <deployedseed>1444163522</deployedseed>
+    <deployedseed>1400570193</deployedseed>
+    <deployedseed>487064026</deployedseed>
+    <deployedseed>210546688</deployedseed>
+    <deployedseed>2141923295</deployedseed>
+    <deployedseed>934451154</deployedseed>
+  </question>
+</quiz>

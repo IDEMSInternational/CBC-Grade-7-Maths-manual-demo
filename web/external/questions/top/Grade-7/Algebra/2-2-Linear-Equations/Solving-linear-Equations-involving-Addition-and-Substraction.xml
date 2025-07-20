@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Solving linear Equations involving Addition and Substraction</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p>What is the value of \({@var_letter@}\) in the equation?</p>
+<p>\(\qquad \qquad {@eqn@}\)</p>
+<p><b>NOTE</b> If your answer is a fraction, write it in its simplest form.</p>
+<p>\({@var_letter@}\) = [[input:ans1]] [[validation:ans1]] [[feedback:prt1]]</p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<h3>Worked Solution.</h3>
+
+<p>First, open the brackets, so that we have;</p>
+
+<p>\(\qquad \qquad {@simpl_eqn@}\)</p>
+
+<p>Next we collect like terms, by taking migrating them over the equal sign \(=\).</p>
+
+<p>\(\qquad \qquad {@const_X_coeff@}\) - \({@first_part@} = \) \({@second_part@}\) + \({@const_X_const@}\)</p>
+
+<p>Working on the operations, we get, the  \({@var_letter@}\) on one side the number on the other side.</p>
+
+<p>\(\qquad \qquad {@simpl_eqn_like_terms@}\)</p>
+
+<p>Now we divide the number multiplied by \({@var_letter@}\) in both sides so that we remain with \({@var_letter@}\) only.</p>
+
+<p>Therefore, </p>
+
+<p>\(\qquad \qquad {@var_letter@} = \) \({@ta_correct@}\)</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2025012100</text>
+    </stackversion>
+    <questionvariables>
+      <text>/* Select a random variable letter */
+var_letter: rand([b, c, d, f, g, h, j, k, l, m, n, p, q, r, s, t, v, w, x, y, z]);
+
+/* Random coefficients */
+coeff_1_n_2: rand(4) + 2;  /* Random value from 2 to 5 */
+const_1: 2 * (rand(3) + 1); /* Generates 2, 4, or 6 */
+const_main: 2 * (rand(5) + 4); /* Generates even numbers from 8 to 16 */
+
+/* Define the equation */
+eqn: const_1 * (coeff_1_n_2 * var_letter - const_1) = coeff_1_n_2 * var_letter + const_main;
+
+/* Solution Steps */
+/* LHS */
+const_X_coeff: const_1 * coeff_1_n_2 * var_letter;
+const_X_const: const_1 * const_1;
+lhs_eqn: const_X_coeff - const_X_const;
+
+/* RHS */
+first_part: coeff_1_n_2 * var_letter;
+second_part: const_main;
+rhs_eqn: first_part + second_part;
+
+/* Collecting like terms */
+simpl_eqn: lhs_eqn = rhs_eqn;
+simpl_eqn_like_terms: const_X_coeff - first_part = second_part + const_X_const;
+
+/* Solve for the variable */
+sol: solve(simpl_eqn, var_letter);
+
+/* Extract numerical solution without square brackets */
+ta_correct: rhs(first(sol));
+</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="html">
+      <text><![CDATA[<p>\({@ta_correct@}\)</p>]]></text>
+    </questionnote>
+    <questiondescription format="html">
+      <text/>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>ta_correct</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct value of \({@var_letter@}\)</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>ta_correct</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <deployedseed>2000050850</deployedseed>
+    <deployedseed>1454471133</deployedseed>
+    <deployedseed>121674895</deployedseed>
+    <deployedseed>1460147279</deployedseed>
+    <deployedseed>1005329451</deployedseed>
+    <deployedseed>678383311</deployedseed>
+    <deployedseed>472122677</deployedseed>
+    <deployedseed>939882865</deployedseed>
+    <deployedseed>1830180874</deployedseed>
+    <deployedseed>2144759715</deployedseed>
+    <deployedseed>1222905679</deployedseed>
+    <deployedseed>1432934364</deployedseed>
+    <deployedseed>1512940478</deployedseed>
+    <deployedseed>866160784</deployedseed>
+    <deployedseed>222470046</deployedseed>
+    <deployedseed>1732225924</deployedseed>
+    <deployedseed>97089121</deployedseed>
+    <deployedseed>1001343795</deployedseed>
+    <deployedseed>5073263</deployedseed>
+    <deployedseed>18006598</deployedseed>
+    <deployedseed>1568075970</deployedseed>
+    <deployedseed>1965670517</deployedseed>
+    <deployedseed>291834536</deployedseed>
+    <deployedseed>1495630139</deployedseed>
+    <deployedseed>466335041</deployedseed>
+    <deployedseed>1991455970</deployedseed>
+    <deployedseed>323701320</deployedseed>
+    <deployedseed>647410075</deployedseed>
+  </question>
+</quiz>

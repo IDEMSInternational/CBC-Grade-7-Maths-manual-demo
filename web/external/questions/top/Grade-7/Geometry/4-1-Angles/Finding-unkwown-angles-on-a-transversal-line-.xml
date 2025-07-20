@@ -1,0 +1,923 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Finding unkwown angles on a transversal line.</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p>Find the unkwown angles marked by letters:</p>
+[[jsxgraph]]
+ // Create JSXGraph board
+    const board = JXG.JSXGraph.initBoard('jxgbox', {
+        boundingbox: [-5, 5, 5, -5], 
+        axis: false
+    });
+      // creating points
+        var A = board.create('point', [-4,3], { name: 'A', visible: false});
+        var B = board.create('point', [4,3], { name: 'B', visible: false });
+        var C = board.create('point', [-4,-2], { name: 'C', visible:false});  
+        var D = board.create('point', [4,-2], { name: 'D', visible: false});
+
+
+    // Define parallel lines
+    let line1 = board.create('line', [[-4, 3], [4, 3]], { strokeColor: 'blue', strokeWidth: 2 });
+    let line2 = board.create('line', [[-4, -2], [4, -2]], { strokeColor: 'blue', strokeWidth: 2 });
+
+    // Define transversal
+    let trans = board.create('line', [[-2, 4], [2, -4]], { strokeColor: 'red', strokeWidth: 2 });
+
+    // Intersection points
+    let E = board.create('point', [-1.5,3], { name: 'E', size: 3, color: 'blue',visible: false });
+    let F = board.create('point', [1,-2], { name: 'F', size: 3, color: 'green',visible: false });
+    let G = board.create('point', [-2,4], { name: 'G', size: 3, color: 'black',visible: false });
+    let H = board.create('point', [1.5,-3], { name: 'H', size: 3, color: 'black',visible: false });
+    let K = board.create('point', [0,0], { name: 'K', size: 3, color: 'black',visible: false });
+
+   // Angles 
+   let angle1 = board.create('angle', [B,E,G], { radius: 0.6, fillColor: 'pink', name: '{#val_letter_1#}' } );
+   let angle2 = board.create('angle', [G,E,A], { radius: 0.8, fillColor: 'blue', name: '{#val_letter_2#}' } );
+   let angle3 = board.create('angle', [K,E,B], { radius: 0.8, fillColor: 'blue', name: '{#val_letter_3#}' } );
+   let angle4 = board.create('angle', [D,F,K], { radius: 0.6, fillColor: 'green', name: '{#val_letter_4#}' } );
+   let angle5 = board.create('angle', [H,F,D], { radius: 0.8, fillColor: 'red', name: '{#val_letter_5#}' } );
+   let angle6 = board.create('angle', [E,F,C], { radius: 0.8, fillColor: 'red', name: '{#val_letter_6#}' } );
+   let angle7 = board.create('angle', [C,F,H], { radius: 0.6, fillColor: 'yellow', name: '{#val_letter_7#}' } );
+   let angle8 = board.create('angle', [A,E,K], { radius: 0.6, fillColor: 'cyan', name: '{#angle_AEK#}&deg' } );
+
+[[/jsxgraph]]
+<p>{@val_letter_1@}[[input:ans1]]\(^\circ\) [[validation:ans1]][[feedback:prt1]]</p>
+<p>{@val_letter_2@}[[input:ans2]]\(^\circ\) [[validation:ans2]][[feedback:prt2]]</p>
+<p>{@val_letter_3@}[[input:ans3]]\(^\circ\) [[validation:ans3]][[feedback:prt3]]</p>
+<p>{@val_letter_4@}[[input:ans4]] \(^\circ\)[[validation:ans4]][[feedback:prt4]]</p>
+<p>{@val_letter_5@}[[input:ans5]] \(^\circ\)[[validation:ans5]][[feedback:prt5]]</p>
+<p>{@val_letter_6@}[[input:ans6]] \(^\circ\)[[validation:ans6]][[feedback:prt6]]</p>
+<p>{@val_letter_7@}[[input:ans7]]\(^\circ\) [[validation:ans7]][[feedback:prt7]]</p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<h3>Worked solution</h3>
+<p>Angles marked {@val_letter_7@} and \({@angle_AEK@}^\circ\) are corresponding angles.Since corresponding angles are equal, Therefore:</p>
+<p> \(\qquad\qquad\){@val_letter_7@} =\({@angle_AEK@}^\circ\) <p/>.
+
+
+<p>Angles marked {@val_letter_4@} and \({@angle_AEK@}^\circ\) are alternate angles.Since alternate angles are equal, Therefore:</p>
+<p> \(\qquad\qquad\){@val_letter_4@} =\({@angle_AEK@}^\circ\) <p/>.
+
+
+<p>Angles marked {@val_letter_1@} and \({@angle_AEK@}^\circ\) are vertically opposite angles.Since vertically opposite angles are equal, Therefore:</p>
+<p> \(\qquad\qquad\){@val_letter_1@} =\({@angle_AEK@}^\circ\) <p/>.
+
+
+<p>Angles marked {@val_letter_6@} and \({@angle_AEK@}^\circ\) are co-interior angles. Therefore:</p>
+<p> \(\qquad\qquad\)\({@val_letter_6@} +{@angle_AEK@}^\circ=180^\circ\) <p/>.
+<p> \(\qquad\qquad\){@val_letter_6@} =\(180^\circ-{@angle_AEK@}^\circ\) <p/>.
+<p> \(\qquad\qquad\){@val_letter_6@}=\({@ta_2@}^\circ\)<p/>
+
+
+<p>Angles marked {@val_letter_6@} and {@val_letter_3@} are alternate angles.Since alternate angles are equal, Therefore:</p>
+<p> \(\qquad\qquad\){@val_letter_6@} ={@val_letter_3@} <p/>.
+<p> \(\qquad\qquad\)But {@val_letter_6@} =\({@ta_2@}^\circ\) <p/>.
+<p>Therefore</p>
+<p>\(\qquad\qquad\)  {@val_letter_3@}= \({@ta_3@}^\circ\)<p/>
+
+
+<p>Angles marked {@val_letter_2@} and {@val_letter_3@} are vertically opposite angles.Since vertically opposite angles are equal, Therefore:</p>
+<p> \(\qquad\qquad\){@val_letter_2@} ={@val_letter_3@}<p/>.
+<p> \(\qquad\qquad\)But {@val_letter_3@} ={@ta_3@}, <p/>
+<p>Therefore</p>
+<p>\(\qquad\qquad\) {@val_letter_2@}=\({@ta_7@}^\circ\)</p>
+
+<p>Angles marked {@val_letter_5@} and {@val_letter_3@} are corresponding angles.Since corresponding angles are equal, Therefore:</p>
+<p> \(\qquad\qquad\){@val_letter_5@} ={@val_letter_3@} <p/>.
+<p>\(\qquad\qquad\)But {@val_letter_3@} = {@ta_3@}</p>
+<p>Therefore</p>
+<p>\(\qquad\qquad\) {@val_letter_5@}=\({@ta_5@}^\circ\)<p/>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2025012100</text>
+    </stackversion>
+    <questionvariables>
+      <text>val_letter_1:rand([a,b,c,z]);/*generates random numbers for the unknown angle  BEG*/
+val_letter_2:rand([d,f,g]);/*generates random numbers for the unknown angle  GEA*/
+val_letter_3:rand([h,j,k]);/*generates random numbers for the unknown angle * KEB*/
+val_letter_4:rand([l,m,n]);/*generates random numbers for the unknown angle DFK */
+val_letter_5:rand([p,q,r]);/*generates random numbers for the unknown angle  HFD*/
+val_letter_6:rand([s,t,u]);/*generates random numbers for the unknown angle EFC */
+val_letter_7:rand([v,w,x,y]);/*generates random numbers for the unknown angle CFH */
+angle_AEK:rand(70)+94;/*generates random numbers for the known angle */
+angle_CFH:angle_AEK;/*corresponding angles*/
+angle_EFC:180-angle_AEK;/*co-interior angles*/
+angle_KEB:angle_EFC;/*alternate angles*/
+angle_DFK:angle_AEK;/*alternate angles*/
+angle_HFD:angle_EFC;/*opposite angles*/
+angle_BEG:angle_DFK;/*corresponding angles*/
+angle_GEA:angle_KEB;/*opposite angles*/
+ta_1:angle_CFH;/*teacher's answer*/
+ta_2:angle_EFC;/*teacher's answer*/
+ta_3:angle_KEB;/*teacher's answer*/
+ta_4:angle_DFK;/*teacher's answer*/
+ta_5:angle_HFD;/*teacher's answer*/
+ta_6:angle_BEG;/*teacher's answer*/
+ta_7:angle_GEA;/*teacher's answer*/
+/*possibl mistakes*/
+ta_8:angle_EFC;/*assuming the are co-interior angles*/
+ta_9:angle_AEK;/*assuming the are corresponding angles*/
+ta_10:angle_CFH;/*assuming the are alternate angles*/
+ta_11:angle_KEB;/*assuming the are corresponding angles*/
+ta_12:angle_AEK;/*assuming they are alternate angles*/
+ta_13:angle_HFD;/*assuming the are corresponding angles*/
+ta_14:angle_CFH;/*assuming they are corresponding angles*/</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="html">
+      <text><![CDATA[<p>Angle marked by letter {@val_letter_1@} {@ta_6@}<p/>
+<p>Angle marked by letter {@val_letter_2@} {@ta_7@}<p/>
+<p>Angle marked by letter {@val_letter_3@} {@ta_3@}<p/>
+<p>Angle marked by letter {@val_letter_4@} {@ta_4@}<p/>
+<p>Angle marked by letter {@val_letter_5@} {@ta_5@}<p/>
+<p>Angle marked by letter {@val_letter_6@} {@ta_2@}<p/>
+<p>Angle marked by letter {@val_letter_7@} {@ta_1@}<p/>]]></text>
+    </questionnote>
+    <questiondescription format="html">
+      <text><![CDATA[<p id="author">Eric Morara </p>
+<p id="concept">
+https://ecampus.idems.international/question/bank/history/history.php?entryid=127168&returnurl=%2Fquestion%2Fedit.php%3Fcourseid%3D430%26cat%3D18812%252C121817&courseid=430&filter=%7B%22category%22%3A%7B%22jointype%22%3A1%2C%22values%22%3A%5B%2218812%22%5D%2C%22filteroptions%22%3A%7B%22includesubcategories%22%3Afalse%7D%7D%2C%22hidden%22%3A%7B%22jointype%22%3A1%2C%22values%22%3A%5B0%5D%7D%7D</p>
+<p id="reviewer"></p>
+<p id="reviewer"></p>
+
+<p id="description">The question requires the learner to identify and list the pairs of corresponding, alternate, vertically opposite, and co-interior angles.</p>]]></text>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>ta_6</tans>
+      <boxsize>8</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans2</name>
+      <type>algebraic</type>
+      <tans>ta_7</tans>
+      <boxsize>8</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans3</name>
+      <type>algebraic</type>
+      <tans>ta_3</tans>
+      <boxsize>8</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans4</name>
+      <type>algebraic</type>
+      <tans>ta_4</tans>
+      <boxsize>8</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans5</name>
+      <type>algebraic</type>
+      <tans>ta_5</tans>
+      <boxsize>8</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans6</name>
+      <type>algebraic</type>
+      <tans>ta_2</tans>
+      <boxsize>8</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans7</name>
+      <type>algebraic</type>
+      <tans>ta_1</tans>
+      <boxsize>8</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>check for correct angles</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>ta_6</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <description>Confusing Angle Pairs</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>ta_13</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-2-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>It looks like you incorrectly identified the angles labeled {@val_letter_1@} and  {@val_letter_5@}  as corresponding angles.</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-2-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt2</name>
+      <value>2.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>check for correct angles</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans2</sans>
+        <tans>ta_7</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt2-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt2-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <description>. Confusing Angle Pairs</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans2</sans>
+        <tans>ta_14</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt2-2-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>It looks like you incorrectly identified the angles labeled {@val_letter_2@} and  {@val_letter_7@}  as corresponding angles.</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt2-2-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt3</name>
+      <value>3.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>check for correct angles</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans3</sans>
+        <tans>ta_3</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt3-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt3-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <description>Confusing Angle Pairs</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans3</sans>
+        <tans>ta_10</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt3-2-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>It looks like you incorrectly identified the angles labeled {@val_letter_3@} and  {@val_letter_6@}  as alternate angles.</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt3-2-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt4</name>
+      <value>4.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>check for correct angles</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans4</sans>
+        <tans>ta_4</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt4-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt4-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <description> Confusing Angle Pairs</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans4</sans>
+        <tans>ta_11</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt4-2-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>It looks like you incorrectly identified the angles labeled {@val_letter_4@} and  {@val_letter_3@}  as corresponding angles.Note that the angles lebeled @val_letter_4@} and  {@val_letter_3@}  are co-interior angles</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt4-2-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt5</name>
+      <value>5.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>check for correct angles</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans5</sans>
+        <tans>ta_5</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt5-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt5-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <description>Confusing Angle Pairs</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans5</sans>
+        <tans>ta_12</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt5-2-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>You seem to have incorrectly identified angles {@val_letter_5@} and  {@angle_AEK@} as alternate angles.</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt5-2-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt6</name>
+      <value>6.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>check for correct angles</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans6</sans>
+        <tans>ta_2</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt6-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt6-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <description>Confusing Angle Pairs</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans6</sans>
+        <tans>ta_9</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt6-2-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>You appear to have mistakenly identified angles {@val_letter_6@} and  {@angle_AEK@} as corresponding angles.Note that the pair of angles are co-interior angles</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt6-2-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt7</name>
+      <value>7.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>check for correct angles</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans7</sans>
+        <tans>ta_1</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt7-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt7-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <description>Confusing Angle Pairs</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans7</sans>
+        <tans>ta_8</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt7-2-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>You seem to have incorrectly identified angles {@val_letter_7@} and  {@angle_AEK@} as co-interior angles</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt7-2-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <deployedseed>900342539</deployedseed>
+    <deployedseed>2038894822</deployedseed>
+    <deployedseed>371881028</deployedseed>
+    <deployedseed>2130187078</deployedseed>
+    <deployedseed>404490949</deployedseed>
+    <deployedseed>761408238</deployedseed>
+    <deployedseed>161762926</deployedseed>
+    <deployedseed>23863767</deployedseed>
+    <deployedseed>1209050552</deployedseed>
+    <deployedseed>607665509</deployedseed>
+    <deployedseed>1144363430</deployedseed>
+    <deployedseed>1096353472</deployedseed>
+    <deployedseed>686523613</deployedseed>
+    <deployedseed>1972319302</deployedseed>
+    <deployedseed>2122503789</deployedseed>
+    <deployedseed>1159873282</deployedseed>
+    <deployedseed>133297953</deployedseed>
+    <deployedseed>876478098</deployedseed>
+    <deployedseed>1105997165</deployedseed>
+    <deployedseed>297691428</deployedseed>
+    <deployedseed>290836930</deployedseed>
+    <deployedseed>519086147</deployedseed>
+    <deployedseed>2001926510</deployedseed>
+    <deployedseed>1840117106</deployedseed>
+    <deployedseed>386898338</deployedseed>
+    <deployedseed>973507305</deployedseed>
+    <deployedseed>662204031</deployedseed>
+    <deployedseed>576866481</deployedseed>
+    <deployedseed>394170790</deployedseed>
+    <deployedseed>2144110052</deployedseed>
+    <deployedseed>1375039642</deployedseed>
+    <deployedseed>2069473012</deployedseed>
+    <deployedseed>78328972</deployedseed>
+    <deployedseed>1347188267</deployedseed>
+    <deployedseed>1193132858</deployedseed>
+    <deployedseed>1414806524</deployedseed>
+    <deployedseed>1764917268</deployedseed>
+    <deployedseed>743240176</deployedseed>
+    <deployedseed>64544400</deployedseed>
+    <deployedseed>1599769422</deployedseed>
+    <deployedseed>1055314851</deployedseed>
+    <deployedseed>813696447</deployedseed>
+    <deployedseed>1537143962</deployedseed>
+    <deployedseed>1579759567</deployedseed>
+    <deployedseed>159451132</deployedseed>
+    <deployedseed>1536044365</deployedseed>
+    <deployedseed>2119290304</deployedseed>
+    <deployedseed>361586983</deployedseed>
+    <deployedseed>1562986187</deployedseed>
+    <deployedseed>806117564</deployedseed>
+    <deployedseed>328408323</deployedseed>
+    <deployedseed>346236315</deployedseed>
+    <deployedseed>1700717089</deployedseed>
+    <deployedseed>925325430</deployedseed>
+    <deployedseed>2064980180</deployedseed>
+    <deployedseed>1750002442</deployedseed>
+    <deployedseed>1499833035</deployedseed>
+    <deployedseed>1939016551</deployedseed>
+    <deployedseed>313377015</deployedseed>
+    <deployedseed>1726283175</deployedseed>
+    <qtest>
+      <testcase>1</testcase>
+      <description>Test case assuming the teacher's input gets full marks.</description>
+      <testinput>
+        <name>ans1</name>
+        <value>ta_6</value>
+      </testinput>
+      <testinput>
+        <name>ans2</name>
+        <value>ta_7</value>
+      </testinput>
+      <testinput>
+        <name>ans3</name>
+        <value>ta_3</value>
+      </testinput>
+      <testinput>
+        <name>ans4</name>
+        <value>ta_4</value>
+      </testinput>
+      <testinput>
+        <name>ans5</name>
+        <value>ta_5</value>
+      </testinput>
+      <testinput>
+        <name>ans6</name>
+        <value>ta_2</value>
+      </testinput>
+      <testinput>
+        <name>ans7</name>
+        <value>ta_1</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt1-1-T</expectedanswernote>
+      </expected>
+      <expected>
+        <name>prt2</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt2-1-T</expectedanswernote>
+      </expected>
+      <expected>
+        <name>prt3</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt3-1-T</expectedanswernote>
+      </expected>
+      <expected>
+        <name>prt4</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt4-1-T</expectedanswernote>
+      </expected>
+      <expected>
+        <name>prt5</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt5-1-T</expectedanswernote>
+      </expected>
+      <expected>
+        <name>prt6</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt6-1-T</expectedanswernote>
+      </expected>
+      <expected>
+        <name>prt7</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt7-1-T</expectedanswernote>
+      </expected>
+    </qtest>
+    <qtest>
+      <testcase>2</testcase>
+      <description/>
+      <testinput>
+        <name>ans1</name>
+        <value>ta_13</value>
+      </testinput>
+      <testinput>
+        <name>ans2</name>
+        <value>ta_14</value>
+      </testinput>
+      <testinput>
+        <name>ans3</name>
+        <value>ta_10</value>
+      </testinput>
+      <testinput>
+        <name>ans4</name>
+        <value>ta_11</value>
+      </testinput>
+      <testinput>
+        <name>ans5</name>
+        <value>ta_12</value>
+      </testinput>
+      <testinput>
+        <name>ans6</name>
+        <value>ta_9</value>
+      </testinput>
+      <testinput>
+        <name>ans7</name>
+        <value>ta_8</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>0.0000000</expectedscore>
+        <expectedpenalty/>
+        <expectedanswernote>prt1-2-T</expectedanswernote>
+      </expected>
+      <expected>
+        <name>prt2</name>
+        <expectedscore>0.0000000</expectedscore>
+        <expectedpenalty/>
+        <expectedanswernote>prt2-2-T</expectedanswernote>
+      </expected>
+      <expected>
+        <name>prt3</name>
+        <expectedscore>0.0000000</expectedscore>
+        <expectedpenalty/>
+        <expectedanswernote>prt3-2-T</expectedanswernote>
+      </expected>
+      <expected>
+        <name>prt4</name>
+        <expectedscore>0.0000000</expectedscore>
+        <expectedpenalty/>
+        <expectedanswernote>prt4-2-T</expectedanswernote>
+      </expected>
+      <expected>
+        <name>prt5</name>
+        <expectedscore>0.0000000</expectedscore>
+        <expectedpenalty/>
+        <expectedanswernote>prt5-2-T</expectedanswernote>
+      </expected>
+      <expected>
+        <name>prt6</name>
+        <expectedscore>0.0000000</expectedscore>
+        <expectedpenalty/>
+        <expectedanswernote>prt6-2-T</expectedanswernote>
+      </expected>
+      <expected>
+        <name>prt7</name>
+        <expectedscore>0.0000000</expectedscore>
+        <expectedpenalty/>
+        <expectedanswernote>prt7-2-T</expectedanswernote>
+      </expected>
+    </qtest>
+  </question>
+</quiz>

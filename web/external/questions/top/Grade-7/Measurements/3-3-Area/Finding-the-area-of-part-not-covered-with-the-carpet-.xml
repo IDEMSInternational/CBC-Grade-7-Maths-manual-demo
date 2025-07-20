@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Finding the area of part not covered with the carpet.</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p>A carpet measuring \({@carpet_length_measure@}\)m by \({@carpet_width_measure@}\)m covers a floor measuring \({@floor_length_measure@}\) m by \({@floor_width_measure@}\) m . Find the area not covered by the carpet.</p>
+<p>Area of a border (part not covered with the carpet) = [[input:ans1]] [[validation:ans1]]\(m^2\)[[feedback:prt1]]</p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<h3>Worked solution</h3>
+<p>The area of a border (part not covered with the carpet) is the difference between the area enclosed by the outer boundary (floor) and the area enclosed by the inner border (carpet).</p>
+<p>Area = length \(\times\) width</p>
+<p>Area enclosed by the outer boundary (floor) is:</p>
+<p>(\({@floor_length_measure@}\) \(\times\) \({@floor_width_measure@}\))m = \({@area_floor@}\)\(m^2\)</p>
+<p>Area area enclosed by the inner border(carpet) is:</p>
+<p>(\({@carpet_length_measure@}\) \(\times\) \({@carpet_width_measure@}\))m = \({@area_carpet@}\)\(m^2\)</p>
+<p>Area of a border (part not covered with the carpet) is:</p>
+<p>(\({@area_floor@}\) - \({@area_carpet@}\))\(m^2\) =  \({@area_border@}\)\(m^2\)</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2023060500</text>
+    </stackversion>
+    <questionvariables>
+      <text>carpet_width_measure:rand_with_step(2,7,1);/*measurement of carpet width */
+floor_width_measure:rand_with_prohib(7,12,[carpet_width_measure]);/*measurement of floor width*/
+floor_length_measure:rand_with_prohib(20,30,[floor_width_measure,carpet_width_measure]);/*measurement of carpet length*/
+carpet_length_measure:rand_with_prohib(12,20,[carpet_length_measure,floor_width_measure,carpet_width_measure]);/*measurement of floor length*/
+area_floor:floor_width_measure*floor_length_measure;/*Area enclosed by the outer boundary (floor) */
+area_carpet:carpet_width_measure*carpet_length_measure;/*Area area enclosed by the inner border(carpet).*/
+area_border:area_floor-area_carpet;/*Area of a border (part not covered with the carpet)*/
+area_border_mistake1:area_floor+area_carpet;/*mistake of adding Area of a border instead of subtracting to get part not covered with the carpet */
+area_border_mistake2:carpet_width_measure*carpet_length_measure;/*Area area enclosed by the inner border(carpet).*/</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="moodle_auto_format">
+      <text><![CDATA[<p>length of floor:\({@floor_length_measure@}\)</p>
+<p>width of floor:\({@floor_width_measure@}\)</p>
+<p>length of carpet:\({@carpet_length_measure@}\)</p>
+<p>width of carpet:\({@carpet_width_measure@}\)</p>
+<p>\({@area_floor@}\)</p>
+<p>\({@area_carpet@}\)</p>
+<p>\({@area_border@}\)</p>]]></text>
+    </questionnote>
+    <questiondescription format="html">
+      <text><![CDATA[<p id="author">Harriet Mogaka</p>
+<p id="concept">https://docs.google.com/document/d/1ewPxG_r5Y673QSQGQpSmzFSQuJYQ-O7KDCoPRrCMU9s/edit?tab=t.0</p>
+<p id="reviewer"></p>
+<p id="reviewer"></p>
+
+<p id="description">The question is testing on area of a borders and the learner is expected to find the difference between the area enclosed by the outer boundary and the area enclosed by the inner border in order to get the area of border.
+</p>]]></text>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>area_border</tans>
+      <boxsize>5</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Area of border</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>area_border</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <description>Adding area of floor and area of carpet.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>area_border_mistake1</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-2-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>You have added the area of the floor and the area of the carpet instead of subtracting to get the area not covered with the carpet. Note that the question asks for area not covered with the carpet.</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>2</falsenextnode>
+        <falseanswernote>prt1-2-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>2</name>
+        <description>Computing area covered by the carpet instead of area not covered by the carpet</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>area_border_mistake2</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0.5</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-3-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>You seem to have worked in the area covered by the carpet instead of an area not covered by the carpet. note that you are required to work the  area not covered by the carpet. Kindly check the worked solution below.</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-3-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <deployedseed>698110626</deployedseed>
+    <deployedseed>523643543</deployedseed>
+    <deployedseed>1528417393</deployedseed>
+    <deployedseed>478713499</deployedseed>
+    <deployedseed>1829931746</deployedseed>
+    <deployedseed>998268719</deployedseed>
+    <deployedseed>543679768</deployedseed>
+    <deployedseed>1049558202</deployedseed>
+    <deployedseed>695734178</deployedseed>
+    <deployedseed>256460759</deployedseed>
+    <qtest>
+      <testcase>1</testcase>
+      <description>Test case assuming the teacher's input gets full marks.</description>
+      <testinput>
+        <name>ans1</name>
+        <value>area_border</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt1-1-T</expectedanswernote>
+      </expected>
+    </qtest>
+  </question>
+</quiz>

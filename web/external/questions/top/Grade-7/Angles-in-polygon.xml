@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Angles in polygon</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p>Calculate the value of the missing angle in the polygon given below</p>
+[[jsxgraph]]
+var board = JXG.JSXGraph.initBoard('jxgbox', {
+            boundingbox: [-10, 10, 10, -10], 
+            axis: false, 
+            grid: false
+        });
+
+        function drawRandomPolygon() {
+            board.suspendUpdate(); // Pause updates for performance
+            board.removeObject(board.objectsList); // Remove previous polygon
+
+            let numSides = Math.floor(Math.random() * 3) + 5; // Randomly select 5, 6, or 7 sides
+            let totalInteriorAngle = (numSides - 2) * 180; // Total sum of interior angles
+            
+            let knownAngles = [{#angle_1#}, {#angle_2#},{#angle_3#}, 90, 105]; // Predefined known angles
+            let shuffledAngles = knownAngles.sort(() => 0.5 - Math.random()).slice(0, numSides - 2); // Pick correct number of known angles
+
+            // Calculate unknown angles ({#val_letter#} and 2X)
+            let remainingAngleSum = totalInteriorAngle - shuffledAngles.reduce((a, b) => a + b, 0);
+            let x = remainingAngleSum / 3; // Ensure sum remains correct
+            let unknownAngles = [x, 2 * x];
+
+            // Final angle list (shuffle order)
+            let finalAngles = [...shuffledAngles, ...unknownAngles].sort(() => 0.5 - Math.random());
+
+            let radius = 5; // Radius for the polygon
+            let angleStep = (2 * Math.PI) / numSides;
+            
+            let points = [];
+            for (let i = 0; i < numSides; i++) {
+                let angle = i * angleStep; // Evenly distribute points
+                let x = radius * Math.cos(angle);
+                let y = radius * Math.sin(angle);
+                points.push(board.create('point', [x, y], { size: 0, name: '', fixed: true })); // Invisible points
+            }
+
+            // Draw polygon
+            let polygon = board.create('polygon', points, { borders: { strokeWidth: 2, strokeColor: 'blue' } });
+
+            // Display angles inside the polygon, 1cm from vertices
+            points.forEach((pt, index) => {
+                let vectorX = pt.X() * 0.85; // Move text 1cm inward
+                let vectorY = pt.Y() * 0.85;
+                
+                let angleText = finalAngles[index] === unknownAngles[0] ? "X" : finalAngles[index] === unknownAngles[1] ? "2X" : finalAngles[index] + "°";
+                
+                board.create('text', [vectorX, vectorY, angleText], { fontSize: 14, color: 'black' });
+            });
+
+            board.resumeUpdate(); // Resume updates
+        }
+
+        drawRandomPolygon(); // Generate a polygon on page load
+[[/jsxgraph]]
+<p>[[input:ans1]] [[validation:ans1]][[feedback:prt1]]</p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text/>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2025012100</text>
+    </stackversion>
+    <questionvariables>
+      <text>val_letter:rand([x,y,z,n,m,p,q,r,t]);
+angle_1:rand(90)+50;
+angle_2:rand(89)+60;
+angle_3:rand(50)+80;</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="html">
+      <text>ta</text>
+    </questionnote>
+    <questiondescription format="html">
+      <text/>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>ta</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description/>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>ta</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+  </question>
+</quiz>

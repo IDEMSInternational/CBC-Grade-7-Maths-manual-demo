@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Finding total distance covered in kilometers.</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p></p><p>&nbsp; &lt;p&gt;Oscar rides a bicycle for \({@monday_deci@\)km on Monday and \({@tuesday_deci@\)km on Tuesday.&lt;/p&gt;</p>&lt;p&gt;How many kilometers does he ride in total for the two days?&lt;/p&gt;<br>&lt;p&gt;Total distance=[[input:ans1]] [[validation:ans1]]km[[feedback:prt1]]&lt;/p&gt;<br><br><p dir="ltr" id="docs-internal-guid-bc0f2908-7fff-2a2a-393d-06cee4759173"><br></p><br><p></p><p><br></p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p dir="ltr" style="text-align: left;"></p><p dir="ltr" id="docs-internal-guid-b5bac96f-7fff-6a4c-b428-245234da6d31">&lt;h3&gt;worked solution&lt;/h3&gt;</p><p dir="ltr">&lt;p&gt;<span id="docs-internal-guid-d185d3fc-7fff-e4d2-9604-c13febeda9fb">How many kilometers does he ride in total for the two days?</span>&lt;/p&gt;<br></p><p dir="ltr">&lt;p&gt;Total distance rode\({@monday_deci@}\)+\({@tuesday_deci@}\) km&lt;/p&gt;</p><p dir="ltr">&lt;p&gt;Add the distance&lt;/p&gt;</p><p dir="ltr">&lt;ul&gt;</p><p dir="ltr">&lt;li&gt;</p><p dir="ltr">&lt;p&gt;Line up the decimals&lt;/p&gt;<br></p><p dir="ltr">&lt;/li&gt;</p><p dir="ltr"></p><p dir="ltr">&lt;li&gt;</p><p dir="ltr">&lt;p&gt;Add the hundreths&lt;/p&gt;<br></p><p dir="ltr">&lt;/li&gt;</p><br><p dir="ltr">&lt;li&gt;</p><p dir="ltr">&lt;p&gt;add the tenths&lt;/p&gt;<br></p><p dir="ltr">&lt;/li&gt;</p><br><p dir="ltr">&lt;li&gt;</p><p dir="ltr">&lt;p&gt;Add the ones&lt;/p&gt;<br></p><p dir="ltr">&lt;/li&gt;</p><p dir="ltr">&lt;/ul&gt;<br></p><br><p></p><p dir="ltr">&lt;p&gt;\(</p><p dir="ltr">\begin{array}{r}<br>({@monday_deci@\) \\\\<br>+\({@tuesday_deci@\) \\<br>\hline<br>\({@total-dist@\)\\<br>\hline<br>\end{array}<br>\)&lt;/p&gt;</p><p dir="ltr"><span id="docs-internal-guid-11f8c783-7fff-5c83-8008-ad5ba1065e74">&lt;p&gt;Distance covered is</span> \({@total-dist@\)km.&lt;/p&gt;</p><br><p></p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2023060500</text>
+    </stackversion>
+    <questionvariables>
+      <text>monday:rand(100)+99;/*number of kilometres covered on monday*/
+monday_frac:monday/100;/*representation of distance in fraction*/
+monday_deci:float(monday_frac);/*100;representation of distance in decimals*/
+tuesday:rand(200)+99;/*number of kilometres covered on tuesday*/
+tuesday_frac:tuesday/100;/*100;representation of distance in fraction*/
+tuesday_deci:float(tuesday_frac);/*100;representation of distance in decimals*/
+total_dist:tuesday_deci+monday_deci;/*sum of distance covered for two days in kilometres */
+</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="moodle_auto_format">
+      <text>formulating total distance covered twice a week by a cyclist in Kilometres
+</text>
+    </questionnote>
+    <questiondescription format="html">
+      <text><![CDATA[<p dir="ltr" style="text-align: left;"></p><p dir="ltr" id="docs-internal-guid-b2d692d0-7fff-ce0b-f52d-ea46dca956eb">&lt;p id="author"&gt; HARRIET MOGAKA&lt;/p&gt;<br>&lt;p id="concept"&gt;https://docs.google.com/document/d/14LDuFsoAeujlpfpwZF32Cy-gk7BoALoBV4WQv7Ed5HI/edit?tab=t.0&lt;/p&gt;<br>&lt;p id="reviewer"&gt;&lt;/p&gt;</p><p dir="ltr">&lt;p id="reviewer"&gt;&lt;/p&gt;<br><br>&lt;p id="description"&gt;Finding total distance covered&lt;/p&gt;</p><br><p></p>]]></text>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>1</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>1</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>1</sans>
+        <tans>1</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+  </question>
+</quiz>

@@ -1,0 +1,694 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Bar graph The bar graph showing the amount of wheat purchased by a milling company in the year 2017 to 2021</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p></p>
+
+<p>The bar graph shows the amount of wheat purchased by a milling company in the year 2017 to 2021</p>
+
+[[jsxgraph width="750px" height="450px"]]
+
+// Sample wheat purchase data (in tons)
+var dataValues = [{#wheat_2017#}, {#wheat_2018#}, {#wheat_2019#}, {#wheat_2020#}, {#wheat_2021#}];
+
+var categories = ["2017", "2018", "2019", "2020", "2021"];
+var colors = ["red", "blue", "green", "orange", "purple"]; // Different colors for bars
+
+// Initialize the board
+var board = JXG.JSXGraph.initBoard("jxgbox", {
+    boundingBox: [-1, 3000, 6, -500], 
+    axis: false,  
+    showCopyright: false,
+    showNavigation: false,
+    grid: false
+});
+
+// Custom X and Y axes
+var xAxis = board.create("line", [[0, 0], [6, 0]], { strokeWidth: 2, fixed: true });
+var yAxis = board.create("line", [[0, 0], [0, 2500]], { strokeWidth: 2, fixed: true });
+
+// Create Y-axis tick marks every 500 tons
+for (let y = 0; y <= 2500; y += 500) {
+    board.create("text", [-0.3, y, y.toString() + " tons"], { anchorX: "right", fontSize: 12, fixed: true });
+    board.create("line", [[-0.1, y], [0.1, y]], { strokeWidth: 1, fixed: true });
+}
+
+// Bar chart settings
+var barWidth = 0.8;
+
+for (let i = 0; i < dataValues.length; i++) {
+    let x = i + 1;
+    let y = dataValues[i];
+
+    // Create bars as polygons (static, non-draggable)
+    board.create("polygon", [
+        [x - barWidth / 2, 0],     
+        [x + barWidth / 2, 0],     
+        [x + barWidth / 2, y], 
+        [x - barWidth / 2, y]
+    ], {
+        fillColor: colors[i], 
+        fillOpacity: 0.8,  
+        highlight: false,
+        fixed: true,  
+        withLabel: false,
+        vertices: { visible: false, fixed: true },
+        borders: { fixed: true }
+    });
+
+    // Add category labels below each bar
+    board.create("text", [x, -300, categories[i]], {
+        anchorX: "middle",
+        fontSize: 14,
+        fixed: true
+    });
+
+    // Display values statically at the top of each bar
+    board.create("text", [x, y + 100, y + " Tonnes"], {
+        anchorX: "middle",
+        fontSize: 14,
+        strokeColor: "black",
+        fixed: true
+    });
+}
+
+board.update();
+
+[[/jsxgraph]]
+
+
+<ol>
+<li><p> In which year was the largest quantity of wheat purchased?[[input:ans6]]Tonnes [[validation:ans6]][[feedback:prt6]] </p></li>
+<li><p> In which year was the least quantity of wheat purchased? [[input:ans7]]Tonnes [[validation:ans7]][[feedback:prt7]] </p></li>
+<li><p>Find the total amount of wheat purchased in the years :<ol type = 'a'>
+<li><p>2017 [[input:ans14]]Tonnes [[validation:ans14]][[feedback:prt14]]</p></li>
+<li><p>2018 [[input:ans8]]Tonnes [[validation:ans8]][[feedback:prt8]]</p></li>
+<li><p>2019 [[input:ans9]]Tonnes [[validation:ans9]][[feedback:prt9]]</p></li></ol></p></li>
+<li><p> Find the rise in the   amount purchased between the years 2020 and 2021 [[input:ans10]]Tonnes [[validation:ans10]][[feedback:prt10]]</p></li>
+<li><p> How much more wheat was purchased in 2021 compared to 2017? [[input:ans11]]Tonnes [[validation:ans11]][[feedback:prt11]]</p></li>
+<li><p>What is the average amount of wheat purchased per year over the five-year period?[[input:ans12]]Tonnes [[validation:ans12]][[feedback:prt12]]</p></li>
+<li><p>By how much did the wheat purchase increase or decrease from 2019 to 2020? [[input:ans13]] [[validation:ans13]]Tonnes[[feedback:prt13]]</p></li>
+
+</ol>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<ol>
+<li><p> The year that has the largest quantity of wheat purchased was {@tans1@} Tonnes</p></li>
+<li><p> The year that had the least quantity of wheat purchased was {@tans2@} Tonnes </p></li>
+<li><p>The total amount of wheat purchased in the years was :<ol type = 'a'>
+<li><p>2017 was  {@tans3@} Tonnes</p></li>
+<li><p>2018 was  {@tans4@} Tonnes</p></li>
+<li><p>2019 was  {@tans5@} Tonnes</p></li></ol></p></li>
+<li><p> The rise in the  amount purchased between the years 2020 and 2021 was {@tans6@} Tonnes</p></li>
+<li><p> {@tans9@} Tonnes more wheat was purchased in 2021 compared to 2017 </p></li>
+<li><p>The average amount of wheat purchased per year over the five-year period was {@tans7@} Tonnes</p></li>
+<li><p>It was by {@tans8@} Tonnes that the wheat purchase increase or decrease from 2019 to 2020</p></li>
+
+</ol>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2025012100</text>
+    </stackversion>
+    <questionvariables>
+      <text>/* Generate an increasing sequence of random wheat purchase values */
+random_wheat(min, max) := rand(max - min + 1) + min; 
+
+wheat_2017: random_wheat(1500, 2000); /* Start between 1500 and 2000 */
+wheat_2018: random_wheat(wheat_2017 + 50, wheat_2017 + 250); 
+wheat_2019: random_wheat(wheat_2018 + 50, wheat_2018 + 250);
+wheat_2020: random_wheat(wheat_2019 + 50, wheat_2019 + 250);
+wheat_2021: min(random_wheat(wheat_2020 + 50, wheat_2020 + 250), 2800); /* Ensure max is 2800 */
+
+/* Store in a List */
+wheat_data: [wheat_2017, wheat_2018, wheat_2019, wheat_2020, wheat_2021];
+
+sorted_wheat: sort(wheat_data);
+max_value: last(sorted_wheat); /* Largest value is the last element */
+max_index: max(max_value);
+min_value:first(sorted_wheat);
+total_value_wheat: wheat_2017 + wheat_2018 + wheat_2019 + wheat_2020 + wheat_2021;
+AA: wheat_2021 - wheat_2020;
+BB: wheat_2021 - wheat_2017;
+Average: decimalplaces(total_value_wheat/5,2);
+
+tans1: max_index ;
+tans2: min_value;
+tans3: wheat_2017;
+tans4: wheat_2018;
+tans5: wheat_2019;
+tans6: AA;
+tans7: Average;
+tans8: BB;
+tans9: wheat_2021 - wheat_2017;</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="html">
+      <text>\({@wheat_2017@}\)
+\({@wheat_2018@}\)
+\({@wheat_2019@}\)
+\({@wheat_2020@}\)
+\({@wheat_2021@}\)
+
+\({@tans1@}\)
+\({@tans2@}\)
+\({@tans3@}\)
+\({@tans4@}\)
+\({@tans5@}\)
+\({@tans6@}\)
+\({@tans7@}\)
+\({@tans8@}\)
+\({@tans9@}\)
+
+\({@sorted_wheat@}\)
+\({@max_value@}\)
+\({@max_index@}\)
+\({@total_value_wheat@}\)
+\({@AA@}\)
+\({@BB@}\)
+\({@Average@}\)</text>
+    </questionnote>
+    <questiondescription format="html">
+      <text><![CDATA[<p id="author">Joseph Baya</p>
+<p id="review"></p>
+<p id="description"> This question assesses the ability to interpret a bar graph showing wheat purchases by a milling company from 2017 to 2021. It involves identifying the highest and lowest values, retrieving specific data, calculating differences, and determining the average purchase over the five-year period. The focus is on basic arithmetic operations and trend analysis using the visual data representation.</p>]]></text>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans10</name>
+      <type>algebraic</type>
+      <tans>tans6</tans>
+      <boxsize>4</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans11</name>
+      <type>algebraic</type>
+      <tans>tans9</tans>
+      <boxsize>4</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans12</name>
+      <type>algebraic</type>
+      <tans>tans7</tans>
+      <boxsize>4</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans13</name>
+      <type>algebraic</type>
+      <tans>tans8</tans>
+      <boxsize>4</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans14</name>
+      <type>algebraic</type>
+      <tans>tans3</tans>
+      <boxsize>4</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans6</name>
+      <type>algebraic</type>
+      <tans>tans1</tans>
+      <boxsize>4</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans7</name>
+      <type>algebraic</type>
+      <tans>tans2</tans>
+      <boxsize>4</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans8</name>
+      <type>algebraic</type>
+      <tans>tans4</tans>
+      <boxsize>4</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans9</name>
+      <type>algebraic</type>
+      <tans>tans5</tans>
+      <boxsize>4</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt10</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for correct answer</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans10</sans>
+        <tans>tans6</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt10-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt10-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt11</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for correct answer</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans11</sans>
+        <tans>tans9</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt11-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt11-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt12</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for correct answer</description>
+        <answertest>NumAbsolute</answertest>
+        <sans>ans12</sans>
+        <tans>tans7</tans>
+        <testoptions>2</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt12-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt12-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt13</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for correct answer</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans13</sans>
+        <tans>tans8</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt13-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt13-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt14</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct answer</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans14</sans>
+        <tans>tans3</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt14-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt14-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt6</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for  correct answers</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans6</sans>
+        <tans>tans1</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt6-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt6-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt7</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for correct answers</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans7</sans>
+        <tans>tans2</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt7-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt7-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt8</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for correct answers</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans8</sans>
+        <tans>tans4</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt8-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt8-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt9</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for correct answer</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans9</sans>
+        <tans>tans5</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt9-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt9-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <deployedseed>1744713265</deployedseed>
+    <deployedseed>1017206001</deployedseed>
+    <deployedseed>174589477</deployedseed>
+    <deployedseed>1947785376</deployedseed>
+    <deployedseed>1033740987</deployedseed>
+    <deployedseed>1147266667</deployedseed>
+    <deployedseed>929724002</deployedseed>
+    <deployedseed>38378587</deployedseed>
+    <deployedseed>886508068</deployedseed>
+    <deployedseed>521069794</deployedseed>
+    <deployedseed>1113577787</deployedseed>
+    <deployedseed>1659855126</deployedseed>
+    <deployedseed>1378129770</deployedseed>
+    <deployedseed>920930112</deployedseed>
+    <deployedseed>1010581302</deployedseed>
+    <deployedseed>1560237457</deployedseed>
+    <deployedseed>1541213209</deployedseed>
+    <deployedseed>1772505692</deployedseed>
+    <deployedseed>1511331302</deployedseed>
+    <deployedseed>1157453855</deployedseed>
+  </question>
+</quiz>

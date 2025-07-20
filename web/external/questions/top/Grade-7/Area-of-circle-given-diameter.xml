@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Area of circle given diameter</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[[[jsxgraph]]
+
+    const board = JXG.JSXGraph.initBoard('jxgbox',
+                                           { boundingbox: [-15, 15, 15, -15], 
+                                           axis: false});
+     const center = board.create('point', [0, 0], 
+                                              { name: 'O', size: 2, fixed: true,color: 'blue' });
+ 
+    const point1 = board.create('point', [12, 0], 
+                                    { name: 'A', size: 2, fixed: true,color: 'red' });
+    const point2 = board.create('point', [-12, 0], 
+                              { name: 'B', size: 2, fixed: true,color: 'red' });
+
+       const circle = board.create('circle', [center, point1], 
+                                  { strokeColor: 'green', strokeWidth: 4 });
+  
+      const diameter = board.create('line', [point2, point1], 
+                                   {straightFirst: false,
+                                    straightLast: false,
+                                    strokeColor: 'purple',
+                                    strokeWidth: 2,
+                                   name: 'Diameter'});
+
+    board.create('text', [2, 0.95, 'Diameter = 8 cm'], 
+                           { fontSize: 14, color: 'black',anchorX: 'center', anchorY: 'bottom'});
+[[/jsxgraph]]
+
+<p>Area = [[input:ans1]] [[validation:ans1]] [[feedback:prt1]]</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text/>
+    </generalfeedback>
+    <defaultgrade>0</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2023060500</text>
+    </stackversion>
+    <questionvariables>
+      <text>/*Area of Circle*/
+
+/*Coordinates of the circle*/
+units_of_circle:rand([cm,m,fts,yrds,km,miles,inches]);
+diameter:rand_with_step(2,100,2);
+
+/*Diameter with units*/
+diamter_units:diameter*units_of_circle;
+
+/*units squared*/
+units_of_circle_sqr:units_of_circle^2;
+/*Radius*/
+radius_of_circle_num:1/2*diameter;
+radius_of_circle:1/2*diameter*units_of_circle;
+
+/*Area*/
+Area_of_Circle:decimalplaces(22/7 * radius_of_circle_num,2)*units_of_circle_sqr;
+</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="moodle_auto_format">
+      <text><![CDATA[<p>Area_of_Circle</p>]]></text>
+    </questionnote>
+    <questiondescription format="html">
+      <text/>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<p>Correct answer, well done.</p>]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<p>Your answer is partially correct.</p>]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<p>Incorrect answer.</p>]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>Area_of_Circle</tans>
+      <boxsize>8</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Check for the correct answer of the area of a circle</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>Area_of_Circle</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+  </question>
+</quiz>

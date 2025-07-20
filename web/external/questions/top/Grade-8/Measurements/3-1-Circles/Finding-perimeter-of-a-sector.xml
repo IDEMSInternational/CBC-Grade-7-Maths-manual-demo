@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Finding perimeter of a sector</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>
+A sector of a circle has a radius of \({@selected_radius@}\) cm and a central angle of (\{@theta_deg@} ^\circ\). Calculate the perimeter of the sector.
+ (Use \(\pi= 3.14\))</p>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sector OAB</title>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jsxgraph/distrib/jsxgraphcore.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jsxgraph/distrib/jsxgraph.css" />
+</head>
+<body>
+
+<div id="box" class="jxgbox" style="width: 500px; height: 500px;"></div>
+
+<script type="text/javascript">
+  var board = JXG.JSXGraph.initBoard('box', {
+    boundingbox: [-8, 8, 8, -8],
+    axis: false,
+    showCopyright: false,
+    showNavigation: false
+  });
+
+  var radius = 8;
+  var angleDeg = 140;
+  var angleRad = angleDeg * Math.PI / 180;
+
+  // Invisible point O with label
+  var O = board.create('point', [0, 0], { name: 'O', fixed: true, visible: false, showInfobox: false });
+  board.create('text', [O.X(), O.Y() - 0.5, 'O'], { fontSize: 14 });
+
+  // Invisible point A with label
+  var A = board.create('point', [radius, 0], { name: 'A', fixed: true, visible: false, showInfobox: false });
+  board.create('text', [A.X() + 0.3, A.Y(), 'A'], { fontSize: 14 });
+
+  // Invisible point B with label
+  var B = board.create('point', [radius * Math.cos(angleRad), radius * Math.sin(angleRad)], { name: 'B', fixed: true, visible: false, showInfobox: false });
+  board.create('text', [B.X(), B.Y() + 0.3, 'B'], { fontSize: 14 });
+
+  var OA = board.create('line', [O, A], { straightFirst: false, straightLast: false });
+  var OB = board.create('line', [O, B], { straightFirst: false, straightLast: false });
+
+  var arc = board.create('arc', [O, A, B], {
+    strokeWidth: 2,
+    strokeColor: 'black'
+  });
+
+  // Label the angle AOB = 60°
+  var angle = board.create('nonreflexangle', [A, O, B], {
+    radius: 1.9,
+    name: '{#selected_angle#}°',
+    label: {
+      fontSize: 12
+    },
+    visible: true
+  });
+
+  // Label line OB = 6 cm
+  var OBLabel = board.create('midpoint', [O, B], { visible: false });
+  var textOB = board.create('text', [
+    () => OBLabel.X(),
+    () => OBLabel.Y() + -1.5,
+    '{#selected_radius#} cm'
+  ], { fontSize: 14 });
+</script>
+
+</body>
+</html>
+<p>\(\text{Perimeter of the sector = }\) [[input:ans1]] \(m\)[[validation:ans1]][[feedback:prt1]]</p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<h3>Worked solution</h3>
+<p>Given:
+
+    </p>
+
+<p>Radius r= \({@selected_radius@}\)</p>
+<p>Central angle θ =\({@selected_angle @}\) </p>
+<p>Use π=3.14</p>
+<p>Step 1: Calculate Arc Length</p>
+<p>Arc Length = \( \frac {\theta}{360} \times 2 \pi r\)</p>
+<p> = \frac {\{@selected_angle @}{360} \times 2 \times 3.14 \times \({@selected_radius @}\) r</p>
+<p>= \({@perimeter@})</p>
+<p>\({@ta@})</p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2025012100</text>
+    </stackversion>
+    <questionvariables>
+      <text>  /* Define the list of angle-radius pairs */
+angle_radius_pairs : [   [90, 6], [180, 12], [60, 6], [120, 12], [360, 8], [45, 4], [30, 10], [90, 12], [180, 24], [60, 9], [120, 18], 
+    [180, 10], [90, 10], [45, 12], [60, 12], [120, 6], [180, 8], [270, 6], [240, 4], [150, 9], [135, 6], [60, 3], 
+    [30, 12], [120, 15], [60, 15], [180, 5], [90, 15], [270, 10], [45, 8], [30, 4], [180, 6], [120, 4], [90, 8], 
+    [240, 6], [330, 10], [270, 12], [90, 18], [180, 14], [45, 10], [120, 9], [90, 3], [60, 5], [150, 12], [90, 6], 
+    [30, 8], [270, 8], [240, 8], [180, 16], [60, 18], [90, 4]];
+
+/* Select a random index between 1 and the length of the list */
+random_index : floor(rand(length(angle_radius_pairs)) + 1);
+
+/* Select the random angle-radius pair */
+random_pair : angle_radius_pairs[random_index];
+
+/* Extract angle and radius from the pair */
+selected_angle : random_pair[1];  /* Get the angle (first element) */
+selected_radius : random_pair[2]; /* Get the radius (second element) */
+
+/* Display the selected angle and radius */
+PI:float(22/7);/*constant pi*/
+radius_circle:rand_with_step(0.7,49,0.7);/*radius of the circle*/
+angle_simp:selected_angle/360;
+perimeter:decimalplaces(angle_simp*2*PI*selected_radius+2*selected_radius,2);
+ta:perimeter;
+/*common mistakes a learner can make*/
+ta_1:decimalplaces(selected_angle*2*PI*selected_radius,2)/*Forgeting to convert the degree by division by 360*/
+/*Second Mistake*/
+ta_2:decimalplaces(angle_simp*PI*selected_radius,2);/*Wrong formula for arc length*/
+ta_3:decimalplaces(angle_simp*2*PI*selected_radius,2);</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="html">
+      <text><![CDATA[<p>Radius = {@selected_radius@}</p>
+<p>Angle  = {@selected_angle@}</p>
+<p> Answer = {@ta@}</p>]]></text>
+    </questionnote>
+    <questiondescription format="html">
+      <text/>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>ta</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>perimeter of a sector</description>
+        <answertest>NumDecPlaces</answertest>
+        <sans>ans1</sans>
+        <tans>ta</tans>
+        <testoptions>2</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <description>Forgetting that the formula for arc length needs degrees (if angle is given in degrees)</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>ta_1</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-2-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>You seem to have computed your sum correctly but you seem to have forgotten to convert the degree value with division by 360. Kindly refer to the worked solution.</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>2</falsenextnode>
+        <falseanswernote>prt1-2-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>2</name>
+        <description>Wrong use of formula for arc length</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>ta_2</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-3-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>You seem to have computed your sum correctly but it seems you forgot to use the correct formula. kindly recheck the formula in the worked solution</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>3</falsenextnode>
+        <falseanswernote>prt1-3-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>3</name>
+        <description>Forgetting to add both radii</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>ta_3</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-4-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>You seem to have computed  by calculating only the arc length and forgetting to add 2\( \times\) radius  for the perimeter.</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-4-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <deployedseed>1923592511</deployedseed>
+    <deployedseed>339352477</deployedseed>
+    <deployedseed>1557184983</deployedseed>
+    <deployedseed>2074672862</deployedseed>
+    <deployedseed>1716577491</deployedseed>
+    <deployedseed>2080357519</deployedseed>
+    <deployedseed>971555356</deployedseed>
+    <deployedseed>659091249</deployedseed>
+    <deployedseed>935679399</deployedseed>
+    <deployedseed>1555636649</deployedseed>
+    <deployedseed>1990506082</deployedseed>
+    <deployedseed>1636090588</deployedseed>
+    <deployedseed>801496628</deployedseed>
+    <deployedseed>781693616</deployedseed>
+    <deployedseed>459740655</deployedseed>
+    <deployedseed>377086351</deployedseed>
+    <deployedseed>892229851</deployedseed>
+    <deployedseed>579192123</deployedseed>
+    <deployedseed>334347267</deployedseed>
+    <deployedseed>652927188</deployedseed>
+    <qtest>
+      <testcase>1</testcase>
+      <description>Checks for the correct answer</description>
+      <testinput>
+        <name>ans1</name>
+        <value>ta</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt1-1-T</expectedanswernote>
+      </expected>
+    </qtest>
+    <qtest>
+      <testcase>2</testcase>
+      <description>Forgetting that the formula for arc length needs degrees (if angle is given in degrees)</description>
+      <testinput>
+        <name>ans1</name>
+        <value>ta_1</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>0.0000000</expectedscore>
+        <expectedpenalty>0.1000000</expectedpenalty>
+        <expectedanswernote>prt1-2-T</expectedanswernote>
+      </expected>
+    </qtest>
+    <qtest>
+      <testcase>3</testcase>
+      <description>Wrong use of formula for arc length</description>
+      <testinput>
+        <name>ans1</name>
+        <value>ta_2</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>0.0000000</expectedscore>
+        <expectedpenalty/>
+        <expectedanswernote>prt1-3-T</expectedanswernote>
+      </expected>
+    </qtest>
+    <qtest>
+      <testcase>4</testcase>
+      <description>Forgetting to add 2 \( \times \) radii</description>
+      <testinput>
+        <name>ans1</name>
+        <value>ta_3</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>0.0000000</expectedscore>
+        <expectedpenalty>0.1000000</expectedpenalty>
+        <expectedanswernote>prt1-4-T</expectedanswernote>
+      </expected>
+    </qtest>
+  </question>
+</quiz>

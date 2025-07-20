@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Identifying numbers which are divisible by 3 from a given list</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p>Which of the following numbers are divisible by \(3\)?</p>
+<p>[[input:ans1]] [[validation:ans1]][[feedback:prt1]]</p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<h3>Worked solution</h3>
+<p>A number is divisible by \(3\) if the sum of the digits in the number is divisible by \(3\).</p>
+<p>
+<ul>
+<li>
+<p>\( {@num1_div_by_3@} \) is divisible by \(3\) since the sum of it's digit is divisible by \(3\).</p>
+<p>\( \begin{align} {@num1_div_by_3@} = {@digit1_num1_div_by_3@} + {@digit2_num1_div_by_3@} + {@digit3_num1_div_by_3@} +{@digit4_num1_div_by_3@} 
+     & ={@addition_of_digits_num1_div_by_3@}  \\ \\&= \frac{{@addition_of_digits_num1_div_by_3@}}{9} = {@addition_of_digits_num1_div_by_3/3@} \end{align}\)</p>
+</li>
+</ul>
+</p>
+
+<p><ul><li>
+<p>\({@num2_div_by_3@}\) is divisible by \(3\) since the sum of it's digit is divisible by \(3\).</p>
+<p>\( \begin{align}  {@num2_div_by_3@} = {@digit1_num2_div_by_3@} + {@digit2_num2_div_by_3@} + {@digit3_num2_div_by_3@} +{@digit4_num2_div_by_3@} &={@addition_of_digits_num2_div_by_3@}\\ \\ &=\frac{{@addition_of_digits_num2_div_by_3@}}{3} ={@addition_of_digits_num2_div_by_3/3@} \end{align}\)</p>
+</li></ul></p>
+
+<p><ul><li>
+<p>\({@num1_not_div_by_3@}\) is not divisible by \(3\) since the sum of it's digits is not divisible by \(3\). </p>
+<p>\(\begin{align}{@num1_not_div_by_3@} = {@digit1_num1_not_div_by_3@} +{@digit2_num1_not_div_by_3@}+{@digit3_num1_not_div_by_3@}+{@digit4_num1_not_div_by_3@} &= {@addition_of_digits_num1_not_div_by_3@} \\ \\&=\frac{{@addition_of_digits_num1_not_div_by_3@}}{3} = {@floor(addition_of_digits_num1_not_div_by_3/3)@} \text{ remainder  } {@mod(addition_of_digits_num1_not_div_by_3,3)@} \end{align} \) </p>
+</li></ul></p>
+
+<p><ul><li>
+<p>\({@num2_not_div_by_3@}\) is not divisible by \(3\) since the sum of it's digits is not divisible by \(3\).</p>
+<p>\( \begin{align} {@num2_not_div_by_3@} = {@digit1_num2_not_div_by_3@} + {@digit2_num2_not_div_by_3@} + {@digit3_num2_not_div_by_3@} + {@digit4_num2_not_div_by_3@} &= {@addition_of_digits_num2_not_div_by_3@}\\ \\&= \frac{{@addition_of_digits_num2_not_div_by_3@}}{3}  = {@floor(addition_of_digits_num2_not_div_by_3/3)@}  \text{  remainder  } {@mod(addition_of_digits_num2_not_div_by_3,3)@}\end{align}\)</p>
+</li></ul></p>
+
+<p><ul><li>
+<p>\({@num3_not_div_by_3@}\) is not divisible by \(3\) since the sum of it's digits is not divisible by \(3\).</p>
+<p>\( \begin{align} {@num3_not_div_by_3@} = {@digit1_num3_not_div_by_3@} + {@digit2_num3_not_div_by_3@} + {@digit3_num3_not_div_by_3@} +{@digit4_num3_not_div_by_3@} &= {@addition_of_digits_num3_not_div_by_3@} \\  \\&= \frac{{@addition_of_digits_num3_not_div_by_3@}}{3} = {@floor(addition_of_digits_num3_not_div_by_3/3)@} \text{ remainder  } {@mod(addition_of_digits_num3_not_div_by_3,3)@} \end{align}\)</p>
+</li></ul></p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2025012100</text>
+    </stackversion>
+    <questionvariables>
+      <text>/*Divisibility test for 3*/
+
+/*numbers divisible by three*/
+num1_div_by_3:rand_with_step(3000,8000,3);
+num2_div_by_3:rand_with_step(8154,9999,3);
+
+/* Define a function to check if a number is NOT divisible by 3 */
+is_not_divisible_by_3(n) := mod(n,3) # 0;
+/* Generate a list of 20 random numbers between 100 and 1000 */
+random_list : makelist(rand(4000) + 4000, i, 1, 40);
+/* Filter the numbers that are NOT divisible by 3 */
+filtered_list : sublist(random_list, lambda([n], is_not_divisible_by_3(n)));
+
+/*numbers not divisible by three*/
+num1_not_div_by_3:filtered_list[1];
+num2_not_div_by_3:filtered_list[2];
+num3_not_div_by_3:filtered_list[3];
+
+
+/* Extracting digits for num1_div_by_3*/
+digit1_num1_div_by_3:floor(num1_div_by_3/1000);
+digit2_num1_div_by_3:floor(mod(num1_div_by_3 / 100,10));
+digit3_num1_div_by_3:floor(mod(num1_div_by_3 / 10,10));
+digit4_num1_div_by_3:floor(mod(num1_div_by_3,10));
+addition_of_digits_num1_div_by_3:digit1_num1_div_by_3+digit2_num1_div_by_3+digit3_num1_div_by_3+digit4_num1_div_by_3;
+
+
+/* Extracting digits for num2_div_by_3*/
+digit1_num2_div_by_3:floor(num2_div_by_3/1000);
+digit2_num2_div_by_3:floor(mod(num2_div_by_3 / 100,10));
+digit3_num2_div_by_3:floor(mod(num2_div_by_3 / 10,10));
+digit4_num2_div_by_3:floor(mod(num2_div_by_3,10));
+addition_of_digits_num2_div_by_3:digit1_num2_div_by_3+digit2_num2_div_by_3+digit3_num2_div_by_3+digit4_num2_div_by_3;
+
+/* Extracting digits for num1_not_div_by_3*/
+digit1_num1_not_div_by_3:floor(num1_not_div_by_3/1000);
+digit2_num1_not_div_by_3:floor(mod(num1_not_div_by_3 / 100,10));
+digit3_num1_not_div_by_3:floor(mod(num1_not_div_by_3 / 10,10));
+digit4_num1_not_div_by_3:floor(mod(num1_not_div_by_3,10));
+addition_of_digits_num1_not_div_by_3:digit1_num1_not_div_by_3+digit2_num1_not_div_by_3+digit3_num1_not_div_by_3+digit4_num1_not_div_by_3;
+
+/* Extracting digits for num2_not_div_by_3*/
+digit1_num2_not_div_by_3:floor(num2_not_div_by_3/1000);
+digit2_num2_not_div_by_3:floor(mod(num2_not_div_by_3 / 100,10));
+digit3_num2_not_div_by_3:floor(mod(num2_not_div_by_3 / 10,10));
+digit4_num2_not_div_by_3:floor(mod(num2_not_div_by_3,10));
+addition_of_digits_num2_not_div_by_3:digit1_num2_not_div_by_3+digit2_num2_not_div_by_3+digit3_num2_not_div_by_3+digit4_num2_not_div_by_3;
+
+/* Extracting digits for num3_not_div_by_3*/
+digit1_num3_not_div_by_3:floor(num3_not_div_by_3/1000);
+digit2_num3_not_div_by_3:floor(mod(num3_not_div_by_3 / 100,10));
+digit3_num3_not_div_by_3:floor(mod(num3_not_div_by_3 / 10,10));
+digit4_num3_not_div_by_3:floor(mod(num3_not_div_by_3,10));
+addition_of_digits_num3_not_div_by_3:digit1_num3_not_div_by_3+digit2_num3_not_div_by_3+digit3_num3_not_div_by_3+digit4_num3_not_div_by_3;
+
+
+/*correct answer*/
+correct_answers:rand_selection([
+[1, true, num1_div_by_3],[2,true,num2_div_by_3]], 2);
+
+/*incorrect answers*/
+incorrect_answers:rand_selection([
+[3, false, num1_not_div_by_3],
+[4, false, num2_not_div_by_3],
+[5, false, num3_not_div_by_3]
+], 3);
+
+ta: random_permutation(append(correct_answers,incorrect_answers));
+ta_index: sort(makelist(x[1], x, ta));
+ta_largest: last(ta_index); 
+
+
+
+</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="html">
+      <text><![CDATA[<p> Divisible by 3: \({@num1_div_by_3@}\)</p>
+<p>Divisible by 3:  \({@num2_div_by_3@}\)</p>
+<p>Not divisible by 3:  \({@num1_not_div_by_3@}\)</p>
+<p>Not divisible by 3:  \({@num2_not_div_by_3@}\)</p>
+<p>Not divisible by 3:  \({@num3_not_div_by_3@}\)</p>]]></text>
+    </questionnote>
+    <questiondescription format="html">
+      <text><![CDATA[<p id="author">Daniel Murunga</p>
+<p id="concept"></p>
+<p id="reviewer"></p>
+<p id="reviewer"></p>
+<p id="description">The question requires the student to first sum all the digits in the number. Then, the number will be divisible by 3 if the sum of the digits in the number is divisible by 3.</p>]]></text>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>checkbox</type>
+      <tans>ta</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>0</mustverify>
+      <showvalidation>0</showvalidation>
+      <options>nonotanswered</options>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct numbers which are divisible by 3</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>mcq_correct(ta)</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+  </question>
+</quiz>

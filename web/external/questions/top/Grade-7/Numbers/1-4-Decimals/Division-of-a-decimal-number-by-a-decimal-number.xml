@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Division of a decimal number by a decimal number</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p>\(\text{@names@}\)  bought  \({@amount_kg@}\) kg of \(\text{@items@}\) for sh \({@total_costdp@}\). What was the cost of one kilogram? [[input:ans1]] [[validation:ans1]][[feedback:prt1]]</p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<h3>Worked solution</h3>
+<p>To find the cost of one kg of \(\text{@items@}\), we divide the total cost by the total weight.</p>
+<p>Cost of kilogram = \( \frac{\text{Total cost}}{\text{Total weight}}\) \( = \frac{{@total_cost@}}{{@amount_kg@}}  = {@total_cost@} \div {@amount_kg@}\)</p>
+<p>Convert the decimals to fractions: \({@amount_kg@} = \frac{{@amount@}}{10}\) and  \({@total_cost@} = \frac{{@cost@}}{100}\) </p>
+<p>Multiply the dividend by the reciprocal of the divisor</p>
+<p>\( \frac{{@cost@}}{100} \div \frac{{@amount@}}{10} = \frac{{@cost@}}{100} \times \frac{10}{{@amount@}} = \frac{{@cost@} \times 10}{ 100 \times {@amount@}} = \frac{{@cost*10@}}{{@amount*100@}} = {@cost_of_one_kg@}\) </p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2025012100</text>
+    </stackversion>
+    <questionvariables>
+      <text><![CDATA[names:rand(["Wanjiru","Onyimbo","Murunga","Muriuki","Wekesa","Nyambane","Cherotich","Kiptoo","Okoth","Nyongesa","Talu","Obiero","Musyoka","Wanjiru"]);
+items:rand(["maize","beans","rice","cowpeas"]);
+
+first_number:rand(9)+1;
+second_number:rand_with_prohib(1,9,[first_number]);
+third_number:rand_with_prohib(1,9,[first_number,second_number]);
+amount:(first_number*100) +(second_number*10)+third_number;
+amount_kg:float(amount/10);
+
+cost:rand_with_step(150000,700000,5);
+total_cost:float(cost/100);
+total_costdp:dispdp(total_cost,2);
+
+/*Calculation for the amount of each kg*/
+cost_of_one_kg:decimalplaces(float(total_cost/amount_kg),3);
+
+
+
+]]></text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="html">
+      <text><![CDATA[<p>Amount in kg: \({@amount_kg@}\)</p>
+<p>Total cost: \({@total_cost@}\)</p>]]></text>
+    </questionnote>
+    <questiondescription format="html">
+      <text><![CDATA[<p id="author">Daniel Murunga</p>
+<p id="concept"></p>
+<p id="reviewer"></p>
+<p id="reviewer"></p>
+<p id="description">To determine the cost of one kilogram of maize, start by converting the total weight and total cost into fractions. Then, multiply the total cost by the reciprocal of the weight in kg. Finally, compute the result to find the cost per kilogram.</p>]]></text>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>cost_of_one_kg</tans>
+      <boxsize>5</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct division of a decimal by a decimal</description>
+        <answertest>NumDecPlaces</answertest>
+        <sans>ans1</sans>
+        <tans>cost_of_one_kg</tans>
+        <testoptions>3</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+  </question>
+</quiz>

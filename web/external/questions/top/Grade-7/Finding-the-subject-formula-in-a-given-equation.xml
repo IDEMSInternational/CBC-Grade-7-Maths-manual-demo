@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Finding the subject formula in a given equation</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p>Make \({@var_letter_2@}\) the subject in the equation \({@eqn@}\).</p>
+<p>\({@var_letter_2@}\)= [[input:ans1]] [[validation:ans1]][[feedback:prt1]]</p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<h3>Worked solution</h3>
+<p>Making a variable a subject to a formula, refers to rearranging a given equation so that another variable in this case \({@var_letter_2@}\) becomes the subject by performing operations on both sides of the equal sign so that eventually this variable is by itself on either left or right hand side of the equation.Ensure also you simplify the equation to its simplest form.</p>
+<p>To make \({@var_letter_2@}\) the subject of the formula in the equation \({@eqn@}\), the following steps are followed:</p>
+<p>Step 1:We expand the equation.</p>
+<p>First, expanding the right-hand side by multiplying each term by 5:</p>
+<p>\({@left_side@}=5\times {@right_sideright@}-5\times {@right_sideleft@}\), which simplifies to:</p>
+<p>\({@comp_1@}\)</p>
+<p>Step 2:We rewrite the equation in terms of \({@var_letter_2@}\).</p>
+<p>We want to get the term with \({@var_letter_2@}\) on one side of the equation.</p>
+<p>We start by moving \({@right_sideleft1@}\) to the left-hand side by subtracting \({@right_sideleft1@}\)from both sides to obtain:</p>
+<p>\({@comp_2@}\)</p>
+<p>Step 3: We simplify for \({@var_letter_2@}\).</p>
+<p>Now, divide both sides of the equation by \({@cof_subjectletter@}\) to solve for  \({@var_letter_2@}\):</p>
+<p>\({@comp_3@}\)</p>
+<p>Step 4: We now make \({@var_letter_2@}\) the subject of the formula.</p>
+<p>Now, we simplify the fraction to get:</p>
+<p>\({@ta@}\)</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2023060500</text>
+    </stackversion>
+    <questionvariables>
+      <text>var_letter_1:rand([a,b,c,d,z,t,w]);/*The random variables of the left hand side of the initial equation*/
+var_letter_2:rand([f,g,h,j,r,u,x]);/*The random variables of the right hand side from the right of the initial equation*/
+var_letter_3:rand([k,m,n,o,p,s,v,y,q]);/*The random variables of the right hand side from the right of the initial equation*/
+coef_1:rand(4)+2;/*The random variables of the left hand side of the initial equation*/
+coef_2:rand_with_step(4,10,2);/*The random variables of the left hand side of the initial equation*/
+coef_3:rand_with_prohib(-20,10,[coef_1]);/*The random variables of the left hand side of the initial equation*/
+eqn:coef_1*var_letter_1=5*(coef_2*var_letter_2+coef_3*var_letter_3);/*The random variables of the left hand side of the initial equation*/
+left_side:coef_1*var_letter_1;/*The random variables of the left hand side of the initial equation*/
+right_sideright:coef_2*var_letter_2;
+right_sideleft:coef_3*var_letter_3;
+comp_1:left_side=5*right_sideleft+5*right_sideright;
+right_sideright1:5*right_sideright;
+right_sideleft1:5*right_sideleft;
+comp_2:left_side-right_sideleft1=right_sideright1;
+left_side1:left_side-right_sideleft1;
+cof_subjectletter:5*coef_2;
+comp_3:right_sideright1/cof_subjectletter=left_side1/cof_subjectletter;
+ta:right_sideright1/cof_subjectletter=left_side/cof_subjectletter-right_sideleft1/cof_subjectletter;
+</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="moodle_auto_format">
+      <text><![CDATA[<p>\({@eqn@}\)</p>
+<p>\({@comp_3@}\)</p>
+<p>\({@ta@}\)</p>]]></text>
+    </questionnote>
+    <questiondescription format="html">
+      <text><![CDATA[<p id="author">Henry Onyango </p>
+<p id="concept">https://ecampus.idems.international/question/bank/editquestion/question.php?id=190575&qtype=stack&courseid=430&returnurl=%2Fquestion%2Fedit.php%3Fcourseid%3D430</p>
+<p id="reviewer"></p>
+<p id="reviewer"></p>
+
+<p id="description"></p>]]></text>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>ta</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks the correct formula of the variable given.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>ta</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <deployedseed>182117054</deployedseed>
+    <deployedseed>765681942</deployedseed>
+    <deployedseed>1614240138</deployedseed>
+    <deployedseed>1106700728</deployedseed>
+    <deployedseed>617606779</deployedseed>
+    <deployedseed>441468987</deployedseed>
+    <deployedseed>622484768</deployedseed>
+    <deployedseed>1911826395</deployedseed>
+    <deployedseed>317568645</deployedseed>
+    <deployedseed>238625080</deployedseed>
+    <deployedseed>35836161</deployedseed>
+    <qtest>
+      <testcase>1</testcase>
+      <description>Test case assuming the teacher's input gets full marks.</description>
+      <testinput>
+        <name>ans1</name>
+        <value>ta</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt1-1-T</expectedanswernote>
+      </expected>
+    </qtest>
+  </question>
+</quiz>

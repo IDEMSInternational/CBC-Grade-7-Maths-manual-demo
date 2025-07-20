@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Finding the number of customers who shared a given amount of milk</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p>Mr. Wesonga shared \({@milk_whole_num@}\)\({@milk_frac@}\) litres of milk equally among his customers. How many customers were there if each got \({@milkshared_whole_num@}\)\({@milkshared_frac@}\) litres?
+</p><p>[[input:ans1]] [[validation:ans1]][[feedback:prt1]]</p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<h3>Worked solution</h3>
+<p>To find the number of customers who shared the milk, we need to divide the total amount of milk by the amount each customer received.</p>
+<p>First, we convert the mixed numbers to improper fractions getting:</p>
+<p>\({@milk_whole_num@}\)\({@milk_frac@}\)=\({@milk_total@}\)</p>
+<p> \({@milkshared_whole_num@}\)\({@milkshared_frac@}\)=\({@milkshared_total@}\)</p>
+<p>Now dividing \({@milk_total@}\) by \({@milkshared_total@}\);</p>
+<p>\({@milk_total@}\) ÷ \({@milkshared_total@}\) = \({@milk_total@}\)× \({@milkshared_total_reciproc@}\) = \({@mult@}\) = \({@mult_deci@}\) </p>
+<p>So, there were \({@exact_customers@}\) customers.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2023060500</text>
+    </stackversion>
+    <questionvariables>
+      <text>milk_whole_num:rand(10)+7;/*Whole number part of the total amount of milk*/
+milk_frac_nume:rand(8)+1;/*Numerator value of the fraction amount of milk*/
+milk_frac:milk_frac_nume/10;/*Fraction part of the total amount of milk*/
+milk_total:milk_whole_num+milk_frac;/*Total amount of milk to be shared*/
+milkshared_whole_num: rand(10)+1;/*Whole number part of the amount of milk shared*/
+milkshared_frac_num:rand(8)+1;/*Numerator value of the fraction amount of milk shared*/
+milkshared_frac:milkshared_frac_num/10;/*Fraction part of the amount of milk shared*/
+milkshared_total:milkshared_frac_num+milkshared_frac;/*Amount of milk received by each*/
+milkshared_total_reciproc:1/milkshared_total;/*Reciprocal of the amount of milk received by each*/
+mult:milkshared_total_reciproc* milk_total;/*Multiplication of the total amount milk by reciprocal of the amount received by each*/
+mult_deci:decimalplaces(float(mult),2);/*Multiplication of the total amount milk by reciprocal of the amount received by each in decimal*/
+customers:milk_total/milkshared_total;/*Number of customers who received the milk*/
+exact_customers:floor(customers);/*Number of customers who received the milk in whole numbers*/</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="moodle_auto_format">
+      <text><![CDATA[<p>{@exact_customers@}</p>]]></text>
+    </questionnote>
+    <questiondescription format="html">
+      <text><![CDATA[<p id="author"> Michael Onyimbo</p>
+<p id="concept">https://docs.google.com/document/d/19kXfWZEVHu_wOUrHIuOhvI6dVvz7IXSu2NlNBmYg_XM/edit?tab=t.0</p>
+<p id="reviewer"></p>
+<p id="reviewer"></p>
+
+<p id="description">The question involve finding the number of customers who shared a given amount if milk if each received equal amounts. First you are required to convert the mixed numbers to improper fraction. Then dividing them by multiplying one number with the reciprocal of the other number to get the number of customers who shared the given amount of milk.</p>]]></text>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>exact_customers</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct number of customers</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>exact_customers</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <deployedseed>269557</deployedseed>
+    <deployedseed>380114640</deployedseed>
+    <deployedseed>1475483568</deployedseed>
+    <deployedseed>669742960</deployedseed>
+    <deployedseed>1784678999</deployedseed>
+    <deployedseed>1762418331</deployedseed>
+    <deployedseed>113626620</deployedseed>
+    <deployedseed>404288961</deployedseed>
+    <deployedseed>472306956</deployedseed>
+    <deployedseed>654464435</deployedseed>
+    <qtest>
+      <testcase>1</testcase>
+      <description>Test case assuming the teacher's input gets full marks.</description>
+      <testinput>
+        <name>ans1</name>
+        <value>exact_customers</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt1-1-T</expectedanswernote>
+      </expected>
+    </qtest>
+  </question>
+</quiz>

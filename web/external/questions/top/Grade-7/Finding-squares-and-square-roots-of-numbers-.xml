@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Finding squares and square roots of numbers.</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p>Evaluate leaving your answer to \(2\) decimal places:</p>
+<p>\(\sqrt{{@first_num_squared@}} +{@second_num@}^2  -  \sqrt{{@third_num_squared@}}\)   [[input:ans1]] [[validation:ans1]][[feedback:prt1]]</p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<h3>Worked solution</h3>
+<p>To simplify the expression \(\sqrt{{@first_num_squared@}}+{@second_num@}^2 -  \sqrt{{@third_num_squared@}}\), we break it down as follows:</p>
+<p>First, we find the\(\sqrt{{@first_num_squared@}}\) </p>
+<p>The square root of a number is a value that when multiplied by itself, gives the original number.</p>
+<p>Therefore, \({@first_num@} \times {@first_num@}\) = {@first_num_squared@}</p>
+<p>Similarly, \({@third_num@} \times {@third_num@} = {@third_num_squared@} \)</p>
+<p>Now, solving for \({@second_num@}^2\) we get;</p>
+<p>\({@second_num@}^2 = {@second_num@} \times {@second_num@}\)</p>
+<p>\(\quad  \, \, \, = {@second_num_squared@}\)</p>
+<p>Therefore, \(\sqrt{{@first_num_squared@}}+{@second_num@}^2 -  \sqrt{{@third_num_squared@}}\)</p>
+<p>\(\qquad \qquad \qquad=\)\(({@first_num@}+{@second_num_squared@}) - {@third_num@}\)</p>
+<p>\(\qquad \qquad \qquad = {@first_num+second_num_squared@} - {@third_num@}\)</p>
+<p>\(\qquad \qquad \qquad = {@first_num+second_num_squared - third_num@}\)</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2023060500</text>
+    </stackversion>
+    <questionvariables>
+      <text>first_num:rand(30)+1;/*gives the square root of  the first number in the expression*/
+first_num_squared:first_num^2;/*the first number under the square root*/
+second_num:rand_with_prohib(2,15,[first_num]);/*the second number in the expression supposed to be squared*/
+second_num_squared:second_num^2;/*the square of the second number in the expression*/
+third_num:rand_with_prohib(2,20,[first_num,second_num]);/* the square root of the third number*/
+third_num_squared:third_num^2;/*the third number in the expression that is under the square root*/
+ta:first_num+second_num_squared-third_num;/*solves the expression*/</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="moodle_auto_format">
+      <text><![CDATA[<p>\({@first_num@}\)</p>
+<p>\({@second_num_squared@}\)</p>
+<p>\({@third_num@}\)</p>
+<p>\({@ta@}\)</p>]]></text>
+    </questionnote>
+    <questiondescription format="html">
+      <text><![CDATA[<p id="author">Sheila Cherotich</p>
+<p id="concept">https://docs.google.com/document/d/1-E1hMaEWlbYx6sZYclY9DzuolzHtTWwaQ5DbYoREKBc/edit?tab=t.0</p>
+<p id="reviewer"></p>
+<p id="reviewer"></p>
+<p id="description">This question requires the student to find square roots and squares of numbers in an expression then perform addition and subtraction to get the solution.</p>]]></text>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>ta</tans>
+      <boxsize>5</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>checChecks for the correct value of the solved expression.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>ta</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <deployedseed>1136686766</deployedseed>
+    <deployedseed>530520595</deployedseed>
+    <deployedseed>1830837159</deployedseed>
+    <deployedseed>625148125</deployedseed>
+    <deployedseed>1771358156</deployedseed>
+    <deployedseed>1346627887</deployedseed>
+    <deployedseed>1939071757</deployedseed>
+    <deployedseed>1872593317</deployedseed>
+    <deployedseed>1458451068</deployedseed>
+    <deployedseed>1605420272</deployedseed>
+    <deployedseed>239978659</deployedseed>
+    <deployedseed>623356487</deployedseed>
+    <deployedseed>1085866738</deployedseed>
+    <deployedseed>995227173</deployedseed>
+    <deployedseed>1721128942</deployedseed>
+    <deployedseed>2123585570</deployedseed>
+    <deployedseed>1827272969</deployedseed>
+    <deployedseed>112175439</deployedseed>
+    <deployedseed>1468394635</deployedseed>
+    <deployedseed>1631941494</deployedseed>
+    <deployedseed>202106820</deployedseed>
+    <deployedseed>531320517</deployedseed>
+    <deployedseed>682690200</deployedseed>
+    <deployedseed>1272834121</deployedseed>
+    <deployedseed>2141143995</deployedseed>
+    <deployedseed>162225340</deployedseed>
+    <deployedseed>1551076582</deployedseed>
+    <deployedseed>1677072156</deployedseed>
+    <deployedseed>1712726771</deployedseed>
+    <deployedseed>2043402248</deployedseed>
+    <deployedseed>893132100</deployedseed>
+    <deployedseed>2122371674</deployedseed>
+    <deployedseed>1137753607</deployedseed>
+    <deployedseed>207118361</deployedseed>
+    <deployedseed>646188512</deployedseed>
+    <deployedseed>1624967158</deployedseed>
+    <deployedseed>1396614763</deployedseed>
+    <deployedseed>2068165104</deployedseed>
+    <deployedseed>2007662366</deployedseed>
+    <deployedseed>878757961</deployedseed>
+    <deployedseed>1702349164</deployedseed>
+    <deployedseed>644824356</deployedseed>
+    <deployedseed>362196141</deployedseed>
+    <deployedseed>1994336695</deployedseed>
+    <deployedseed>1837168787</deployedseed>
+    <deployedseed>938504050</deployedseed>
+    <deployedseed>1048725246</deployedseed>
+    <deployedseed>1344890187</deployedseed>
+    <deployedseed>668540557</deployedseed>
+    <deployedseed>1017687284</deployedseed>
+    <deployedseed>1275286466</deployedseed>
+    <deployedseed>1153907330</deployedseed>
+    <deployedseed>1682245889</deployedseed>
+    <deployedseed>173498561</deployedseed>
+    <deployedseed>1223354765</deployedseed>
+    <deployedseed>172034892</deployedseed>
+    <deployedseed>1597585319</deployedseed>
+    <deployedseed>800639072</deployedseed>
+    <deployedseed>1305986610</deployedseed>
+    <deployedseed>364861354</deployedseed>
+    <deployedseed>1069499401</deployedseed>
+    <deployedseed>1140235090</deployedseed>
+    <deployedseed>1422985574</deployedseed>
+    <deployedseed>489834852</deployedseed>
+    <deployedseed>1412917830</deployedseed>
+    <deployedseed>1298052053</deployedseed>
+    <deployedseed>1736908799</deployedseed>
+    <deployedseed>23911102</deployedseed>
+    <deployedseed>1534939750</deployedseed>
+    <deployedseed>859342802</deployedseed>
+    <deployedseed>1962630757</deployedseed>
+    <deployedseed>2091004382</deployedseed>
+    <deployedseed>1332706281</deployedseed>
+    <deployedseed>87396591</deployedseed>
+    <deployedseed>1437576168</deployedseed>
+    <deployedseed>479564885</deployedseed>
+    <deployedseed>1597454830</deployedseed>
+    <deployedseed>405348285</deployedseed>
+    <deployedseed>1575067057</deployedseed>
+    <deployedseed>1408501602</deployedseed>
+    <deployedseed>272889393</deployedseed>
+    <deployedseed>675473512</deployedseed>
+    <deployedseed>2130977773</deployedseed>
+    <deployedseed>1808575526</deployedseed>
+    <deployedseed>80997717</deployedseed>
+    <deployedseed>272296112</deployedseed>
+    <deployedseed>1556068099</deployedseed>
+    <deployedseed>444046210</deployedseed>
+    <deployedseed>1701596929</deployedseed>
+    <deployedseed>399588284</deployedseed>
+    <deployedseed>1090767970</deployedseed>
+    <deployedseed>989581602</deployedseed>
+    <deployedseed>1885637032</deployedseed>
+    <deployedseed>929951483</deployedseed>
+    <deployedseed>1327374205</deployedseed>
+    <deployedseed>270777543</deployedseed>
+    <deployedseed>2097286138</deployedseed>
+    <deployedseed>903792212</deployedseed>
+    <deployedseed>2024956271</deployedseed>
+    <deployedseed>2056610752</deployedseed>
+  </question>
+</quiz>

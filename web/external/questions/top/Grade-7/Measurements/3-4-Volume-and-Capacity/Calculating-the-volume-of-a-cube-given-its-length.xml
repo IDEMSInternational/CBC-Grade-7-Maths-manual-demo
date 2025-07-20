@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Calculating the volume of a cube given its length</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[[[jsxgraph]]
+var board = JXG.JSXGraph.initBoard('jxgbox', {boundingbox: [-8, 8, 8, -8],
+            axis: false, grid: true, showCopyright: false });
+ var view = board.create('view3d',
+		        [[-6, -3], [8, 8],
+		        [[-5, 5], [-5, 5], [-5, 5]]],
+		        {
+		            xPlaneRear: {visible: false},
+		            yPlaneRear: {visible: false},
+		            zPlaneRear: {visible: false}
+		        });
+
+	        // Cube
+                        var p = [];  /*list of points*/
+                        var point_attr = { withLabel: false, fixed: true, label: { offset: [5, 5] } };
+		        var i = 2;
+		        p.push(view.create('point3d', [0, 0, 0], point_attr));
+		        p.push(view.create('point3d', [{#L_1#}, 0, 0], point_attr));
+		        p.push(view.create('point3d', [i, i, -i], point_attr));
+		        p.push(view.create('point3d', [i, -i, -i], point_attr));
+		        p.push(view.create('point3d', [-i, -i, i], point_attr));
+		        p.push(view.create('point3d', [-i, i, i], point_attr));
+		        p.push(view.create('point3d', [i, i, i], point_attr));
+		        p.push(view.create('point3d', [i, -i, i], point_attr));
+
+		        view.create('line3d', [p[0], p[1]]);
+		        view.create('line3d', [p[2], p[3]]);
+		        view.create('line3d', [p[0], p[3]]);
+		        view.create('line3d', [p[1], p[2]]);
+		        view.create('line3d', [p[0], p[4]]);
+		        view.create('line3d', [p[1], p[5]]);
+
+[[/jsxgraph]]
+
+<p>[[input:ans1]] \(\text{cm}^2\) [[validation:ans1]][[feedback:prt1]]</p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text/>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2023060500</text>
+    </stackversion>
+    <questionvariables>
+      <text>Randomization (?)
+L_1:rand(97)+1;/*Length in metres*/
+L_1_sqr:L_1*L_1;/*The square of length*/
+vol_1:L_1_sqr*L_1;/*Volume in cubic metres*/
+
+/*Mistake_1- Calculating the area*/
+vol_1_mist:L_1*L_1;/*Wrongly calculated volume*/
+
+/*Mistake_2- Giving the length as volume*/
+vol_1_mist2:L_1;/*Wrongly calculated volume*/
+
+/*Mistake_3- Adding the lengths to get the volume*/
+vol_1_mist3:L_1+L_1+L_1;/*Wrongly calculated volume*/</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="moodle_auto_format">
+      <text>\({@vol_1@}m^3\)</text>
+    </questionnote>
+    <questiondescription format="html">
+      <text><![CDATA[<p id="author"> Michael Onyimbo</p>
+<p id="concept">https://docs.google.com/document/d/1i-HwVAmsyJXhQr7JPKrZ3SAtsECOE7ILuAHgLlDysco/edit?tab=t.0</p>
+<p id="reviewer"></p>
+<p id="reviewer"></p>
+
+<p id="description">The question handles volume calculation of a cube given its length. Applying the formula for volume of a cube, V = L3 and substituting L with the length given, we are able to find the volume of the given cube.</p>]]></text>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>vol_1</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for correct calculation of volume</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>vol_1</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <deployedseed>182548466</deployedseed>
+    <deployedseed>2054282171</deployedseed>
+    <deployedseed>688377287</deployedseed>
+    <deployedseed>1679564816</deployedseed>
+    <deployedseed>2094953760</deployedseed>
+    <deployedseed>1419503745</deployedseed>
+    <deployedseed>150159642</deployedseed>
+    <deployedseed>1148340209</deployedseed>
+    <deployedseed>616468525</deployedseed>
+    <deployedseed>213931247</deployedseed>
+    <deployedseed>600429485</deployedseed>
+    <deployedseed>953225032</deployedseed>
+    <deployedseed>1025913697</deployedseed>
+    <deployedseed>1863216590</deployedseed>
+    <deployedseed>1602338575</deployedseed>
+    <deployedseed>2100907271</deployedseed>
+    <deployedseed>774547364</deployedseed>
+    <deployedseed>1677877681</deployedseed>
+    <deployedseed>1105948232</deployedseed>
+    <deployedseed>1939966820</deployedseed>
+    <deployedseed>773058528</deployedseed>
+    <deployedseed>2050247768</deployedseed>
+    <deployedseed>1397752090</deployedseed>
+    <deployedseed>1483393872</deployedseed>
+    <deployedseed>1447399629</deployedseed>
+    <deployedseed>929013490</deployedseed>
+    <deployedseed>1658653826</deployedseed>
+    <deployedseed>520897679</deployedseed>
+    <deployedseed>1624644990</deployedseed>
+    <deployedseed>168965846</deployedseed>
+    <deployedseed>440053306</deployedseed>
+    <deployedseed>1552089846</deployedseed>
+    <deployedseed>1732832353</deployedseed>
+    <deployedseed>2026139263</deployedseed>
+    <deployedseed>221276650</deployedseed>
+  </question>
+</quiz>

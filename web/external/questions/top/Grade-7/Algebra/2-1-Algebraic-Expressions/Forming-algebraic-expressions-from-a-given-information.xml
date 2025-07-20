@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Forming algebraic expressions from a given information</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p>A cleaner hires \({@cleaners@}\) cleaners and \({@security_guards@}\) security guards. The cleaners earn \({@cleaner_earning@}\) shillings per day and the security guards earn \({@security_guard_earning@}\) shillings per day. The company also gives each of them \({@expenditure_lunch@}\) shillings for lunch everyday. Form an expression to represent the company's total expenditure on cleaners and security guards in a day.</p>
+<p>[[input:ans1]] [[validation:ans1]][[feedback:prt1]]</p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<h3>Worked Solution</h3>
+<p>Total earnings of cleaners in one day \(=\) number of hired cleaners \(\times\) amount earned by each cleaner.
+</p>
+<p>\(\qquad\qquad\qquad\qquad\qquad\qquad\qquad={@cleaners@} \times {@cleaner_earning@}\) </p>
+<p>\(\qquad\qquad\qquad\qquad\qquad\qquad\qquad={@total_cleaners_earnings@}\)</p>
+<p>Total earnings of security guards in one day \(=\) number of hired security guards \(\times\) amount earned by each security guard.
+</p>
+<p>\(\qquad\qquad\qquad\qquad\qquad\qquad\qquad= {@security_guards@} \times {@security_guard_earning@}\)</p>
+<p>\(\qquad\qquad\qquad\qquad\qquad\qquad\qquad={@total_security_earnings@}\)</p>
+<p>Amount spent on lunch for cleaners  in a day \(= {@expenditure_lunch@} \times {@cleaners@}\) </p>
+<p>\(\qquad\qquad\qquad\qquad\qquad\qquad\qquad= {@expenditure_lunch@} {@cleaners@}\) </p>
+<p>Amount spent on lunch for security guards in a day \(= {@expenditure_lunch@} \times{@security_guards@}\)</p>
+<p>\(\qquad\qquad\qquad\qquad\qquad\qquad\qquad= {@expenditure_lunch@} {@security_guards@}\)</p>
+<p>Total amount spent on lunch for cleaners and security guards in a day \(={@total_expenditure_lunch@}\)</p>
+<p>Therefore, the company’s total expenditure on cleaners and security guards in a day = Total earnings of cleaners in one day + Total earnings of security guards in one day + Total amount spent on lunch for cleaners and security guards in a day
+</p>
+<p>\(\qquad\qquad\qquad\qquad\qquad\qquad\qquad= {@total_cleaners_earnings@} + {@total_security_earnings@} + {@total_expenditure_lunch@}\)</p>
+<p>\(\qquad\qquad\qquad\qquad\qquad\qquad\qquad={@total_company_expenditure@}\)</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2025012100</text>
+    </stackversion>
+    <questionvariables>
+      <text>cleaners:rand([b,p,q,r,x,y,s]);/*number of hired cleaners*/
+security_guards:rand([c,d,f,t,h,j,l]);/*number of security guards hired*/
+cleaner_earning:rand_with_step(500,850,5);/*amount earned per day by each cleaner*/
+security_guard_earning:rand_with_step(850,900,10);/*amount earned by each  security guard per day*/
+expenditure_lunch:rand_with_step(100,200,50);/*Total amount spent on lunch for cleaners and security guards in a day*/
+total_cleaners_earnings:cleaners*cleaner_earning;/*total earnings of all cleaners in a day*/
+total_security_earnings:security_guards*security_guard_earning;/*total earnings of all security guards in a day*/
+total_expenditure_lunch:expenditure_lunch*cleaners+expenditure_lunch*security_guards;/*total company expenditure on lunch for all cleaners and security guards in a day*/
+total_company_expenditure:total_cleaners_earnings+total_security_earnings+total_expenditure_lunch;/*company’s total expenditure on cleaners and security guards in a day*/</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="moodle_auto_format">
+      <text><![CDATA[<p>\({@security_guards@}\)</p>
+<p>\({@cleaners@}\)</p>
+<p>\({@cleaner_earning@}\)</p>
+<p>\({@security_guard_earning@}\)</p>
+<p>\({@total_company_expenditure@}\)</p>]]></text>
+    </questionnote>
+    <questiondescription format="html">
+      <text><![CDATA[<p id="author"> Isdora Ochieng</p>
+<p id="concept">https://docs.google.com/document/d/1TyzeOPGv_XPBX0NyUtPJDpnCyCGmXtwGiHP9-lS02_M/edit?tab=t.0#heading=h.kog50oi25ikx</p>
+<p id="reviewer"></p>
+<p id="reviewer"></p>
+
+<p id="description">The question requires the learner to form an algebraic expression to represent the company's total expenditure on cleaners and security guards in a day given number of cleaners, number of security guards and company's expenditure on lunch for one day.</p>]]></text>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>total_company_expenditure</tans>
+      <boxsize>9</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>3</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct expression of the company's total expenditure on cleaners and security guards in a day</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>total_company_expenditure</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <deployedseed>257557129</deployedseed>
+    <deployedseed>518996123</deployedseed>
+    <deployedseed>1985658475</deployedseed>
+    <deployedseed>396953394</deployedseed>
+    <deployedseed>1645015580</deployedseed>
+    <deployedseed>1892022451</deployedseed>
+    <deployedseed>285515897</deployedseed>
+  </question>
+</quiz>

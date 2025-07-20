@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Finding Compound Interest and Total Amount after Three Years</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p>Akinyi deposited \(\text{sh.} \, {@P@}\) in a bank. The bank paid interest at the rate of \({@r@} \, \%\) per annum. She withdrew all the money at the end of three years.</p>
+
+<p><ol type="a"><li><p>Calculate the compound interest after the three years.</p>
+<p>\(\text{compound interest after the three years}= \text{sh.}\)[[input:ans1]][[feedback:prt1]]  </p></li>
+<li><p>How much money was in his account by the end of the three years?</p>
+<p>\( \text{Amount at the end of 3 years }= \text{sh.}\)[[input:ans2]][[feedback:prt2]]</p></li></ol></p>
+
+
+<p hidden>[[validation:ans1]][[validation:ans2]]</p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<p><strong>Problem:</strong></p>
+<p>Akinyi deposited <strong>\(\text{sh.}\, {@P@}\)</strong> in a bank. The bank pays <strong>\({@r@}\,\%\) interest per year</strong>. She left the money in the bank for <strong>three years</strong>, and the bank gave her <strong>compound interest</strong>.</p>
+<p>We are to find:</p>
+<ol type="a">
+  <li>The <strong>compound interest</strong> earned after \(3\) years.</li>
+  <li>The <strong>total amount</strong> in her account at the end of the \(3\) years.</li>
+</ol>
+
+<p><strong>Step-by-step solution:</strong></p>
+
+<p><u>Year 1:</u></p>
+<p>She started with <strong>sh.{@P@}</strong>.</p>
+<p>Interest for the first year is <strong>{@r@}\(\%\) of {@P@}</strong>.</p>
+<p>Find \(1\,\%\, \text{of} \, {{@P@} }\): <br>
+\(1\,\% = (\frac{1}{100})   {@P@} = {@first_princi@} \)</p>
+<p>Now, {@r@} % = , {@r@}  × {@first_princi@} = {@A1@}</p>
+<p>New balance at the end of year \(1 = {@P@} + {@A1@} = \) <strong>sh.{@I_1@}</strong></p>
+
+<p><u>Year 2:</u></p>
+<p>Start of year 2: <strong>sh. {@I_1@}</strong></p>
+<p>Find \(1\,\% \,\text{of} \,  {@I_1@}\): <br>
+\(1\,\% = (\frac{1}{100})  \times  {@I_1@} = {@second_princi@}\)</p>
+<p>\({@r@}\,\% = {@r@} \times    {@second_princi@} = {@A2@}\)</p>
+<p>New balance at the end of year 2 \(= {@I_1@} + {@A2@} = \)<strong>sh. {@I_2@}</strong></p>
+
+<p><u>Year 3:</u></p>
+<p>Start of year 3: <strong>sh.{@I_2@} </strong></p>
+<p>Find \(1\,\% \,\text{of} \, {@I_2@}\) : <br>
+\(1\,\% = (\frac{1}{100}) \times  {@I_2@} = {@Third_princi@}\)</p>
+<p>\({@r@}\,\% = {@r@} \times {@Third_princi@} = {@A3@}\)</p>
+<p>New balance at the end of year 3 \( = {@I_2@} + {@A3@}= \)  <strong>sh. {@I_3@}</strong></p>
+
+<p><strong>Final Answers:</strong></p>
+<p>a. \(\text{Compound Interest} = {@I_3@} – {@P@} = \) <strong>sh. {@Compound_interest@}</strong></p>
+<p>b. Amount in account after 3 years = <strong>sh. {@Amount@}</strong></p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2025012100</text>
+    </stackversion>
+    <questionvariables>
+      <text>P :( rand_with_step(1,40,5)) * 40000;  /* 3 to 9 times 10,000 */
+
+/* Step 2: Randomize Rate (r) between 5% and 15% */
+r : rand_with_step(5,100,5);
+
+/* Step 3: Fixed time (t) = 3 years */
+t : 3;
+
+first_princi:1/100*P;
+
+/* Step 4: Step-by-step calculation without decimals */
+/* Year 1 */
+A1 : P * r/100*1;
+I_1:P+A1;
+
+/* Year 2 */
+second_princi:1/100*I_1;
+A2 : (P+A1)*r/100*1 ;
+I_2:I_1+A2;
+
+/* Year 3 */
+Third_princi:1/100*I_2;
+A3 : (P+A2) *r/100*1 ;
+I_3:I_2+A3;
+
+/* Step 5: Calculate Compound Interest */
+Compound_interest : A1+A2+A3 ;
+Amount:P+Compound_interest;
+
+
+
+
+/*Mistake 1  Using the Same Interest Each Year (Simple Interest Mistake):*/
+Am_1 : P * r/100*1;
+Am_2 : P*r/100*1 ;
+Am_3 : P *r/100*1 ;
+Compound_1 : Am_1+Am_2+Am_3 ;
+Amount_1:P+Compound_1;
+</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="html">
+      <text><![CDATA[<p>\(\text{Deposit} =\text{sh.} \,{@P@} \)</p>
+<p>\(\text{Rate} = {@r@} \, \% \)</p>
+<p>\(\text{Compound Interest} =\text{sh.} \,{@Compound_interest@} \)</p>
+<p>\(\text{Amount for the three years} =\text{sh.} \,{@Amount@} \)</p>]]></text>
+    </questionnote>
+    <questiondescription format="html">
+      <text><![CDATA[<p id="author">Henry Onyango</p>
+<p id="reviewer"></p>
+<p id="reviewer"></p>
+<p id="description">This is a question on compound interest. The student is expected to understand how to compute compound interest, especially when it is calculated on a yearly basis. They are required to determine the compound interest accrued over a period of three years. Finally, they should calculate and state the total amount at the end of the three years.</p>
+<p>The compound interest can then be found by subtracting the principal from the total amount:</p>
+<p>The student should show all necessary working and include appropriate units in their answers.</p>]]></text>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>Compound_interest</tans>
+      <boxsize>9</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>0</mustverify>
+      <showvalidation>0</showvalidation>
+      <options/>
+    </input>
+    <input>
+      <name>ans2</name>
+      <type>algebraic</type>
+      <tans>Amount</tans>
+      <boxsize>9</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>0</mustverify>
+      <showvalidation>0</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct compound intrest at the end of 3 years.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>Compound_interest</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <description>Checks for   Using the principal Each Year (Simple Interest Mistake)</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>Compound_1</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0.1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-2-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>Great effort! 😊 I can see you understood how to find\( {@r@}\,\% \, \text{of}\, \text{sh.} \, {@P@} \)— that’s a good start!
+
+</p>
+<p>However, it looks like you used the principal  for each year, which works for simple interest, not compound interest.</p>
+<p>In compound interest, we calculate interest on the new amount each year, not just the original deposit. So after year 1, we add the interest to the balance and use that new total for the next year's calculation.</p>
+<p>Try working it out step by step, updating the balance each year — you're very close to getting it right. Keep it up, you're doing well! </p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-2-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>prt2</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the total amount for the 3 years.</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans2</sans>
+        <tans>Amount</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt2-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt2-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <description>Checks for   Using the principal Each Year (Simple Interest Mistake)</description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans2</sans>
+        <tans>Amount_1</tans>
+        <testoptions/>
+        <quiet>0</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0.3</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt2-2-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>Great effort!</p>
+<p>Seems like you have used the same principal. Kindly check the step by step worked solution below to correct errors that you may have done. I hope this will guide you the right way to attend to this question.</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt2-2-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <deployedseed>479148953</deployedseed>
+    <deployedseed>93607173</deployedseed>
+    <deployedseed>130725763</deployedseed>
+    <deployedseed>1318038782</deployedseed>
+    <deployedseed>1485747612</deployedseed>
+    <deployedseed>1012382366</deployedseed>
+    <deployedseed>1228024135</deployedseed>
+    <deployedseed>305106107</deployedseed>
+    <deployedseed>1041907706</deployedseed>
+    <deployedseed>176622993</deployedseed>
+    <qtest>
+      <testcase>1</testcase>
+      <description>Test case assuming the teacher's input gets full marks.</description>
+      <testinput>
+        <name>ans1</name>
+        <value>Compound_interest</value>
+      </testinput>
+      <testinput>
+        <name>ans2</name>
+        <value>Amount</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt1-1-T</expectedanswernote>
+      </expected>
+      <expected>
+        <name>prt2</name>
+        <expectedscore>1.0000000</expectedscore>
+        <expectedpenalty>0.0000000</expectedpenalty>
+        <expectedanswernote>prt2-1-T</expectedanswernote>
+      </expected>
+    </qtest>
+    <qtest>
+      <testcase>2</testcase>
+      <description>Checks for   Using the principal Each Year (Simple Interest Mistake)</description>
+      <testinput>
+        <name>ans1</name>
+        <value>Compound_1</value>
+      </testinput>
+      <testinput>
+        <name>ans2</name>
+        <value>Amount_1</value>
+      </testinput>
+      <expected>
+        <name>prt1</name>
+        <expectedscore>0.1000000</expectedscore>
+        <expectedpenalty/>
+        <expectedanswernote>prt1-2-T</expectedanswernote>
+      </expected>
+      <expected>
+        <name>prt2</name>
+        <expectedscore>0.3000000</expectedscore>
+        <expectedpenalty/>
+        <expectedanswernote>prt2-2-T</expectedanswernote>
+      </expected>
+    </qtest>
+  </question>
+</quiz>

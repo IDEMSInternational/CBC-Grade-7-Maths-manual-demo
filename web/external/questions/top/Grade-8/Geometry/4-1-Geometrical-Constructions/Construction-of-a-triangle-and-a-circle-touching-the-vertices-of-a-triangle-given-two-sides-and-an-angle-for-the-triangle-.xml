@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="stack">
+    <name>
+      <text>Construction of a triangle and a circle touching the vertices of a triangle given two sides and an angle for the triangle.</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text><![CDATA[<p>Construct a circle touching the vertices of a triangle \(ABC\) where \(AB = {@AB@}\,cm, AC = {@AC@}\,cm\) and \(\angle BAC = {@angle_BAC@}^\circ.\) What is the measure of the radius of the circle(Write your answer to 1 d.p)? </p>
+<p>Radius = [[input:ans1]]\(cm\) [[validation:ans1]][[feedback:prt1]]</p>]]></text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text><![CDATA[<h3>Worked Solution</h3>
+[[jsxgraph]]
+var board = JXG.JSXGraph.initBoard('jxgbox',{
+                boundingbox:[-5,12,12,-4], 
+                axis: false,
+                showCopyright:false,keepAspectRatio:true
+    
+            });
+
+           var p1 = board.create('point', [0,0] , {name:'A',fillColor:'red',strokeColor:'red', point: {visible: false}});
+           var p2 = board.create('point', {#coordinate_pointB#} , {name:'B',fillColor:'red',strokeColor:'red', visible: true});
+           var p3 = board.create('point', {#coordinate_pointC#} , {name:'C',fillColor:'red',strokeColor:'red', visible: true});
+
+            var b1 = board.create('segment',['A','B'],{name:''});
+            var b2 = board.create('segment',['A','C'],{name:''});
+            var b3 = board.create('segment',['C','B'],{name:''});
+
+            var c1 = board.create('circumcircle',['A','B','C'],{name:'', point: {visible: false}});
+            c1.setProperty('strokeColor:#FF6347'); 
+
+            var m1 = board.create('midpoint', [p2, p3], {name:'', visible: false});
+            var m2 = board.create('midpoint', [p1, p3], {name:'', visible: false});
+
+            var ppl1 = board.create('perpendicular',[b3,m1]);
+            var ppl2 = board.create('perpendicular',[b2,m2]);
+
+            var s = board.create('intersection', [ppl1, ppl2], {name:'D', visible: false});
+
+            var angle1 = board.create('angle', [p2,p1,p3], {type:'sector', orthoType:'square', orthoSensitivity:2, radius:0.6, name:'{#angle_BAC#}&deg'});
+[[/jsxgraph]]]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber/>
+    <stackversion>
+      <text>2025012100</text>
+    </stackversion>
+    <questionvariables>
+      <text>/*randomize the lengths of the triangle*/
+AB:rand_with_step(4,9,.1);
+AC:rand_with_step(5,9,.1);
+
+/*angle BAC*/
+angle_BAC:rand_with_step(30,125,1);
+
+/*coordinates of the triangle */
+dtr(d) := d*%pi/180; /* Convert degrees to radians */
+angle_to_point(r, d) := [float(r*cos(dtr(d))), float(r*sin(dtr(d)))];
+coordinate_pointB: angle_to_point(AB, 0);
+coordinate_pointC: angle_to_point(AC, angle_BAC);
+
+/*coordinates for point C*/
+x_C:float(AC*cos(dtr(angle_BAC)));
+y_C:float(AC*sin(dtr(angle_BAC)));
+/*gradient for line AC*/
+m_AC:y_C/x_C;
+/*equation for line AC*/
+eqn_AC:y_AC=m_AC*x;
+/*midpoint for line AC*/
+x_mid_AC:0.5*x_C;
+y_mid_AC:0.5*y_C;
+/*gradient for the perpendicular line ppl2 that is passing through AC*/
+m_ppl2:-1/m_AC;
+/*equation for ppl2*/
+first:m_ppl2*(x-x_mid_AC)=(y-y_mid_AC);
+sec:m_ppl2*x-m_ppl2*x_mid_AC=y-y_mid_AC;
+eqn_ppl2:y=m_ppl2*x-m_ppl2*x_mid_AC+y_mid_AC;
+/*equation for the perpendicular line passing through AB*/
+eqn_ppl1:x=0.5*AB;
+
+/*intersection for the two parallel lines*/
+x_D:0.5*AB;
+y_D:m_ppl2*0.5*AB-m_ppl2*x_mid_AC+y_mid_AC;
+/*Radius of the circumcircle*/
+radius:sqrt((x_D)^2+(y_D)^2);
+ta:decimalplaces(radius,1); </text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text/>
+    </specificfeedback>
+    <questionnote format="html">
+      <text><![CDATA[<p>{@AB@}</p>
+<p>{@AC@}</p>
+<p>{@angle_BAC@}</p>
+<p>{@ta@}</p>
+<p>{@coordinate_pointB@}</p>
+<p>{@coordinate_pointC@}</p>]]></text>
+    </questionnote>
+    <questiondescription format="html">
+      <text/>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:green;"><i class="fa fa-check"></i></span> Correct answer, well done.]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:orange;"><i class="fa fa-adjust"></i></span> Your answer is partially correct.]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<span style="font-size: 1.5em; color:red;"><i class="fa fa-times"></i></span> Incorrect answer.]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed/>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>ta</tans>
+      <boxsize>15</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint/>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords/>
+      <allowwords/>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options/>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>1.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text/>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description>Checks for the correct value for the radius</description>
+        <answertest>NumDecPlaces</answertest>
+        <sans>ans1</sans>
+        <tans>ta</tans>
+        <testoptions>1</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1</truescore>
+        <truepenalty/>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text/>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty/>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text/>
+        </falsefeedback>
+      </node>
+    </prt>
+    <deployedseed>754992317</deployedseed>
+    <deployedseed>589608339</deployedseed>
+    <deployedseed>1500280604</deployedseed>
+    <deployedseed>876254557</deployedseed>
+    <deployedseed>939297753</deployedseed>
+    <deployedseed>1884429357</deployedseed>
+    <deployedseed>1457751773</deployedseed>
+    <deployedseed>1690348147</deployedseed>
+    <deployedseed>827457185</deployedseed>
+    <deployedseed>506421207</deployedseed>
+    <deployedseed>1121271878</deployedseed>
+    <deployedseed>1092664551</deployedseed>
+    <deployedseed>106071424</deployedseed>
+    <deployedseed>524559648</deployedseed>
+    <deployedseed>289185285</deployedseed>
+    <deployedseed>1584594874</deployedseed>
+    <deployedseed>352623636</deployedseed>
+    <deployedseed>1898452428</deployedseed>
+    <deployedseed>1370887026</deployedseed>
+    <deployedseed>2068148459</deployedseed>
+  </question>
+</quiz>
