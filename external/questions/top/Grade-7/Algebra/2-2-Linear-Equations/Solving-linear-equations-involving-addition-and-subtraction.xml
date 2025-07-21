@@ -125,5 +125,15 @@ eq:first_num_var*var_letter - second_1 = third_num;
         </falsefeedback>
       </node>
     </prt>
+    <deployedseed>2000050850</deployedseed>
+    <deployedseed>1454471133</deployedseed>
+    <deployedseed>121674895</deployedseed>
+    <deployedseed>1460147279</deployedseed>
+    <deployedseed>1005329451</deployedseed>
+    <deployedseed>678383311</deployedseed>
+    <deployedseed>472122677</deployedseed>
+    <deployedseed>939882865</deployedseed>
+    <deployedseed>1830180874</deployedseed>
+    <deployedseed>2144759715</deployedseed>
   </question>
 </quiz>

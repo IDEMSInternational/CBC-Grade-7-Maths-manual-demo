@@ -39,12 +39,11 @@
 </table>
 
 <p>Represent the data on a bar graph given that 1cm represents Ksh. 500. Drag the bars to position.</p>
-<br>
 
-<left>
+<left>Books
 
 <!-- JSXGraph Code -->
-[[jsxgraph width="750px" height="450px" input-ref-ans1="sR1" input-ref-ans2="sR2" input-ref-ans3="sR3" input-ref-ans4="sR4" input-ref-ans5="sR5"]]
+[[jsxgraph width="600px" height="400px" input-ref-ans1="sR1" input-ref-ans2="sR2" input-ref-ans3="sR3" input-ref-ans4="sR4" input-ref-ans5="sR5"]]
 
 // Ensure values are properly converted to numbers
 var dataValues = [
@@ -64,7 +63,7 @@ var board = JXG.JSXGraph.initBoard(divid, {
     axis: false,  
     showCopyright: false,
     showNavigation: false,
-    grid: true
+    grid: false
 });
 
 // Custom X and Y axes
@@ -92,7 +91,8 @@ for (let i = 0; i < dataValues.length; i++) {
         size: 3,
         strokeColor: "black",
         fixed: false,  
-        snapToGrid: true
+        snapToGrid: true,
+        snapSizeY: 100
     });
 
     dragPoints.push(dragPoint);
@@ -153,6 +153,8 @@ stack_jxg.bind_point('ans5', dragPoints[4], function(point) {
     return Math.round(point.Y());
 });
 
+stack_jxg.define_group(dragPoints);
+
 board.unsuspendUpdate();
 
 [[/jsxgraph]]
@@ -176,7 +178,7 @@ board.unsuspendUpdate();
 
 <p><br></p>
 <center>
-[[jsxgraph width="750px" height="450px"]]
+[[jsxgraph width="600px" height="400px"]]
 
 // Define static test values (replace with STACK variables)
 var dataValues = [{#house_rent1#}, {#Food1#}, {#Education1#}, {#Electricity1#}, {#Transport1#}]; // Example values for debugging
@@ -186,7 +188,7 @@ var colors = ["#FF5733", "#33FF57", "#3380FF", "#FFD700", "#8A2BE2"];
 
 // Initialize the board
 var board = JXG.JSXGraph.initBoard("jxgbox", {
-    boundingBox: [-1, 6000, 6, -1000], 
+    boundingBox:  [-1, 4200, 6, -500], 
     axis: false,  
     showCopyright: false,
     showNavigation: false,
@@ -258,11 +260,11 @@ board.update();
     </stackversion>
     <questionvariables>
       <text>/* Define random values */
-house_rent1: rand(500) + 3000;
-Food1: rand(1000) + 3000;
-Education1: rand(500) + 2000;
-Electricity1: rand(100) + 1500;
-Transport1: rand(500) + 2000;
+house_rent1: rand_with_step(3000, 3500, 100);
+Food1: rand_with_step(3000, 4000, 100);
+Education1: rand_with_step(2000, 2500, 100);
+Electricity1: rand_with_step(1000, 1200, 100);
+Transport1: rand_with_step(2000, 2500, 100);
 
 
 
@@ -515,7 +517,7 @@ node12_error: [float(Transport1), ans5];</text>
         <name>10</name>
         <description>Checks for correct dragged  histogram bar 1</description>
         <answertest>AlgEquiv</answertest>
-        <sans>ans5</sans>
+        <sans>ans5[2]</sans>
         <tans>tans5</tans>
         <testoptions/>
         <quiet>1</quiet>
@@ -540,7 +542,7 @@ node12_error: [float(Transport1), ans5];</text>
         <name>11</name>
         <description>Checks for correct dragged  histogram bar 2</description>
         <answertest>AlgEquiv</answertest>
-        <sans>ans5</sans>
+        <sans>ans5[2]</sans>
         <tans>tans5</tans>
         <testoptions/>
         <quiet>1</quiet>
@@ -565,7 +567,7 @@ node12_error: [float(Transport1), ans5];</text>
         <name>2</name>
         <description>Checks for correct dragged  histogram bar 5</description>
         <answertest>AlgEquiv</answertest>
-        <sans>ans1</sans>
+        <sans>ans1[2]</sans>
         <tans>tans1</tans>
         <testoptions/>
         <quiet>1</quiet>
@@ -590,7 +592,7 @@ node12_error: [float(Transport1), ans5];</text>
         <name>3</name>
         <description>Checks for correct dragged  histogram bar 6</description>
         <answertest>AlgEquiv</answertest>
-        <sans>ans1</sans>
+        <sans>ans1[2]</sans>
         <tans>node4_error</tans>
         <testoptions/>
         <quiet>1</quiet>
@@ -615,7 +617,7 @@ node12_error: [float(Transport1), ans5];</text>
         <name>4</name>
         <description>Checks for correct dragged  histogram bar 3</description>
         <answertest>AlgEquiv</answertest>
-        <sans>ans2</sans>
+        <sans>ans2[2]</sans>
         <tans>tans2</tans>
         <testoptions/>
         <quiet>1</quiet>
@@ -640,7 +642,7 @@ node12_error: [float(Transport1), ans5];</text>
         <name>5</name>
         <description>Checks for correct dragged  histogram bar 2</description>
         <answertest>AlgEquiv</answertest>
-        <sans>ans2</sans>
+        <sans>ans2[2]</sans>
         <tans>node6_error</tans>
         <testoptions/>
         <quiet>1</quiet>
@@ -665,7 +667,7 @@ node12_error: [float(Transport1), ans5];</text>
         <name>6</name>
         <description>Checks for correct dragged  histogram bar 1</description>
         <answertest>AlgEquiv</answertest>
-        <sans>ans3</sans>
+        <sans>ans3[2]</sans>
         <tans>tans3</tans>
         <testoptions/>
         <quiet>1</quiet>
@@ -690,7 +692,7 @@ node12_error: [float(Transport1), ans5];</text>
         <name>7</name>
         <description>Checks for correct dragged  histogram bar 4</description>
         <answertest>AlgEquiv</answertest>
-        <sans>ans3</sans>
+        <sans>ans3[2]</sans>
         <tans>node8_error</tans>
         <testoptions/>
         <quiet>1</quiet>
@@ -715,7 +717,7 @@ node12_error: [float(Transport1), ans5];</text>
         <name>8</name>
         <description>Checks for correct dragged  histogram bar 5</description>
         <answertest>AlgEquiv</answertest>
-        <sans>ans4</sans>
+        <sans>ans4[2]</sans>
         <tans>tans4</tans>
         <testoptions/>
         <quiet>1</quiet>
@@ -740,7 +742,7 @@ node12_error: [float(Transport1), ans5];</text>
         <name>9</name>
         <description>Checks for correct dragged  histogram bar 6</description>
         <answertest>AlgEquiv</answertest>
-        <sans>ans4</sans>
+        <sans>ans4[2]</sans>
         <tans>node10_error</tans>
         <testoptions/>
         <quiet>1</quiet>

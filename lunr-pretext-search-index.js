@@ -1987,7 +1987,7 @@ var ptx_lunr_docs = [
   "type": "Section",
   "number": "2.2",
   "title": "Linear Equations",
-  "body": " Linear Equations    Introduction to Linear Equations.   Have you ever tried to balance a scale? If you add weight to one side, you must do the same to the other side to keep it balanced. This idea is the foundation of linear equations.    What is a Linear Equation?   A linear equation is an equation where the highest power of the variable is 1. It has a simple form, such as:     Here, is the unknown number, called a variable. To find , we solve the equation step by step:              This means the value of that makes the equation true is    Why are Linear Equations Important?   Linear equations help us solve real-world problems, such as:    Calculating expenses: If a book costs dollars and you buy books, the total cost is . If the total cost is , you can find the price of one book by solving .     Finding unknown ages: If a person's age is , and their younger sibling is years younger, we can write this as      Distance and speed calculations: If a car travels at km per hour for hours, the distance covered is km.     You are going to learn how to:    Understand equations – Recognizing how equations express equality.     Solve for unknowns – Finding the value of variables step by step.     Use real-life applications – Applying equations to everyday situations.     Graph linear equations – Representing equations on a coordinate plane.     Linear equations are like puzzles waiting to be solved. With practice, you will see how they can make problem-solving easier and fun.    Forming Equations in One Unknown      Place a weight measure of kg on one side of weight measure of kg on the other side.    Gradually add a mass to the kg mass until the beam balances.    Represent the added mass with a letter and relate the weights on the two sides of the beam balance.    Discuss and share with other groups.              Walibora bought a shirt and a pair of shorts. The cost of the pair of shorts was shillings less than that of the shirt. If the two items cost shillings. Write an equation representing the information using letter as the cost of a shirt.    The cost of one pair of shorts is   The cost of a shirt and a pair of shorts can be represented using the expression shown below:     Simplifying the equation, we get:     Thus the equation   Represents the cost of a shirt and a pair of shorts.          Solving Linear Equations in One Unknown.   Work in Groups     On one side of a beam balance, place five matchboxes of the same weight.    On the other side, place two matchboxes.    To the side with two matchboxes, gradually add grains of sand until the beam balances.    From both sides, remove two matchboxes and observe whether the beam balances.    Represent the mass of the added sand with a letter and form an equation involving the letter.    Discuss and share your results with other groups.                                   Solve the following equation:       Subtract from both sides.    (for accessibility)       (for accessibility)     By substracting from both sides you balance the beam balance which is represents the following equation.      Therefore,        Solve     Add to both sides so that we elimina,        Divide both sides by             Solve     Multiply both sides by 4     The on the left side of the equation cancels out and we are left with                    Application of Linear Equations in One Unknown    Dorine and Andrew are to share kg of sugar so that Dorine gets kg more than what Andrew receives. Find the weight received by each of them.    Let Andrew's share be kg.  Dorine's share is;   Thus,            Andrew's share is kg and Dorine's share is kg.      Exercise Here.      Makanda and Magut sell exercise books at shillings per book. Peter bought some exercise books from Makanda's shop and from Magut's shop. In Magut's shop, he bought more books than he bought from Makanda's shop. If he spent a total of shillings buying the books, find the number of books bought from each shop.    Let the number of books bought from Makanda's shop be .  The number of books bought from Magut's shop is; .  Amount spent in Magut's shop is;      Amount spent in Makanda's shop is;   Total amount;      Thus, .           Number of books bought from Makanda's shop is and from Magut's shop is = .        "
+  "body": " Linear Equations    Introduction to Linear Equations.   Have you ever tried to balance a scale? If you add weight to one side, you must do the same to the other side to keep it balanced. This idea is the foundation of linear equations.    What is a Linear Equation?   A linear equation is an equation where the highest power of the variable is 1. It has a simple form, such as:     Here, is the unknown number, called a variable. To find , we solve the equation step by step:              This means the value of that makes the equation true is    Why are Linear Equations Important?   Linear equations help us solve real-world problems, such as:    Calculating expenses: If a book costs dollars and you buy books, the total cost is . If the total cost is , you can find the price of one book by solving .     Finding unknown ages: If a person's age is , and their younger sibling is years younger, we can write this as      Distance and speed calculations: If a car travels at km per hour for hours, the distance covered is km.     You are going to learn how to:    Understand equations – Recognizing how equations express equality.     Solve for unknowns – Finding the value of variables step by step.     Use real-life applications – Applying equations to everyday situations.     Graph linear equations – Representing equations on a coordinate plane.     Linear equations are like puzzles waiting to be solved. With practice, you will see how they can make problem-solving easier and fun.    Forming Equations in One Unknown      Place a weight measure of kg on one side of weight measure of kg on the other side.    Gradually add a mass to the kg mass until the beam balances.    Represent the added mass with a letter and relate the weights on the two sides of the beam balance.    Discuss and share with other groups.              Walibora bought a shirt and a pair of shorts. The cost of the pair of shorts was shillings less than that of the shirt. If the two items cost shillings. Write an equation representing the information using letter as the cost of a shirt.    The cost of one pair of shorts is   The cost of a shirt and a pair of shorts can be represented using the expression shown below:     Simplifying the equation, we get:     Thus the equation   Represents the cost of a shirt and a pair of shorts.            Solving Linear Equations in One Unknown.   Work in Groups     On one side of a beam balance, place five matchboxes of the same weight.    On the other side, place two matchboxes.    To the side with two matchboxes, gradually add grains of sand until the beam balances.    From both sides, remove two matchboxes and observe whether the beam balances.    Represent the mass of the added sand with a letter and form an equation involving the letter.    Discuss and share your results with other groups.                                   Solve the following equation:       Subtract from both sides.    (for accessibility)       (for accessibility)     By substracting from both sides you balance the beam balance which is represents the following equation.      Therefore,        Solve     Add to both sides so that we elimina,        Divide both sides by             Solve     Multiply both sides by 4     The on the left side of the equation cancels out and we are left with                        Application of Linear Equations in One Unknown    Dorine and Andrew are to share kg of sugar so that Dorine gets kg more than what Andrew receives. Find the weight received by each of them.    Let Andrew's share be kg.  Dorine's share is;   Thus,            Andrew's share is kg and Dorine's share is kg.      Exercise Here.      Makanda and Magut sell exercise books at shillings per book. Peter bought some exercise books from Makanda's shop and from Magut's shop. In Magut's shop, he bought more books than he bought from Makanda's shop. If he spent a total of shillings buying the books, find the number of books bought from each shop.    Let the number of books bought from Makanda's shop be .  The number of books bought from Magut's shop is; .  Amount spent in Magut's shop is;      Amount spent in Makanda's shop is;   Total amount;      Thus, .           Number of books bought from Makanda's shop is and from Magut's shop is = .        "
 },
 {
   "id": "sec-Linear-equations-2-1",
@@ -2077,7 +2077,16 @@ var ptx_lunr_docs = [
   "type": "Checkpoint",
   "number": "2.2.2",
   "title": "",
-  "body": "   "
+  "body": "  "
+},
+{
+  "id": "subsec-Forming_Equations_in_one_Unknown-7",
+  "level": "2",
+  "url": "sec-Linear-equations.html#subsec-Forming_Equations_in_one_Unknown-7",
+  "type": "Checkpoint",
+  "number": "2.2.3",
+  "title": "",
+  "body": "  "
 },
 {
   "id": "subsec-Solving_Linear_Equations_in_One_Unknown-2",
@@ -2093,7 +2102,7 @@ var ptx_lunr_docs = [
   "level": "2",
   "url": "sec-Linear-equations.html#subsec-Solving_Linear_Equations_in_One_Unknown-5",
   "type": "Example",
-  "number": "2.2.3",
+  "number": "2.2.4",
   "title": "",
   "body": "  Solve the following equation:       Subtract from both sides.    (for accessibility)       (for accessibility)     By substracting from both sides you balance the beam balance which is represents the following equation.      Therefore,     "
 },
@@ -2102,7 +2111,7 @@ var ptx_lunr_docs = [
   "level": "2",
   "url": "sec-Linear-equations.html#subsec-Solving_Linear_Equations_in_One_Unknown-6",
   "type": "Example",
-  "number": "2.2.4",
+  "number": "2.2.5",
   "title": "",
   "body": "  Solve     Add to both sides so that we elimina,        Divide both sides by          "
 },
@@ -2111,7 +2120,7 @@ var ptx_lunr_docs = [
   "level": "2",
   "url": "sec-Linear-equations.html#subsec-Solving_Linear_Equations_in_One_Unknown-7",
   "type": "Example",
-  "number": "2.2.5",
+  "number": "2.2.6",
   "title": "",
   "body": "  Solve     Multiply both sides by 4     The on the left side of the equation cancels out and we are left with            "
 },
@@ -2120,16 +2129,34 @@ var ptx_lunr_docs = [
   "level": "2",
   "url": "sec-Linear-equations.html#subsec-Solving_Linear_Equations_in_One_Unknown-8",
   "type": "Checkpoint",
-  "number": "2.2.6",
+  "number": "2.2.7",
   "title": "",
-  "body": "    "
+  "body": "  "
+},
+{
+  "id": "subsec-Solving_Linear_Equations_in_One_Unknown-9",
+  "level": "2",
+  "url": "sec-Linear-equations.html#subsec-Solving_Linear_Equations_in_One_Unknown-9",
+  "type": "Checkpoint",
+  "number": "2.2.8",
+  "title": "",
+  "body": "  "
+},
+{
+  "id": "subsec-Solving_Linear_Equations_in_One_Unknown-10",
+  "level": "2",
+  "url": "sec-Linear-equations.html#subsec-Solving_Linear_Equations_in_One_Unknown-10",
+  "type": "Checkpoint",
+  "number": "2.2.9",
+  "title": "",
+  "body": "  "
 },
 {
   "id": "subsec-Application_of_Linear_Equations_in_One_Unknown-2",
   "level": "2",
   "url": "sec-Linear-equations.html#subsec-Application_of_Linear_Equations_in_One_Unknown-2",
   "type": "Example",
-  "number": "2.2.7",
+  "number": "2.2.10",
   "title": "",
   "body": "  Dorine and Andrew are to share kg of sugar so that Dorine gets kg more than what Andrew receives. Find the weight received by each of them.    Let Andrew's share be kg.  Dorine's share is;   Thus,            Andrew's share is kg and Dorine's share is kg.   "
 },
@@ -2138,7 +2165,7 @@ var ptx_lunr_docs = [
   "level": "2",
   "url": "sec-Linear-equations.html#subsec-Application_of_Linear_Equations_in_One_Unknown-3",
   "type": "Checkpoint",
-  "number": "2.2.8",
+  "number": "2.2.11",
   "title": "",
   "body": "  Exercise Here.   "
 },
@@ -2147,7 +2174,7 @@ var ptx_lunr_docs = [
   "level": "2",
   "url": "sec-Linear-equations.html#subsec-Application_of_Linear_Equations_in_One_Unknown-4",
   "type": "Example",
-  "number": "2.2.9",
+  "number": "2.2.12",
   "title": "",
   "body": "  Makanda and Magut sell exercise books at shillings per book. Peter bought some exercise books from Makanda's shop and from Magut's shop. In Magut's shop, he bought more books than he bought from Makanda's shop. If he spent a total of shillings buying the books, find the number of books bought from each shop.    Let the number of books bought from Makanda's shop be .  The number of books bought from Magut's shop is; .  Amount spent in Magut's shop is;      Amount spent in Makanda's shop is;   Total amount;      Thus, .           Number of books bought from Makanda's shop is and from Magut's shop is = .   "
 },
@@ -2156,7 +2183,7 @@ var ptx_lunr_docs = [
   "level": "2",
   "url": "sec-Linear-equations.html#subsec-Application_of_Linear_Equations_in_One_Unknown-5",
   "type": "Checkpoint",
-  "number": "2.2.10",
+  "number": "2.2.13",
   "title": "",
   "body": "  "
 },
@@ -4822,7 +4849,7 @@ var ptx_lunr_docs = [
   "type": "Section",
   "number": "5.1",
   "title": "Data handling",
-  "body": " Data handling   Meaning of data  Data is a collection of facts such as numbers and measurements that we learn, make decisions or solve problems.  An example of data in a classroom could be the information on finding out how many pens each group in the classroom has. Here is the data we collected:     Group Names: Group 1, Group 2, Group 3    Number of Pens:      Group 1: 5 pens    Group 2: 8 pens    Group 3: 7 pens     This information is considered data because counting pens helps us manage and organize our resources effectively. For instance, if one group needs more pens, we can identify which group has extra pens to share. You could use this data to figure out things like:  Which group has the most pens?  How many pens are there in total?  What is the average number of pens per group?     Work in groups  (i) Each learner state their understanding of the term data.  (ii) Search for the meaning of data from different sources.  (iii) Discuss and compare with other groups.   Learning point     Data is a collection of facts such as numbers and measurements collected to represent information.       Collection of data  A collection of data refers to the process of gathering and assembling relevant pieces of information or facts from various sources for analysis or use.  This data can be quantitative (numerical) or qualitative (descriptive) and is typically organized in a structured manner to allow for efficient examination or decision-making.  Data collection can take many forms, such as:  Surveys and questionnaires: Gathering responses from individuals  Experiments: Recording observations or measurements during controlled experiments.  Interviews: Collecting qualitative data through direct interactions.     Work in groups  (i) Collect data on the number of classrooms in your school.  (ii) Count the number of textbooks for each subject in your class.  (iii) Collect data on the number of male and female in your class.  (iv) Collect information on the number of left handed students in your class.  (v) Discuss and compare with other groups.   Learning point     Data collected from different situations vary from each other.       Frequency distribution table  A frequency distribution table displays the frequency of each data set in an organized way.  Frequency is the rate at which something occurs over a particular period of time or in a given sample.  It helps us to find patterns in the data and also enables us to analyze the data using measures of central tendency and variance.   Work in groups  (i) Consider the following list showing the favourite fruits for learners.   Frequency distribution table    Learner  Fruit    Kemunto  Banana    Otieno  Apple    Kamau  Apple    Esipisu  Banana    Omar  Guava    Sidika  Apple    Nanjala  Guava    Njoki  Banana    Sagar  Guava    Baraza  Banana    Anyango  Banana    Issa  Banana     (ii) Represent the information in a table that has Fruit, Tally and Frequency.  (iii) Compare and discuss with other groups.   Learning points     A tally mark represents one unit. One mark represent a frequency of one.    A table having one unit and the number of times it occurs is a frequency table       The height, in centimetres, of 30 tree seedlings were recorded as follows:  15 20 18 15 20 15 16 14 20 14 12 14 15 16 10  12 10 16 18 15 16 11 13 16 14 12 17 16 20 19  Draw a frequency distribution table to represent this information.     Frequency distribution table representing tree seedling    Height  Tally  Frequency    10  \/\/  2    11  \/  1    12  \/\/\/  3    13  \/  1    14  \/\/\/\/  4    15  \/\/\/\/\/  5    16  \/\/\/\/\/\/  6    17  \/  1    18  \/\/  2    19  \/  1    20  \/\/\/\/  4         In a quiz, the marks obtained by 20 students out of 30 are given as follows  12,15,15,29,30,21,30,30,15,17,19,15,20,20,16,21,23,24,23,21  Draw a frequency distribution table to represent this information.     Frequency distribution table representing students marks    Marks  Tally  Frequency    12  \/  1    15  \/\/\/\/  4    16  \/  1    17  \/  1    19  \/  1    20  \/\/  2    21  \/\/\/  3    23  \/\/  2    24  \/  1    29  \/  1    30  \/\/\/  3         Suitable scale for graphs of data   work in groups  (i) consider the table below      Marks  Frequency    4  2    5  10    6  5    7  20    8  3    9  4     (ii) Determine a suitable scale you would use to draw a bar graph.  (iii) Discuss and compare with other groups.   Learning point     A suitable scale should be chosen in such a way that data is easy to plot and easy to read.       Pictographs of data  A pictograph is a type of data visualization that uses pictures or symbols to represent and convey data.  Each picture or symbol typically represents a specific quantity or value, making it easier to understand and interpret data.   Work in groups  (i) Consider the table shown   Favourite musical instrument    🎸  😊😊😊😊    🥁  😊😊    🎹  😊😊😊    🪈  😊😊😊😊😊     key: 😊represents four children  (ii) Write down the number of children whose favourite musical instrument is: (a) Guitar (b) Drum (c) Keyboard (d) Flute  (iii) Discuss and compare with other groups.   Learning point     A pictograph is a representation of data using images, icons and symbols.       The following pictograph shows the number of students who were absent from a class in a given week.      Days  Number of absentees    Monday  🧍🏼🧍🏼🧍🏼🧍🏼🧍🏼    Tuesday     Wednesday  🧍🏼🧍🏼    Thursday  🧍🏼🧍🏼🧍🏼    Friday  🧍🏼     Key: 🧍🏼represents one student  (a) On which day were the maximum number of students absent?  (b) Which day had full attendance?    (a) Monday  (b) Tuesday      The table shows the number of students present in a class of 32 in a week.      Days  Number of students present    Monday  24    Tuesday  20    Wednesday  28    Thursday  32    Friday  28     Represent the information in a pictograph.    Key: 🧍🏼represents 4 students      Days  Number of students present    Monday  🧍🏼🧍🏼🧍🏼🧍🏼🧍🏼🧍🏼    Tuesday  🧍🏼🧍🏼🧍🏼🧍🏼🧍🏼    Wednesday  🧍🏼🧍🏼🧍🏼🧍🏼🧍🏼🧍🏼🧍🏼    Thursday  🧍🏼🧍🏼🧍🏼🧍🏼🧍🏼🧍🏼🧍🏼🧍🏼    Friday  🧍🏼🧍🏼🧍🏼🧍🏼🧍🏼🧍🏼🧍🏼         The pictograph below shows the number of books borrowed from a school library over five days      Days of the week  Number of books borrowed 📙 = 5 vehicles    Monday  📙📙📙📙📙    Tueday  📙📙📙📙    Wednesday  📙📙📙📙📙📙    Thursday  📙📙📙    Friday  📙📙📙📙📙📙📙     Answer the following questions:  (a) How many books were borrowed on Monday?  (b) On which day were the most books borrowed?  (c) How many books were borrowed in total during the week?  (d) How many more books were borrowed on Friday compared to Thursday?    (a) Therefore, 50 books were borrowed on Monday  (b) Friday  (c) Total Books Borrowed:     Monday: 50 books    Tuesday: 40 books    Wednesday: 60 books    Thursday: 30 books    Friday: 70 books     Total =   Therefore, books were borrowed throughout the week.  (d) More Books Borrowed on Friday than Thursday:     Friday: 70 books    Thursday: 30 books    Difference = books         Bar graphs of data  Bar graph is a visual representation of data where individual bars (rectangular shapes) are used to represent the values or frequencies of different categories.  The length or height of each bar corresponds to the value it represents, making it easy to compare different categories.   Work in groups  (i) Consider the table below showing the number of loaves of bread sold in a school canteen in a week.      Day  Monday  Tuesday  Wednesday  Thursday  Friday    Number of leaves sold  100  250  200  150  300     (ii) Choose a suitable scale to represent the data on a graph.  (iii) Using bars, represent the data on a graph.  (iii) Compare and discuss with other groups.     The table below shows monthly expenses of a household in a certain month.   Monthly expenses of a household in a certain month    Item  Expenditure (Ksh)    House Rent  3000    Food  3500    Education  2000    Electricity  500    Transport  1500     Represent the data on a bar graph    (i) Choose a suitable scale for the length of bars, for example, let 1cm represent Ksh. 500.  (ii) Work out the Length of the bars as shown.   Frequency table    Items  Expenditure (Ksh.)  No. of squares making the height    House rent  3000  6    Food  3500  7    Education  2000  4    Electricity  500  1    Transport  1500  3     (iii) Draw a bar graph for the data.         The bar graph shown represents favourite games for a number of learners.        Find the number of learners whose favourite game was:  (a) Soccer  (b) Netball  (c) Volleyball    Find the total number of learners whose favourite game was soccer, netball or volleyball.          (a) 15 learners  (b) 10 learners  (c) 20 learners    45 learners         Pie charts of data  A pie chart is a type of graph representing data in a circular form, with each slice of the circle representing a fraction or proportionate part of the whole. All slices of the pie add up to make the whole equaling 100 percent and 360 degrees.   work in groups  (i) Consider the table below      Mode of Transport  Bus  Bicycle  On foot  Car    Number of students  200  100  80  20     (ii) Draw a circle of suitable radius.  (iii) Divide the circle into sectors to represent the information.  (iv) Compare and discuss with other groups.   Learning point     Frequency is represented by the size of a sector in a pie chart.       The Table below shows different types of animals kept by a farmer.      Animals  Cows  Goats  Sheep  Pigs    Number of animals  12  24  18  6     Draw a pie chart to represent this information    The total angle at the centre of a circle is . The central angles of sectors representing the animals are fractions of . The total number of animals in the farm is 12+24+18+6 = 60.      Animal  No. of animals  Fraction  Fraction of 360 degrees    Cows       Goats       Sheep       Pigs               Murunga is a fruit farmer. The table below shows the number of fruit trees on Murunga's farm.   Pie chart to represent the number of trees    Fruit trees  Oranges  Lemons  Apples  Pawpaws    Number of trees  600  300  150  150     Draw a pie chart to represent the number of trees.       Total number of trees is + + + =   Oranges   Apples   Pawpaws   Lemons       Interpretation of pie charts   Work in groups  (i) Consider the pie chart representing different types of crops planted in a 6 hectare farm shown.     (ii) Find and record the information represented in the pie chart.  (iii) Discuss and share with other groups.   Learning point     Information represented in a pie chart is obtained using the total number of items represented and the angles expressed as fractions of .       The pie chart shows types of vehicles that passed by a school gate within one hour.     If the number of vehicles that passed by the school were 72, find how many lorries, pickups and cars passed by the school gate.    The number of lorries were   The number of pick ups were   The number of cars were       The pie chart below represents careers that learners would love to pursue in future.     (a) How many learners want to pursue Law?  (b) How many learners want to pursue Fine Art?  (c) How many learners want to pursue Medicine?  (d) How many learners want to pursue Teaching?    Measure the angle representing each career.  (a) Number of learners who want to pursue Law is   (b) Number of learners who want to pursue Fine Art is   (c) Number of learners who want to pursue Medicine is   (d) Number of learners who want to pursue Teaching is   Number of learners who prefer Medicine to Teaching is       Line graphs of data  Line graph of data is a visual representation of data where individual data points are connected by straight lines, showing how a variable changes over time or across a continuous scale, typically with the horizontal axis representing time and the vertical axis representing the measured values.  It is used to identify trends and patterns in data over a period of time.   Work in groups     Consider the table shown on the amount of recorded rainfall in a place for a period of six months.   Amount of Rainfall for a period of six months    Month  Jan.  Feb.  March.  April.  May.  June.    Amount of Rainfall(mm)  50  70  80  150  140  110       Represent the information on a line graph.    Share and discuss with other groups.      Learning point     In line graphs, points are connected with straight lines to represent changes in values over a period of time.       The table shown represents the sale of motorcycles by a company from the month of June to December 2021      Month  June  July  Aug.  Sept.  Oct.  Nov  Dec.    No. of motocycles  10  40  30  20  30  40  50     Draw a line graph to represent the information    Scale 1 cm represents 10 motorcycles.         The table below shows recorded average temperature of a place in a week.   Average temperature in a week    Day  Mon  Tue  Wed  Thur  Fri  Sat  Sun    Average temperature              Scale 1 cm represents         A Learner measured changes in the length of a flag post's shadow at different times. She recorded the lengths as shown. Below is a representation of the line graph   Time vs Lengths in metres    Time  7:00 a.m  9:00 a.m  11:00 a.m  1:00 p.m    Lengths in metres  6 m  4 m  2 m  0 m          "
+  "body": " Data handling   Meaning of data  Data is a collection of facts such as numbers and measurements that we learn, make decisions or solve problems.  An example of data in a classroom could be the information on finding out how many pens each group in the classroom has. Here is the data we collected:     Group Names: Group 1, Group 2, Group 3    Number of Pens:      Group 1: 5 pens    Group 2: 8 pens    Group 3: 7 pens     This information is considered data because counting pens helps us manage and organize our resources effectively. For instance, if one group needs more pens, we can identify which group has extra pens to share. You could use this data to figure out things like:  Which group has the most pens?  How many pens are there in total?  What is the average number of pens per group?     Work in groups  (i) Each learner state their understanding of the term data.  (ii) Search for the meaning of data from different sources.  (iii) Discuss and compare with other groups.   Learning point     Data is a collection of facts such as numbers and measurements collected to represent information.       Collection of data  A collection of data refers to the process of gathering and assembling relevant pieces of information or facts from various sources for analysis or use.  This data can be quantitative (numerical) or qualitative (descriptive) and is typically organized in a structured manner to allow for efficient examination or decision-making.  Data collection can take many forms, such as:  Surveys and questionnaires: Gathering responses from individuals  Experiments: Recording observations or measurements during controlled experiments.  Interviews: Collecting qualitative data through direct interactions.     Work in groups  (i) Collect data on the number of classrooms in your school.  (ii) Count the number of textbooks for each subject in your class.  (iii) Collect data on the number of male and female in your class.  (iv) Collect information on the number of left handed students in your class.  (v) Discuss and compare with other groups.   Learning point     Data collected from different situations vary from each other.       Frequency distribution table  A frequency distribution table displays the frequency of each data set in an organized way.  Frequency is the rate at which something occurs over a particular period of time or in a given sample.  It helps us to find patterns in the data and also enables us to analyze the data using measures of central tendency and variance.   Work in groups  (i) Consider the following list showing the favourite fruits for learners.   Frequency distribution table    Learner  Fruit    Kemunto  Banana    Otieno  Apple    Kamau  Apple    Esipisu  Banana    Omar  Guava    Sidika  Apple    Nanjala  Guava    Njoki  Banana    Sagar  Guava    Baraza  Banana    Anyango  Banana    Issa  Banana     (ii) Represent the information in a table that has Fruit, Tally and Frequency.  (iii) Compare and discuss with other groups.   Learning points     A tally mark represents one unit. One mark represent a frequency of one.    A table having one unit and the number of times it occurs is a frequency table       The height, in centimetres, of 30 tree seedlings were recorded as follows:  15 20 18 15 20 15 16 14 20 14 12 14 15 16 10  12 10 16 18 15 16 11 13 16 14 12 17 16 20 19  Draw a frequency distribution table to represent this information.     Frequency distribution table representing tree seedling    Height  Tally  Frequency    10  \/\/  2    11  \/  1    12  \/\/\/  3    13  \/  1    14  \/\/\/\/  4    15  \/\/\/\/\/  5    16  \/\/\/\/\/\/  6    17  \/  1    18  \/\/  2    19  \/  1    20  \/\/\/\/  4         In a quiz, the marks obtained by 20 students out of 30 are given as follows  12,15,15,29,30,21,30,30,15,17,19,15,20,20,16,21,23,24,23,21  Draw a frequency distribution table to represent this information.     Frequency distribution table representing students marks    Marks  Tally  Frequency    12  \/  1    15  \/\/\/\/  4    16  \/  1    17  \/  1    19  \/  1    20  \/\/  2    21  \/\/\/  3    23  \/\/  2    24  \/  1    29  \/  1    30  \/\/\/  3         Suitable scale for graphs of data   work in groups  (i) consider the table below      Marks  Frequency    4  2    5  10    6  5    7  20    8  3    9  4     (ii) Determine a suitable scale you would use to draw a bar graph.  (iii) Discuss and compare with other groups.   Learning point     A suitable scale should be chosen in such a way that data is easy to plot and easy to read.       Pictographs of data  A pictograph is a type of data visualization that uses pictures or symbols to represent and convey data.  Each picture or symbol typically represents a specific quantity or value, making it easier to understand and interpret data.   Work in groups  (i) Consider the table shown   Favourite musical instrument    🎸  😊😊😊😊    🥁  😊😊    🎹  😊😊😊    🪈  😊😊😊😊😊     key: 😊represents four children  (ii) Write down the number of children whose favourite musical instrument is: (a) Guitar (b) Drum (c) Keyboard (d) Flute  (iii) Discuss and compare with other groups.   Learning point     A pictograph is a representation of data using images, icons and symbols.       The following pictograph shows the number of students who were absent from a class in a given week.      Days  Number of absentees    Monday  🧍🏼🧍🏼🧍🏼🧍🏼🧍🏼    Tuesday     Wednesday  🧍🏼🧍🏼    Thursday  🧍🏼🧍🏼🧍🏼    Friday  🧍🏼     Key: 🧍🏼represents one student  (a) On which day were the maximum number of students absent?  (b) Which day had full attendance?    (a) Monday  (b) Tuesday      The table shows the number of students present in a class of 32 in a week.      Days  Number of students present    Monday  24    Tuesday  20    Wednesday  28    Thursday  32    Friday  28     Represent the information in a pictograph.    Key: 🧍🏼represents 4 students      Days  Number of students present    Monday  🧍🏼🧍🏼🧍🏼🧍🏼🧍🏼🧍🏼    Tuesday  🧍🏼🧍🏼🧍🏼🧍🏼🧍🏼    Wednesday  🧍🏼🧍🏼🧍🏼🧍🏼🧍🏼🧍🏼🧍🏼    Thursday  🧍🏼🧍🏼🧍🏼🧍🏼🧍🏼🧍🏼🧍🏼🧍🏼    Friday  🧍🏼🧍🏼🧍🏼🧍🏼🧍🏼🧍🏼🧍🏼         The pictograph below shows the number of books borrowed from a school library over five days      Days of the week  Number of books borrowed 📙 = 5 vehicles    Monday  📙📙📙📙📙    Tueday  📙📙📙📙    Wednesday  📙📙📙📙📙📙    Thursday  📙📙📙    Friday  📙📙📙📙📙📙📙     Answer the following questions:  (a) How many books were borrowed on Monday?  (b) On which day were the most books borrowed?  (c) How many books were borrowed in total during the week?  (d) How many more books were borrowed on Friday compared to Thursday?    (a) Therefore, 50 books were borrowed on Monday  (b) Friday  (c) Total Books Borrowed:     Monday: 50 books    Tuesday: 40 books    Wednesday: 60 books    Thursday: 30 books    Friday: 70 books     Total =   Therefore, books were borrowed throughout the week.  (d) More Books Borrowed on Friday than Thursday:     Friday: 70 books    Thursday: 30 books    Difference = books         Bar graphs of data  Bar graph is a visual representation of data where individual bars (rectangular shapes) are used to represent the values or frequencies of different categories.  The length or height of each bar corresponds to the value it represents, making it easy to compare different categories.   Work in groups  (i) Consider the table below showing the number of loaves of bread sold in a school canteen in a week.      Day  Monday  Tuesday  Wednesday  Thursday  Friday    Number of leaves sold  100  250  200  150  300     (ii) Choose a suitable scale to represent the data on a graph.  (iii) Using bars, represent the data on a graph.  (iii) Compare and discuss with other groups.     The table below shows monthly expenses of a household in a certain month.   Monthly expenses of a household in a certain month    Item  Expenditure (Ksh)    House Rent  3000    Food  3500    Education  2000    Electricity  500    Transport  1500     Represent the data on a bar graph    (i) Choose a suitable scale for the length of bars, for example, let 1cm represent Ksh. 500.  (ii) Work out the Length of the bars as shown.   Frequency table    Items  Expenditure (Ksh.)  No. of squares making the height    House rent  3000  6    Food  3500  7    Education  2000  4    Electricity  500  1    Transport  1500  3     (iii) Draw a bar graph for the data.         The bar graph shown represents favourite games for a number of learners.        Find the number of learners whose favourite game was:  (a) Soccer  (b) Netball  (c) Volleyball    Find the total number of learners whose favourite game was soccer, netball or volleyball.          (a) 15 learners  (b) 10 learners  (c) 20 learners    45 learners            Pie charts of data  A pie chart is a type of graph representing data in a circular form, with each slice of the circle representing a fraction or proportionate part of the whole. All slices of the pie add up to make the whole equaling 100 percent and 360 degrees.   work in groups  (i) Consider the table below      Mode of Transport  Bus  Bicycle  On foot  Car    Number of students  200  100  80  20     (ii) Draw a circle of suitable radius.  (iii) Divide the circle into sectors to represent the information.  (iv) Compare and discuss with other groups.   Learning point     Frequency is represented by the size of a sector in a pie chart.       The Table below shows different types of animals kept by a farmer.      Animals  Cows  Goats  Sheep  Pigs    Number of animals  12  24  18  6     Draw a pie chart to represent this information    The total angle at the centre of a circle is . The central angles of sectors representing the animals are fractions of . The total number of animals in the farm is 12+24+18+6 = 60.      Animal  No. of animals  Fraction  Fraction of 360 degrees    Cows       Goats       Sheep       Pigs               Murunga is a fruit farmer. The table below shows the number of fruit trees on Murunga's farm.   Pie chart to represent the number of trees    Fruit trees  Oranges  Lemons  Apples  Pawpaws    Number of trees  600  300  150  150     Draw a pie chart to represent the number of trees.       Total number of trees is + + + =   Oranges   Apples   Pawpaws   Lemons          Interpretation of pie charts   Work in groups  (i) Consider the pie chart representing different types of crops planted in a 6 hectare farm shown.     (ii) Find and record the information represented in the pie chart.  (iii) Discuss and share with other groups.   Learning point     Information represented in a pie chart is obtained using the total number of items represented and the angles expressed as fractions of .       The pie chart shows types of vehicles that passed by a school gate within one hour.     If the number of vehicles that passed by the school were 72, find how many lorries, pickups and cars passed by the school gate.    The number of lorries were   The number of pick ups were   The number of cars were       The pie chart below represents careers that learners would love to pursue in future.     (a) How many learners want to pursue Law?  (b) How many learners want to pursue Fine Art?  (c) How many learners want to pursue Medicine?  (d) How many learners want to pursue Teaching?    Measure the angle representing each career.  (a) Number of learners who want to pursue Law is   (b) Number of learners who want to pursue Fine Art is   (c) Number of learners who want to pursue Medicine is   (d) Number of learners who want to pursue Teaching is   Number of learners who prefer Medicine to Teaching is       Line graphs of data  Line graph of data is a visual representation of data where individual data points are connected by straight lines, showing how a variable changes over time or across a continuous scale, typically with the horizontal axis representing time and the vertical axis representing the measured values.  It is used to identify trends and patterns in data over a period of time.   Work in groups     Consider the table shown on the amount of recorded rainfall in a place for a period of six months.   Amount of Rainfall for a period of six months    Month  Jan.  Feb.  March.  April.  May.  June.    Amount of Rainfall(mm)  50  70  80  150  140  110       Represent the information on a line graph.    Share and discuss with other groups.      Learning point     In line graphs, points are connected with straight lines to represent changes in values over a period of time.       The table shown represents the sale of motorcycles by a company from the month of June to December 2021      Month  June  July  Aug.  Sept.  Oct.  Nov  Dec.    No. of motocycles  10  40  30  20  30  40  50     Draw a line graph to represent the information    Scale 1 cm represents 10 motorcycles.         The table below shows recorded average temperature of a place in a week.   Average temperature in a week    Day  Mon  Tue  Wed  Thur  Fri  Sat  Sun    Average temperature              Scale 1 cm represents         A Learner measured changes in the length of a flag post's shadow at different times. She recorded the lengths as shown. Below is a representation of the line graph   Time vs Lengths in metres    Time  7:00 a.m  9:00 a.m  11:00 a.m  1:00 p.m    Lengths in metres  6 m  4 m  2 m  0 m          "
 },
 {
   "id": "subsec-Meaning-of-data-6",
@@ -4942,6 +4969,15 @@ var ptx_lunr_docs = [
   "body": "  The bar graph shown represents favourite games for a number of learners.        Find the number of learners whose favourite game was:  (a) Soccer  (b) Netball  (c) Volleyball    Find the total number of learners whose favourite game was soccer, netball or volleyball.          (a) 15 learners  (b) 10 learners  (c) 20 learners    45 learners      "
 },
 {
+  "id": "subsec-Bar-graphs-of-data-7",
+  "level": "2",
+  "url": "sec-Data-handling.html#subsec-Bar-graphs-of-data-7",
+  "type": "Checkpoint",
+  "number": "5.1.20",
+  "title": "",
+  "body": "  "
+},
+{
   "id": "subsec-Pie-charts-of-data-3",
   "level": "2",
   "url": "sec-Data-handling.html#subsec-Pie-charts-of-data-3",
@@ -4955,7 +4991,7 @@ var ptx_lunr_docs = [
   "level": "2",
   "url": "sec-Data-handling.html#subsec-Pie-charts-of-data-6",
   "type": "Example",
-  "number": "5.1.21",
+  "number": "5.1.22",
   "title": "",
   "body": "  The Table below shows different types of animals kept by a farmer.      Animals  Cows  Goats  Sheep  Pigs    Number of animals  12  24  18  6     Draw a pie chart to represent this information    The total angle at the centre of a circle is . The central angles of sectors representing the animals are fractions of . The total number of animals in the farm is 12+24+18+6 = 60.      Animal  No. of animals  Fraction  Fraction of 360 degrees    Cows       Goats       Sheep       Pigs            "
 },
@@ -4964,9 +5000,18 @@ var ptx_lunr_docs = [
   "level": "2",
   "url": "sec-Data-handling.html#subsec-Pie-charts-of-data-7",
   "type": "Example",
-  "number": "5.1.24",
+  "number": "5.1.25",
   "title": "",
   "body": "  Murunga is a fruit farmer. The table below shows the number of fruit trees on Murunga's farm.   Pie chart to represent the number of trees    Fruit trees  Oranges  Lemons  Apples  Pawpaws    Number of trees  600  300  150  150     Draw a pie chart to represent the number of trees.       Total number of trees is + + + =   Oranges   Apples   Pawpaws   Lemons    "
+},
+{
+  "id": "subsec-Pie-charts-of-data-8",
+  "level": "2",
+  "url": "sec-Data-handling.html#subsec-Pie-charts-of-data-8",
+  "type": "Checkpoint",
+  "number": "5.1.27",
+  "title": "",
+  "body": "  "
 },
 {
   "id": "subsec-Interpretation-of-pie-charts-2",
@@ -4982,7 +5027,7 @@ var ptx_lunr_docs = [
   "level": "2",
   "url": "sec-Data-handling.html#subsec-Interpretation-of-pie-charts-5",
   "type": "Example",
-  "number": "5.1.26",
+  "number": "5.1.28",
   "title": "",
   "body": "  The pie chart shows types of vehicles that passed by a school gate within one hour.     If the number of vehicles that passed by the school were 72, find how many lorries, pickups and cars passed by the school gate.    The number of lorries were   The number of pick ups were   The number of cars were    "
 },
@@ -4991,7 +5036,7 @@ var ptx_lunr_docs = [
   "level": "2",
   "url": "sec-Data-handling.html#subsec-Interpretation-of-pie-charts-6",
   "type": "Example",
-  "number": "5.1.27",
+  "number": "5.1.29",
   "title": "",
   "body": "  The pie chart below represents careers that learners would love to pursue in future.     (a) How many learners want to pursue Law?  (b) How many learners want to pursue Fine Art?  (c) How many learners want to pursue Medicine?  (d) How many learners want to pursue Teaching?    Measure the angle representing each career.  (a) Number of learners who want to pursue Law is   (b) Number of learners who want to pursue Fine Art is   (c) Number of learners who want to pursue Medicine is   (d) Number of learners who want to pursue Teaching is   Number of learners who prefer Medicine to Teaching is    "
 },
@@ -5009,7 +5054,7 @@ var ptx_lunr_docs = [
   "level": "2",
   "url": "sec-Data-handling.html#subsec-Line-graphs-of-data-7",
   "type": "Example",
-  "number": "5.1.29",
+  "number": "5.1.31",
   "title": "",
   "body": "  The table shown represents the sale of motorcycles by a company from the month of June to December 2021      Month  June  July  Aug.  Sept.  Oct.  Nov  Dec.    No. of motocycles  10  40  30  20  30  40  50     Draw a line graph to represent the information    Scale 1 cm represents 10 motorcycles.      "
 },
@@ -5018,7 +5063,7 @@ var ptx_lunr_docs = [
   "level": "2",
   "url": "sec-Data-handling.html#subsec-Line-graphs-of-data-8",
   "type": "Example",
-  "number": "5.1.31",
+  "number": "5.1.33",
   "title": "",
   "body": "  The table below shows recorded average temperature of a place in a week.   Average temperature in a week    Day  Mon  Tue  Wed  Thur  Fri  Sat  Sun    Average temperature              Scale 1 cm represents       "
 },
@@ -5027,9 +5072,27 @@ var ptx_lunr_docs = [
   "level": "2",
   "url": "sec-Data-handling.html#subsec-Line-graphs-of-data-9",
   "type": "Example",
-  "number": "5.1.33",
+  "number": "5.1.35",
   "title": "",
   "body": " A Learner measured changes in the length of a flag post's shadow at different times. She recorded the lengths as shown. Below is a representation of the line graph   Time vs Lengths in metres    Time  7:00 a.m  9:00 a.m  11:00 a.m  1:00 p.m    Lengths in metres  6 m  4 m  2 m  0 m        "
+},
+{
+  "id": "sec-STACK-demo",
+  "level": "1",
+  "url": "sec-STACK-demo.html",
+  "type": "Section",
+  "number": "6.1",
+  "title": "Calculus STACK Demo",
+  "body": " Calculus STACK Demo     "
+},
+{
+  "id": "sec-STACK-demo-2",
+  "level": "2",
+  "url": "sec-STACK-demo.html#sec-STACK-demo-2",
+  "type": "Checkpoint",
+  "number": "6.1.1",
+  "title": "",
+  "body": "  "
 },
 {
   "id": "backmatter-2",
