@@ -358,7 +358,8 @@ function renameIframeHolders() {
 }
 
 function createIframes (iframes) {
-  for (const iframe of iframes) {
+  for (let iframe of iframes) {
+    iframe[1] = iframe[1].replaceAll("/cors.php", apiurl + "cors.php");
     create_iframe(...iframe);
   }
 }
